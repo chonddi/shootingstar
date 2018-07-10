@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sql.board">
+	<!-- <resultMap type="BoardVO" id="selResultMap">
+		<id column="no" jdbcType="BIGINT" property="no"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="content" jdbcType="VARCHAR" property="content"/>
+		<result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+		<result column="readcount" jdbcType="BIGINT" property="readcount"/>
+		<result column="regdate" jdbcType="TIMESTAMP" property="regdate"/>	
+	</resultMap>
+	
+	<sql id="boardCol">
+		no, name,pwd, title, email,regdate,
+			readcount, content, (sysdate-regdate)*24 as newImgTerm 
+	</sql>
+	
+	<insert id="insertBoard" parameterType="BoardVO">
+		<selectKey keyProperty="no" order="BEFORE" resultType="int">
+			select board_seq.nextval from dual
+		</selectKey>
+		insert into board(no, name, pwd, title, email, content) 
+			values(#{no}, #{name},#{pwd},
+					#{title},#{email},#{content})
+	</insert>
+	
+	<select id="selectAll" parameterType="map" resultType="BoardVO">
+		select 
+		<include refid="boardCol"></include>		
+		 from board
+		<if test="keyword!=null and keyword!=''">
+			<where>
+				${condition} like '%' || #{keyword} || '%'
+			</where>
+		</if>
+		order by no desc
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultMap="selResultMap">
+		select  
+		<include refid="boardCol"></include>
+		from board where no=#{no}
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="BoardVO">
+		select * from board where no=#{no}
+	</select>
+	
+	<update id="updateReadcount" parameterType="int">
+		update board 
+		set readcount=readcount+1 
+		where no=#{no}
+	</update>
+	
+	<update id="updateBoard" parameterType="BoardVO">
+		update board set name=#{name}, title=#{title}, email=#{email}, 
+			content=#{content} 
+		where no=#{no}
+	</update>
+	
+	<select id="selectPwd" parameterType="int" resultType="string">
+		select pwd from board where no=#{no}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where no=#{no}	
+	</delete>
+	
+	<delete id="deleteMulti" parameterType="map">
+		delete from board
+		where no in 
+		<foreach item="no" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{no}
+		</foreach>
+	</delete> -->
+	
+	<!-- delete from board
+		where no in (116, 112, 110) -->
+	
+</mapper>
+
+
+
+
+
+
+
+
+
