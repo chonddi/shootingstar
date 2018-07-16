@@ -14,17 +14,17 @@
 <title>IndexTest</title>
 
 <!-- 부트스트랩 -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
 
 <!-- jquery -->
 <script type="text/javascript"
 	src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-<script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/resetCss.css">
-<link rel="stylesheet" type="text/css" href="css/top.css">
-<link rel="stylesheet" type="text/css" href="css/bottom.css">
+<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/resetCss.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/top.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/bottom.css'/>">
 </head>
 <body>
 	<nav class="navbar navbar-default">
