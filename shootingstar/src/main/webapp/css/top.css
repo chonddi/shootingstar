@@ -99,7 +99,7 @@ body {
 	z-index: 100;
 	color: white;
 	font-size: 50px;
-	margin-left: 550px;
+	margin-left: 520px;
 	padding-top: 140px;
 }
 
@@ -140,6 +140,7 @@ body {
 	margin-left: 330px;
 	margin-top: 20px;
 }
+
 article{
 	width:1300px;
 	margin-left: 320px;

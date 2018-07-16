@@ -79,10 +79,10 @@
 			</nav>
 		</div>
 		<div id="mainHeaderAd"
-			style="background-image: url('<c:url value='/images/명도수정2.png'/>');">
+			style="background-image: url('<c:url value='/images/Honeycam.gif'/>');">
 			<div id="mainSentence">
 				나에게 딱 맞는 포토그래퍼를 찾으세요 !
-					<p id="mainBtn"><a class="btn btn-info" href="#" role="button" style="width:150px">견적신청</a></p>
+					<p id="mainBtn"><a class="btn btn-info" href="#" role="button" style="width:150px;">견적신청</a></p>
 				<div id="tableDiv">
 					<table id="mainTable" >
 						<col width="150" align="center" >
