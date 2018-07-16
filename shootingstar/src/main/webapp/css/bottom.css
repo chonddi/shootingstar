@@ -29,3 +29,8 @@ footer {
 #footerMenu li a{
 	cursor: pointer;
 }
+
+#footerBt p{
+	font-size: 13px;
+	text-align:center;
+}
