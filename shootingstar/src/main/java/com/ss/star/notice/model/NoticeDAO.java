@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface NoticeDAO {
 	public List<NoticeVO> selectAll();
+	public int insertNotice (NoticeVO noticeVo);
 }

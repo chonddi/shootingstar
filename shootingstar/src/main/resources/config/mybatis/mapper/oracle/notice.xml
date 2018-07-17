@@ -2,45 +2,37 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sql.notice">
-	
-	<select id="selectAll" resultType="NoticeVO">
-		select 
-		<!-- <include refid="boardCol"></include>		 -->
-		 from notice
-		<!-- <if test="keyword!=null and keyword!=''">
-			<where>
-				${condition} like '%' || #{keyword} || '%'
-			</where>
-		</if> -->
-		where delflag='N'
-		order by no desc
-	</select>
-
-	<!-- <resultMap type="BoardVO" id="selResultMap">
-		<id column="no" jdbcType="BIGINT" property="no"/>
-		<result column="name" jdbcType="VARCHAR" property="name"/>
-		<result column="title" jdbcType="VARCHAR" property="title"/>
-		<result column="email" jdbcType="VARCHAR" property="email"/>
-		<result column="content" jdbcType="VARCHAR" property="content"/>
-		<result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+	<resultMap type="NoticeVO" id="selResultMap">
+		<id column="Nno" jdbcType="BIGINT" property="Nno"/>
+		<result column="adminId" jdbcType="VARCHAR" property="adminId"/>
+		<result column="Ntitle" jdbcType="VARCHAR" property="Ntitle"/>
+		<result column="Ncontent" jdbcType="VARCHAR" property="Ncontent"/>
 		<result column="readcount" jdbcType="BIGINT" property="readcount"/>
 		<result column="regdate" jdbcType="TIMESTAMP" property="regdate"/>	
+		<result column="delflag" jdbcType="VARCHAR" property="delflag"/>
 	</resultMap>
 	
-	<sql id="boardCol">
-		no, name,pwd, title, email,regdate,
-			readcount, content, (sysdate-regdate)*24 as newImgTerm 
+	<sql id="NoticeCol">
+		Nno, adminId, Ntitle, Ncontent, 
+		regdate, readcount, delflag
 	</sql>
 	
-	<insert id="insertBoard" parameterType="BoardVO">
-		<selectKey keyProperty="no" order="BEFORE" resultType="int">
-			select board_seq.nextval from dual
+	<select id="selectAll" resultType="NoticeVO">
+		select * from NOTICE
+	</select>
+	
+		<insert id="insertNotice" parameterType="NoticeVO">
+		<selectKey keyProperty="Nno" order="BEFORE" resultType="int">
+			select notice_seq.nextval from dual
 		</selectKey>
-		insert into board(no, name, pwd, title, email, content) 
-			values(#{no}, #{name},#{pwd},
-					#{title},#{email},#{content})
+		insert into notice(Nno, adminId, Ntitle, Ncontent) 
+			values(#{no}, #{adminId},#{Ntitle},#{ Ncontent})
 	</insert>
 	
+
+
+	<!--	
+
 	<select id="selectByNo" parameterType="int" resultMap="selResultMap">
 		select  
 		<include refid="boardCol"></include>

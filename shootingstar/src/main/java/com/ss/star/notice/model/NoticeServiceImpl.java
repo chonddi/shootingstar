@@ -14,4 +14,9 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.selectAll();
 	}
 
+	@Override
+	public int insertNotice(NoticeVO noticeVo) {
+		return noticeDao.insertNotice(noticeVo);
+	}
+
 }

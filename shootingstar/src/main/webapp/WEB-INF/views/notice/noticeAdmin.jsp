@@ -48,6 +48,8 @@ $(document).ready(function(){
 		</tr>
 	</c:if>
 	
+	<!-- 체크박스 삭제 기능? -->
+	
 	<c:if test="${!empty list }"> 
 	<!--for 돌려서 db 출력  -->
 		<c:forEach var="noticeVo" items="${list }">
@@ -58,37 +60,16 @@ $(document).ready(function(){
 			<td><image src="<c:url value='/images/noticedown.png'/>"  width="30px" id="icon"></td>
 		</tr>
 		<tr>
-			<td colspan=4>${noticeVo.Ncontent }</td>
+			<td colspan=3>${noticeVo.Ncontent }</td>
+			<td><input type="button" value="수정" onclick="location.href='<c:url value="/notice/noticeEdit.do?Nno=${noticeVo.Nno}"/>'"></td>
 		</tr>
 		</c:forEach>
 	<!-- for 끝 -->
 	</c:if> 
 	</tbody>
 </table>   
- <%-- db내용 없어서 연습한 테이블!
-<table class="use">
- 		<thead>
-		<tr>
-			<th >번호</th>
-			<th>제목</th>
-			<th colspan=2>날짜</th>
 
-		</tr>
-		</thead>
-		<tbody class="tbody">
-			<tr>
-				<td>1</td>
-				<td>공지사항제목</td>
-				<td>1234-05-06</td>
-				<td><image src="<c:url value='/images/noticedown.png'/>"  width="30px" id="icon"></td>
-			</tr>
-			<tr>
-				<td colspan=4>공지사항내용</td>
-			</tr>
-		</div>
-</tbody>
-</table>
- --%>
 <!-- 검색없음!!! 페이징!!! -->
+<input type="button" value="공지사항 작성" onclick="location.href='<c:url value="/notice/noticeWrite.do"/>'">
 </body>
 </html>
