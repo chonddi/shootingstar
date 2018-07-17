@@ -24,8 +24,8 @@
 	</div>
 	<hr>
 	<div id="footerBt">
-		<a href="#"><img id="logo" alt="ShootingStar"
-			src="<c:url value='/images/로고투명.png'/>" width="210" /></a>
+		<a href="#"><img id="bottomLogo" alt="ShootingStar"
+			src="<c:url value='/images/logoBottom.png'/>" width="210" /></a>
 		<p>
 			서울시 강남구 역삼동 123-4 SS타워 3층 101호&nbsp;&nbsp;&nbsp; 사업자등록번호:123-45-67890<br>
 			TEL : <span>1234-5678</span>&nbsp;&nbsp;fax :
@@ -34,6 +34,6 @@
 		<p>&nbsp;&nbsp;Copyright &copy; 2018 SHOOTING STAR. All Rights Reserved.</p>
 	</div>
 </footer>
-
+ 
 </body>
 </html>

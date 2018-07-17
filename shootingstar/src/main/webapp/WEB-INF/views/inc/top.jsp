@@ -22,24 +22,26 @@
 
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/resetCss.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/top.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/bottom.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/resetCss.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/top.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/bottom.css'/>">
+
+
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img id="logo"
-				alt="ShootingStar" src="<c:url value='/images/로고글자있시.png'/>"
+				alt="ShootingStar" src="<c:url value='/images/mainTopLogo.png'/>"
 				width="210" /></a>
 
 			<nav id="topMenu">
 				<ul>
-					<li><a class="menuLink" href="#">ABOUT SHOOTINGSTAR</a>
-						<ul>
-							<li><a href="#">회사소개</a></li>
-							<li><a href="#">인사말</a></li>
-						</ul></li>
+
 					<li><a class="menuLink" href="#">REQUEST</a>
 						<ul>
 							<li><a href="#">견적작성</a></li>
@@ -53,6 +55,11 @@
 							<li><a href="#">포트폴리오 상세보기</a></li>
 							<li><a href="#">포트폴리오 등록 (전문가)</a></li>
 						</ul></li>
+					<li><a class="menuLink" href="#">ABOUT SHOOTING&nbsp;STAR</a>
+						<ul>
+							<li><a href="#">회사소개</a></li>
+							<li><a href="#">인사말</a></li>
+						</ul></li>
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
 							<li><a href="#">이용방법</a></li>
@@ -60,10 +67,10 @@
 							<li><a href="#">Q&A (고객)</a></li>
 						</ul></li>
 				</ul>
-				<ul id="userul">
+				<ul >
 					<li><img id="userli" alt="마이 페이지"
 						src="<c:url value='/images/user.png'/>">
-						<ul>
+						<ul id="userul">
 							<li><a href="#">로그인</a></li>
 							<li><a href="#">마이페이지</a></li>
 							<li><a href="#">내 정보 수정</a></li>
@@ -78,33 +85,7 @@
 
 			</nav>
 		</div>
-		<div id="mainHeaderAd"
-			style="background-image: url('<c:url value='/images/Honeycam.gif'/>');">
-			<div id="mainSentence">
-				나에게 딱 맞는 포토그래퍼를 찾으세요 !
-					<p id="mainBtn"><a class="btn btn-info" href="#" role="button" style="width:150px;">견적신청</a></p>
-				<div id="tableDiv">
-					<table id="mainTable" >
-						<col width="150" align="center" >
-						<col width="150" align="center">
-						<col width="150" align="center">
-						<col width="150" align="center">
-						<tr id="mainTr">
-							<td class="border1">등록 전문가 수&nbsp;</td>
-							<td class="border2">&nbsp;견적 요청 수&nbsp;</td>
-							<td class="border2">&nbsp;요청별 견적서&nbsp;</td>
-							<td class="border3">&nbsp;첫 견적 도착시간</td>
-						</tr>
-						<tr>
-							<td class="border1">1업체&nbsp;</td>
-							<td class="border2">&nbsp;2개&nbsp;</td>
-							<td class="border2">&nbsp;3.2개&nbsp;</td>
-							<td class="border3">&nbsp;1.5분</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-		</div>
+		
 	</nav>
-<article>
+	
+	<article>
