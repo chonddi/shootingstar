@@ -7,7 +7,7 @@ hr {
 	margin: 0 0 2px 0;
 	border: 0;
 	height: 1px;
-}
+} 
 
 footer {
 	width: 100%;
@@ -60,10 +60,12 @@ footer {
 
 #footerBt img {
 	margin-top: 20px;
-	margin-left: 855px;
 }
 
 #footerBt span {
 	font-size: 20px;	
+}
+#bottomLogo{
+	margin-left: 845px;
 }
 
