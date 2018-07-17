@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp"%>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/index.css'/>">
 <style>
 .img-fluid{
 	width:400px;	
@@ -11,6 +13,38 @@
     <!-- Custom styles for this template -->
     <link href="css/agency.css" rel="stylesheet">
 </head>
+
+<div id="mainHeaderAd"
+			style="background-image: url('<c:url value='/images/Honeycam.gif'/>');">
+			<div id="mainSentence">
+				나에게 딱 맞는 포토그래퍼를 찾으세요 !
+				<p id="mainBtn">
+					<a class="btn btn-info" href="#" role="button"
+						style="width: 150px;">견적신청</a>
+				</p>
+				<div id="tableDiv">
+					<table id="mainTable">
+						<col width="150" align="center">
+						<col width="150" align="center">
+						<col width="150" align="center">
+						<col width="150" align="center">
+						<tr id="mainTr">
+							<td class="border1">등록 전문가 수&nbsp;</td>
+							<td class="border2">&nbsp;견적 요청 수&nbsp;</td>
+							<td class="border2">&nbsp;요청별 견적서&nbsp;</td>
+							<td class="border3">&nbsp;첫 견적 도착시간</td>
+						</tr>
+						<tr> 
+							<td class="border1">1업체&nbsp;</td>
+							<td class="border2">&nbsp;2개&nbsp;</td>
+							<td class="border2">&nbsp;3.2개&nbsp;</td>
+							<td class="border3">&nbsp;1.5분</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
  <!-- Portfolio Grid --> 
     <section class="bg-light" id="portfolio">
       <div class="container">
