@@ -59,9 +59,18 @@
 	position: fixed;
 	z-index: 200;
 }
-
+#footerBt img{
+	
+}
+.img-fluid{
+	width:400px;	
+	height:250px;	
+}
+#footerBt img{
+	margin-left: 0;
+}
 article {
 	width: 1300px;
-	margin-left: 320px;
+
 	margin-top: 120px;
 }

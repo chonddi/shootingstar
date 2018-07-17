@@ -3,11 +3,8 @@
 <%@ include file="inc/top.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>">
-<style>
-.img-fluid{
-	width:400px;	
-	height:250px;	
-}
+<style type="text/css">
+
 </style>
 <head>
     <!-- Custom styles for this template -->
