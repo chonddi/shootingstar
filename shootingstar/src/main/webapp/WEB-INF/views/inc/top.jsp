@@ -22,9 +22,15 @@
 
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/resetCss.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/top.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/bottom.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/resetCss.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/top.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/bottom.css'/>">
+
+
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -35,11 +41,7 @@
 
 			<nav id="topMenu">
 				<ul>
-					<li><a class="menuLink" href="#">ABOUT SHOOTINGSTAR</a>
-						<ul>
-							<li><a href="#">회사소개</a></li>
-							<li><a href="#">인사말</a></li>
-						</ul></li>
+
 					<li><a class="menuLink" href="#">REQUEST</a>
 						<ul>
 							<li><a href="#">견적작성</a></li>
@@ -52,6 +54,11 @@
 							<li><a href="#">포트폴리오 목록</a></li>
 							<li><a href="#">포트폴리오 상세보기</a></li>
 							<li><a href="#">포트폴리오 등록 (전문가)</a></li>
+						</ul></li>
+					<li><a class="menuLink" href="#">ABOUT SHOOTING&nbsp;STAR</a>
+						<ul>
+							<li><a href="#">회사소개</a></li>
+							<li><a href="#">인사말</a></li>
 						</ul></li>
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
@@ -82,10 +89,13 @@
 			style="background-image: url('<c:url value='/images/Honeycam.gif'/>');">
 			<div id="mainSentence">
 				나에게 딱 맞는 포토그래퍼를 찾으세요 !
-					<p id="mainBtn"><a class="btn btn-info" href="#" role="button" style="width:150px;">견적신청</a></p>
+				<p id="mainBtn">
+					<a class="btn btn-info" href="#" role="button"
+						style="width: 150px;">견적신청</a>
+				</p>
 				<div id="tableDiv">
-					<table id="mainTable" >
-						<col width="150" align="center" >
+					<table id="mainTable">
+						<col width="150" align="center">
 						<col width="150" align="center">
 						<col width="150" align="center">
 						<col width="150" align="center">
@@ -104,7 +114,7 @@
 					</table>
 				</div>
 			</div>
-
 		</div>
 	</nav>
-<article>
+	
+	<article>
