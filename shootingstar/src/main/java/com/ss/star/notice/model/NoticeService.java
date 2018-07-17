@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface NoticeService {
 	public List<NoticeVO> selectAll();
+	public int insertNotice (NoticeVO noticeVo);
 
 }

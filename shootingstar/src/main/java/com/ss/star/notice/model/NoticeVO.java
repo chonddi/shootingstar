@@ -4,61 +4,62 @@ import java.sql.Timestamp;
 
 public class NoticeVO {
 
-	private int NNO ;
-	private String ADMINID;
-	private String NTITLE;
-	private String NCONTENT;
-	private Timestamp REGDATE ;
-	private int READCOUNT;
-	private String DELFLAG;
-	public int getNNO() {
-		return NNO;
+	private int Nno ;
+	private String adminId;
+	private String Ntitle;
+	private String Ncontent;
+	private Timestamp regdate ;
+	private int readcount;
+	private String delflag;
+	public int getNno() {
+		return Nno;
 	}
-	public void setNNO(int nNO) {
-		NNO = nNO;
+	public void setNno(int nno) {
+		Nno = nno;
 	}
-	public String getADMINID() {
-		return ADMINID;
+	public String getAdminId() {
+		return adminId;
 	}
-	public void setADMINID(String aDMINID) {
-		ADMINID = aDMINID;
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
-	public String getNTITLE() {
-		return NTITLE;
+	public String getNtitle() {
+		return Ntitle;
 	}
-	public void setNTITLE(String nTITLE) {
-		NTITLE = nTITLE;
+	public void setNtitle(String ntitle) {
+		Ntitle = ntitle;
 	}
-	public String getNCONTENT() {
-		return NCONTENT;
+	public String getNcontent() {
+		return Ncontent;
 	}
-	public void setNCONTENT(String nCONTENT) {
-		NCONTENT = nCONTENT;
+	public void setNcontent(String ncontent) {
+		Ncontent = ncontent;
 	}
-	public Timestamp getREGDATE() {
-		return REGDATE;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
-	public void setREGDATE(Timestamp rEGDATE) {
-		REGDATE = rEGDATE;
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
-	public int getREADCOUNT() {
-		return READCOUNT;
+	public int getReadcount() {
+		return readcount;
 	}
-	public void setREADCOUNT(int rEADCOUNT) {
-		READCOUNT = rEADCOUNT;
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
-	public String getDELFLAG() {
-		return DELFLAG;
+	public String getDelflag() {
+		return delflag;
 	}
-	public void setDELFLAG(String dELFLAG) {
-		DELFLAG = dELFLAG;
+	public void setDelflag(String delflag) {
+		this.delflag = delflag;
 	}
 	
 	@Override
 	public String toString() {
-		return "noticeVO [NNO=" + NNO + ", ADMINID=" + ADMINID + ", NTITLE=" + NTITLE + ", NCONTENT=" + NCONTENT
-				+ ", REGDATE=" + REGDATE + ", READCOUNT=" + READCOUNT + ", DELFLAG=" + DELFLAG + "]";
+		return "NoticeVO [Nno=" + Nno + ", adminId=" + adminId + ", Ntitle=" + Ntitle + ", Ncontent=" + Ncontent
+				+ ", regdate=" + regdate + ", readcount=" + readcount + ", delflag=" + delflag + "]";
 	}
+	
 	
 	
 }
