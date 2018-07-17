@@ -61,8 +61,5 @@ private static final Logger logger
 		return "redirect:notice/noticeList";
 	}
 	
-	@RequestMapping(value="/noticeEdit.do" , method=RequestMethod.GET)
-	public String noticeEdit_get(@RequestParam int no , Model model) {
-		
-	}
+	
 }
