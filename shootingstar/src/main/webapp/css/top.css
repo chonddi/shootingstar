@@ -10,7 +10,7 @@ body {
 
 .container-fluid {
 	background-color: white;
-	height: 120px;
+	height: 120px; 
 	width: 100%;
 	padding-left: 330px;
 }

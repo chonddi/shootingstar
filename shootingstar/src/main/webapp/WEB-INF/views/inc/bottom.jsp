@@ -34,6 +34,6 @@
 		<p>&nbsp;&nbsp;Copyright &copy; 2018 SHOOTING STAR. All Rights Reserved.</p>
 	</div>
 </footer>
-
+ 
 </body>
 </html>

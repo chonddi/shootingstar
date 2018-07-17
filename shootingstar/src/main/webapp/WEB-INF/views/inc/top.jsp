@@ -105,7 +105,7 @@
 							<td class="border2">&nbsp;요청별 견적서&nbsp;</td>
 							<td class="border3">&nbsp;첫 견적 도착시간</td>
 						</tr>
-						<tr>
+						<tr> 
 							<td class="border1">1업체&nbsp;</td>
 							<td class="border2">&nbsp;2개&nbsp;</td>
 							<td class="border2">&nbsp;3.2개&nbsp;</td>

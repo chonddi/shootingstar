@@ -13,7 +13,7 @@
 
 }
 #portfolioListSideBar li:not(.active) a{
-	padding-left: 15px;
+	 padding-left: 15px; 
 }
 </style>
 </head>
