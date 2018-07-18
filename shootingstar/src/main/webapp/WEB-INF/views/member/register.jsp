@@ -4,24 +4,18 @@
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
 	$(function(){
-//		var code = "${session.joinCode}";
+		//약관 전체동의
 		$('#chkAll').click(function(){
 			$('.chk').prop('checked', this.checked);
 		});
-		$('input[name=radioChk]').click(function(){
-			if($('#radio1').is(":checked")){
-				$('input[name=code]').val('1');
-				$('.studio').css('display', 'none');
-			}else{
-				$('input[name=code]').val('2');
-				$('.studio').css('display', 'block');
-			}
-		});
+		
 		/* 결제~~~~~~~~~~~~~~~~~~~~복붙용
 		$('#btn').click(function(){
 			window.open('<c:url value="/member/hpin.do"/>', 'hp', 
 			'width=830,height=600,left=400,top=300,location=yes,resizable=yes');
 		});// */
+		
+		//이메일 인증 코드
 		$('#codeBtn').click(function(){
 			$.ajax({
 				url:"<c:url value='/member/code.do' />",
@@ -31,6 +25,11 @@
 					if(res==2){
 						alert('인증되었습니다.');
 						$('#idChk').val('Y');
+						$('#memberId').prop('readonly','readonly');
+						$("#joincode").css("display", "none");
+						$('#idChkBtn').css("display", "none")
+						$('#auth').css('display', '');
+						$('#name').focus();
 					}else{
 						alert('인증번호가 틀렸습니다.');
 						$('#inputCode').val('');
@@ -41,50 +40,57 @@
 				}
 				
 			});
-		
 		});
 		
-		
+		//유효성 검사
 		$('#memJoin').click(function(){			
 			var bool=true;
 			
-			$('.valid').each(function(idx, item){
-				if($(this).val().length<1){
-					alert($(this).prop("placeholder")+"을/를 입력하세요");
+			$('.chk').each(function(idx,item){
+				if(!$(this).is(":checked")){
+					alert('약관에 동의해주세요.');
 					$(this).focus();
-					
 					bool=false;  //submit() 이벤트 진행을 막는다
 					return false;  //each() 탈출
 				}
-			});	
-			
+			})
 			if(bool){
-				if(!validate_userid($('#userid').val())){
-					alert('아이디는 알파벳이나 숫자 또는 특수기호인 _ 만 가능합니다.');
-					$('#userid').focus();
-					bool= false;
-				}else if($('#pwd').val()!=$('#pwd2').val()){
-					alert('비밀번호가 일치하지 않습니다.');
-					$('#pwd2').focus();
-					bool= false;
-				}else if(!validate_phoneno($('#hp2').val()) || 
-						!validate_phoneno($('#hp3').val())){
-					alert('휴대폰 번호는 숫자만 가능합니다.');
-					$('#hp2').focus();
-					bool= false;
-				}else if($('#chkId').val()!='Y'){
-					alert('중복확인을 먼저 하세요.');
-					$('#btnChkId').focus();
-					bool= false;			
+				$('.valid').each(function(idx, item){
+					if($(this).val().length<1){
+						alert($(this).prop("placeholder")+"을/를 입력하세요");
+						$(this).focus();
+						
+						bool=false;  //submit() 이벤트 진행을 막는다
+						return false;  //each() 탈출
+					}
+				});
+				if(bool){
+					if($('#pwd').val().length<8){
+						alert('비밀번호는 8자리 이상입니다.');
+						$('#pwd1').focus();
+						bool= false;
+					}else if($('#pwd').val()!=$('#pwd2').val()){
+						alert('비밀번호가 일치하지 않습니다.');
+						$('#pwd2').focus();
+						bool= false;
+					}else if(!validate_phoneno($('#tel').val())){
+						alert('휴대폰 번호는 숫자만 가능합니다.');
+						$('#tel').focus();
+						bool= false;
+					}else if($('#idChk').val()!='Y'){
+						alert('이메일 인증을 먼저 하세요.');
+						$('#idChkBtn').focus();
+						bool= false;			
+					}
 				}
 			}
-			
+						
 			return bool;
 		});
-			
 		
 	});
 	
+	//이메일 인증 중복확인
 	 function checkMail() {
         var memberId = document.getElementById("memberId").value;
  
@@ -108,10 +114,11 @@
         }; 
         xhttp.open("POST", 'checkMail.do', true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        xhttp.send('memberId=' + memberId);
+        xhttp.send('memberId=' + memberId+"&userCode=1");
         return false;
     }
  
+	//이메일 인증 메일 발송
     function sendMail(memberId) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -161,41 +168,31 @@
 	<fieldset class="formDiv">
 		<legend>회원가입</legend>
 		<div>
-			<input type="text" placeholder="이메일" id="memberId" name="memberId" class="valid">  <input type="button" value="이메일 인증" onclick="checkMail()" />
+			<input type="text" placeholder="이메일" id="memberId" name="memberId" class="valid">  
+			<input type="button" id="idChkBtn" value="이메일 인증" onclick="checkMail()" />
+			<span id="auth" style="color:green; font-size:0.9em; display:none;">인증되었습니다</span>
 		</div>
 		<div id="joincode" style="display: none">
 			<input type='number' name="inputCode" id="inputCode" placeholder="인증번호" >   <input type="button" id="codeBtn" value="확인" />
 		</div>
 		<div>
-			<input type="text" placeholder="이름" name="name" class="valid">
+			<input type="text" placeholder="이름" id="name" name="name" class="valid">
 		</div>
 		<div>
-			<input type="text" placeholder="비밀번호" name="pwd" class="valid">
+			<input type="password" placeholder="비밀번호" id="pwd" name="pwd" class="valid"> <span>비밀번호는 8자리 이상</span>
 		</div>
 		<div>
-			<input type="text" placeholder="비밀번호 확인" name="pwd2" class="valid">
+			<input type="password" placeholder="비밀번호 확인" id="pwd2" name="pwd2" class="valid">
 		</div>
 		<div>
-			<input type="text" placeholder="휴대폰 번호" name="tel" class="valid"> <span>(-없이)</span>
+			<input type="text" placeholder="휴대폰 번호" id="tel" name="tel" class="valid"> <span>(-없이)</span>
 		</div>
-		<div>
-			<input type="radio" id="radio1" name="radioChk" value="1" checked="checked">
-			<label for="radio1"> 고객회원</label>
-			<input type="radio" id="radio2" name="radioChk" value="2"> 
-			<label for="radio2"> 전문가회원</label>
-		</div><br>
-		<div class="studio" style="display: none;"><textarea name="pr" rows="10" cols="50" placeholder="자기소개" class="valid2"></textarea></div>
-		<div class="studio" style="display: none;"><input type="text" placeholder="우편번호" name="zipcode" class="valid2">  <input type="button" id="btnZipcode" value="우편번호 검색"></div>
-		<div class="studio" style="display: none;"><input type="text" placeholder="주소" name="address1"> </div>
-		<div class="studio" style="display: none;"><input type="text" placeholder="상세주소" name="address2" class="valid2"></div>
-		<div class="studio" style="display: none;">신분증 사본 <input type="file" name="identification" class="valid2"></div>
-		<div class="studio" style="display: none;">계좌 사본 <input type="file" name="accountCopy" class="valid2"></div>
-		<input type="text" name="userCode" value="1">
-		<input type="text" id="idChk" name="idChk" value="N">
 		
+		<input type="text" id="idChk" name="idChk" value="N">
 	</fieldset>
 	<br><br>
-		<input type="submit" id="" value="회원가입">  <input type="button" id="btn" value="결제">
+		<input type="submit" id="memJoin" value="회원가입">
 </form>
+<br><br>
 </div>
 <%@ include file="../inc/bottom.jsp"%>
