@@ -9,38 +9,49 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.ss.star">
-		<context:exclude-filter expression="org.springframework.stereotype.Controller"
-			type="annotation" />		
+	<context:component-scan
+		base-package="com.ss.star">
+		<context:exclude-filter
+			expression="org.springframework.stereotype.Controller"
+			type="annotation" />
 	</context:component-scan>
 
-    <!-- MULTIPART RESOLVERS -->
-    <!-- regular spring resolver -->
-    <bean id="spring.RegularCommonsMultipartResolver" 
-    	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="100000000" />
-        <property name="maxInMemorySize" value="100000000" />
-    </bean>
-
-    <alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" />
-
-	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="username" value="hand0208@gmail.com" />
-        <property name="password" value="shin25935" />
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.smtp.auth">true</prop>
-            </props>
-        </property>
-	 </bean>
-
-	<bean id = "transactionManager" class ="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name = "dataSource" ref = "dataSource"></property>
+	<!-- MULTIPART RESOLVERS -->
+	<!-- regular spring resolver -->
+	<bean id="spring.RegularCommonsMultipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
 	</bean>
-	
-	
+
+	<alias name="spring.RegularCommonsMultipartResolver"
+		alias="multipartResolver" />
+
+	<util:properties id="fileUploadProperties"
+		location="classpath:/config/props/fileUpload.properties">
+	</util:properties>
+
+	<bean id="javaMailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="hand0208@gmail.com" />
+		<property name="password" value="shin25935" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+
+
+
 </beans>
