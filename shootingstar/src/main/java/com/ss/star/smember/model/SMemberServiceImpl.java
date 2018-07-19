@@ -12,5 +12,10 @@ public class SMemberServiceImpl implements SMemberService{
 	public SMemberVO selectID(String sMemberId) {
 		return sMemberDao.selectID(sMemberId);
 	}
+
+	@Override
+	public int insertSMember(SMemberVO sMemberVo) {
+		return sMemberDao.insertSMember(sMemberVo);
+	}
 	
 }

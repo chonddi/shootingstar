@@ -5,4 +5,9 @@
 	<select id="selectID" parameterType="string" resultType="smemberVo">
 		select * from smember where smemberid=#{sMemberId}
 	</select>
+	
+	<insert id="insertSMember" parameterType="sMemberVo">
+		insert into smember(sMemberId, sName, sPwd, sTel, pr, zipcode, address1, address2, identification, accountCopy)
+		values(#{sMemberId}, #{sName}, #{sPwd}, #{sTel}, #{pr}, #{zipcode}, #{address1}, #{address2}, #{identification}, #{accountCopy})
+	</insert>
 </mapper>

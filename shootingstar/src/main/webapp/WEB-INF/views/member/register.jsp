@@ -140,9 +140,24 @@
 .formDiv>div, fieldset>div{
 	margin:10px;
 }
+.regidiv{
+	width:500px;
+	margin: 0 auto;
+}
+#articletop{
+	text-align: center;
+	color: white;
+	background: #0077bd;
+	width:100%;
+	height: 250px;
+	padding-top: 85px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
 </style>
-<title>회원가입</title>
-<div>
+<div id="articletop">고객회원 가입 신청</div>
+
+<div class="regidiv">
 <fieldset>
 	<legend>이용약관 동의</legend>
 	<div>	

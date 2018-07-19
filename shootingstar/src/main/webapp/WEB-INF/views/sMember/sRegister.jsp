@@ -47,7 +47,7 @@
 					bool=false;  //submit() 이벤트 진행을 막는다
 					return false;  //each() 탈출
 				}
-			})
+			});
 			if(bool){
 				$('.valid').each(function(idx, item){
 					if($(this).val().length<1){
@@ -59,29 +59,40 @@
 					}
 				});
 				if(bool){
-					if($('#sPwd').val().length<8){
-						alert('비밀번호는 8자리 이상입니다.');
-						$('#sPwd').focus();
-						bool= false;
-					}else if($('#sPwd').val()!=$('#sPwd2').val()){
-						alert('비밀번호가 일치하지 않습니다.');
-						$('#sPwd2').focus();
-						bool= false;
-					}else if(!validate_phoneno($('#sTel').val())){
-						alert('휴대폰 번호는 숫자만 가능합니다.');
-						$('#sTel').focus();
-						bool= false;
-					}else if($('#idChk').val()!='Y'){
-						alert('이메일 인증을 먼저 하세요.');
-						$('#idChkBtn').focus();
-						bool= false;			
+					$('.valid2').each(function(idx, item){
+						if($(this).val()==""){
+						alert($(this).parent().find('span').html()+"을 첨부해주세요");
+						$(this).focus();
+						
+						bool=false;  //submit() 이벤트 진행을 막는다
+						return false;  //each() 탈출
+						}
+					});
+				
+					if(bool){
+						if($('#sPwd').val().length<8){
+							alert('비밀번호는 8자리 이상입니다.');
+							$('#sPwd').focus();
+							bool= false;
+						}else if($('#sPwd').val()!=$('#sPwd2').val()){
+							alert('비밀번호가 일치하지 않습니다.');
+							$('#sPwd2').focus();
+							bool= false;
+						}else if(!validate_phoneno($('#sTel').val())){
+							alert('휴대폰 번호는 숫자만 가능합니다.');
+							$('#sTel').focus();
+							bool= false;
+						}else if($('#idChk').val()!='Y'){
+							alert('이메일 인증을 먼저 하세요.');
+							$('#idChkBtn').focus();
+							bool= false;			
+						}
 					}
 				}
 			}
-						
 			return bool;
 		});
-		
+	
 	});
 	
 	//이메일 인증 중복확인
@@ -158,11 +169,11 @@
 	</div>
 	 
 </fieldset><br>
-<form name="frm" method="post"  action="<c:url value='/sMember/sRegister.do'/>">
+<form name="frm" method="post" style="font-size: 0.8em" action="<c:url value='/sMember/sRegister.do'/>" enctype="multipart/form-data">
 	<fieldset class="formDiv">
 		<legend>회원가입</legend>
 		<div>
-			<input type="text" placeholder="이메일" id="sMemberId" name="sMemberId" class="valid">  
+			<input type="text" placeholder="이메일" id="sMemberId" name="sMemberId" class="valid">
 			<input type="button" id="idChkBtn" value="이메일 인증" onclick="checkMail()" />
 			<span id="auth" style="color:green; font-size:0.9em; display:none;">인증되었습니다</span>
 		</div>
@@ -183,11 +194,11 @@
 		</div>
 		
 		<div><textarea name="pr" rows="10" cols="50" placeholder="회원님의 소개를 간략하게 입력해주세요" class="valid"></textarea></div>
-		<div><input type="text" placeholder="우편번호" name="zipcode" class="valid">  <input type="button" id="btnZipcode" value="우편번호 검색"></div>
-		<div><input type="text" placeholder="주소" name="address1" readonly="readonly"> </div>
-		<div><input type="text" placeholder="상세주소" name="address2" class="valid"></div>
-		<div>신분증 사본 <input type="file" id="identification" name="identification" class="valid2"></div>
-		<div>계좌 사본 <input type="file" id="accountCopy" name="accountCopy" class="valid2"></div>
+		<div><input type="text" placeholder="우편번호" id="zipcode" name="zipcode" size="7" class="valid" readonly="readonly">  <input type="button" id="btnZipcode" value="우편번호 검색"></div>
+		<div><input type="text" placeholder="주소" id="address1" name="address1" size="60" readonly="readonly"> </div>
+		<div><input type="text" placeholder="상세주소" id="address2" name="address2" size="60" class="valid"></div>
+		<div><span>신분증 사본</span> <input type="file" id="identifi" name="identifi" class="valid2"></div>
+		<div><span>계좌 사본</span> <input type="file" id="account" name="account" class="valid2"></div> 
 		<input type="text" id="idChk" name="idChk" value="N">
 		
 	</fieldset>
