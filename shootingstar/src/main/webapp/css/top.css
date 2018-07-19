@@ -12,7 +12,7 @@ body {
 .container-fluid {
 	background-color: white;
 	height: 120px;
-	width: 100%;
+	width: 1903px;
 	padding-left: 330px;
 }
 
@@ -34,7 +34,7 @@ body {
 
 #topMenu>ul>li>ul {
 	border-radius: 0 0 5px 5px;
-	box-shadow: 2px 2px 30px #376092;
+	box-shadow: 0px 0px 10px 0px #376092;
 }
 
 #topMenu>ul>li>#userul {
@@ -84,6 +84,7 @@ body {
 .container-fluid {
 	position: fixed;
 	z-index: 200;
+	border-bottom: 1px solid #e8e8e8;
 }
 
 #userli {
