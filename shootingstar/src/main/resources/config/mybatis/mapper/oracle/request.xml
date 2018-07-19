@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.request">
+	
+	
+	<insert id="insertRequest" parameterType="RequestVO">
+		<selectKey keyProperty="RQNo" order="BEFORE" resultType="int">
+			select request_seq.nextval from dual
+		</selectKey>
+		insert into request(rqno, memberid, cgno, rqprice, rqregion, rqdate, rqtype, rqdetail) 
+		values(#{RQNo}, 'gg', #{cgNo}, #{RQPrice}, #{RQRegion} ,#{RQDate}, #{RQType}, #{RQDetail})
+	</insert>
+
+	<insert id="insertReqImg" parameterType="RequestImgVO">
+		insert into requestimg(rqimgno, rqno, originalfilename, filename) 
+		values(requestimg_seq.nextval, #{RQNo}, #{originalFileName}, #{fileName})
+	</insert>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+

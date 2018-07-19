@@ -1,0 +1,98 @@
+@charset "UTF-8";
+body{
+	width: 1903px;
+}
+body, td, th, span, p{
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 1.2em;
+	color:#555555;
+}
+
+table{
+	margin:0 auto;
+    font-size:15px;
+	border-collapse: non-collapsed;
+	border: solid black 1px;
+}
+
+ tr{
+	height:200px;
+ 
+}
+th{
+	width:300px;
+	text-align:center;
+	vertical-align:middle;
+	border: solid black 1px;
+}
+
+#title{
+	margin: 0 auto;
+	text-align:center;
+	font:#32b2ec;
+}
+
+
+.pWrite{
+	margin: 0 auto;
+	text-align:center;
+	
+}
+
+.pWrite th{
+	width:1300px;
+	border: solid #355fa0 1px;
+	-webkit-border-radius: 10px;
+}
+
+/* .pWrite tr{
+	height:620px;
+	
+} */
+
+#fw1{
+	border:0;
+	outline:0;
+	background:white;
+}
+
+#cg2{
+	font-size:25px;
+	color:#33c9ec;
+}
+
+#pWriteTl{
+	color:#2b89dc;
+	font-weight:bold;
+	font-size:25px;
+}
+
+#pWriteDt{
+	padding:70px;	
+}
+#pWo{
+	margin-left:25px;
+	float:left;
+}
+#pWp{
+	float:left;
+}
+#pWp1{
+	float:left;
+	padding:25px;
+}
+#pWp2{
+	clear:both;
+	text-align:center;
+}
+#pWp3{
+	float:left;
+	padding:5px;
+}
+
+textarea::placeholder {
+  color: grey;
+  font-weight:300;
+  font-size:12px;
+  
+}

@@ -18,12 +18,7 @@ public class MemberController {
 
 	@Autowired private MemberService memberService;
 	Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
-	@RequestMapping("/registerChoice.do")
-	public void registerChoice() {
-		logger.info("회원가입 페이지");
-	}
-	
+		
 	@RequestMapping(value="/register.do", method=RequestMethod.GET)
 	public void register() {
 		logger.info("회원가입 페이지");
@@ -51,5 +46,10 @@ public class MemberController {
 	@RequestMapping("/sampleRegister.do")
 	public void sampleRegister() {
 		logger.info("sample회원가입");
+	}
+	
+	@RequestMapping("/registerMain.do")
+	public void registerMain() {
+		logger.info("회원가입 메인");
 	}
 }

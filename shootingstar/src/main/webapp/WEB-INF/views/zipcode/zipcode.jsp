@@ -32,6 +32,10 @@
 			
 			event.preventDefault();
 		});
+		
+		function chioce(zipNo,roadAddr) {
+			alert(zipNo);
+		}
 	});
 
 	function send(curPage){
@@ -67,23 +71,29 @@
 		if(totalCount>0){
 			$('#divCount').html("<p>도로명 주소 검색결과 ("+totalCount+" 건)</p>");
 			
-			var result="<table class='box2' style='width:470px'>";
-			result+="<tr><th style='width:20%'>우편번호</th><th style='width:80%'>주소</th></tr>";
+			var tableEl = $("<table class='box2'></table>");
+			trEl = $("<tr><th style='width:20%'>우편번호</th><th style='width:80%'>도로명 주소</th></tr>");
+			tableEl.append(trEl);
 			
-			$(res).find("juso").each(function(idx, item){
-				result+="<tr>";
-				result+="<td>"+ $(item).find("zipNo").text()+"</td>";
-				result+="<td><a href='#'>"
-					+ $(item).find("roadAddr").text()+"</a></td>";			
-				result+="</tr>";	
+			$(res).find("juso").each(function(){
+				var zipNo = $(this).find('zipNo').text();
+				var roadAddr = $(this).find('roadAddr').text();
+				var anchor = $("<a href='#'></a>").html(roadAddr)
+				.attr("onclick", "setZipcode("+zipNo + ","+ roadAddr+")");
+				var tdEl1 = $("<td></td>").html(zipNo);
+				var tdEl2 = $("<td></td>").html(anchor);
+				trEl = $("<tr></tr>");
+				trEl.append(tdEl1);
+				trEl.append(tdEl2);
+				tableEl.append(trEl);
 			});
-			result+="</table>";
-			$("#divList").html(result);
+			$("#divList").html(tableEl);
 			
 			//페이징 처리
 			$.pagingProc();
 		}else{
 			$("#divList").html("<p>해당하는 주소가 없습니다.</p>");
+			$('#divCount').html('');
 		}		
 	}
 	
@@ -133,13 +143,12 @@
 		}//if
 	}
 	
-
 	
 	function setZipcode(zipcode, address){
 		//opener.frm1.zipcode.value=zipcode;
 		//opener.frm1.address.value=address;
 		$(opener.document).find("#zipcode").val(zipcode);
-		$(opener.document).find("#address").val(address);
+		$(opener.document).find("#address1").val(address);
 
 		self.close();
 	}
