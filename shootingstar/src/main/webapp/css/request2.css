@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+body{
+	width: 1903px;
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 1.2em;
+	color:#555555;
+}
+.left{
+	float:left;	
+	padding-left:10px;
+}
+
+
+.title{
+	
+	width:1200px;
+	margin: 0 auto;
+	font-size: 25px;
+	font-weight:bold;
+}
+
+
+.pDiv{
+
+	width:1300px;
+	margin: 0 auto;
+	height: 850px;
+	border: solid black 1px;
+	
+}
+
+.pS{
+	float:left;
+	width:610px;
+	
+	margin: 10px;
+	height:250px;
+	padding-left:80px;
+	padding-top:10px;
+	font-size:20px;
+	font-weight:bold;
+	
+}
+
+.pS1{
+	float:left;
+	width:610px;
+	
+	margin: 10px;
+	height:250px;
+	padding-left:20px;
+	padding-left:20px;
+	padding-top:10px;
+	font-size:15px;
+}
+
+.pS2{
+	float:left;
+	width:610px;
+	
+	margin: 10px;
+	height:360px;
+	padding-left:80px;
+	padding-top:10px;
+	font-size:18px;
+}
+
+.pS3{
+	float:left;
+	width:610px;
+	
+	margin: 10px;
+	height:360px;
+	padding-left:20px;
+	padding-top:10px;
+	font-size:18px;
+}
+
+input[type="checkbox"]{
+  width:20px; 
+  height:20px; 
+ 
+}
+
+
+
+
+.imgs_wrap {
+            width: 500px;
+            
+           
+        }
+
+.imgs_wrap img {
+            width: 60px;
+            height:60px;
+            margin:10px;
+        }
+
+
+
+
