@@ -67,7 +67,7 @@ body {
 }
 
 #topMenu li ul {
-	background: white;
+	background: white; 
 	display: none; /* 평상시에는 서브메뉴가 안보이게 하기 */
 	height: auto;
 	width: 200px;
