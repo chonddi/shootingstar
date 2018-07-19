@@ -17,4 +17,26 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMember(MemberVO memberVo) {
 		return memberDao.insertMember(memberVo);
 	}
+
+	@Override
+	public int checkPwd(String memberId, String pwd) {
+		String realPwd =memberDao.selectPwdById(memberId);
+		int result;
+		if(realPwd!=null) {
+			if(realPwd.equals(pwd)) {
+				result=LOGIN_OK;
+			}else {
+				result=PWD_DISAGREE;
+			}
+		}else {
+			result=ID_NONE;
+		}
+		return result;
+	}
+
+	@Override
+	public String selectNameById(String memberId) {
+		return memberDao.selectNameById(memberId);
+	}
+	
 }

@@ -17,5 +17,26 @@ public class SMemberServiceImpl implements SMemberService{
 	public int insertSMember(SMemberVO sMemberVo) {
 		return sMemberDao.insertSMember(sMemberVo);
 	}
+
+	@Override
+	public int checkPwd(String sMmemberId, String sPwd) {
+		String realPwd =sMemberDao.selectPwdById(sMmemberId);
+		int result;
+		if(realPwd!=null) {
+			if(realPwd.equals(sPwd)) {
+				result=LOGIN_OK;
+			}else {
+				result=PWD_DISAGREE;
+			}
+		}else {
+			result=ID_NONE;
+		}
+		return result;
+	}
+
+	@Override
+	public String selectNameById(String sMemberId) {
+		return sMemberDao.selectNameById(sMemberId);
+	}
 	
 }
