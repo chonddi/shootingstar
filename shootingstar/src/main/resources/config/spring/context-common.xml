@@ -31,9 +31,9 @@
 		location="classpath:/config/props/fileUpload.properties">
 	</util:properties>
 	
-	<util:properties id="fileUploadProperties"
+	<!-- <util:properties id="fileUploadProperties"
 		location="classpath:/config/props/fileUpload2.properties">
-	</util:properties>
+	</util:properties> -->
 
 	<bean id="javaMailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
