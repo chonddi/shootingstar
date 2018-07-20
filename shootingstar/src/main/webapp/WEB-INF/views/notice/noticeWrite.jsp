@@ -9,17 +9,19 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
-	function send(form){
-		if(form.title.value=""){
-			alert("제목을 입력하세요");
-			form.title.focus();
-			return false();
-		}else if(!form.content.value){
-			alert("내용을 입력하세요");
-			form.title.focus();
-			return false();
+$(document).ready(function(){
+	$('form[name=noticeEdit]').submit(function(event){
+		if($("#nTitle").val()==""){
+			alert('제목을 입력하세요');
+			$("#nTitle").focus();
+			event.preventDefault();
+		}else if($("#nContent").val().length<1){
+			alert('내용을 입력하세요');
+			$("#nContent").focus();
+			return false;
 		}
-	}
+	});	
+});
 </script>
 </head>
 <body>
@@ -34,7 +36,7 @@
 	</div>
 	<div>
 	<label for="adminId">아이디</label>
-	
+	<input type="text" id="adminId" name="adminId">
 	</div>
 	<div>
 		<label for="content">내용</label>

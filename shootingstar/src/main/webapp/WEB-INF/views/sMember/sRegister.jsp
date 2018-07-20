@@ -17,7 +17,6 @@
 				data:{code:$('#inputCode').val()},  //파라미터
 				success:function(res){
 					if(res==2){
-						alert('인증되었습니다.');
 						$('#idChk').val('Y');
 						$('#sMemberId').prop('readonly','readonly');
 						$("#joincode").css("display", "none");

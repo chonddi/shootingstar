@@ -9,6 +9,14 @@
 	<insert id="insertMember" parameterType="memberVo">
 		insert into member(memberid, name, pwd, tel) values(#{memberId}, #{name}, #{pwd}, #{tel})
 	</insert>
+	
+	<select id="selectPwdById" parameterType="String" resultType="String">
+		select pwd from member where memberId=#{memberId}
+	</select>
+	
+	<select id="selectNameById" parameterType="String" resultType="String">
+		select name from member where memberId=#{memberId}
+	</select>
 </mapper>
 
 

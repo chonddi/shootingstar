@@ -10,4 +10,12 @@
 		insert into smember(sMemberId, sName, sPwd, sTel, pr, zipcode, address1, address2, identification, accountCopy)
 		values(#{sMemberId}, #{sName}, #{sPwd}, #{sTel}, #{pr}, #{zipcode}, #{address1}, #{address2}, #{identification}, #{accountCopy})
 	</insert>
+	
+	<select id="selectPwdById" parameterType="String" resultType="String">
+		select sPwd from smember where sMemberId=#{sMemberId}
+	</select>
+	
+	<select id="selectNameById" parameterType="String" resultType="String">
+		select sName from sMember where sMemberId=#{sMemberId}
+	</select>
 </mapper>
