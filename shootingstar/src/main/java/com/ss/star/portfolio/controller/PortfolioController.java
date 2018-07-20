@@ -79,5 +79,10 @@ public class PortfolioController {
 
 		return "protfolio/protfolioWrite";
 	}
+	
+	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
+	public void portfolio_detail() {
+		logger.info("포트폴리오 디테일 화면 보여주기");
+	}
 
 }
