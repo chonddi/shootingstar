@@ -9,37 +9,39 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
-	function send(form){
-		if(form.title.value=""){
-			alert("제목을 입력하세요");
-			form.title.focus();
-			return false();
-		}else if(!form.content.value){
-			alert("내용을 입력하세요");
-			form.title.focus();
-			return false();
+$(document).ready(function(){
+	$('form[name=noticeEdit]').submit(function(event){
+		if($("#nTitle").val()==""){
+			alert('제목을 입력하세요');
+			$("#nTitle").focus();
+			event.preventDefault();
+		}else if($("#nContent").val().length<1){
+			alert('내용을 입력하세요');
+			$("#nContent").focus();
+			return false;
 		}
-	}
+	});	
+});
 </script>
 </head>
 <body>
-	<form name="noticeEdit" method="post"
+	<form name="noticeEdit" method="post" 
 	action="<c:url value='/notice/noticeEdit.do'/>"
 	onsubmit="return send(this)">
 	
-	<input type="hidden" name="Nno"  value="${vo.Nno}" />
+	<input type="hidden" name="nNo"  value="${param.nNo}" />
 	
 	<div>
 		<label for="title">제목</label>
-		<input type="text" id="title" name="title">
+		<input type="text" id="nTitle" name="nTitle" value="${vo.nTitle }">
 	</div>
 	<div>
 	<label for="adminId">아이디</label>
-	
+	${vo.adminId }
 	</div>
 	<div>
-		<label for="content">내용</label>
-		<textarea cols="50" rows="10"></textarea>
+		<label for="nContent">내용</label>
+		<textarea name="nContent" id="nContent" cols="50" rows="10" >${vo.nContent}</textarea>
 	</div>
 	
 	<div>

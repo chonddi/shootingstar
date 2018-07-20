@@ -3,77 +3,61 @@
 
 <mapper namespace="com.sql.notice">
 	<resultMap type="NoticeVO" id="selResultMap">
-		<id column="Nno" jdbcType="BIGINT" property="Nno"/>
+		<id column="nNo" jdbcType="BIGINT" property="nNo"/>
 		<result column="adminId" jdbcType="VARCHAR" property="adminId"/>
-		<result column="Ntitle" jdbcType="VARCHAR" property="Ntitle"/>
-		<result column="Ncontent" jdbcType="VARCHAR" property="Ncontent"/>
+		<result column="nTitle" jdbcType="VARCHAR" property="nTitle"/>
+		<result column="nContent" jdbcType="VARCHAR" property="nContent"/>
 		<result column="readcount" jdbcType="BIGINT" property="readcount"/>
 		<result column="regdate" jdbcType="TIMESTAMP" property="regdate"/>	
 		<result column="delflag" jdbcType="VARCHAR" property="delflag"/>
 	</resultMap>
 	
 	<sql id="NoticeCol">
-		Nno, adminId, Ntitle, Ncontent, 
+		nNo, adminId, Ntitle, Ncontent, 
 		regdate, readcount, delflag
 	</sql>
 	
 	<select id="selectAll" resultType="NoticeVO">
 		select * from NOTICE
+		order by nNo desc
+
 	</select>
 	
 		<insert id="insertNotice" parameterType="NoticeVO">
-		<selectKey keyProperty="Nno" order="BEFORE" resultType="int">
+		<selectKey keyProperty="nNo" order="BEFORE" resultType="int">
 			select notice_seq.nextval from dual
 		</selectKey>
-		insert into notice(Nno, adminId, Ntitle, Ncontent) 
-			values(#{no}, #{adminId},#{Ntitle},#{ Ncontent})
+		insert into notice(nNo, adminId, nTitle, nContent) 
+			values(#{nNo}, #{adminId},#{nTitle},#{nContent})
 	</insert>
 	
-
-
-	<!--	
-
-	<select id="selectByNo" parameterType="int" resultMap="selResultMap">
-		select  
-		<include refid="boardCol"></include>
-		from board where no=#{no}
+	<select id="selectByNo" parameterType="int" resultType="NoticeVO">
+		select * from notice where nNo=#{nNo}
 	</select>
 	
-	<select id="selectByNo" parameterType="int" resultType="BoardVO">
-		select * from board where no=#{no}
-	</select>
-	
-	<update id="updateReadcount" parameterType="int">
-		update board 
-		set readcount=readcount+1 
-		where no=#{no}
+	<update id="updateNotice" parameterType="NoticeVO">
+		update Notice set nTitle=#{nTitle}, nContent=#{nContent} 
+		where nNo=#{nNo}
 	</update>
-	
-	<update id="updateBoard" parameterType="BoardVO">
-		update board set name=#{name}, title=#{title}, email=#{email}, 
-			content=#{content} 
-		where no=#{no}
-	</update>
-	
-	<select id="selectPwd" parameterType="int" resultType="string">
-		select pwd from board where no=#{no}
-	</select>
-	
-	<delete id="deleteBoard" parameterType="int">
-		delete from board where no=#{no}	
-	</delete>
-	
-	<delete id="deleteMulti" parameterType="map">
-		delete from board
-		where no in 
-		<foreach item="no" collection="nos" open="(" close=")" separator=","
+
+	<update id="deleteMulti" parameterType="map">
+		update Notice set delflag='Y'
+		where nNo in 
+		<foreach item="nNo" collection="nos" open="(" close=")" separator=","
 			index="index">
-			#{no}
+			#{nNo}
 		</foreach>
-	</delete> -->
+	</update>
 	
-	<!-- delete from board
-		where no in (116, 112, 110) -->
+	<update id="noticeBack" parameterType="NoticeVO" >
+		update Notice set delflag='N'
+		where nNo=#{nNo}
+	</update>
+
+	<update id="deleteOne" parameterType="NoticeVO">
+		update notice set delflag='Y' 
+		where nNo=#{nNo}	
+	</update>
 	
 </mapper>
 

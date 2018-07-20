@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body{
+margin:30px;}
+table{
+	margin:0 auto;
+    font-size:15px;
+	border-collapse: non-collapsed;
+
+}
+
+.notice {
+	text-align:center;
+	align-content:center;
+    width: 100%;
+    border-collapse: collapse;
+
+  }
+  th{
+  	 border-bottom: 1px solid black;
+  	  padding: 10px;
+  	  height:40px;
+  	  font-size: 20px;
+  }
+  td {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px;
+  }
+
+.title{
+	height:80px;
+	font-size: 16px;
+
+}
+.content{
+	background-color: #f0f0f0;
+	font-size: 14px;
+	text-align:left;
+
+	}
+
+h1{padding:20px;}

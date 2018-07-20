@@ -4,18 +4,18 @@ import java.sql.Timestamp;
 
 public class NoticeVO {
 
-	private int Nno ;
+	private int nNo ;
 	private String adminId;
-	private String Ntitle;
-	private String Ncontent;
+	private String nTitle;
+	private String nContent;
 	private Timestamp regdate ;
 	private int readcount;
 	private String delflag;
-	public int getNno() {
-		return Nno;
+	public int getnNo() {
+		return nNo;
 	}
-	public void setNno(int nno) {
-		Nno = nno;
+	public void setnNo(int nNo) {
+		this.nNo = nNo;
 	}
 	public String getAdminId() {
 		return adminId;
@@ -23,17 +23,17 @@ public class NoticeVO {
 	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
-	public String getNtitle() {
-		return Ntitle;
+	public String getnTitle() {
+		return nTitle;
 	}
-	public void setNtitle(String ntitle) {
-		Ntitle = ntitle;
+	public void setnTitle(String nTitle) {
+		this.nTitle = nTitle;
 	}
-	public String getNcontent() {
-		return Ncontent;
+	public String getnContent() {
+		return nContent;
 	}
-	public void setNcontent(String ncontent) {
-		Ncontent = ncontent;
+	public void setnContent(String nContent) {
+		this.nContent = nContent;
 	}
 	public Timestamp getRegdate() {
 		return regdate;
@@ -53,13 +53,11 @@ public class NoticeVO {
 	public void setDelflag(String delflag) {
 		this.delflag = delflag;
 	}
-	
 	@Override
 	public String toString() {
-		return "NoticeVO [Nno=" + Nno + ", adminId=" + adminId + ", Ntitle=" + Ntitle + ", Ncontent=" + Ncontent
+		return "NoticeVO [nNo=" + nNo + ", adminId=" + adminId + ", nTitle=" + nTitle + ", nContent=" + nContent
 				+ ", regdate=" + regdate + ", readcount=" + readcount + ", delflag=" + delflag + "]";
 	}
-	
 	
 	
 }

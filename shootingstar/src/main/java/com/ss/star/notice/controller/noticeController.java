@@ -1,6 +1,8 @@
 package com.ss.star.notice.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,39 +29,105 @@ private static final Logger logger
 
 	@RequestMapping(value="/noticeList.do")
 	public String noticeList(Model model) {
+		
 		List<NoticeVO> list = noticeService.selectAll();
 		model.addAttribute("list", list);
-		logger.info("°øÁö»çÇ× ÆäÀÌÁö!");
-		return"notice/noticeList";
+		
+		logger.info("ê³µì§€ì‚¬í•­ í˜ì´ì§€! list.size()={}",list.size());
+		return "notice/noticeList";
 	}
 	
 	@RequestMapping(value="/noticeAdmin.do")
 	public String noticeAdmin(Model model) {
 		List<NoticeVO> list = noticeService.selectAll();
 		model.addAttribute("list", list);
-		logger.info("°ü¸®ÀÚ °øÁö»çÇ× ÆäÀÌÁö!");
+		logger.info("ê´€ë¦¬ì ê³µì§€ì‚¬í•­ í˜ì´ì§€! list.size()={}",list.size());
 		return"notice/noticeAdmin";
 	}
 	
 	@RequestMapping(value="/noticeWrite.do" , method=RequestMethod.GET )
 	public String noticeWrite_get() {
-		logger.info("°ü¸®ÀÚ °øÁö»çÇ× ÀÛ¼º ÆäÀÌÁö!");
+		logger.info("ê´€ë¦¬ì ê³µì§€ì‚¬í•­ ì‘ì„± í˜ì´ì§€!");
 		return "notice/noticeWrite";
 	}
 	
 	@RequestMapping(value="/noticeWrite.do" , method=RequestMethod.POST)
-	public String noticeWrite_post(@ModelAttribute NoticeVO noticeVo,
-			@RequestParam HttpSession getSession ) {
+	public String noticeWrite_post(@ModelAttribute NoticeVO noticeVo
+			//,@RequestParam HttpSession getSession 
+			) {
 
-		//·Î±×ÀÎÇÏ°í ¼¼¼Ç¿¡¼­ °ü¸®ÀÚ ¾ÆÀÌµğ ¹Ş¾Æ¿Í¾ßÇÔ..
-		String adminId=(String) getSession.getAttribute("adminId");
-		noticeVo.setAdminId(adminId);
+		//ë¡œê·¸ì¸í•˜ê³  ì„¸ì…˜ì—ì„œ ê´€ë¦¬ì ì•„ì´ë”” ë°›ì•„ì™€ì•¼í•¨..
+		//ê´€ë¦¬ì ì•„ë‹ ì‹œ false
+		/*String adminId=(String) getSession.getAttribute("adminId");
+		noticeVo.setAdminId(adminId);*/
 		
 		int cnt = noticeService.insertNotice(noticeVo);
-		logger.info("°ü¸®ÀÚ °øÁö»çÇ× ÀÛ¼º post!");
+		logger.info("ê´€ë¦¬ì ê³µì§€ì‚¬í•­ ì‘ì„± post!");
 		
-		return "redirect:notice/noticeList";
+		return "redirect:/notice/noticeAdmin.do";
 	}
 	
+	@RequestMapping(value="/noticeEdit.do" , method=RequestMethod.GET)
+	public String noticeEdit_get(@RequestParam(defaultValue="0") int nNo, Model model) {
+		
+		NoticeVO vo = noticeService.selectByNo(nNo);
+		logger.info("ìˆ˜ì •í™”ë©´ nNo={}",nNo);
+		
+		/*if(nNo==0) {
+			model.addAttribute("msg", "ì˜ëª»ëœ urlì…ë‹ˆë‹¤.");
+			model.addAttribute("url", "/notice/noticeList.do");
+			return "common/message";
+		}*/
+		
+		model.addAttribute("vo", vo);
+		logger.info("ìˆ˜ì •í™”ë©´");
+		return "notice/noticeEdit";
+	}
 	
+	@RequestMapping(value="/noticeEdit.do" , method=RequestMethod.POST)
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo) {
+		int cnt= noticeService.updateNotice(vo);
+		
+		logger.info("ê³µì§€ì‚¬í•­ ìˆ˜ì • post");
+		
+		return "redirect:/notice/noticeAdmin.do";
+	}
+	
+	@RequestMapping(value="/noticeDelete.do")
+	public String noticeDelete(@RequestParam String[]chk) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("nos", chk);
+		int cnt=noticeService.deleteMulti(map);
+		logger.info("ê¸€ ì‚­ì œ ê²°ê³¼, cnt={}", cnt);
+		return "redirect:/notice/noticeAdmin.do";
+	}
+	
+	@RequestMapping(value="/noticeBack.do" , method=RequestMethod.GET)
+	public String noticeBack_get(@RequestParam int nNo, Model model) {
+		NoticeVO vo = noticeService.selectByNo(nNo);
+		model.addAttribute("vo", vo);
+		logger.info("ë³µêµ¬í™”ë©´, nNo={}",nNo);
+		return"notice/noticeBack";
+	}
+	
+	@RequestMapping(value="/noticeBack.do" , method=RequestMethod.POST)
+	public String noticeBack_post(@ModelAttribute NoticeVO vo) {
+		int cnt=noticeService.noticeBack(vo);
+		logger.info("ë³µêµ¬ì„±ê³µ, cnt={}",cnt);
+		return "redirect:/notice/noticeAdmin.do";
+	}
+	
+	@RequestMapping(value="/deleteOne.do" , method=RequestMethod.GET)
+	public String deleteOne(@RequestParam int nNo, Model model) {
+		NoticeVO vo = noticeService.selectByNo(nNo);
+		model.addAttribute("vo", vo);
+		logger.info("ì‚­ì œí™”ë©´, nNo={}",nNo);
+		return"notice/deleteOne";
+	}
+	@RequestMapping(value="/deleteOne.do" , method=RequestMethod.POST)
+	public String deleteOne_post(@ModelAttribute NoticeVO vo) {
+		int cnt=noticeService.deleteOne(vo);
+		logger.info("1ê°œì‚­ì œì„±ê³µ, cnt={}",cnt);
+		return "redirect:/notice/noticeAdmin.do";
+	}
 }
