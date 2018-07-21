@@ -162,9 +162,6 @@ legend {
 	font-weight: bold;
 	margin-bottom: 10px;
 }
-.agree{
-	margin-top:18px;
-}
 span{
 	font-size: 0.8em;
 }
@@ -188,7 +185,15 @@ span{
     background: #9b9b9b;
     color: white;
     border-radius: 5px 5px;
-	
+}
+.second{
+	padding-left: 10px;
+	padding-top: 16px;
+	font-size: 0.9em;
+}
+.third{
+	padding-left: 20px;
+	font-size: 0.8em;
 }
 </style>
 <div class="regiAll">
@@ -231,23 +236,27 @@ span{
 			<div id="agreement">
 				<fieldset>
 					<legend style="font-size:0.9em;">이용약관 동의</legend>
-					<div>
-						<input type="checkbox" id="chkAll" value="chkAll"> <label
-							for="chkAll"> 전체동의</label>
-					</div>
-					<hr>
-					<div class="agree">
-						<input type="checkbox" id="chk1" class="chk" value="chk">
-						<label for="chk1"> 만 14세 이상입니다.(필수)</label>
-					</div>
-					<div class="agree">
-						<input type="checkbox" id="chk2" class="chk" value="chk">
-						<label for="chk2"> 서비스약관동의(필수)</label>
-					</div>
-					<div class="agree">
-						<input type="checkbox" id="chk3" class="chk" value="chk">
-						<label for="chk3"> 개인정보 수집 ·이용에 대한 동의(필수)</label>
-					</div>
+					<table style="margin: 0 auto;">
+						<tr>
+							<td style="padding-bottom: 14px;"><input type="checkbox" id="chkAll" value="chkAll" style="margin-top: 0px;"></td>
+							<td class="second"><label for="chkAll"> 전체동의</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="chk1" class="chk" value="chk" style="margin-top: 0px;"></td>
+							<td class="second"><label for="chk1"> 만 14세 이상입니다.(필수)</label></td>
+							<td class="third"><a href="#">상세보기</a></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="chk2" class="chk" value="chk" style="margin-top: 0px;"></td>
+							<td class="second"><label for="chk2"> 서비스 약관동의(필수)</label></td>
+							<td class="third"><a href="#">상세보기</a></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="chk3" class="chk" value="chk" style="margin-top: 0px;"></td>
+							<td class="second"><label for="chk3"> 개인정보 수집 ·이용에 대한 동의(필수)</label></td>
+							<td class="third"><a href="#">상세보기</a></td>
+						</tr>
+					</table>
 				</fieldset>
 			</div><br> <br>
 			<div id="submits">
