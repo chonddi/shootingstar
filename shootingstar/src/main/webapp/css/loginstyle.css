@@ -55,10 +55,12 @@ body {
 .tab-group li a:hover {
   background: #346093;
   color: #ffffff;
+  font-weight: bold;
 }
 .tab-group .active a {
   background: #337ab7;
   color: #ffffff;
+  font-weight: bold;
 }
 
 .tab-content > div:last-child {

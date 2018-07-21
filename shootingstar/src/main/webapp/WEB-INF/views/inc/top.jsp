@@ -35,7 +35,7 @@
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img id="logo"
+			<a class="navbar-brand" href="<c:url value='/index.do'/>"><img id="logo"
 				alt="ShootingStar" src="<c:url value='/images/mainTopLogo.png'/>"
 				width="210" /></a>
 
