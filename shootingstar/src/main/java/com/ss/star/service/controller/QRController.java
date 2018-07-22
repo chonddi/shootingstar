@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +34,17 @@ public class QRController {
 
 		return list;
 
+	}
+	
+	@RequestMapping("/QRwrite.do")
+	@ResponseBody
+	public String Qwrite(@ModelAttribute QRVO QRVo) {
+		logger.info("글쓰기 처리, 파라미터 vo={}", QRVo);
+
+		int cnt = qService.insertQR(QRVo);
+		logger.info("글쓰기 결과, cnt={}", cnt);
+
+		return "success";
 	}
 
 }

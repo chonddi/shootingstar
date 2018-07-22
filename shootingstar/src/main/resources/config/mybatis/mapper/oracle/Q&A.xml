@@ -45,8 +45,8 @@
 		<selectKey keyProperty="qrNo" order="BEFORE" resultType="int">
 			select qnare_seq.nextval from dual
 		</selectKey>
-			insert into qna(qrno, qno, id, content)
-			values(#{qrNo}, #{qNo}, #{id}, #{qrContent})
+			insert into qnare(qrno, qno, id, content)
+			values(#{qrNo}, #{qNo}, #{id}, #{content})
 	</insert>				<!-- parent, level 임시 제거 -->
 	
 	<select id="QRCount" resultType="int">
@@ -54,7 +54,7 @@
     </select>
     
     <select id="QRList" resultType="QRVO">
-    	select * from qnare
+    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate from qnare
     </select>
     
      <select id="QRselectByNo" parameterType="int" resultType="QRVO">

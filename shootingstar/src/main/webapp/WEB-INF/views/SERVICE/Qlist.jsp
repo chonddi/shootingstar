@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/QlistStyle.css'/>" />
 <script type="text/javascript">
-
 	function QwOpen(){
 		x = (screen.availWidth - 600) / 2;
 		y = (screen.availHeight - 500) / 2;
@@ -20,6 +19,12 @@
 		frmPage.submit();
 	}
 	
+	function detailFunc(qNo, memberid){
+		document.detail.qNo.value=qNo;
+		document.detail.memberid.value=memberid;
+		detail.submit();
+	}
+	
 </script>
 </head>	
 <body>
@@ -29,6 +34,11 @@
 <!-- 페이징 처리를 위한 form -->
 <form name="frmPage" method="post" action="<c:url value='/SERVICE/Qlist.do'/>">
 <input type="hidden" name="currentPage" >	
+</form>
+<!-- 디테일 처리를 위한 form -->
+<form name="detail" method="post" action="<c:url value='/SERVICE/Qdetail.do'/>">
+<input type="hidden" name="qNo">
+<input type="hidden" name="memberid">
 </form><br>
 
 <div class="divList">
@@ -46,7 +56,7 @@
 	    <th scope="col">작성자</th>
 	    <th scope="col">작성일</th>
 	  </tr>
-	</thead> 
+	</thead>
 	<tbody>  
 		<c:if test="${empty list }">
 			<tr>
@@ -61,15 +71,20 @@
 	  			<tr style="text-align:center">
 					<td>${vo.qNo}</td>
 					<td style="text-align:left">
-						<a href="<c:url value='/SERVICE/Qdetail.do?qNo=${vo.qNo}'/>">
-						<!-- 제목이 긴 경우 일부만 보여주기 -->
-							<c:if test="${fn:length(vo.qTitle)>50}">	
-								${fn:substring(vo.qTitle, 0, 50)}...
-							</c:if>
-							<c:if test="${fn:length(vo.qTitle)<=50}">
-								${vo.qTitle}
-							</c:if>
-						</a>
+						<c:if test="${sessionScope.id == vo.memberid}">
+							<a href="#" onclick="detailFunc(${vo.qNo}, '${vo.memberid}')">
+							<!-- 제목이 긴 경우 일부만 보여주기 -->
+								<c:if test="${fn:length(vo.qTitle)>50}">	
+									${fn:substring(vo.qTitle, 0, 50)}...
+								</c:if>
+								<c:if test="${fn:length(vo.qTitle)<=50}">
+									${vo.qTitle}
+								</c:if>
+							</a>
+						</c:if>
+						<c:if test="${sessionScope.id != vo.memberid}">
+							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>
+						</c:if>
 						<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
 <%-- 						<c:if test="${!empty rlist.size}">
 							(${fn:length(rlist})
@@ -79,13 +94,20 @@
 							&nbsp;&nbsp;&nbsp;<img src="<c:url value='/images/new.png'/>" alt="new 이미지">
 						</c:if>
 					</td>
-					<td>${vo.memberid}</td>
+					<td>
+						<c:if test="${sessionScope.id == vo.memberid}">
+							${vo.memberid}
+						</c:if>
+						<c:if test="${sessionScope.id != vo.memberid}">
+							<span style="color:gray;font-size:0.9em;">비공개</span>
+						</c:if>
+					</td>
 					<td><fmt:formatDate value="${vo.regdate}" pattern="yyyy.MM.dd."/></td>
 				</tr>
 			</c:forEach>
 		  	<!--반복처리 끝  -->
 	  	</c:if>
-	  </tbody>
+	</tbody>
 </table>
 </div>
 <br>

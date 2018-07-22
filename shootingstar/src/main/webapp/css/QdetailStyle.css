@@ -12,10 +12,16 @@ h2 {
 
 .firstDiv {
 	width: 1300px;
-	border-top: 2px solid black;
+	border-top: 3px solid black;
 	border-bottom: 1px solid rgba(213, 213, 213, 1);
 	font-size: 1em;
 	color: rgba(70, 70, 70, 1);
+}
+
+.divForm {
+	width: 100%;
+	border-bottom: 3px solid black;
+	
 }
 
 #sp1, #sp2 {
@@ -30,10 +36,6 @@ h2 {
 
 #sp2 {
 	text-align: right;
-}
-
-.divForm {
-	width: 1300px;
 }
 
 .idDiv {
@@ -66,17 +68,52 @@ h2 {
 	cursor: pointer;
 }
 
+.ajxDiv{
+	width:1000px;
+	padding:10px;
+	margin:0 auto;
+}
+
+.ajxDiv2{
+	border-bottom:1px solid rgba(213, 213, 213, 1);
+	padding:10px;
+	line-height: 50px;
+}
+
+.ajxDiv2 div{
+	text-align: left;
+}
+
+.ajxDiv2 div table h6{
+	font-weight: bold;
+}
+
+.ajxSpn{
+	font-size: 0.9em;
+	color:rgba(200, 200, 200, 1);
+	font-weight: lighter;
+}
+
+.ajxTable{
+	border-bottom:1px solid gray;
+	margin:5px;
+}
+
+
 #replyList {
+	background-color:rgba(250, 250, 250, 1);
+	width:100%;
 	border-top: 1px solid rgba(213, 213, 213, 1);
-	border-bottom: 2px solid black;
 	text-align: center;
 }
 
-#replyItem {
-	border: 1px solid gray;
-	width: 600px;
-	padding: 5px;
-	margin-top: 5px;
-	display: inline-block;
+#rememo{
+	width:100%;
+	resize: none;
 }
 
+#cCnt{
+	color:red;
+	font-size:1.1em;
+	font-weight: bold;
+}

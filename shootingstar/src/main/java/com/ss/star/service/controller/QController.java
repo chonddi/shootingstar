@@ -3,6 +3,7 @@ package com.ss.star.service.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
+import com.ss.star.service.model.QdetailVO;
 import com.ss.star.service.model.QService;
 import com.ss.star.service.model.QVO;
 
@@ -46,8 +48,11 @@ public class QController {
 	}
 
 	@RequestMapping("/Qlist.do")
-	public String Qlist(@ModelAttribute SearchVO searchVo, Model model) {
+	public String Qlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
+
+		// 임시 id 지정
+		Session.setAttribute("id", "YBM");
 
 		// [1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -62,9 +67,9 @@ public class QController {
 
 		List<QVO> list = qService.selectAll(searchVo);
 		logger.info("글 목록 조회 결과, list.size={}", list.size());
-		
-		//전체 레코드 개수 조회
-		int totalRecord=qService.getTotalRecord(searchVo);
+
+		// 전체 레코드 개수 조회
+		int totalRecord = qService.getTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("전체 레코드 개수={}", totalRecord);
 
@@ -73,22 +78,31 @@ public class QController {
 
 		return "SERVICE/Qlist";
 	}
-	
+
 	@RequestMapping("/Qdetail.do")
-	public String detail(@RequestParam(defaultValue="0") int qNo, HttpServletRequest request, Model model) {
-		logger.info("상세보기 파라미터 no={}", qNo);
-		
-		if(qNo==0) {
+	public String detail(@ModelAttribute QdetailVO QdetailVo, Model model, HttpSession Session) {
+		logger.info("상세보기, 파라미터 QdetailVo={}", QdetailVo);
+
+		// 임시 아이디
+		Session.setAttribute("id", QdetailVo.getMemberid());
+		System.out.println("\ndetail 임시 아이디 id=" + Session.getAttribute("id") + "\n");
+		System.out.println("QdetailVo 아이디=" + QdetailVo.getMemberid() + "\n");
+
+		if (QdetailVo.getqNo() == 0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";
+		} else if (QdetailVo.getMemberid() != Session.getAttribute("id")) {
+			model.addAttribute("msg", "비공개 글입니다.");
+			model.addAttribute("url", "/SERVICE/Qlist.do");
+			return "common/message";
 		}
-		
-		QVO vo = qService.selectByNo(qNo);
+
+		QVO vo = qService.selectByNo(QdetailVo.getqNo());
 		logger.info("상세보기 결과, vo={}", vo);
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return "SERVICE/Qdetail";
 	}
 	

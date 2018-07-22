@@ -77,7 +77,6 @@
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <form name="frmWrite" method="post" action="<c:url value='/SERVICE/Qwrite.do'/>">
-<!-- 임시 memberid -->
 	<div class="h1">
 		<h1>Q&A 작성하기</h1>
 	</div>
@@ -96,7 +95,8 @@
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>
 	
-<input type="hidden" id="memberid" name="memberid" value="a"/>
+<!-- 임시 memberid -->
+<input type="hidden" id="memberid" name="memberid" value="YBM"/>
 
 </form>       
 </body>

@@ -1,14 +1,12 @@
 package com.ss.star.service.model;
 
-import java.sql.Timestamp;
-
 public class QRVO {
 
 	private int qrNo;
 	private int qNo;
 	private String id;
-	private String qrContent;
-	private Timestamp regdate;
+	private String content;
+	private String regdate;	//형 변환을 위해 String 처리
 	private int parent;
 	private int levels;
 
@@ -36,19 +34,19 @@ public class QRVO {
 		this.id = id;
 	}
 
-	public String getQrContent() {
-		return qrContent;
+	public String getContent() {
+		return content;
 	}
 
-	public void setQrContent(String qrContent) {
-		this.qrContent = qrContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Timestamp getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 
@@ -70,8 +68,8 @@ public class QRVO {
 
 	@Override
 	public String toString() {
-		return "QRVO [qrNo=" + qrNo + ", qNo=" + qNo + ", id=" + id + ", qrContent=" + qrContent + ", regdate="
-				+ regdate + ", parent=" + parent + ", levels=" + levels + "]";
+		return "QRVO [qrNo=" + qrNo + ", qNo=" + qNo + ", id=" + id + ", content=" + content + ", regdate=" + regdate
+				+ ", parent=" + parent + ", levels=" + levels + "]";
 	}
 
 }
