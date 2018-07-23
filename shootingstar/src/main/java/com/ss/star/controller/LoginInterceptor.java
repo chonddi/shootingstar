@@ -22,8 +22,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		// 컨트롤러(핸들러) 수행 전 호출되는 메서드
 		logger.info("preHandle() - 컨트롤러 수행전!!");
 
-		String userid = (String) request.getSession().getAttribute("userid");
-		if (userid == null || userid.isEmpty()) {
+		String userCode = (String) request.getSession().getAttribute("userCode");
+		if (userCode == null || userCode.isEmpty()) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script type='text/javascript'>");

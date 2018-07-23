@@ -28,4 +28,14 @@ public class MemberDAOMybatis implements MemberDAO{
 	public String selectNameById(String memberId) {
 		return sqlSession.selectOne(namespace+"selectNameById", memberId);
 	}
+
+	@Override
+	public int updateMember(MemberVO memberVo) {
+		return sqlSession.update(namespace+"updateMember", memberVo);
+	}
+
+	@Override
+	public int updateOutDate(String memberId) {
+		return sqlSession.update(namespace+"updateOutDate", memberId);
+	}
 }

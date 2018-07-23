@@ -10,4 +10,6 @@ public interface MemberService {
 	public int insertMember(MemberVO memberVo);
 	public int checkPwd(String memberId, String pwd);
 	public String selectNameById(String memberId);
+	public int updateMember(MemberVO memberVo);
+	public int updateOutDate(String memberId);
 }

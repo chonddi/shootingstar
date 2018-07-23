@@ -6,4 +6,6 @@ public interface MemberDAO {
 	public int insertMember(MemberVO memberVo);
 	public String selectPwdById(String memberId);
 	public String selectNameById(String memberId);
+	public int updateMember(MemberVO memberVo);
+	public int updateOutDate(String memberId);
 }
