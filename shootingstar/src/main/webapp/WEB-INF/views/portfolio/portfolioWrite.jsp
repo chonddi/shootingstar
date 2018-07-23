@@ -107,7 +107,7 @@
 		<img alt="portfolioWrite" src="<c:url value='/images/portfolioWritee.png'/>">
 	</div>
 	<form name="frm1" method="post"
-		action="<c:url value='/portfolio/portfolioWrite.do'/>">
+		action="<c:url value='/portfolio/portfolioWrite.do'/>" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="portfolioTitle">포트폴리오 타이틀을 입력해주세요 !</label> <input
 				type="text" class="form-control valid1" name="pfTitle"
