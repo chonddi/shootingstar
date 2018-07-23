@@ -265,7 +265,7 @@ float: left;
 				전문가 소개<br>
 				<span id="da2Name">[전문가 이름]</span>
 				<div id="pr">
-					여기는 pr이 들어갑니다<br>
+					여기는 pr이 들어갑니다 <br>
 					dsfkljsdlkfjsdklfj<br>
 					dsfkljsdlkfjsdklfj<br>
 					dsfkljsdlkfjsdklfj<br>

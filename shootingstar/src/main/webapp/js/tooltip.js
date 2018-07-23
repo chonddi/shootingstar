@@ -11,7 +11,7 @@
 +function ($) {
   'use strict';
 
-  // TOOLTIP PUBLIC CLASS DEFINITION
+  // TOOLTIP PUBLIC CLASS DEFINITION 
   // ===============================
 
   var Tooltip = function (element, options) {

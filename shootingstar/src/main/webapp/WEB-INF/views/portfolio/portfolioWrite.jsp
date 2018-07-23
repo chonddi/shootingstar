@@ -118,7 +118,7 @@
 			class="form-control valid">
 			<option value="">카테고리를 선택해 주세요 !</option>
 			<!-- 반복문 시작 -->
-			<%-- <c:forEach var="vo" items="${list }"> --%>
+			<%-- <c:forEach var="vo" items="${list }"> --%> 
 			<option value="1">일번</option>
 			<%-- 		</c:forEach> --%>
 			<!-- 반복문 끝 -->
@@ -126,7 +126,7 @@
 		<div class="form-group">
 			<label for="exampleInputFile">업로드할 이미지를 선택해주세요!</label><input
 				type="file" multiple="multiple" name="files" id="imageUpload"
-				class="valid1" accept='image/*'>
+				class="valid1" accept='image/*'> 
 			<p class="help-block">이미지만 선택하실 수 있습니다.</p>
 		</div>
 		<label for="eimgs_wrap"> 이미지 미리보기 </label>

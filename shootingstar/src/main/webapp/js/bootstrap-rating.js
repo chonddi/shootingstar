@@ -8,7 +8,7 @@
     this.$rating = $('<span></span>').css({
       cursor: 'default'
     }).insertBefore(this.$input);
-    // Merge data and parameter options.
+    // Merge data and parameter options. 
     // Those provided as parameter prevail over the data ones.
     this.options = (function (opts) {
       // Sanitize start, stop, step, and fractions.
