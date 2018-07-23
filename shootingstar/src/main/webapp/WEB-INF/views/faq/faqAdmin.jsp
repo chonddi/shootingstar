@@ -117,7 +117,7 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 				<td>Q. ${vo.faqNo}</td>	
 					</c:when>
 				<c:otherwise>
-				<td>Q. ${vo.rownum}</td>
+				<td>Q. ${vo.rownum}aaaaa</td>
 				</c:otherwise>
 				</c:choose>
 				
