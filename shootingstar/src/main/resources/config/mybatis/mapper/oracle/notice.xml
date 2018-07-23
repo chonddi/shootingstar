@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<sql id="NoticeCol">
-		nNo, adminId, Ntitle, Ncontent, 
+		Nno, adminId, Ntitle, Ncontent, 
 		regdate, readcount, delflag
 	</sql>
 	
@@ -58,7 +58,7 @@
 		update notice set delflag='Y' 
 		where nNo=#{nNo}	
 	</update>
-	
+
 </mapper>
 
 

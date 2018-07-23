@@ -7,14 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.common.SearchVO;
+
 @Service
 public class NoticeServiceImpl implements NoticeService{
 @Autowired NoticeDAO noticeDao;
-	
-	@Override
-	public List<NoticeVO> selectAll() {
-		return noticeDao.selectAll();
-	}
+
+@Override
+public List<NoticeVO> selectAll() {
+	return noticeDao.selectAll();
+}
 
 	@Override
 	public int insertNotice(NoticeVO noticeVo) {
@@ -46,6 +48,11 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public int deleteOne(NoticeVO noticeVo) {
 		return noticeDao.deleteOne(noticeVo);
+	}
+
+	@Override
+	public int getTotalRecord(SearchVO searchVo) {
+		return noticeDao.getTotalRecord(searchVo);
 	}
 
 }

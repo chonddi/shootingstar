@@ -3,13 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../inc/top.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>슈팅스타 공지사항</title>
+<style type="text/css">
+ #width{padding-left:200px;
+	padding-right:200px;}
+</style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
@@ -25,8 +28,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 </head>
 <body>
 <h1>공지사항</h1>
-<hr>	
-
+<hr color="black">	
  <table class="notice">
 	<thead>
 		<tr>
@@ -35,6 +37,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 			<th colspan=2>날짜</th>
 
 		</tr>
+
 	</thead>
 	<tbody class="tbody">
 
@@ -75,7 +78,8 @@ $('.notice .tbody .title').find('#title').click(function(){
 				</c:choose>
 		</tr>
 		<tr class="content">
-			<td colspan=4>${vo.nContent }</td>
+			<td colspan=4>
+			<div id="width">${vo.nContent }</div></td>
 		</tr>
 
 		</c:forEach>
@@ -87,4 +91,3 @@ $('.notice .tbody .title').find('#title').click(function(){
 <!-- 검색없음!!! 페이징!!! -->
 </body>
 </html>
-

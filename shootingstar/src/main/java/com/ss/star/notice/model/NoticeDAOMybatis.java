@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ss.star.common.SearchVO;
+
 @Repository
 public class NoticeDAOMybatis implements NoticeDAO {
 	private String namespace="com.sql.notice.";
@@ -46,6 +48,11 @@ public class NoticeDAOMybatis implements NoticeDAO {
 	@Override
 	public int deleteOne(NoticeVO noticeVo) {
 		return sqlSession.update(namespace+"deleteOne", noticeVo);
+	}
+
+	@Override
+	public int getTotalRecord(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"getTotalRecord", searchVo);
 	}
 
 

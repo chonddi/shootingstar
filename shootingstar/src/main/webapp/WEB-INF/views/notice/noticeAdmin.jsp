@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>슈팅스타 공지사항</title>
+<title>슈팅스타 관리자 공지사항</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
 <style type="text/css">
 /* .on{
@@ -26,6 +26,8 @@
 
 }
  */
+ #width{padding-left:200px;
+	padding-right:200px;}
 </style>
 
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -161,9 +163,8 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 				</c:choose>	
 		</tr>
 		<tr class="content">
-			<td colspan=6>${vo.nContent}</td>
+			<td colspan=6><div id="width">${vo.nContent }</div></td>
 		</tr>
-			</td>
 		</c:forEach>
 	<!-- for 끝 -->
 	</c:if> 

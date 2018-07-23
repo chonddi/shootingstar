@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sql.faq">
+
+<select id="selectAll" parameterType="String" resultType="FaqVO">
+ select faqno, adminid, category, faqtitle, faqcontent, faqregdate, delflag, rownum 
+ from faq 
+ where category=#{category}
+ order by rownum
+</select>
+
+<select id="selectList" parameterType="String" resultType="FaqVO">
+ select * from faq 
+ order by faqNo
+</select>
+
+<insert id="insertFaq" parameterType="FaqVO">
+	<selectKey keyProperty="faqNo" order="BEFORE" resultType="int">
+			select faq_seq.nextval from dual
+		</selectKey>
+		insert into faq(faqNo, category, faqTitle, faqContent ) 
+			values(#{faqNo}, #{category}, #{faqTitle}, #{faqContent})
+</insert>
+
+<update id="deleteMulti" parameterType="map">
+		update faq set delflag='Y'
+		where faqNo in 
+		<foreach item="faqNo" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{faqNo}
+		</foreach>
+	</update>
+<update id="deleteOne" parameterType="FaqVO">
+		update faq set delflag='Y' 
+		where faqNo=#{faqNo}	
+	</update>	
+<select id="selectByNo" parameterType="int" resultType="FaqVO">
+		select * from faq where faqNo=#{faqNo}
+	</select>
+<update id="faqBack" parameterType="FaqVO" >
+		update faq set delflag='N'
+		where faqNo=#{faqNo}
+	</update>
+	
+<update id="faqEdit" parameterType="faqVO">
+		update faq set faqTitle=#{faqTitle}, faqContent=#{faqContent} ,category=#{category}
+		where faqNo=#{faqNo}
+	</update>		
+</mapper>
+
+
+
+
+
+
+
+
+
