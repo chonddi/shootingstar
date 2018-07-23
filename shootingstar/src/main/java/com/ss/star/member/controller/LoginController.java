@@ -49,6 +49,7 @@ public class LoginController {
 			//userName
 			request.getSession().setAttribute("name", name);
 			request.getSession().setAttribute("userCode", 1);
+			request.getSession().setMaxInactiveInterval(60*60);
 			//[2] 쿠키
 			Cookie cookie= new Cookie("saveId", memberId);
 			cookie.setPath("/");

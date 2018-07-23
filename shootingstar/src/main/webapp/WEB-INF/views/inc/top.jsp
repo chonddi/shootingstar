@@ -79,7 +79,7 @@
 							<li><a href="<c:url value='/member/registerMain.do'/>">회원가입</a></li>
 						</c:if>
 						<c:if test="${!empty sessionScope.userCode}">
-							<li><a href="#">내 정보 수정</a></li>
+							<li><a href="<c:url value='/mypage/memberEdit.do'/>">내 정보 수정</a></li>
 						</c:if>
 						<c:if test="${!empty sessionScope.memberId }">	
 							<li><a href="#">나의 견적현황 조회</a></li>
