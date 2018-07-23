@@ -104,7 +104,7 @@
 </head>
 <div id="divForm">
 	<div>
-		<img alt="portfolioWrite" src="<c:url value='/images/portfolioWrite.png'/>">
+		<img alt="portfolioWrite" src="<c:url value='/images/portfolioWritee.png'/>">
 	</div>
 	<form name="frm1" method="post"
 		action="<c:url value='/portfolio/portfolioWrite.do'/>">
