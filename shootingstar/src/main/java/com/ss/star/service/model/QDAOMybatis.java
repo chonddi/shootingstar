@@ -52,8 +52,8 @@ public class QDAOMybatis implements QDAO {
 	}
 
 	@Override
-	public List<QRVO> QRList() {
-		List<QRVO> list = sqlSession.selectList(namespace + "QRList");
+	public List<QRVO> QRList(int qNo) {
+		List<QRVO> list = sqlSession.selectList(namespace + "QRList", qNo);
 		return list;
 	}
 
@@ -72,6 +72,12 @@ public class QDAOMybatis implements QDAO {
 	@Override
 	public int QRDelete(int qrNo) {
 		int cnt = sqlSession.delete(namespace + "QRDelete", qrNo);
+		return cnt;
+	}
+
+	@Override
+	public int QRreply(QRVO QRVo) {
+		int cnt = sqlSession.insert(namespace + "QRreply", QRVo);
 		return cnt;
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ss.star.service.model.QRVO;
@@ -24,10 +25,10 @@ public class QRController {
 
 	@RequestMapping("/QRlist.do")
 	@ResponseBody
-	public List<QRVO> QRlist(Model model) {
-		logger.info("QRlist.do 처리");
+	public List<QRVO> QRlist(@ModelAttribute QRVO QRVo, Model model) {
+		logger.info("QRlist, 파라미터 QRVO={}", QRVo);
 
-		List<QRVO> list = qService.QRList();
+		List<QRVO> list = qService.QRList(QRVo.getqNo());
 		logger.info("댓글 목록 조회 결과, list.size={}", list.size());
 
 		model.addAttribute("list", list);
@@ -39,11 +40,22 @@ public class QRController {
 	@RequestMapping("/QRwrite.do")
 	@ResponseBody
 	public String Qwrite(@ModelAttribute QRVO QRVo) {
-		logger.info("글쓰기 처리, 파라미터 vo={}", QRVo);
+		logger.info("댓글쓰기 처리, 파라미터 vo={}", QRVo);
 
 		int cnt = qService.insertQR(QRVo);
-		logger.info("글쓰기 결과, cnt={}", cnt);
+		logger.info("댓글쓰기 결과, cnt={}", cnt);
 
+		return "success";
+	}
+	
+	@RequestMapping("/QRreply.do")
+	@ResponseBody
+	public String reply(@ModelAttribute QRVO QRVo) {
+		logger.info("대댓글쓰기 처리, 파라미터 vo={}", QRVo);
+		
+		int cnt = qService.insertQR(QRVo);
+		logger.info("대댓글쓰기 결과, cnt={}", cnt);
+		
 		return "success";
 	}
 

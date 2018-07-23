@@ -15,10 +15,11 @@ public interface QDAO {
 	//Q&A 댓글
 	public int insertQR(QRVO QRVo);
     public int QRCount();
-    public List<QRVO> QRList();
+    public List<QRVO> QRList(int qNo);
     public int QRUpdate(QRVO QRVo);
     public int QRDelete(int qrNo);
     public QRVO QRselectByNo(int qrNo);
+    public int QRreply(QRVO QRVo);
 	
 	
 	/*public int getTotalRecord(SearchVO searchVo);

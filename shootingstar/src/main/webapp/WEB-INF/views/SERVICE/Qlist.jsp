@@ -83,7 +83,8 @@
 							</a>
 						</c:if>
 						<c:if test="${sessionScope.id != vo.memberid}">
-							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>
+							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>&nbsp;
+							<img src="<c:url value='/images/lock.PNG'/>" alt="lock 이미지" style="vertical-align:middle;">
 						</c:if>
 						<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
 <%-- 						<c:if test="${!empty rlist.size}">
@@ -99,7 +100,11 @@
 							${vo.memberid}
 						</c:if>
 						<c:if test="${sessionScope.id != vo.memberid}">
-							<span style="color:gray;font-size:0.9em;">비공개</span>
+							<c:if test="${fn:length(vo.memberid)>3}">
+								<span style="color:gray;font-size:0.9em;">	
+									${fn:substring(vo.qTitle, 0, 3)}****
+								</span>
+							</c:if>
 						</c:if>
 					</td>
 					<td><fmt:formatDate value="${vo.regdate}" pattern="yyyy.MM.dd."/></td>
