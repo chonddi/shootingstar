@@ -22,6 +22,7 @@ public class MypageController {
 	private Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Autowired private MemberService memberService;
 	
+	//정보수정
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
 	public String memberEdit(HttpSession session, Model model) {
 		String memberId =(String)session.getAttribute("memberId");
@@ -65,6 +66,7 @@ public class MypageController {
 		return "common/message";
 	}
 	
+	//회원탈퇴
 	@RequestMapping(value="/del.do", method=RequestMethod.GET)
 	public void del() {
 		logger.info("탈퇴");
@@ -103,4 +105,40 @@ public class MypageController {
 		
 		return "common/message";
 	}
+	
+	//나의 견적상황
+	@RequestMapping("/myRequest.do")
+	public void myRequest(HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info("나의 견적상황 화면, 세션 memberId:{}", memberId);
+		
+	}
+	
+	@RequestMapping("/message/message.do")
+	public void message() {
+		logger.info("쪽지목록");
+	}
+
+	//쪽지쓰기
+	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.GET)
+	public void messageWrite() {
+		logger.info("쪽지쓰기");
+	}
+	
+	/*@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.POST)
+	public String messageWrite_post(@ModelAttribute , HttpSession session,@RequestParam String receiver) {
+		int userCode = (int)session.getAttribute("userCode");
+		
+		if(userCode==1) {
+			sMemberService.selectID(receiver);
+			{
+			}
+			
+		}else if(userCode==2){
+			memberService.selectID(email)
+			{
+				
+			}
+		}
+	}*/
 }

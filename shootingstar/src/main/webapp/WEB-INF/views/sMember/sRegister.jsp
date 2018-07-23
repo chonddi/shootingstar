@@ -68,8 +68,8 @@
 					});
 				
 					if(bool){
-						if($('#sPwd').val().length<8){
-							alert('비밀번호는 8자리 이상입니다.');
+						if ($('#sPwd').val().length < 8 | $('#sPwd').val().length>15) {
+							alert('비밀번호는 8~15자리 입니다.');
 							$('#sPwd').focus();
 							bool= false;
 						}else if($('#sPwd').val()!=$('#sPwd2').val()){
@@ -212,7 +212,7 @@ span{
 
 	<div id="frmAll">
 		<form name="frm" method="post"
-			action="<c:url value='/sMember/sRegister.do'/>">
+			action="<c:url value='/sMember/sRegister.do'/>" enctype="multipart/form-data">
 			<fieldset class="formDiv">
 				<legend>전문가 회원가입</legend>
 				<div>

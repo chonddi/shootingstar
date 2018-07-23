@@ -31,10 +31,11 @@
 <div class="clear">
 	<div id="mypage">
 		<div id="edit"><a href="<c:url value='/mypage/memberEdit.do'/>">회원정보수정</a></div>
-		<div id="request"><a>나의 견적상황</a></div>
+		<div id="myRequest"><a href="<c:url value='/mypage/myRequest.do'/>">나의 견적상황</a></div>
 		<div id="transaction"><a>나의 거래 이력</a></div>
 		<div id="likey"><a>나의 관심목록</a></div>
-		<div id="msg"><a>쪽지함</a></div>
+		<div id="myMileage"><a>내 마일리지</a></div>
+		<div id="msg"><a href="<c:url value='/mypage/message/messageList.do'/>">쪽지함</a></div>
 	</div>
 	
 	<div id="selectedPage">
