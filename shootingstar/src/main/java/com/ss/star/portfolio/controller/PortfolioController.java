@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ss.star.common.SearchVO;
+import com.ss.star.common.PaginationInfo;
+import com.ss.star.common.Utility;
 import com.ss.star.category.model.CategoryService;
 import com.ss.star.category.model.CategoryVO;
 import com.ss.star.common.FileUploadUtil;
@@ -30,19 +33,37 @@ public class PortfolioController {
 	@Autowired CategoryService cgService;
 
 	@Autowired
-	private PortfolioService PfService;
+	private PortfolioService pfService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 
-	@RequestMapping(value = "/portfolioList.do", method = RequestMethod.GET)
-	public String portfolio_list(Model model) {
-		logger.info("포트폴리오 목록 화면 보여주기");
+	@RequestMapping(value = "/portfolioList.do")
+	public String portfolio_list(@ModelAttribute SearchVO searchVo ,Model model) {
+		//[1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		//[2] SearchVO 에 값 셋팅
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);
+		
+		List<Map<String, Object>> vList = pfService.selectAllList(searchVo);
+		logger.info("글 목록 조회 결과, vlist.size={}", vList.size());
+		
+		//전체 레코드 개수 조회
+		int totalRecord=pfService.getTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
 		
 		List<CategoryVO> list=cgService.selectCategoryAll();
 		logger.info("카테고리 조회 결과, list.size={}", list.size());
 		
-		
-		
+				
 		model.addAttribute("list", list);
+		model.addAttribute("vList", vList);
+		model.addAttribute("pageVo", pagingInfo);
 		
 		return "portfolio/portfolioList";
 	}
@@ -71,7 +92,7 @@ public class PortfolioController {
 					logger.info("2M 이상의 파일은 업로드 불가!");
 					e.printStackTrace();
 				}
-				int cnt=PfService.insertPf(protfolioVo, fileList);
+				int cnt=pfService.insertPf(protfolioVo, fileList);
 	
 		return "protfolio/protfolioWrite";
 	}

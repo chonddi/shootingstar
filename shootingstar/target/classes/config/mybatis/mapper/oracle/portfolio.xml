@@ -3,6 +3,14 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.portfolio">
 
+	<sql id="searchWhere">
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			<where>
+				${searchCondition} like '%' || #{searchKeyword} || '%' and
+			</where>
+		</if>
+	</sql>
+
 	<insert id="insertPf" parameterType="PortfolioVO">
 	    <selectKey keyProperty="pfNo" order="BEFORE" resultType="int">
 			select portfolio_seq.nextval from dual
@@ -15,6 +23,36 @@
 		insert into pofolimg(pfimgno, pfno , filename, originalfilename)
 		values(POFOLIMG_SEQ.nextval, #{pfNo} , #{fileName},#{originalFileName})
 	</insert>
+	
+	<select id="selectAllList" parameterType="SearchVO" resultType="map">		
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select pfno, smemberid, cgno, pftitle, filename	
+				 from PFLISTVIEW 
+				 where
+				<include refid="searchWhere"></include> 
+				
+				ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+				
+				
+				order by pfno desc
+		    )list
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from PFLISTVIEW
+		where <include refid="searchWhere"></include>
+		ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+		order by pfno desc
+	</select>
 	
 	
 </mapper>

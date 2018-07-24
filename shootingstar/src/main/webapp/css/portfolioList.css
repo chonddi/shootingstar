@@ -22,7 +22,7 @@ body {
 #portSearch {
 	margin-left: 220px;
 	width: 1030px;
-	height: 1000px;
+	height: auto;
 }
 
 .col-lg-6 {
@@ -61,6 +61,8 @@ body {
 	height: 100%;
 	float: left;
 	padding-right: 20px;
+	max-width: 200px;
+	max-height: 200px;
 }
 
 #dropdownMenu1 {
@@ -68,13 +70,13 @@ body {
 }
 
 #portName {
-	font-size: 40px;
-	margin-top: 10px;
+	font-size: 30px;
+	margin-top: 25px;
 	font-weight: bold;
 }
 
 #photoInfo {
-	margin-top: 110px;
+	margin-top: 80px;
 	font-weight: bold;
 }
 .phothgrahper{

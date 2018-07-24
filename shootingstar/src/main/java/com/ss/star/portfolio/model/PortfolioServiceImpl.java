@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.common.SearchVO;
+
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
 
@@ -32,6 +34,18 @@ public class PortfolioServiceImpl implements PortfolioService {
 			e.printStackTrace();
 		}
 		return cnt;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllList(SearchVO searchVo) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list = Dao.selectAllList(searchVo);
+		return list;
+	}
+
+	@Override
+	public int getTotalRecord(SearchVO searchVo) {		
+		return Dao.getTotalRecord(searchVo);
 	}
 
 }
