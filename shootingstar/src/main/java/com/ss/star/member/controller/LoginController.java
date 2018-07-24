@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.star.member.model.MemberService;
+import com.ss.star.smember.model.SMemberService;
 
 @Controller
 @RequestMapping("/login")
@@ -21,6 +22,7 @@ public class LoginController {
 
 	Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired private MemberService memberService;
+	@Autowired private SMemberService sMemberService;
 
 	@RequestMapping("/login.do")
 	public void login() {
@@ -48,7 +50,7 @@ public class LoginController {
 			request.getSession().setAttribute("memberId", memberId);
 			//userName
 			request.getSession().setAttribute("name", name);
-			request.getSession().setAttribute("userCode", 1);
+			request.getSession().setAttribute("userCode", "1");
 			request.getSession().setMaxInactiveInterval(60*60);
 			//[2] 쿠키
 			Cookie cookie= new Cookie("saveId", memberId);
@@ -84,7 +86,7 @@ public class LoginController {
 		logger.info("전문가회원 로그인 sMemberId: {}, sPpwd: {}", sMemberId, sPwd);
 		logger.info("sSaveId:{}", sSaveId);
 		
-		int result = memberService.checkPwd(sMemberId, sPwd);
+		int result = sMemberService.checkPwd(sMemberId, sPwd);
 		logger.info("로그인 처리 결과 result: {}", result);
 
 		//로그인 처리
@@ -92,14 +94,14 @@ public class LoginController {
 
 
 		if(result==MemberService.LOGIN_OK) {
-			String sName= memberService.selectNameById(sMemberId);
+			String sName= sMemberService.selectNameById(sMemberId);
 			logger.info("로그인 처리 sMemberId로  불러온 결과 sName: {}",sName);
 			//[1] 세션
 			//userid
 			request.getSession().setAttribute("sMemberId", sMemberId);
 			//userName
 			request.getSession().setAttribute("sName", sName);
-			request.getSession().setAttribute("userCode", 2);
+			request.getSession().setAttribute("userCode", "2");
 			//[2] 쿠키
 			Cookie cookie= new Cookie("sSaveId", sMemberId);
 			cookie.setPath("/");
@@ -113,9 +115,9 @@ public class LoginController {
 
 			msg=sName+"님 로그인되었습니다.";
 			url="/index.do";
-		}else if(result == MemberService.PWD_DISAGREE) {
+		}else if(result == SMemberService.PWD_DISAGREE) {
 			msg="비밀번호가 일치하지 않습니다.";
-		}else if(result == MemberService.ID_NONE) {
+		}else if(result == SMemberService.ID_NONE) {
 			msg="아이디가 없습니다";
 		}else {
 			msg="로그인 처리 실패";
@@ -130,14 +132,14 @@ public class LoginController {
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
-		int userCode = (int)session.getAttribute("userCode");
+		String userCode = (String)session.getAttribute("userCode");
 		logger.info("로그아웃 처리 userCode: {}", userCode);
 		
-		if(userCode==1) {
+		if("1".equals(userCode)) {
 			session.removeAttribute("memberId");
 			session.removeAttribute("userCode");
 			session.removeAttribute("name");
-		}else if(userCode==2) {
+		}else if("2".equals(userCode)) {
 			session.removeAttribute("sMemberId");
 			session.removeAttribute("userCode");
 			session.removeAttribute("sName");

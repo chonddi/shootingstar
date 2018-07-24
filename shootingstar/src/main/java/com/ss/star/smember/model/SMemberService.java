@@ -11,4 +11,5 @@ public interface SMemberService {
 	public int insertSMember(SMemberVO sMemberVo);
 	public int checkPwd(String sMemberId, String sPwd);	
 	public String selectNameById(String sMemberId);
+	public int selectCountSMemberId(String sMemberId);
 }

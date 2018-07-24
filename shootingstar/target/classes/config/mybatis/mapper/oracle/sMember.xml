@@ -18,4 +18,8 @@
 	<select id="selectNameById" parameterType="String" resultType="String">
 		select sName from sMember where sMemberId=#{sMemberId}
 	</select>
+	
+	<select id="selectCountSMemberId" parameterType="String" resultType="int">
+		select count(*) from smember where smemberid=#{sMemberId}
+	</select>
 </mapper>

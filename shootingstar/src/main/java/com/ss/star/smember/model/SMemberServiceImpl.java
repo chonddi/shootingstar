@@ -19,8 +19,8 @@ public class SMemberServiceImpl implements SMemberService{
 	}
 
 	@Override
-	public int checkPwd(String sMmemberId, String sPwd) {
-		String realPwd =sMemberDao.selectPwdById(sMmemberId);
+	public int checkPwd(String sMemberId, String sPwd) {
+		String realPwd =sMemberDao.selectPwdById(sMemberId);
 		int result;
 		if(realPwd!=null) {
 			if(realPwd.equals(sPwd)) {
@@ -37,6 +37,11 @@ public class SMemberServiceImpl implements SMemberService{
 	@Override
 	public String selectNameById(String sMemberId) {
 		return sMemberDao.selectNameById(sMemberId);
+	}
+
+	@Override
+	public int selectCountSMemberId(String sMemberId) {
+		return sMemberDao.selectCountSMemberId(sMemberId);
 	}
 	
 }

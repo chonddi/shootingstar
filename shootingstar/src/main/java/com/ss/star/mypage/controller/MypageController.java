@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.mypage.message.model.SendMsgService;
+import com.ss.star.mypage.message.model.SendMsgVO;
+import com.ss.star.smember.model.SMemberService;
+import com.ss.star.smember.model.SMemberVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -21,6 +27,8 @@ public class MypageController {
 
 	private Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Autowired private MemberService memberService;
+	@Autowired private SMemberService sMemberService;
+	@Autowired private SendMsgService sendMsgService;
 	
 	//정보수정
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
@@ -125,20 +133,51 @@ public class MypageController {
 		logger.info("쪽지쓰기");
 	}
 	
-	/*@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.POST)
-	public String messageWrite_post(@ModelAttribute , HttpSession session,@RequestParam String receiver) {
-		int userCode = (int)session.getAttribute("userCode");
+	@RequestMapping("/message/messageWriteReceiver.do")
+	@ResponseBody
+	public int messageWrite_receiver(HttpSession session,@RequestParam String receiver) {
+		String userCode=(String)session.getAttribute("userCode");
+		logger.info("receiver: {}", receiver);
 		
-		if(userCode==1) {
-			sMemberService.selectID(receiver);
-			{
-			}
-			
-		}else if(userCode==2){
-			memberService.selectID(email)
-			{
-				
-			}
+		int result=3;
+		if("1".equals(userCode)) {
+			result = sMemberService.selectCountSMemberId(receiver);
+		}else if("2".equals(userCode)) {
+			result = memberService.selectCountMemberId(receiver);
 		}
-	}*/
+		logger.info("쪽지 키다운 userCode: {}, result: {}", userCode, result);
+		return result;
+	}
+	
+	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.POST)
+	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String receiver, Model model) {
+		String userCode = (String)session.getAttribute("userCode");
+		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, receiver);
+		
+		String userId="";
+		if("1".equals(userCode)) {
+			userId = (String) session.getAttribute("memberId");
+		}else if("2".equals(userCode)) {
+			userId = (String) session.getAttribute("sMemberId");
+		}
+		sendMsgVo.setSender(userId);
+		sendMsgVo.setCode(userCode);
+		
+		logger.info("sendMsgVo: {}", sendMsgVo);
+		
+		int cnt = sendMsgService.insertSendMsg(sendMsgVo);
+		logger.info("cnt: {}", cnt);
+		
+		String msg = "", url="/mypage/message/messageWrite.do";
+		if(cnt>0) {
+			msg="전송되었습니다.";
+		}else {
+			msg="전송 실패했습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 }

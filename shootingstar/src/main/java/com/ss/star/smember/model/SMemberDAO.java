@@ -6,4 +6,5 @@ public interface SMemberDAO {
 	public int insertSMember(SMemberVO sMemberVo);
 	public String selectPwdById(String sMemberId);
 	public String selectNameById(String sMemberId);
+	public int selectCountSMemberId(String sMemberId);
 }

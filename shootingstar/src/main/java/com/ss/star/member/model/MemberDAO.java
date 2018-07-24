@@ -8,4 +8,5 @@ public interface MemberDAO {
 	public String selectNameById(String memberId);
 	public int updateMember(MemberVO memberVo);
 	public int updateOutDate(String memberId);
+	public int selectCountMemberId(String memberId);
 }

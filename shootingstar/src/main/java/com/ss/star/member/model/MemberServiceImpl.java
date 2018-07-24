@@ -48,6 +48,11 @@ public class MemberServiceImpl implements MemberService{
 	public int updateOutDate(String memberId) {
 		return memberDao.updateOutDate(memberId);
 	}
+
+	@Override
+	public int selectCountMemberId(String memberId) {
+		return memberDao.selectCountMemberId(memberId);
+	}
 	
 	
 }

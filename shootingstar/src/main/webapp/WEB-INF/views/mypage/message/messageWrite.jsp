@@ -22,12 +22,43 @@
 				}
 			});
 			if(bool){
-				if(confirm("전송하시겠습니까?")){
-					$('form[name=msgFrm]').submit();
-					opener.parent.location.reload();
-					setTimeout(function() {self.close()}, 10);
+				if($('#idCount').val()!='Y'){
+					alert('아이디가 없습니다.');
+					$('#receiver').focus();
+					bool=false;
+					return false;
+				}
+				if(bool){
+					if(confirm("전송하시겠습니까?")){
+						$('form[name=msgFrm]').submit();
+						
+						opener.parent.location.reload();
+					}
 				}
 			}
+					setTimeout(function() {self.close()}, 10);
+		});
+		
+		$('#receiver').keyup(function(){
+			var receiverId=$('#receiver').val();
+			$.ajax({
+				url:"<c:url value='/mypage/message/messageWriteReceiver.do' />",
+				type:"GET",
+				data:"receiver="+receiverId,	//파라미터
+				success:function(res){
+					if(res>0){
+						$('#noId').css('display', 'none');
+						$('#idCount').val('Y');
+					}else{
+						$('#noId').css('display','');
+						$('#idCount').val('N');
+					}
+				},
+				error:function(xhr, status, error){
+					alert('error:'+error+", status: "+status)
+				}
+				
+			});
 		});
 		
 		$('#title').keydown(function(){
@@ -82,7 +113,8 @@
 		<h1>쪽지보내기</h1>
 	</div>
 	<div class="msgDiv">
-		<input type="text" id="receiver" name="receiver" class="text" placeholder="받는사람 아이디를 입력하세요">
+		<input type="text" id="receiver" name="receiver" class="text" placeholder="받는사람 아이디를 입력하세요"><br>
+		<span id="noId">아이디가 없습니다.</span>
 	</div>
 	<div class="msgDiv">
 		<!-- 제목 -->
@@ -98,7 +130,7 @@
 		&nbsp;
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>
-
+	<input type="text" id="idCount" value="N">
 </form>       
 </body>
 </html>
