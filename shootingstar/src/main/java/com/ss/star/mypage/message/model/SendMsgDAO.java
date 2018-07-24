@@ -1,6 +1,12 @@
 package com.ss.star.mypage.message.model;
 
+import java.util.List;
+import java.util.Map;
+
 public interface SendMsgDAO {
 
 	public int insertSendMsg(SendMsgVO sendMsgVo);
+	public int insertReceiveMsg(ReceiveMsgVO receiveMsgVo);
+	public List<Map<String, Object>> selectSendMsg(Map<String, String> map);
+	public List<Map<String, Object>> selectReceiveMsg(Map<String, String> map);
 }

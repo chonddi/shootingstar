@@ -35,7 +35,7 @@
 		<div id="transaction"><a>나의 거래 이력</a></div>
 		<div id="likey"><a>나의 관심목록</a></div>
 		<div id="myMileage"><a>내 마일리지</a></div>
-		<div id="msg"><a href="<c:url value='/mypage/message/messageList.do'/>">쪽지함</a></div>
+		<div id="msg"><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></div>
 	</div>
 	
 	<div id="selectedPage">

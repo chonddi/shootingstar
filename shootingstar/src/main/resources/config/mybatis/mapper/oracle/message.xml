@@ -9,6 +9,20 @@
 		insert into sendmsg(smsgNo, sender, title, content, code)
 		values(#{sMsgNo}, #{sender}, #{title}, #{content}, #{code})
 	</insert>
+	
+	<insert id="insertReceiveMsg" parameterType="receiveMsgVo">
+		insert into receivemsg(rMsgNo, sMsgNo, recipient)
+		values(receivemsg_seq.nextval, #{sMsgNo}, #{recipient})
+	</insert>
+	
+	<select id="selectSendMsg" parameterType="map" resultType="map">
+		select * from message where sender=#{sender} and code=#{code} order by smsgno desc
+	</select>
+
+	<select id="selectReceiveMsg" parameterType="map" resultType="map">
+		select * from message where recipient=#{recipient} and code=#{code} order by smsgno desc
+	</select>
+	
 </mapper>
 
 

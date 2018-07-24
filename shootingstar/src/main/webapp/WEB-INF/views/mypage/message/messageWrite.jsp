@@ -31,12 +31,11 @@
 				if(bool){
 					if(confirm("전송하시겠습니까?")){
 						$('form[name=msgFrm]').submit();
-						
 						opener.parent.location.reload();
+						setTimeout(function() {self.close()}, 10);
 					}
 				}
 			}
-					setTimeout(function() {self.close()}, 10);
 		});
 		
 		$('#receiver').keyup(function(){
@@ -105,17 +104,24 @@
 
 	});
 </script>
-
+<style type="text/css">
+#noId{
+    padding-left: 5px;
+    font-size: 0.8em;
+    color: #b52929;
+    font-weight: bold;
+}
+</style>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <form name="msgFrm" method="post" action="<c:url value='/mypage/message/messageWrite.do'/>">
 	<div class="h1">
 		<h1>쪽지보내기</h1>
 	</div>
-	<div class="msgDiv">
-		<input type="text" id="receiver" name="receiver" class="text" placeholder="받는사람 아이디를 입력하세요"><br>
-		<span id="noId">아이디가 없습니다.</span>
+	<div class="msgDiv" style="margin-bottom: 3px;">
+		<input type="text" id="receiver" name="recipient" class="text" placeholder="받는사람 아이디를 입력하세요"><br>
 	</div>
+	<span id="noId" style="display: none">아이디가 없습니다.</span>
 	<div class="msgDiv">
 		<!-- 제목 -->
 	    <input type="text" id="title" name="title" class="text" placeholder="제목을 입력하세요"/>
@@ -130,7 +136,7 @@
 		&nbsp;
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>
-	<input type="text" id="idCount" value="N">
+	<input type="hidden" id="idCount" value="N">
 </form>       
 </body>
 </html>

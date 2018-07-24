@@ -7,6 +7,7 @@ public class ReceiveMsgVO {
 	private String recipient;
 	private String rDelFlag;
 	private String readFlag;
+	
 	public int getrMsgNo() {
 		return rMsgNo;
 	}

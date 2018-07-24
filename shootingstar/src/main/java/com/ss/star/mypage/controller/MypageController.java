@@ -1,5 +1,9 @@
 package com.ss.star.mypage.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -121,10 +125,40 @@ public class MypageController {
 		logger.info("나의 견적상황 화면, 세션 memberId:{}", memberId);
 		
 	}
-	
+	//쪽지
 	@RequestMapping("/message/message.do")
-	public void message() {
-		logger.info("쪽지목록");
+	public void message(HttpSession session, Model model) {
+		String userCode = (String) session.getAttribute("userCode");
+		String userId = "";
+		if("1".equals(userCode)) {
+			userId=(String)session.getAttribute("memberId");
+		}else if("2".equals(userCode)) {
+			userId=(String)session.getAttribute("sMemberId");
+		}
+		logger.info("쪽지목록, userId:{}, userCode:{}",userId, userCode);
+		
+		
+		List<Map<String, Object>> list = sendMsgService.selectSendMsg(userId, userCode);
+		logger.info("보낸쪽지 리스트 list.size(): {}", list.size());
+		
+		model.addAttribute("sendList", list);
+	}
+	
+	@RequestMapping("/message/messageReceive.do")
+	public void messageReceive(HttpSession session, Model model) {
+		String userCode = (String) session.getAttribute("userCode");
+		String userId = "";
+		if("1".equals(userCode)) {
+			userId=(String)session.getAttribute("memberId");
+		}else if("2".equals(userCode)) {
+			userId=(String)session.getAttribute("sMemberId");
+		}
+		logger.info("쪽지목록, userId:{}, userCode:{}",userId, userCode);
+		
+		List<Map<String, Object>> list = sendMsgService.selectReceiveMsg(userId, userCode);
+		logger.info("받은쪽지 리스트 list.size(): {}", list.size());
+		
+		model.addAttribute("receiveList", list);
 	}
 
 	//쪽지쓰기
@@ -150,9 +184,9 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.POST)
-	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String receiver, Model model) {
+	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String recipient, Model model) {
 		String userCode = (String)session.getAttribute("userCode");
-		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, receiver);
+		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
 		
 		String userId="";
 		if("1".equals(userCode)) {
@@ -165,7 +199,7 @@ public class MypageController {
 		
 		logger.info("sendMsgVo: {}", sendMsgVo);
 		
-		int cnt = sendMsgService.insertSendMsg(sendMsgVo);
+		int cnt = sendMsgService.insertAll(sendMsgVo, recipient);
 		logger.info("cnt: {}", cnt);
 		
 		String msg = "", url="/mypage/message/messageWrite.do";

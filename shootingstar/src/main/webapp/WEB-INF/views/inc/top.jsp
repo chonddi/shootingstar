@@ -66,7 +66,7 @@
 							<li><a href="#">이용방법</a></li>
 							<li><a href="#">공지사항</a></li>
 							<c:if test="${!empty sessionScope.memberId}">
-								<li><a href="#">Q&A</a></li>
+								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>
 							</c:if>
 						</ul></li>
 				</ul>
@@ -90,7 +90,7 @@
 						</c:if>	
 						<c:if test="${!empty sessionScope.userCode}">
 							<li><a href="#">나의 거래이력</a></li>
-							<li><a href="#">쪽지함</a></li>
+							<li><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></li>
 						</c:if>
 						<c:if test="${!empty sessionScope.memberId}">
 							<li><a href="#">내 마일리지</a></li>
