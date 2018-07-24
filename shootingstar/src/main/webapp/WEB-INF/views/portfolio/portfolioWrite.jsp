@@ -114,7 +114,7 @@
 				placeholder="포트폴리오 타이틀을 입력하세요">
 		</div>
 		<label for="categoryNo">카테고리를 선택해주세요 !</label><br> <select
-			name="category" id="categoryNo" title="카테고리"
+			name="cgNo" id="categoryNo" title="카테고리"
 			class="form-control valid">
 			<option value="">카테고리를 선택해 주세요 !</option>
 			<!-- 반복문 시작 -->

@@ -8,7 +8,7 @@
 			select portfolio_seq.nextval from dual
 		</selectKey>
 		insert into portfolio(pfno, smemberid, cgno, pftitle)
-		values(#{pfNo}, #{smemberId}, #{category}, #{pfTitle})
+		values(#{pfNo}, #{smemberId}, #{cgNo}, #{pfTitle})
 	</insert>
 
 	<insert id="insertPfImg" parameterType="PortfolioImgVO">

@@ -2,108 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
 <head>
+
+<link href="<c:url value='/css/portfolioList.css'/>" rel="stylesheet">
+
 <style type="text/css">
-body {
-	clear: both;
-}
-
-#portfolioListSideBar {
-	float: left;
-	border-radius: 5px;
-	font-weight: bold;
-	width: 200px;
-	height: 500px;
-}
-
-#portfolioListSideBar li:not (.active ) a {
-	padding-left: 15px;
-}
-
-.nav {
-	padding-left: 10px;
-}
-
-#portSearch {
-	margin-left: 220px;
-	width: 1030px;
-	height: 1000px;
-}
-
-.col-lg-6 {
-	margin-left: 300px;
-	margin-top: 5px;
-}
-
-#topSearch {
-	float: left;
-	width: 130px;
-	height: 35px;
-	line-height: 35px;
-	margin-left: 10px;
-	font-size: 13px;
-	font-weight: bold;
-}
-
-#topSearch span {
-	font-size: 1.1em;
-	color: #2782ec;
-}
-
-.dropdown-menu {
-	margin-left: 950px;
-}
-
-#portList {
-	border-top: 1px solid #e8e8e8;
-	width: 1030px;
-	height: 200px;
-	padding: 10px;
-	margin-top: 10px;
-}
-
-#portList img {
-	height: 100%;
-	float: left;
-	padding-right: 20px;
-}
-
-#dropdownMenu1 {
-	margin-top: 5px;
-}
-
-#portName {
-	font-size: 40px;
-	margin-top: 10px;
-	font-weight: bold;
-}
-
-#photoInfo {
-	margin-top: 110px;
-	font-weight: bold;
-}
-.phothgrahper{
-	font-size: 0.8em;
-	color:#9999b3;
-	font-weight: normal;
-	margin-left: 5px;
-}
 </style>
+
 </head>
 <body>
 	<div></div>
 	<div id="portfolioListSideBar">
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a>카테고리</a></li>
-			<li role="presentation"><a href="#">전체보기</a></li>
-			<li role="presentation"><a href="#">프로필</a></li>
-			<li role="presentation"><a href="#">푸드</a></li>
-			<li role="presentation"><a href="#">패션</a></li>
-			<li role="presentation"><a href="#">웨딩</a></li>
-			<li role="presentation"><a href="#">행사</a></li>
-			<li role="presentation"><a href="#">인테리어</a></li>
-			<li role="presentation"><a href="#">공연</a></li>
-			<li role="presentation"><a href="#">광고</a></li>
-			<li role="presentation"><a href="#">스냅사진</a></li>
+		<c:forEach var="vo" items="${list }">
+		<li role="presentation" value=""><a>${vo.cgName}</a></li>
+		</c:forEach>
 		</ul>
 	</div>
 	<div id="portSearch">
