@@ -98,7 +98,7 @@ nav #userul {
 }
 
 article {
-	width: 1300px;
-	margin-left: 320px;
+	margin: 0 auto;
+	width: 1235px;
 	margin-top: 120px;
 }

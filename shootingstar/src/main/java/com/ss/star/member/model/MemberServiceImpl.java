@@ -38,5 +38,16 @@ public class MemberServiceImpl implements MemberService{
 	public String selectNameById(String memberId) {
 		return memberDao.selectNameById(memberId);
 	}
+
+	@Override
+	public int updateMember(MemberVO memberVo) {
+		return memberDao.updateMember(memberVo);
+	}
+
+	@Override
+	public int updateOutDate(String memberId) {
+		return memberDao.updateOutDate(memberId);
+	}
+	
 	
 }

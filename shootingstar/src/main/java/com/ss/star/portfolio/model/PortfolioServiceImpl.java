@@ -24,7 +24,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 					PortfolioImgVO PfImgVo = new PortfolioImgVO();
 					PfImgVo.setFileName((String)map.get("fileName"));
 					PfImgVo.setOriginalFileName((String)map.get("originalFileName"));
-					PfImgVo.setPfNo(pfNo);
+					PfImgVo.setPfNo(pfNo);	
 					cnt=Dao.insertPfImg(PfImgVo);
 			}//for
 		}catch(RuntimeException e) {
