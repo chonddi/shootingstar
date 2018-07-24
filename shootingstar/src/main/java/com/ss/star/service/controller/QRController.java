@@ -36,7 +36,7 @@ public class QRController {
 		return list;
 
 	}
-	
+
 	@RequestMapping("/QRwrite.do")
 	@ResponseBody
 	public String Qwrite(@ModelAttribute QRVO QRVo) {
@@ -47,16 +47,40 @@ public class QRController {
 
 		return "success";
 	}
-	
+
 	@RequestMapping("/QRreply.do")
 	@ResponseBody
 	public String reply(@ModelAttribute QRVO QRVo) {
 		logger.info("대댓글쓰기 처리, 파라미터 vo={}", QRVo);
-		
+
 		int cnt = qService.insertQR(QRVo);
 		logger.info("대댓글쓰기 결과, cnt={}", cnt);
-		
+
 		return "success";
 	}
+
+	@RequestMapping("/QRUpdate.do")
+	@ResponseBody
+	public String QRUpdate(@ModelAttribute QRVO QRVo) {
+		logger.info("댓글수정 처리, 파라미터 QRVo={}", QRVo);
+
+		int cnt = qService.QRUpdate(QRVo);
+		logger.info("댓글수정 결과, cnt={}", cnt);
+
+		return "success";
+	}
+	
+	@RequestMapping("/QRdetail.do")
+	@ResponseBody
+	public List<QRVO> detail(@RequestParam(defaultValue="0") int qrNo) {
+		logger.info("댓글 상세보기, 파라미터 qrNo={}", qrNo);
+
+		List<QRVO> list = qService.QRselectByNo(qrNo);
+		logger.info("상세보기 결과, vo={}", list);
+
+		return list;
+	}
+	
+	
 
 }

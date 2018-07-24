@@ -52,12 +52,6 @@ $(document).ready(function(){
 
 }); */
 	
-	
-	
-	
-	
-	
-	
 	/* 댓글 */
 	getCommentList();
 	
@@ -95,6 +89,8 @@ $(document).ready(function(){
 		
  	});//click
  	
+});//ready
+ 	
  	//댓글 리스트
  	function getCommentList(){
 		$.ajax({
@@ -113,9 +109,12 @@ $(document).ready(function(){
 	                    html += "<div class='ajxDiv2'>";
 	                    html += "<div><table id='" + data[i].qrNo + "'><h6><b>" + data[i].id;
 	                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
-	                    html += "<a href='#' onclick='qrReply()'>답글</a>&nbsp;&nbsp;";
-	                    html += "<a href='#' onclick='qrUpdate('" + data[i].qrNo + ", " + data[i].content + "')'>수정</a>&nbsp;&nbsp;";
-	                    html += "<a href='#' onclick='qrDelete('" + data[i].qrNo + "')'>삭제</a>&nbsp;&nbsp;";
+	                    //html += "<a href='#' onclick='qrReply()'>답글</a>&nbsp;&nbsp;";
+	                    //html += "<a onclick='qrUpdate(" + data[i].qrNo + ", " + data[i].content + ")'>수정</a>&nbsp;&nbsp;";
+	                    html += "<a onclick='qrUpdate(\'" + data[i].content + "\')'>수정</a>&nbsp;&nbsp;";
+	                    //a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+	                    //html += "<a onclick='qrUpdate()'>수정</a>&nbsp;&nbsp;";
+	                    //html += "<a href='#' onclick='qrDelete('" + data[i].qrNo + "')'>삭제</a>&nbsp;&nbsp;";
 	                    html += "</span></b></h6>";
 	                    html += "<tr><td></td></tr>";
 	                    html += "<div class='qrContent'" + data[i].qrNo + ">" + data[i].content + "</div>";
@@ -166,32 +165,93 @@ $(document).ready(function(){
 	}//댓글 리스트
 	
 	//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-	function qrUpdate(qrNo, content){
+ 	function qrUpdate(content){
+	    var a ='';
+	    
+	    alert("askldjfkl");
+	    
+	    /* a += '<div class="input-group">';
+	    a += '<input type="text" class="form-control" name="content_1" value="'+content+'"/>';
+//	    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
+	    a += '</div>';
+	    
+	    $('.qrContent').html(a); */
+	    
+	}
+/*  	function qrUpdate(content){
 	    var a ='';
 	    
 	    a += '<div class="input-group">';
 	    a += '<input type="text" class="form-control" name="content_'+qrNo+'" value="'+content+'"/>';
-	    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+	    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
 	    a += '</div>';
 	    
-	    $('.commentContent'+cno).html(a);
+	    $('.qrContent'+qrNo).html(a);
 	    
-	}
+	} */
+	/* function qrUpdate(qrNo){
+		$.ajax({
+			type:"get",
+			url:"<c:url value='/SERVICE/QRdetail.do?qrNo=" + qrNo + "'/>",
+			dataType:"json",
+			data: $("#commentForm").serialize(),
+			success:function(data){
+				if(data.length > 0){
+					var content = data.content;
+				}
+				
+				var html = "";
+		        var cCnt = data.length;
+				var a = '';
+				
+				a += '<div class="input-group">';
+			    a += '<input type="text" class="form-control" name="content_'+qrNo+'" value="'+content+'"/>';
+			    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
+			    a += '</div>';
+				
+			    $('.qrContent'+qrNo).html(a);
+				
+			},
+			error:function(xhr, status, error){
+				alert("error:"+error);
+			}
+		
+	    
+	});
+		
+	} */
+		/* a += '<div class="input-group" style="border:1px solid red;background-color:red;">연습용 div';
+	    a += qrNo + '</div>';
+	    
+	    $('.qrContent').html(a); */
+	    
+/* 	function qrUpdate(qrNo, content){
+	    var a ='';
+	    
+	    a += '<div class="input-group" style="border:1px solid red;background-color:red;">연습용 div';
+	    a += qrNo + '</div>';
+	    
+	    $('.qrContent').html(a);
+	    
+	} */
 	 
-	//댓글 수정
-	function commentUpdateProc(cno){
-	    var updateContent = $('[name=content_'+cno+']').val();
+/* 	//댓글 수정
+	function qrUpdateSub(qrNo){
+	    var updateContent = $('[name=content_'+qrNo+']').val();
 	    
 	    $.ajax({
-	        url : '/comment/update',
+	        url : "<c:url value='/SERVICE/QRupdate.do'/>",
 	        type : 'post',
-	        data : {'content' : updateContent, 'cno' : cno},
+	        data : {'content' : updateContent, 'qrNo' : qrNo},
 	        success : function(data){
-	            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+	            if(data == 1) getCommentList(qrNo); //댓글 수정후 목록 출력
 	        }
 	    });
-	}
-	 
+	} */
+	
+ 	
+
+/* 	 
 	//댓글 삭제 
 	function commentDelete(cno){
 	    $.ajax({
@@ -203,7 +263,7 @@ $(document).ready(function(){
 	    });
 	}
 
- 	
+ 	 */
  	
  	
 /*  	
@@ -355,27 +415,6 @@ $(document).ready(function(){
  	 
  	 
  	</script> --%>
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
-});*/
- 	
- 	
-});
 	
 </script>
 
@@ -406,3 +445,8 @@ $(document).ready(function(){
 	    <input type="hidden" name="qNo" value="${param.qNo}">
     </form>
 </div>
+
+
+
+
+

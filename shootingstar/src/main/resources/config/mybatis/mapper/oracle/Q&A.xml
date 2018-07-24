@@ -64,8 +64,8 @@
     
      <update id="QRUpdate" parameterType="QRVO">
         UPDATE QNARE
-        SET CONTENT = #{qrContent}
-        WHERE QNO = #{qrNo}
+        SET CONTENT = #{content}
+        WHERE QRNO = #{qrNo}
     </update>
     
     <delete id="QRDelete" parameterType="int">

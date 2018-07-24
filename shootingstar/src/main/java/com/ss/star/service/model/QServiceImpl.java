@@ -49,7 +49,7 @@ public class QServiceImpl implements QService {
 	}
 	
 	@Override
-	public QRVO QRselectByNo(int qrNo) {
+	public List<QRVO> QRselectByNo(int qrNo) {
 		return qDao.QRselectByNo(qrNo);
 	}
 

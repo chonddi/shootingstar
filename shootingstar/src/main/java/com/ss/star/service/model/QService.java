@@ -18,7 +18,7 @@ public interface QService {
     public List<QRVO> QRList(int qNo);
     public int QRUpdate(QRVO QRVo);
     public int QRDelete(int qrNo);
-    public QRVO QRselectByNo(int qrNo);
+    public List<QRVO> QRselectByNo(int qrNo);
     public int QRreply(QRVO QRVo);
     
 }
