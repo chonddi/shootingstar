@@ -26,7 +26,7 @@
 <body>
 
 <div>
-
+${fileInfo}
 ${vo.RQDetail}
 ${vo.RQRegion}
 ${vo.RQDate}
@@ -38,3 +38,4 @@ ${vo.RQType}
 
 </body>
 </html>
+<%@ include file="../inc/bottom.jsp"%>

@@ -341,7 +341,7 @@ $(function(){
 		<br>&nbsp;마지막 단계입니다.<br><hr>		
 		</div>
 	<form name="frm1" method="post" enctype="multipart/form-data" 
-		action="<c:url value='/request/detail.do'/>" onsubmit="return send(this)">
+		action="<c:url value='/request/write4.do'/>" onsubmit="return send(this)">
 	 
 		 
 			   <div class="pS">   
@@ -397,7 +397,7 @@ $(function(){
 					<input type="checkbox" name="ck1" value="웹용" /> 웹용 &nbsp;&nbsp;
 					<input type="checkbox" name="ck2" value="인쇄용"/> 인쇄용
 					<input type="hidden" name="RQPrice" value=${price }>
-					<input type="hidden" name="cg2" value=${cg2 }>
+					<input type="hidden" name="cg1" value=${cg1 }>
 			
 
 
@@ -428,3 +428,4 @@ $(function(){
      </div>
 </body>
 </html>
+<%@ include file="../inc/bottom.jsp"%>

@@ -4,6 +4,19 @@
 <mapper namespace="config.mybatis.mapper.oracle.request">
 	
 	
+	<sql id="requestCol">
+		rqno, memberid, cgno, rqprice, rqregion, rqdate,
+		rqtype, pickcount, rqdetail, regdate, delflag
+	</sql>
+	
+	<sql id="searchWhere">
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			<where>
+				${searchCondition} like '%' || #{searchKeyword} || '%'
+			</where>
+		</if>
+	</sql>
+	
 	<insert id="insertRequest" parameterType="RequestVO">
 		<selectKey keyProperty="RQNo" order="BEFORE" resultType="int">
 			select request_seq.nextval from dual
@@ -16,6 +29,65 @@
 		insert into requestimg(rqimgno, rqno, originalfilename, filename) 
 		values(requestimg_seq.nextval, #{RQNo}, #{originalFileName}, #{fileName})
 	</insert>
+
+
+	<select id="selectAll" parameterType="ctgRequestVO" resultType="RequestVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		    	<choose>
+			        <when test="cgNo==null or cgNo==''">
+		        select 
+				<include refid="requestCol"></include>		
+				 from request
+				<include refid="searchWhere"></include>
+				
+				</when>
+					<otherwise>		
+						select 
+						<include refid="requestCol"></include>		
+						 from request
+						where cgNo=#{cgNo}
+					</otherwise>			
+				</choose>
+				order by rqno desc	
+				
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
+	
+	
+	<select id="getTotalRecord" parameterType="ctgRequestVO" resultType="int">
+		<choose>
+	         <when test="cgNo==null or cgNo==''">
+		        select count(*)	
+				 from request
+				<include refid="searchWhere"></include>			
+			</when>
+			<otherwise>				
+				select count(*)		
+				 from request
+				where cgNo=#{cgNo}
+			</otherwise>			
+		</choose>
+			
+	</select>
+	
+	
+	<select id="selectByNo" parameterType="int" resultType="RequestVO">
+		select * from request where RQNo=#{RQNo}
+	</select>
+
+	<select id="selectByNoImg" parameterType="int" resultType="RequestImgVO">
+		select * from requestimg where RQNo=#{RQNo}
+	</select>
 
 	
 </mapper>

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class RequestVO {
 	
 	private int RQNo;
-	private String MemberId;
+	private String memberId;
 	private int cgNo;
 	private int RQPrice;
 	private String RQRegion;
@@ -17,17 +17,17 @@ public class RequestVO {
 	private String delFlag;
 	
 	
-public int getRQNo() {
+	public int getRQNo() {
 		return RQNo;
 	}
 	public void setRQNo(int rQNo) {
 		RQNo = rQNo;
 	}
 	public String getMemberId() {
-		return MemberId;
+		return memberId;
 	}
-	public void setMemberId(String memberId) {
-		MemberId = memberId;
+	public void setMemberId(String memberID) {
+		memberId = memberID;
 	}
 	public int getCgNo() {
 		return cgNo;
@@ -86,7 +86,7 @@ public int getRQNo() {
 	
 	@Override
 	public String toString() {
-		return "RequestVO [RQNo=" + RQNo + ", MemberId=" + MemberId + ", cgNo=" + cgNo + ", RQPrice=" + RQPrice
+		return "RequestVO [RQNo=" + RQNo + ", MemberId=" + memberId + ", cgNo=" + cgNo + ", RQPrice=" + RQPrice
 				+ ", RQRegion=" + RQRegion + ", RQDate=" + RQDate + ", RQType=" + RQType + ", pickCount=" + pickCount
 				+ ", RQDetail=" + RQDetail + ", regDate=" + regDate + ", delFlag=" + delFlag + "]";
 	}

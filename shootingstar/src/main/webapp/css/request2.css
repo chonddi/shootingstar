@@ -85,7 +85,6 @@ input[type="checkbox"]{
 
 
 
-
 .imgs_wrap {
             width: 500px;
             
@@ -98,6 +97,57 @@ input[type="checkbox"]{
             margin:10px;
         }
 
+.divPage{
+	margin: 0 auto;
+	text-align:center;
+}
 
+.box2{
+	margin:10px;
+	vertical-align:middle;
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.9em;
+	border: 1px #278dd8 solid;
+	width:100%;
+	
+}
+.box2 tbody tr{
+	text-align:center;
+	vertical-align:middle;
+	height:50px;
+}
+.box2 td{
+	text-align:center;
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 1.0em;
+	vertical-align:middle;
+}
+.divList{
+	clear:both;
+}
+.divSearch{
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.8em;
+	float:right;
+}
+.divRight{
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.8em;
+	float:left;
+}
+#title{
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 1.8em;
+	padding-bottom:20px;
+}
 
-
+#ttl{
+	text-align:center;
+	vertical-align:middle;
+	height:50px;
+	border-bottom: 1px #278dd8 solid;
+}
+.pick{
+	pointer-events: none;
+	cursor: default;
+}

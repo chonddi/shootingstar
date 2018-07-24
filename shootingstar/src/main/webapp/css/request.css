@@ -96,3 +96,8 @@ textarea::placeholder {
   font-size:12px;
   
 }
+
+#img1{
+	height:230px;
+	width:300px;
+}

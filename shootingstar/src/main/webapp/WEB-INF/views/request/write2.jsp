@@ -30,7 +30,7 @@ $('.price').bind("keyup", function() {$(this).val( $(this).val().replace(/[^0-9]
 		            <label for="name">선택하신 항목은   <span id="cg2">${cg1}</span> 입니다. <br><br>
 		            				원하시는 가격을 입력하세요.</label><br><br>
 		            <input type="text" style="text-align:right;" class="price" name="price"/>원
-		            <input type="hidden" id="cg1" name="cg2" value="${cg1 }"> 
+		            <input type="hidden" id="cg1" name="cg1" value="${cg1 }"> 
 		        </div>
 		        <br>
 		        	<input type="submit"  value="입력완료"/>
@@ -46,3 +46,4 @@ $('.price').bind("keyup", function() {$(this).val( $(this).val().replace(/[^0-9]
 
 </body>
 </html>
+<%@ include file="../inc/bottom.jsp"%>

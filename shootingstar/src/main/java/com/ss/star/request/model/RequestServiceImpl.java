@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.request.model.ctgRequestVO;
+import com.ss.star.common.SearchVO;
+
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -34,6 +37,27 @@ public class RequestServiceImpl implements RequestService {
 	      }
 	      return cnt;
 	   }
+
+	@Override
+	public List<RequestVO> selectAll(ctgRequestVO searchVo) {
+		return requestDao.selectAll(searchVo);
+	}
+
+	@Override
+	public int getTotalRecord(ctgRequestVO searchVo) {		
+		return requestDao.getTotalRecord(searchVo);
+	}
+
+	@Override
+	public RequestVO selectByNo(int no) {
+		return requestDao.selectByNo(no);	
+	
+	}
+
+	@Override
+	public RequestImgVO selectByNoImg(int no) {
+		return requestDao.selectByNoImg(no);	
+	}
 	
 	
 	

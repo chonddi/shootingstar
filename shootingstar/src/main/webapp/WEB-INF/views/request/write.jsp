@@ -19,7 +19,7 @@
 	<thead>
 		<tr>
 			<th><form name="frmWrite1" method="post" action="<c:url value='/request/write2.do'/>" 
-					onsubmit="return send(this)"><button type='submit' id="fw1" name="cg1" value="인물/프로필">인물/프로필</button></form></th>
+					onsubmit="return send(this)"><input type=image src="../images/profile.jpg" id="img1"  name="cg1" value="인물/프로필"></form></th>
 			<th><form name="frmWrite1" method="post" action="<c:url value='/request/write2.do'/>" 
 					onsubmit="return send(this)"><button type='submit' id="fw1" name="cg1" value="푸드">푸드</button></form></th>
 			<th><form name="frmWrite1" method="post" action="<c:url value='/request/write2.do'/>" 
@@ -47,3 +47,4 @@
 
 </body>
 </html>
+<%@ include file="../inc/bottom.jsp"%>
