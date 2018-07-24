@@ -85,7 +85,7 @@ $(document).ready(function(){
 <h1>공지사항</h1>
 <input type="button" value="공지사항작성" 
  onclick="location.href='<c:url value="/notice/noticeWrite.do"/>'"/>
-<hr color="black">	
+
 <form name="deleteNotice" method="post"
 action="<c:url value='/notice/noticeDelete.do'/>">
  <table class="notice">

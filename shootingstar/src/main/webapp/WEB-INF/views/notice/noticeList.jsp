@@ -28,7 +28,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 </head>
 <body>
 <h1>공지사항</h1>
-<hr color="black">	
+
  <table class="notice">
 	<thead>
 		<tr>

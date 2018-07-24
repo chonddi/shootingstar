@@ -21,6 +21,7 @@ $(document).ready(function(){
 			return false;
 		}
 	});	
+	$("#category").val("${vo.category}");
 });
 </script>
 </head>
@@ -32,7 +33,7 @@ $(document).ready(function(){
 	<input type="hidden" name="faqNo"  value="${param.faqNo}" />
 	<div>
 			<label for="category">카테고리</label><br>
-			<select id="category" name="category">
+			<select id="category" name="category" >
 			<option value="일반">일반</option>
 			<option value="가입/탈퇴">가입/탈퇴</option>
 			<option value="계정/로그인/인증">계정/로그인/인증</option>

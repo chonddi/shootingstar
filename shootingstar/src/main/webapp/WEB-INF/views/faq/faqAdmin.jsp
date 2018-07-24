@@ -16,13 +16,20 @@ pageContext.setAttribute("cn", "\n");
 <style type="text/css">
 .faq th {
     margin: 0 0 0 0;
-    padding: 10px 30px 10px 30px;
+    /* padding: 10px 30px 10px 30px; */
     font-weight: bold;
  
 }
 
 a {text-decoration: none;  color: WindowText; }
-
+#linetop{
+height:5px;
+border-top: 2px solid black;
+}
+#linebot{
+height:5px;
+border-bottom: 1px solid black;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
@@ -31,7 +38,7 @@ a {text-decoration: none;  color: WindowText; }
 <script type="text/javascript">
 $(document).ready(function(){	
 	
-	//$('th').not(':first').css('border-left','1px solid #337ab7'); //옆줄
+	$('th').not(':first').css('border-left','1px solid #337ab7'); //옆줄
 	$('.faq .tbody .content').hide(); //내용(짝수tr) 숨김
 		
 	$('.faq .tbody .title').find('#title').click(function(){
@@ -70,6 +77,8 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 
 	 <table class="faq">
 	<thead>
+	<tr id="linetop"><td colspan=9></td>
+	</tr>
 	<tr>
 		<th><input type="checkbox" name="chkAll" 
 	    	onclick="allChecked(this.checked)">
@@ -91,6 +100,7 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 		<th><a href="<c:url value='/faq/faqAll.do'/>">
 		모아보기</a></th>
 	</tr>
+	<tr id="linebot"><td colspan=9></td>
 	</thead>
 		<tbody class="tbody">
 	 	<c:if test="${empty list }">
@@ -117,7 +127,7 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 				<td>Q. ${vo.faqNo}</td>	
 					</c:when>
 				<c:otherwise>
-				<td>Q. ${vo.rownum}aaaaa</td>
+				<td>Q. ${vo.rownum}</td>
 				</c:otherwise>
 				</c:choose>
 				

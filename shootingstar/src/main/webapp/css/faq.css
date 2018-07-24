@@ -1,10 +1,11 @@
 @charset "UTF-8";
 
 body{
-margin:30px;}
+margin:30px;
+font-family:"Nanum Gothic"; }
 table{
 	 margin:0 auto; 
-    font-size:15px;
+    /* font-size:15px; */
     border-collapse: non-collapsed; 
 	position: static;
 }
@@ -16,17 +17,20 @@ table{
 
   }
   th{
-  	 border-top: 2px solid black; 
-  	  border-bottom: 1px solid black;
-  	  padding: 10 0 10 0;
-  	  height: 40px;
-  	  font-size: 15px;
-  	  text-align:center;
+  	  /* border-top: 2px solid black; 
+  	  border-bottom: 1px solid black; 
+  	  */
+  	  margin:0px;
+  	  padding:0px;
+  	  height:20px;
+  	  font-size: 20px;
   }
-  td {
+
+tbody td {
   	text-align:left;
     border-bottom: 1px solid #f0f0f0;
-    padding: 10px;
+    padding: 1px;
+	
   }
 
 .title{
@@ -38,7 +42,7 @@ table{
 	background-color: #f0f0f0;
 	font-size: 14px;
 	text-align:left;
-
+	padding:10px;
 	}
 
 h1{padding:20px;}
@@ -47,7 +51,8 @@ tbody{
 }
 #width{ 
 	padding-right:200px;
-	line-height: 150%;}
+	line-height: 150%;
+	margin:20px;}
 #answer{
 	width:50px;
 	padding-left:30px;
@@ -57,4 +62,8 @@ tbody{
 	padding-left:30px;
 	padding-right:15px;
 	vertical-align: middle;
+}
+@font-face{
+	font-family:"Nanum Gothic";
+	src: url(fonts/NanumGothic.ttf) format('truetype');
 }

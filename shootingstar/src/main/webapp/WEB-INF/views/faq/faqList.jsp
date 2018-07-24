@@ -13,22 +13,29 @@ pageContext.setAttribute("cn", "\n");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ</title>
 <style type="text/css">
-.faq th {
-    margin: 0 0 0 0;
-    padding: 10px 30px 10px 30px;
-    font-weight: bold;
-}
-a {text-decoration: none;  color: WindowText; }
-
+	.faq th {
+	    margin: 0 0 0 0;
+	    /* padding: 10px 30px 10px 30px; */
+	    font-weight: bold;
+	}
+	a {text-decoration: none;  color: WindowText; }
+	#linetop{
+	height:20px;
+	border-top: 2px solid black;
+	
+	}
+	#linebot{
+	height:20px;
+	border-bottom: 1px solid black;
+	} 
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	//$('th').not(':first').css('border-left','1px solid #337ab7'); //옆줄
-
+	$('body').css({'font-style':'NanumGothic'});
+	$('th').not(':first').css('border-left','1px solid black'); //옆줄
 	$('.faq .tbody .content').hide(); //내용(짝수tr) 숨김
 		
 	$('.faq .tbody .title').find('#title').click(function(){
@@ -40,7 +47,10 @@ $(document).ready(function(){
 	<body>
 	<h1>FAQ</h1>
 	 <table class="faq">
+
 	<thead>
+	<tr id="linetop"><td colspan=7></td>
+	</tr>
 		<tr>
 			<th><a href="<c:url value='/faq/faqList.do?category=일반'/>">
 		일반</a></th>
@@ -57,13 +67,14 @@ $(document).ready(function(){
 		<th><a href="<c:url value='/faq/faqList.do?category=정산'/>">
 		정산</a></th>
 		</tr>
+	<tr id="linebot"><td colspan=7></td>
 	</thead>
 
 	 
 		<tbody class="tbody">
 
 	 	<c:if test="${empty list }">
-		 	<tr>
+		 	<tr class="content">
 				<td colspan=7>공지사항이 없습니다</td>
 			</tr>
 		</c:if>
@@ -76,14 +87,14 @@ $(document).ready(function(){
 				<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
 	 					<c:choose>
 							<c:when test="${vo.delflag=='Y' }">
-							<td colspan=7>
+							<td colspan=7 >
 								<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
 							</c:when>
 						<c:otherwise> 
 				
-				<td width=200px><img alt="quest" src="<c:url value='../images/quest.png'/>" id="quest">${vo.rownum}</td>
+				<td width=150px id='quest'>Q ${vo.rownum}.</td>
 				
-				<td id="title" colspan=5>
+				<td id="title" colspan=6>
 				
 					<c:if test="${fn:length(vo.faqTitle)>60}">
 					${fn:substring(vo.faqTitle, 0, 60)}...
@@ -93,19 +104,20 @@ $(document).ready(function(){
 					</c:if>
 					
 				</td>
-				<td><fmt:formatDate value="${vo.faqRegdate}" pattern="yyyy-MM-dd"/></td>
+				<%-- <td><fmt:formatDate value="${vo.faqRegdate}" pattern="yyyy-MM-dd"/></td> --%>
 				</c:otherwise>
 					</c:choose>
 			</tr>
 			<tr class="content">
 			<td>
-			<img alt="answer" src="<c:url value='../images/answer.png'/>" id="answer">
+			<img alt="answer" src="<c:url value='../images/answerc.png'/>" id="answer">
 			</td>
 				<td colspan=6>
 				
 				<div id='width'>
 				${fn:replace(vo.faqContent, cn, br)}
-				</div></td>
+				</div>
+				</td>
 			</tr>
 
 			</c:forEach>
@@ -113,7 +125,7 @@ $(document).ready(function(){
 		</c:if> 
 		</tbody>
 	</table>   
-</div>	 
+ 
 	<!-- 검색없음!!! 페이징!!! -->
 	</body>
 	</html>
