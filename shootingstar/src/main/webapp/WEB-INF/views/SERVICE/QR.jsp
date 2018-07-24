@@ -414,7 +414,7 @@ $(document).ready(function(){
  	 
  	 
  	 
- 	</script> --%>
+ 	</script> sadl;kjfasdfjkasdlfjl--%>
 	
 </script>
 
@@ -445,8 +445,5 @@ $(document).ready(function(){
 	    <input type="hidden" name="qNo" value="${param.qNo}">
     </form>
 </div>
-
-
-
 
 
