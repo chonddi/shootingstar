@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ include file="../inc/top.jsp"%>
+
 
 <!DOCTYPE html>	
 <html>
 <head>
 <meta charset="utf-8">
 
-<link rel="stylesheet" type="text/css" href="<c:url value='../css/request2.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<link rel="stylesheet" href="/css/jquery-ui.min.css">
+<link rel="stylesheet" href="../css/jquery-ui.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
 <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+
+
 <script type="text/javascript">
 
 //지역 다중 선택 selectBox
@@ -336,19 +339,20 @@ $(function(){
 
 
 
-<div class="pDiv">
-		<div class="title">
-		<br>&nbsp;마지막 단계입니다.<br><hr>		
+<!-- <div class="pDiv"> -->
+		<div class="title1">
+		&nbsp;&nbsp;마지막 단계입니다.
 		</div>
-	<form name="frm1" method="post" enctype="multipart/form-data" 
-		action="<c:url value='/request/write4.do'/>" onsubmit="return send(this)">
-	 
-		 
-			   <div class="pS">   
-					  촬영을 원하시는 지역  <br><br><br>
-					   촬영을 원하시는 날짜 <br><br><br>
+	<br><br>
+	<!-- <div class="main2"> -->
+		<form name="frm1" id="frm1" method="post" enctype="multipart/form-data" 
+			action="<c:url value='/request/write4.do'/>" onsubmit="return send(this)">
+	 		
+	 			<div class="pS">   
+					  촬영을 원하시는 지역  <br><br>
+					   촬영을 원하시는 날짜 <br><br>
 					   사용 용도 (복수선택가능)<br><br>
-			   </div>    
+			   </div>   
 			   
 			   <div class="pS1">   
 				   	<select name="selOne" id="selOne" onchange="doChange(this, 'selTwo')">
@@ -376,10 +380,10 @@ $(function(){
 				        <option value="">-세부지역선택-</option>
 				    </select>
 						
-						<br><br><br>
+						<br><br>
 	
 					<div class="input-group date" style="width:300px;">
-					 <input type="text" name="dtSel" class="form-control"><span class="input-group-addon">
+					 <input type="text" id="pS1" name="dtSel" class="form-control" autocomplete=off><span class="input-group-addon">
 				 	<i class="glyphicon glyphicon-calendar"></i></span>
 					
 					
@@ -392,7 +396,7 @@ $(function(){
 						    </div>	
 				    
 					</div>
-					<br><br><br>
+					<br><br>
 				
 					<input type="checkbox" name="ck1" value="웹용" /> 웹용 &nbsp;&nbsp;
 					<input type="checkbox" name="ck2" value="인쇄용"/> 인쇄용
@@ -406,26 +410,27 @@ $(function(){
 		   
 		   
 			 <div class="pS2">
-				     촬영에 대한 세부요청사항을 작성해주세요 <br><br>
-				  <textarea name="RQDetail" cols=50 rows=10 autofocus required wrap="soft" 
-				  		placeholder="이곳에 요구사항을 작성해주세요"></textarea>
+				    <span id="pS3"> 촬영에 대한 세부요청사항을 작성해주세요</span> <br>
+				  <textarea name="RQDetail" id="pS2" cols=50 rows=7 autofocus required wrap="soft" 
+				  		placeholder="이곳에 요구사항을 작성해주세요. 내용의 첫 일부분이 제목으로 노출됩니다." style="resize: none;"></textarea>
 			 </div>
 		  		
 		  		
 			 <div class="pS3">
-					  참고자료<br>
-					 참고용 사진을 업로드 해주세요. (최대 5개, 50MB)
+					 <span id="pS3"> 참고자료</span><br>
+					 참고용 사진을 업로드 해주세요. (권장 최대 5개)
 					        
-		        <input multiple="multiple" type="file" name="file" />
-
-		        
-		       
-	       		 
+		        <input multiple="multiple" type="file" class="oky2" name="file" />
+ 
 			</div>
-			  		 <br><br>
-			  <input type="submit"  value="입력완료"/>
+			  		 
+			 <div id="pS4"> <button class="oky" onclick="submit">입력완료</button></div>
 		</form>  
-     </div>
+     <!-- </div> -->
+<!--    </div> -->
+    
+    
+    
 </body>
 </html>
 <%@ include file="../inc/bottom.jsp"%>

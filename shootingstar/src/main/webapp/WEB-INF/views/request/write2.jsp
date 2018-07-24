@@ -9,45 +9,81 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+
+
 <script type="text/javascript">
-$(function(){
-$('.price').bind("keyup", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );});
-});
+
+//[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
+//[0-9] => \d , [^0-9] => \D
+var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+var rgx2 = /(\d+)(\d{3})/; 
+
+function getNumber(obj){
+	
+    var num01;
+    var num02;
+    num01 = obj.value;
+    num02 = num01.replace(rgx1,"");
+    num01 = setComma(num02);
+    obj.value =  num01;
+
+}
+
+function setComma(inNum){
+    
+    var outNum;
+    outNum = inNum; 
+    while (rgx2.test(outNum)) {
+         outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+     }
+    return outNum;
+
+}
+
+
+	
 </script>
 
 <title>Insert title here</title>
 </head>
 
-<body><br>
+<body >
+<br>
 
-<div class="divP">
-	<form name="frm1" method="post" 
-		action="<c:url value='/request/write3.do'/>" onsubmit="return send(this)">
+
+		<div class="main1">
 	   
 	   
 	   			<div class="cau">
 	   			<img src="../images/caub2.png" style="vertical-align:middle"><span id="caut">주의사항</span><br>
-	   			-전문가 회원에 의해 pick이 하나라도 된 Request글은 금액 수정이 불가합니다.<br>
-	   			-전문가 회원에 의해 pick이 하나라도 된 Request글을 삭제요청 시 3일의 동의기간을 거쳐 삭제처리됩니다.<br>
+	   			-글 등록 후 List에서 본인이 올린 Request글만 상세보기 가능합니다. (고객회원 기준)<br>
+	   			-전문가 회원에 의한 pick이 한 개 이상인 Request글은 금액 수정이 불가합니다.<br>
+	   			-전문가 회원에 의한 pick이 한 개 이상인 Request글을 삭제요청 시 3일의 동의기간을 거쳐 삭제처리됩니다.<br>
 	   			-비합리적이거나 터무니 없는 가격제시는 반려될 수 있습니다.
-	   			
-	   			
+	 
 	   			</div>
-		 
-				<div calss>
-		            <label for="name">선택하신 항목은   <span id="cg2">${cg1}</span> 입니다. <br><br>
-		            				원하시는 가격을 입력하세요.</label><br><br><br>
-		            <input type="text" style="text-align:right;" class="price" name="price"/>원
+		
+		<div class="cau1">
+		
+		 <form name="frm1" method="post" 
+		action="<c:url value='/request/write3.do'/>" onsubmit="return send(this)">
+				
+		            <span id="cg1">선택하신 항목은   <span id="cg2">${cg1}</span> 입니다.</span> <br><br>
+		            				<span id="cg3">원하시는 가격을 입력하세요.</span><br><br><br>
+		            <input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
+		            style="text-align:right;" class="price" name="price" autocomplete=off />
+		            &nbsp;<span id="cg4">원</span>
 		            <input type="hidden" id="cg1" name="cg1" value="${cg1 }"> 
-		        </div>
-		        <br>
-		        	<input type="submit"  value="입력완료"/>
-           
-     </form>
-</div>	
-	
-	
+		       
+		        <br><br><br>
+		        	<div id="sm"><button class="oky" onclick="submit">입력완료</button></div>
+            
+    		 </form>
 
+		</div>
+	
+	</div>
 
 
 </body>

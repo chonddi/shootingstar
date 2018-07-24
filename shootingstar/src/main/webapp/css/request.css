@@ -4,50 +4,21 @@
 
 body{
 	width: 1903px;
-
-}
-body, td, th, span, p{
+	
 	font-family: 'Do Hyeon', sans-serif;
-	font-size: 1.2em;
-	font-weight:50;
+	font-size: 1.0em;
+	font-weight:200;
 	color:black;
 }
 
-
- tr{
-	height:200px;
- 
-}
-th{
-	width:300px;
-	text-align:center;
-	vertical-align:middle;
-	border: solid black 1px;
-}
-
-#title{
-	margin: 0 auto;
-	text-align:center;
-	font:#32b2ec;
-}
-
-
-.pWrite{
-	margin: 0 auto;
-	text-align:center;
+.main1 {
+	width: 1500px;
 	
-}
+	position:relative;
 
-.pWrite th{
-	width:1300px;
-	border: solid #355fa0 1px;
-	-webkit-border-radius: 10px;
-}
 
-/* .pWrite tr{
-	height:620px;
+	}
 	
-} */
 
 #fw1{
 	border:0;
@@ -55,18 +26,29 @@ th{
 	background:white;
 }
 
-#cg2{
+#cg1{
 	font-family: 'Do Hyeon', sans-serif;
-	font-weight:300;
 	font-size:35px;
-	color:#3169bf;
 }
 
-#pWriteTl{
+#cg2{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:45px;
+	color:#345f93;
+	border-bottom : 3px solid black;
+
 	
-	color:#2b89dc;
-	font-weight:bold;
-	font-size:25px;
+}
+
+#cg3{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:45px;
+	color:#c9ccc7;
+}
+#cg4{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:45px;
+	vertical-align:middle;
 }
 
 #pWriteDt{
@@ -93,9 +75,7 @@ th{
 }
 
 textarea::placeholder {
-  color: grey;
-  font-weight:300;
-  font-size:12px;
+ font-size:15px;
   
 }
 
@@ -103,6 +83,11 @@ textarea::placeholder {
 	  min-width: 230px;
  	 max-width: 315px;
  	 max-height:210px;
+}
+
+#img2{
+	width: 315px;
+ 	height:210px;
 }
 
 .cau{
@@ -114,6 +99,19 @@ textarea::placeholder {
 	 font-weight:200;
 	 text-transform: uppercase;
 }
+.cau1{
+	 font-family: 'Do Hyeon', sans-serif;
+	 color: black;
+ 	 font-size:20px;
+ 	 margin-bottom:3%;
+	 font-weight:200;
+	 text-transform: uppercase;
+	 width: 1200px;
+	 padding-top: 5%;
+	 padding-bottom: 10%;
+     padding-left:20%;
+	 border: 1px solid #649ac7;
+}
 
 #caut{
 	font-family: 'Do Hyeon', sans-serif;
@@ -124,4 +122,69 @@ textarea::placeholder {
 	 vertical-align:middle;
 	
 	 
+}
+#sm{
+	margin-left:25%;
+	
+}
+
+.price{
+	font-size:45px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.oky {
+	font-family: 'Do Hyeon', sans-serif;
+	text-decoration:none;
+	box-shadow:#b9b9b9 1px 5px 2px;
+	o-box-shadow:#b9b9b9 1px 5px 2px;
+	-moz-box-shadow:#b9b9b9 1px 5px 2px;
+	-webkit-box-shadow:#b9b9b9 1px 5px 2px;
+	background:#eceded;
+	background:-o-linear-gradient(90deg, #eceded, #eceded);
+	background:-moz-linear-gradient( center top, #eceded 5%, #eceded 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eceded), color-stop(1, #eceded) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eceded', endColorstr='#eceded');
+	background:-webkit-linear-gradient(#eceded, #eceded);
+	background:-ms-linear-gradient(#eceded, #eceded);
+	background:linear-gradient(#eceded, #eceded);
+	text-indent:0px;
+	line-height:10px;
+	-moz-border-radius:12px 0 12px 12px;
+	-webkit-border-radius:12px 0 12px 12px;
+	border-radius:12px 0 12px 12px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:30px;
+	font-weight:100;
+	color:#b9b9b9;
+	width:180px;
+	height:50px;
+	padding:1px;
+	border-color:#eceded;
+	border-width:1px;
+	border-style:solid;
+}
+
+.oky:active {
+	box-shadow:#b9b9b9 1px 0 2px;
+	o-box-shadow:#b9b9b9 1px 0 2px;
+	-moz-box-shadow:#b9b9b9 1px 0 2px;
+	-webkit-box-shadow:#b9b9b9 1px 0 2px;
+	position:relative;
+	top:5px
+}
+
+.oky:hover {
+	background:#eceded;
+	background:-o-linear-gradient(90deg, #eceded, #eceded);
+	background:-moz-linear-gradient( center top, #eceded 5%, #eceded 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eceded), color-stop(1, #eceded) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eceded', endColorstr='#eceded');
+	background:-webkit-linear-gradient(#eceded, #eceded);
+	background:-ms-linear-gradient(#eceded, #eceded);
+	background:linear-gradient(#eceded, #eceded);
 }

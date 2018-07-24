@@ -32,14 +32,14 @@ $(".hover").mouseleave(
 <title>Insert title here</title>
 </head>
 
-<body><br>
+<body>
 <div class="title">어떤 촬영이 필요하신가요? </div>
-<br><br><br>
+<br>
 
 
 		<div class="main">
 		
-		<form name="frmWrite1" method="post" action="<c:url value='/request/write2.do'/>" 
+		<form name="frmWrite1" method="post" id="frm1" action="<c:url value='/request/write2.do'/>" 
 					onsubmit="return send(this)">
 					
 				<div class="frmfrm">	
@@ -56,7 +56,7 @@ $(".hover").mouseleave(
 					  
 					  
 					   <figure class="snip1384">
-					  <input type=image src="../images/food.jpg"  id="img1">
+					  <input type=image src="../images/food.jpg"  id="img2">
 					 
 					  <figcaption>
 					    <h3>푸드</h3><br>

@@ -2,6 +2,9 @@ package com.ss.star.request.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -63,12 +67,27 @@ public class RequestController {
 	
 	
 	@RequestMapping(value="/write3.do")
-	public String RequestWrite3(@RequestParam int price ,
+	public String RequestWrite3(@RequestParam String price ,
 			@RequestParam String cg1, Model model) {
 		
-		logger.info("글쓰기 화면");
+		logger.info("글쓰기 화면 3");
 		
-		model.addAttribute("price", price);
+		
+		NumberFormat nf = new DecimalFormat("#,##0"); 
+		Number n;
+		int i=0;
+		
+		try {
+			n = nf.parse(price);
+			i = n.intValue();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		 
+		logger.info("int로 변환 후 price i={}", i);
+		
+		model.addAttribute("price", i);
 		model.addAttribute("cg1", cg1);
 				
 		return "request/write3";  
