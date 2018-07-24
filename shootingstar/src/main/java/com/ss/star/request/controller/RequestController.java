@@ -196,15 +196,21 @@ public class RequestController {
 	
 	
 	@RequestMapping("/detail.do")
-	public String detail(@RequestParam int no,HttpServletRequest request, Model model) {
+	public String detail(@RequestParam int no, HttpServletRequest request, Model model) {
 		logger.info("글 번호, 파라미터 no={}", no);
 	
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
 		
 		RequestImgVO ivo = requestService.selectByNoImg(no);
+		logger.info("파라미터 RequestImgVO, ivo={}", ivo);
 		
-		model.addAttribute("fileInfo", Utility.getFileInfo(ivo.getOriginalFileName(), request));
+		
+		if(ivo!=null) {
+			String fileInfo = Utility.getFileInfo(ivo.getOriginalFileName(), request);
+			model.addAttribute("fileInfo", fileInfo);
+			}
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("ivo", ivo);
 	

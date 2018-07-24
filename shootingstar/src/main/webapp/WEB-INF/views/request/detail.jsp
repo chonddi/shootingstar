@@ -26,7 +26,11 @@
 <body>
 
 <div>
-${fileInfo}
+<c:if test="${fileInfo!=null || fileInfo!='' }">${fileInfo}</c:if>
+
+			
+
+
 ${vo.RQDetail}
 ${vo.RQRegion}
 ${vo.RQDate}

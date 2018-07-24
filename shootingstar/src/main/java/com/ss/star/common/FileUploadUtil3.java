@@ -92,30 +92,35 @@ public class FileUploadUtil3 {
 		List<Map<String, Object>> list = new ArrayList<>();
 		
 	
-		for (int i = 0; i < fileList.size(); i++) {
+		for (int i = 0; i < fileList.size(); i++) {			
 			
-		//업로드된 파일 정보 구하기
-		String originalFileName=fileList.get(i).getOriginalFilename();
-		long fileSize=fileList.get(i).getSize();
-		String fileName=getUniqueFileName(originalFileName);
+			MultipartFile tempFile = fileList.get(i);
 			
-		//업로드 처리하기
-		File file = new File(getUploadPath(request, pathFlag), fileName);
-		fileList.get(i).transferTo(file);
+			if (!tempFile.isEmpty()) {
+			//업로드된 파일 정보 구하기
+			String originalFileName=fileList.get(i).getOriginalFilename();
 			
-		
-		//파일 정보를 map에 저장
-		Map<String, Object> map = new HashMap<>();
-		map.put("originalFileName", originalFileName);
-		map.put("fileSize", fileSize);
-		map.put("fileName", fileName);
-		
-		//map을 list에 저장
-		list.add(map);
+			long fileSize=fileList.get(i).getSize();
+			String fileName=getUniqueFileName(originalFileName);
 				
-	
+			//업로드 처리하기
+			File file = new File(getUploadPath(request, pathFlag), fileName);
+			fileList.get(i).transferTo(file);
+				
+			
+			//파일 정보를 map에 저장
+			Map<String, Object> map = new HashMap<>();
+			map.put("originalFileName", originalFileName);
+			map.put("fileSize", fileSize);
+			map.put("fileName", fileName);
+			
+			//map을 list에 저장
+			list.add(map);
 			}	
+			
 		
+		
+		}
 		return list;
 	}
 	
