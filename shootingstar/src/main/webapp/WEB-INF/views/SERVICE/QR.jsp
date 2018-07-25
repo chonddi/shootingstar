@@ -94,7 +94,7 @@ $(document).ready(function(){
  	//댓글 리스트
  	function getCommentList(){
 		$.ajax({
-			type:"get",
+			type:"post",
 			url:"<c:url value='/SERVICE/QRlist.do'/>",
 			dataType:"json",
 			data: $("#commentForm").serialize(),
@@ -105,19 +105,16 @@ $(document).ready(function(){
 	            //$("<a>").attr("href", "#").text("수정").click(function (){fn_replyUpdate(result)}).appendTo(div);
 	            
 	            if(data.length > 0){	                
-	                for(i=0; i<data.length; i++){
+	                for(i=0; i<data.length; i++){	                	
 	                    html += "<div class='ajxDiv2'>";
 	                    html += "<div><table id='" + data[i].qrNo + "'><h6><b>" + data[i].id;
 	                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
-	                    //html += "<a href='#' onclick='qrReply()'>답글</a>&nbsp;&nbsp;";
-	                    //html += "<a onclick='qrUpdate(" + data[i].qrNo + ", " + data[i].content + ")'>수정</a>&nbsp;&nbsp;";
-	                    html += "<a onclick='qrUpdate(\'" + data[i].content + "\')'>수정</a>&nbsp;&nbsp;";
-	                    //a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
-	                    //html += "<a onclick='qrUpdate()'>수정</a>&nbsp;&nbsp;";
-	                    //html += "<a href='#' onclick='qrDelete('" + data[i].qrNo + "')'>삭제</a>&nbsp;&nbsp;";
+	                    html += "<a onclick=\"qrReply(" + data[i].qrNo + ", " + data[i].qNo + ")\">답글</a>&nbsp;&nbsp;";
+	                    html += "<a onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
+	                    html += "<a onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
 	                    html += "</span></b></h6>";
 	                    html += "<tr><td></td></tr>";
-	                    html += "<div class='qrContent'" + data[i].qrNo + ">" + data[i].content + "</div>";
+	                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
 	                    html += "</table></div>";
 	                    html += "</div>";
 	                }
@@ -164,90 +161,36 @@ $(document).ready(function(){
 		});
 	}//댓글 리스트
 	
-	//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
- 	function qrUpdate(content){
-	    var a ='';
+	//댓글 수정 
+ 	function qrUpdate(qrNo, qNo, content){
+		
+		var a = "";
 	    
-	    alert("askldjfkl");
-	    
-	    /* a += '<div class="input-group">';
-	    a += '<input type="text" class="form-control" name="content_1" value="'+content+'"/>';
-//	    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
+	    a += "<div class='upGroup'>";
+	    a += "<input type='text' class='upText' name='content_" + qrNo + qNo + "' value='" + content + "'/>";
+	    a += "<button class='upBtn' type='button' onclick=\"qrUpdateSub(" + qrNo + ", " + qNo + ")\">수정</button>";
 	    a += '</div>';
 	    
-	    $('.qrContent').html(a); */
+	    $('.qrContent'+qrNo+qNo).html(a);
 	    
 	}
-/*  	function qrUpdate(content){
-	    var a ='';
-	    
-	    a += '<div class="input-group">';
-	    a += '<input type="text" class="form-control" name="content_'+qrNo+'" value="'+content+'"/>';
-	    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
-	    a += '</div>';
-	    
-	    $('.qrContent'+qrNo).html(a);
-	    
-	} */
-	/* function qrUpdate(qrNo){
-		$.ajax({
-			type:"get",
-			url:"<c:url value='/SERVICE/QRdetail.do?qrNo=" + qrNo + "'/>",
-			dataType:"json",
-			data: $("#commentForm").serialize(),
-			success:function(data){
-				if(data.length > 0){
-					var content = data.content;
-				}
-				
-				var html = "";
-		        var cCnt = data.length;
-				var a = '';
-				
-				a += '<div class="input-group">';
-			    a += '<input type="text" class="form-control" name="content_'+qrNo+'" value="'+content+'"/>';
-			    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="qrUpdateSub('+qrNo+');">수정</button> </span>';
-			    a += '</div>';
-				
-			    $('.qrContent'+qrNo).html(a);
-				
-			},
-			error:function(xhr, status, error){
-				alert("error:"+error);
-			}
-		
-	    
-	});
-		
-	} */
-		/* a += '<div class="input-group" style="border:1px solid red;background-color:red;">연습용 div';
-	    a += qrNo + '</div>';
-	    
-	    $('.qrContent').html(a); */
-	    
-/* 	function qrUpdate(qrNo, content){
-	    var a ='';
-	    
-	    a += '<div class="input-group" style="border:1px solid red;background-color:red;">연습용 div';
-	    a += qrNo + '</div>';
-	    
-	    $('.qrContent').html(a);
-	    
-	} */
-	 
-/* 	//댓글 수정
-	function qrUpdateSub(qrNo){
-	    var updateContent = $('[name=content_'+qrNo+']').val();
-	    
-	    $.ajax({
-	        url : "<c:url value='/SERVICE/QRupdate.do'/>",
-	        type : 'post',
-	        data : {'content' : updateContent, 'qrNo' : qrNo},
-	        success : function(data){
-	            if(data == 1) getCommentList(qrNo); //댓글 수정후 목록 출력
-	        }
-	    });
-	} */
+	
+ 	//댓글 수정
+	function qrUpdateSub(qrNo, qNo){
+ 		if(confirm("수정하시겠습니까?")){
+	 		var updateContent = $('[name=content_' + qrNo + qNo + ']').val();
+		    
+		    $.ajax({
+		        url : "<c:url value='/SERVICE/QRUpdate.do'/>",
+		        type : 'post',
+		        data : {'qrNo' : qrNo, 'qNo' : qNo, 'content' : updateContent},
+		        success : function(data){
+		            if(data == 1) getCommentList(); //댓글 수정후 목록 출력
+		        }
+		    });
+		    
+ 		}//if
+	}//function
 	
  	
 

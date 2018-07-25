@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ss.star.faq.model.FaqVO;
 import com.ss.star.notice.model.NoticeService;
 import com.ss.star.notice.model.NoticeVO;
 
@@ -53,7 +54,6 @@ private static final Logger logger
 	public String noticeWrite_post(@ModelAttribute NoticeVO noticeVo
 			//,@RequestParam HttpSession getSession 
 			) {
-
 		//로그인하고 세션에서 관리자 아이디 받아와야함..
 		//관리자 아닐 시 false
 		/*String adminId=(String) getSession.getAttribute("adminId");
@@ -64,6 +64,7 @@ private static final Logger logger
 		
 		return "redirect:/notice/noticeAdmin.do";
 	}
+
 	
 	@RequestMapping(value="/noticeEdit.do" , method=RequestMethod.GET)
 	public String noticeEdit_get(@RequestParam(defaultValue="0") int nNo, Model model) {

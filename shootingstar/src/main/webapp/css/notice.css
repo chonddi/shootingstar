@@ -1,13 +1,20 @@
 @charset "UTF-8";
+@font-face{
+	font-family:"Nanum Gothic";
+	src: url('fonts/NanumGothic.ttf') format('truetype');
 
+}  
+@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
+* { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; } 
 body{
-margin:30px;}
+margin:30px;
+font-family:"Nanum Gothic";}
 table{
 	margin:0 auto;
     font-size:15px;
 	border-collapse: non-collapsed;
 	position: static;
-
+width: 1200px;
 }
 
 .notice {
@@ -22,7 +29,7 @@ table{
   	  border-bottom: 1px solid black;
   	  padding: 10px;
   	  height:40px;
-  	  font-size: 20px;
+  	  font-size: 16px;
   }
   td {
     border-bottom: 1px solid #f0f0f0;

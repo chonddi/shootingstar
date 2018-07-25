@@ -13,21 +13,7 @@ pageContext.setAttribute("cn", "\n");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ</title>
 <style type="text/css">
-	.faq th {
-	    margin: 0 0 0 0;
-	    /* padding: 10px 30px 10px 30px; */
-	    font-weight: bold;
-	}
-	a {text-decoration: none;  color: WindowText; }
-	#linetop{
-	height:20px;
-	border-top: 2px solid black;
-	
-	}
-	#linebot{
-	height:20px;
-	border-bottom: 1px solid black;
-	} 
+
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -35,13 +21,42 @@ pageContext.setAttribute("cn", "\n");
 <script type="text/javascript">
 $(document).ready(function(){
 	$('body').css({'font-style':'NanumGothic'});
-	$('th').not(':first').css('border-left','1px solid black'); //옆줄
+
+	$('th').not(':first').css('border-left','1px solid gray'); //옆줄
+
 	$('.faq .tbody .content').hide(); //내용(짝수tr) 숨김
 		
 	$('.faq .tbody .title').find('#title').click(function(){
 		$(this).parent().next().toggle();
 	});
-	});
+/* 	$('th').click(function(){
+		var ctg= $('#ctg').val();
+		var thead= $(this).text();
+			if(true){
+			alert("thead="+thead+", ctg="+ctg);
+			} 
+		$(this).css('color','blue'); 
+		}
+	}); */
+	//alert('${param.category}');
+	/*$('th').each(function(){
+		 if(this.text 가 param.category와 같다면){
+			this.text에 css
+		}); */
+/* 	var param= ${param.category} ;
+	$('th').each(function(){
+		if($(this).text()=='정산'){
+			alert(param);
+		}
+	}); */
+
+/* 	$('th').click(function(){
+		$(this).css('color','blue')
+	}); */
+});
+
+
+	
 	</SCRIPT>
 	</head>
 	<body>
@@ -51,31 +66,31 @@ $(document).ready(function(){
 	<thead>
 	<tr id="linetop"><td colspan=7></td>
 	</tr>
-		<tr>
-			<th><a href="<c:url value='/faq/faqList.do?category=일반'/>">
-		일반</a></th>
-			<th><a href="<c:url value='/faq/faqList.do?category=가입/탈퇴'/>">
-		가입/탈퇴</a></th>
-		<th><a href="<c:url value='/faq/faqList.do?category=계정/로그인/인증'/>">
-		계정/로그인/인증</a></th>
-		<th><a href="<c:url value='/faq/faqList.do?category=견적요청'/>">
-		견적요청</a></th>
-		<th><a href="<c:url value='/faq/faqList.do?category=포트폴리오'/>">
-		포트폴리오</a></th>	
-		<th><a href="<c:url value='/faq/faqList.do?category=결제/환불'/>">
-		결제/환불</a></th>
-		<th><a href="<c:url value='/faq/faqList.do?category=정산'/>">
-		정산</a></th>
+		<tr>		
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=일반'/>"'>
+		일반</th>
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=가입/탈퇴'/>"'>
+		가입/탈퇴</th>
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=계정/로그인/인증'/>"'>
+		계정/로그인/인증</th>
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=견적요청'/>"'>
+		견적요청</th>
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=포트폴리오'/>"'>
+		포트폴리오</th>	
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=결제/환불'/>"'>
+		결제/환불</th>
+		<th onclick='location.href="<c:url value='/faq/faqList.do?category=정산'/>"'>
+		정산</th>
 		</tr>
-	<tr id="linebot"><td colspan=7></td>
+	<tr id="linebot"><td colspan=7></td></tr>
 	</thead>
 
 	 
+<%-- 	<input type="hidden" value="${param.category }" id="ctg"> --%>
 		<tbody class="tbody">
-
 	 	<c:if test="${empty list }">
-		 	<tr class="content">
-				<td colspan=7>공지사항이 없습니다</td>
+		 	<tr class="notitle">
+				<td colspan=7 style="color:gray ; font-size:1.0em">공지사항이 없습니다</td>
 			</tr>
 		</c:if>
 		
@@ -87,7 +102,7 @@ $(document).ready(function(){
 				<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
 	 					<c:choose>
 							<c:when test="${vo.delflag=='Y' }">
-							<td colspan=7 >
+							<td colspan=7 class="notitle">
 								<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
 							</c:when>
 						<c:otherwise> 
@@ -109,8 +124,8 @@ $(document).ready(function(){
 					</c:choose>
 			</tr>
 			<tr class="content">
-			<td>
-			<img alt="answer" src="<c:url value='../images/answerc.png'/>" id="answer">
+			<td id="answer">
+			<img alt="answer" src="<c:url value='../images/answerc.PNG'/>" >
 			</td>
 				<td colspan=6>
 				
