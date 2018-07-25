@@ -4,10 +4,9 @@
 <mapper namespace="config.mybatis.mapper.oracle.portfolio">
 
 	<sql id="searchWhere">
-		<if test="searchKeyword !=null and searchKeyword !=''">
-			<where>
-				${searchCondition} like '%' || #{searchKeyword} || '%' and
-			</where>
+		<if test="(searchKeyword !=null and searchKeyword !='') or (searchCondition !=null and searchCondition !='')">
+				cgno = ${searchCondition} and (pftitle like '%' || #{searchKeyword} || '%' 
+				or sname like '%' || #{searchKeyword} || '%') and
 		</if>
 	</sql>
 
@@ -30,14 +29,11 @@
 		(
 		    select rownum as RNUM, list.*
 		    from (
-		        select pfno, smemberid, cgno, pftitle, filename	
-				 from PFLISTVIEW 
+		        select pfno, sname ,cgno, cgname, pftitle, filename	
+				 from PFLISTVIEW
 				 where
 				<include refid="searchWhere"></include> 
-				
 				ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
-				
-				
 				order by pfno desc
 		    )list
 		)

@@ -94,7 +94,7 @@ public class PortfolioController {
 				}
 				int cnt=pfService.insertPf(protfolioVo, fileList);
 	
-		return "protfolio/protfolioWrite";
+		return "portfolio/protfolioWrite";
 	}
 	
 	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)

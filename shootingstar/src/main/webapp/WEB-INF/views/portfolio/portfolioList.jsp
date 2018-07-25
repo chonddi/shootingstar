@@ -23,18 +23,18 @@
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
 		action="<c:url value='/portfolio/portfolioList.do'/>">
-		<input type="text" name="currentPage" value="">
-		<input type="text" name="searchKeyword" value="${param.searchKeyword}">
-		<input type="text" name="searchCondition" value="${param.searchCondition}">	
+		<input type="hidden" name="currentPage" value="">
+		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
+		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 
-	<form name="frmSearch" method="post" 
-   		action='<c:url value="/portfolio/portfoliolist.do"/>'>
+
 	<div id="portfolioListSideBar">
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a>카테고리</a></li>
-		<c:forEach var="vo" items="${list }" begin="1" >
-		<li role="presentation" value="vo" name="searchCondition" ><a>${vo.cgName}</a></li>
+			<li role="presentation"><a href='<c:url value="/portfolio/portfolioList.do?searchCondition=''&searchKeyword=''"/>'>전체보기</a></li>
+		<c:forEach var="vo" items="${list }" begin="0" >
+		<li role="presentation"><a href='<c:url value="/portfolio/portfolioList.do?searchCondition=${vo.cgNo }"/>'>${vo.cgName}</a></li>
 		</c:forEach>
 		</ul>
 	</div>
@@ -49,36 +49,26 @@
 		</c:if>
 
 		</div>
-		<div class="col-lg-6">
-			<div class="input-group">
-				<input type="text" class="form-control" name="searchKeyword"
-					placeholder="작가명, 포트폴리오 타이틀로 검색"> <span
-					class="input-group-btn">
-					<button class="btn btn-default" type="submit" >Go!</button>
-				</span>
+		<form name="frmSearch" method="post" action='<c:url value="/portfolio/portfolioList.do"/>'>
+			<div class="col-lg-6">
+				<div class="input-group">
+					<input type="text" class="form-control" name="searchKeyword" placeholder="작가명, 포트폴리오 타이틀로 검색"> 
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary">검색</button>
+					</span>
+				</div>
 			</div>
-		</div>
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button"
-				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-				정렬 <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<li role="presentation"><a role="menuitem" tabindex="-1"
-					href="#">최근등록순</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1"
-					href="#">인기순</a></li>
-			</ul>
-		</div>
+			<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
+		</form>
 	</div>
-	</form>
+
 		<c:forEach var="map" items="${vList}">
 		<div id="portList">
 			<img alt="" src="<c:url value='/images/${map["FILENAME"]}'/>">
 			<div id="listInfo">
 				<div id="portName">${map["PFTITLE"]}</div>
 				<div id="photoInfo">
-					<span class="phothgrahper">phothgrahper</span> <span>${map["SMEMBERID"]}</span> <span class="phothgrahper">${map["CGNO"]}</span>
+					<span class="phothgrahper">phothgrahper</span> <span>${map["SNAME"]}</span> <span class="phothgrahper">${map["CGNAME"]}</span>
 				</div>
 			</div>
 		</div>
