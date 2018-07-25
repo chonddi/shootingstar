@@ -31,16 +31,16 @@ $(document).ready(function(){
 	
 	
 	<div>
-		<label for="title">제목</label>
-		<input type="text" id="title" name="title">
+		<label for="nTitle">제목</label>
+		<input type="text" id="nTitle" name="nTitle">
 	</div>
-	<div>
+ 	<div>
 	<label for="adminId">아이디</label>
 	<input type="text" id="adminId" name="adminId">
-	</div>
+	</div> 
 	<div>
-		<label for="content">내용</label>
-		<textarea cols="50" rows="10"></textarea>
+		<label for="nContent">내용</label>
+		<textarea id="nContent" name="nContent" cols="50" rows="10"></textarea>
 	</div>
 	
 	<div>

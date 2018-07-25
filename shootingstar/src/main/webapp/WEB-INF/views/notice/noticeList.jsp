@@ -12,6 +12,9 @@
 <style type="text/css">
  #width{padding-left:200px;
 	padding-right:200px;}
+#titleNo{
+	font-weight: bold;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -59,7 +62,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 							<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
 						</c:when>
 					<c:otherwise> 
-			<td>${vo.nNo}</td>
+			<td id="titleNo">${vo.nNo}.</td>
 			<td id="title">
 			
 				<c:if test="${fn:length(vo.nTitle)>40}">
