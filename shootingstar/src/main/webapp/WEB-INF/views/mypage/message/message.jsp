@@ -31,6 +31,15 @@
 #msgTbl tr>td{
 	padding-top:20px;
 }
+.divPage{
+	text-align: center;
+}
+.divSearch{
+	width:60%;
+	margin: 0 auto;
+	text-align: right;
+	margin-top:20px;
+}
 </style>
 		쪽지함
 	</div>
@@ -99,31 +108,31 @@
 			</c:if>
 			<!--  페이지 번호 끝 -->
 		</div>
-		<div class="divSearch">
-		   	<form name="frmSearch" method="post" 
-		   		action='<c:url value="/mypage/message/message.do"/>'>
-		        <select name="searchCondition">        	
-		            <option value="title"
-		            	<c:if test="${param.searchCondition=='title'}">
-		            		selected="selected"
-		            	</c:if>	 
-		            >제목</option>
-		            <option value="content"
-		            	<c:if test="${param.searchCondition=='content'}">
-		            		selected="selected"
-		            	</c:if>
-		            >내용</option>
-		            <option value="name"
-		            	<c:if test="${param.searchCondition=='name'}">
-		            		selected="selected"
-		            	</c:if>
-		            >작성자</option>
-		        </select>   
-		        <input type="text" name="searchKeyword" title="검색어 입력"
-		        	value="${param.searchKeyword}">   
-				<input type="submit" value="검색">
-		    </form>
-		</div>
+	</div>
+	<div class="divSearch">
+	   	<form name="frmSearch" method="post" 
+	   		action='<c:url value="/mypage/message/message.do"/>'>
+	        <select name="searchCondition">        	
+	            <option value="title"
+	            	<c:if test="${param.searchCondition=='title'}">
+	            		selected="selected"
+	            	</c:if>	 
+	            >제목</option>
+	            <option value="content"
+	            	<c:if test="${param.searchCondition=='content'}">
+	            		selected="selected"
+	            	</c:if>
+	            >내용</option>
+	            <option value="recipient"
+	            	<c:if test="${param.searchCondition=='recipient'}">
+	            		selected="selected"
+	            	</c:if>
+	            >받는사람</option>
+	        </select>   
+	        <input type="text" name="searchKeyword" title="검색어 입력"
+	        	value="${param.searchKeyword}">   
+			<input type="submit" value="검색">
+	    </form>
 	</div>
 </div>
 <%@ include file="../../inc/bottom.jsp"%>

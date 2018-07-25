@@ -14,7 +14,9 @@
 	font-weight:700;
 	border-bottom: 2px solid #e46c0a;
 }
-
+.msgBtn{
+	margin-bottom: 30px;
+}
 #msgTbl tr>td{
 	padding-top:20px;
 }
