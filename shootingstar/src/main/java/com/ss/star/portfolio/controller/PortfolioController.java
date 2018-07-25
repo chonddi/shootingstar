@@ -10,10 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ss.star.common.SearchVO;
@@ -63,8 +65,6 @@ public class PortfolioController {
 		
 		//카테고리 네임 조회하기
 		
-		
-		
 				
 		model.addAttribute("list", list);
 		model.addAttribute("vList", vList);
@@ -104,8 +104,12 @@ public class PortfolioController {
 	}
 	
 	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
-	public void portfolio_detail() {
+	public String portfolio_detail(@RequestParam int pfNo, Model model) {
 		logger.info("포트폴리오 디테일 화면 보여주기");
+		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
+		model.addAttribute("list", list);
+		return "portfolio/portfolioDetail";
+		
 	}
 
 }

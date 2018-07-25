@@ -97,14 +97,31 @@
 .imgs_wrap>img{
 	margin: 10px;
 }
+#writeImg{
+	background-image: url("../images/portfolioWritee.png");
+	background-repeat : no-repeat;
+	background-size : contain;
+	width: 300px;
+	height: 150px;
+     margin-left: 320px;
+}
+#writeExample{
+	background-image: url("../images/portfolioExample.png");
+	background-repeat : no-repeat;
+	background-size : contain;
+	width: 960px;
+	height: 600px;
+}
 
 </style>
 <head>
 
 </head>
 <div id="divForm">
-	<div>
-		<img alt="portfolioWrite" src="<c:url value='/images/portfolioWritee.png'/>">
+	<div id="writeImg">
+	</div>
+	<label for="portfolioExample">포트폴리오 예시 입니다.</label>
+	<div id="writeExample">
 	</div>
 	<form name="frm1" method="post"
 		action="<c:url value='/portfolio/portfolioWrite.do'/>" enctype="multipart/form-data">

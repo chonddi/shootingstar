@@ -9,4 +9,5 @@ public interface PortfolioService {
 	public int insertPf(PortfolioVO vo, List<Map<String, Object>> list) ;
 	public List<Map<String, Object>> selectAllList(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
+	public List<Map<String, Object>> selectPfDetail(int pfNo);
 }

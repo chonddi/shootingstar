@@ -10,4 +10,5 @@ public interface PortfolioDAO {
 	public int insertPf(PortfolioVO vo) ;
 	public List<Map<String, Object>> selectAllList(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
+	public List<Map<String, Object>> selectPfDetail(int pfNo);
 }

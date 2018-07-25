@@ -92,6 +92,7 @@
 	</div>
 
 		<c:forEach var="map" items="${vList}">
+		<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">
 		<div id="portList">
 			<img alt="" src="<c:url value='/images/${map["FILENAME"]}'/>">
 			<div id="listInfo">
@@ -101,6 +102,7 @@
 				</div>
 			</div>
 		</div>
+		</a>
 		</c:forEach>
 			<div class="divPage">
 				<!-- 페이지 번호 추가 -->		

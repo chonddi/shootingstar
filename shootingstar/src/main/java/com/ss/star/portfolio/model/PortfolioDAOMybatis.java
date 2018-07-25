@@ -41,4 +41,11 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 		return sqlSession.selectOne(namespace+"getTotalRecord", searchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectPfDetail(int pfNo) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetail", pfNo);
+		return list;
+	}
+
 }

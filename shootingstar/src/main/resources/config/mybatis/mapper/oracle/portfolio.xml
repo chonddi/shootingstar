@@ -57,6 +57,10 @@
 		order by pfno desc
 	</select>
 	
+	<select id="selectPfDetail" parameterType="int" resultType="map">
+		select * from pfdetail where pfno=#{pfNo}
+	</select>
+	
 	
 </mapper>
 

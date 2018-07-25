@@ -48,4 +48,11 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return Dao.getTotalRecord(searchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectPfDetail(int pfNo) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list = Dao.selectPfDetail(pfNo);
+		return list;
+	}
+
 }

@@ -16,3 +16,13 @@ inner join category c
 on p.cgno = c.cgno
 inner join smember s
 on s.SMEMBERID = p.SMEMBERID;
+
+-- PFDETAIL 포트폴리오리스트뷰 포트폴리오테이블과 포트폴리오이미지테이블와 전문가테이블과 카테고리테이블을 합침
+CREATE OR REPLACE VIEW PFDETAIL AS
+ select  p.pfno, p.pftitle, s.SNAME, s.pr , c.cgname,  i.filename	
+from portfolio p inner join pofolimg i
+on p.PFNO = i.PFNO
+inner join category c
+on p.cgno = c.cgno
+inner join smember s
+on s.SMEMBERID = p.SMEMBERID;
