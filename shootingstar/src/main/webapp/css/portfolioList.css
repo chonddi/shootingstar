@@ -57,6 +57,11 @@ body {
 	margin-top: 10px;
 	float: right;
 }
+#portList:after{
+	clear:both;
+	content:'';
+	display: block;
+}
 
 #portList img {
 	height: 100%;
@@ -85,4 +90,8 @@ body {
 	color:#9999b3;
 	font-weight: normal;
 	margin-left: 5px;
+}
+.divPage{
+    clear: both;
+    text-align: center;
 }

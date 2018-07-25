@@ -4,11 +4,12 @@
 <head>
 <script type="text/javascript">	
 	$(document).ready(function(){
+	});
 	
-	function pageFunc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		frmPage.submit();
-	}
+		function pageFunc(curPage){
+			document.frmPage.currentPage.value=curPage;
+			frmPage.submit();
+		}
 	
 	
 </script>
@@ -16,6 +17,34 @@
 <link href="<c:url value='/css/portfolioList.css'/>" rel="stylesheet">
 
 <style type="text/css">
+.pageNum1, .pageNum2, .pageNum3 {
+	font-size: 1.0em;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	margin: 0 4px;
+	line-height: 35px;
+}
+.pageNum1 {
+	color: white;
+	font-weight: bold;
+	background-color: rgba(52, 96, 147, 1);
+	cursor: pointer;
+}
+
+.pageNum2 {
+	color: black;
+	background-color: white;
+	cursor: pointer;
+}
+
+.pageNum3 {
+	font-size: 0.8em;
+	color: gray;
+	background-color: white;
+	cursor: pointer;
+}
+
 </style>
 
 </head>
@@ -42,10 +71,10 @@
 		<div id="topSearch">
 		
 		<c:if test="${!empty param.searchKeyword}">
-			(카테이름) : <span>${fn:length(vList)}</span> 
+			(카테이름) : <span>${totalRecord}건</span> 
 		</c:if>
 		<c:if test="${empty param.searchKeyword}">
-			전체 조회 : <span>${fn:length(vList)}</span> 
+			전체 조회 : <span>${totalRecord}건</span> 
 		</c:if>
 
 		</div>
@@ -73,35 +102,41 @@
 			</div>
 		</div>
 		</c:forEach>
-		<hr>
-	<div class="divPage">
-	<!-- 페이지 번호 추가 -->		
-	<!-- 이전 블럭으로 이동 -->
-	<c:if test="${pageVo.firstPage>1 }">
-		<a href="#" onclick="pageFunc(${pageVo.firstPage-1})">
-			<img alt="이전 블럭으로 이동" src="../images/first.JPG">
-		</a>		
-	</c:if>
-	
-	<!-- [1][2][3][4][5][6][7][8][9][10] -->
-	<c:forEach var="i" begin="${pageVo.firstPage }" end="${pageVo.lastPage}">
-		<c:if test="${i==pageVo.currentPage }">
-			<span style="color: blue;font-weight: bold;font-size:1.0em">
-				${i}</span>
-		</c:if>
-		<c:if test="${i!=pageVo.currentPage }">
-			<a href="#" onclick="pageFunc(${i})">
-			[${i }]</a>
-		</c:if>
-	</c:forEach>
-		
-	<!-- 다음 블럭으로 이동 -->
-	<c:if test="${pageVo.lastPage<pageVo.totalPage }">
-		<a href="#" onclick="pageFunc(${pageVo.lastPage+1})">
-			<img alt="다음 블럭으로 이동" src="../images/last.JPG">
-		</a>	
-	</c:if>
-	<!--  페이지 번호 끝 -->
-</div>
+			<div class="divPage">
+				<!-- 페이지 번호 추가 -->		
+			<!-- 이전 블럭으로 이동 -->
+			<c:if test="${pageVo.firstPage>1 }">
+				<a href="#" onclick="pageFunc(${pageVo.firstPage-1})">
+					<span class="pageNum3">
+					PREV
+					</span>
+				</a>
+			</c:if>
+			
+			<!-- [1][2][3][4][5][6][7][8][9][10] -->
+			<c:forEach var="i" begin="${pageVo.firstPage }" end="${pageVo.lastPage}">
+				<c:if test="${i==pageVo.currentPage }">
+					<span class="pageNum1">
+						${i}</span>
+				</c:if>
+				<c:if test="${i!=pageVo.currentPage }">
+					<a href="#" onclick="pageFunc(${i})">
+						<span class="pageNum2">
+						${i}
+						</span>
+					</a>
+				</c:if>
+			</c:forEach>
+				
+			<!-- 다음 블럭으로 이동 -->
+			<c:if test="${pageVo.lastPage<pageVo.totalPage }">
+				<a href="#" onclick="pageFunc(${pageVo.lastPage+1})">
+					<span class="pageNum3">
+					NEXT
+					</span>
+				</a>
+			</c:if>
+			<!--  페이지 번호 끝 -->
+		</div>
 </body>
 <%@ include file="../inc/bottom.jsp"%>

@@ -57,13 +57,19 @@ public class PortfolioController {
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("전체 레코드 개수={}", totalRecord);
 		
+		//카테고리 가져오기
 		List<CategoryVO> list=cgService.selectCategoryAll();
 		logger.info("카테고리 조회 결과, list.size={}", list.size());
+		
+		//카테고리 네임 조회하기
+		
+		
 		
 				
 		model.addAttribute("list", list);
 		model.addAttribute("vList", vList);
 		model.addAttribute("pageVo", pagingInfo);
+		model.addAttribute("totalRecord",totalRecord);
 		
 		return "portfolio/portfolioList";
 	}
