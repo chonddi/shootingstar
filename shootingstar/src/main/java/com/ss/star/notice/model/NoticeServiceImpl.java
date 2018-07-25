@@ -55,4 +55,9 @@ public List<NoticeVO> selectAll() {
 		return noticeDao.getTotalRecord(searchVo);
 	}
 
+	@Override
+	public List<NoticeVO> selectAllUser() {
+		return noticeDao.selectAllUser();
+	}
+
 }

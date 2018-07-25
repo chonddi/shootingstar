@@ -7,7 +7,7 @@
 @import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
 * { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; } 
 body{
-margin:30px;
+
 font-family:"Nanum Gothic";
    }
 table{
@@ -15,12 +15,13 @@ table{
     /* font-size:15px; */
     border-collapse: non-collapsed; 
 	position: static;
- 	width: 1200px; 
+
 }
 
 .faq {
-	/* align-content:center; */
-    
+	text-align:center;
+	align-content:center;
+    width: 100%;
      border-collapse: collapse; 
 
   }
@@ -32,11 +33,11 @@ table{
   	  padding:0px;
   	  height:20px;
   	  font-size: 16px;
- 
+ 	text-align: center;
   }
 
-tbody .title,#content {
-  	text-align:left;
+tbody .title{
+text-align: center;
     border-bottom: 1px solid #f0f0f0;
     padding: 1px;
 
@@ -46,23 +47,27 @@ tbody .title,#content {
 	height:80px;
 	font-size: 16px;
 	cursor: pointer;
+	vertical-align: middle;
+
 }
 .notitle{
 	height:80px;
 	font-size: 16px;
 	text-align: center;
+	vertical-align: middle;
 }
 .content{
 	background-color: #f0f0f0;
 	font-size: 14px;
 	text-align:left;
 	padding:10px;
+	text-align: left;
 	}
 
-h1{padding:20px;}
-tbody{
-	/* border-top: 1px solid black; */
-}
+h1{padding:20px;
+font-size: 50px;
+font-weight: bold;}
+
 #width{ 
 	padding-right:200px;
 	line-height: 150%;
@@ -71,6 +76,7 @@ tbody{
 	width:30px;
 	padding:25px;
 	vertical-align: top;
+
 }
 #quest{
 	width:50px;

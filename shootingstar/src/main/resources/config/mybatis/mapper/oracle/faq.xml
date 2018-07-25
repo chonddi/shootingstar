@@ -6,13 +6,20 @@
 <select id="selectAll" parameterType="String" resultType="FaqVO">
  select faqno, adminid, category, faqtitle, faqcontent, faqregdate, delflag, rownum 
  from faq 
- where category=#{category}
+ where category=#{category} 
+ order by rownum
+</select>
+<select id="selectAllUser" parameterType="String" resultType="FaqVO">
+ select faqno, adminid, category, faqtitle, faqcontent, faqregdate, delflag, rownum 
+ from faq 
+ where category=#{category} and delflag='N'
  order by rownum
 </select>
 
 <select id="selectList" parameterType="String" resultType="FaqVO">
  select * from faq 
  order by faqNo
+
 </select>
 
 <insert id="insertFaq" parameterType="FaqVO">

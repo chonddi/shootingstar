@@ -13,4 +13,5 @@ public interface FaqDAO {
 	public FaqVO selectByNo (int faqNo);
 	public int faqBack (FaqVO faqVo);
 	public int faqEdit (FaqVO faqVo);
+	public List<FaqVO> selectAllUser(String category);
 }

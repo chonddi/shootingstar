@@ -25,7 +25,8 @@ public class FaqController {
 public static final Logger logger = LoggerFactory.getLogger(FaqController.class);
 	@RequestMapping(value="/faqList.do")
 	public String faqList(Model model, @RequestParam(defaultValue="일반") String category) {
-		List<FaqVO> list = faqService.selectAll(category);
+		/*List<FaqVO> list = faqService.selectAll(category);*/
+		List<FaqVO> list = faqService.selectAllUser(category);
 		model.addAttribute("list", list);
 		logger.info("faq List list.size={} , category={}",list.size(),category);
 

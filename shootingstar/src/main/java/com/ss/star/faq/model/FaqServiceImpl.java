@@ -50,4 +50,9 @@ public class FaqServiceImpl implements FaqService {
 		return faqDao.faqEdit(faqVo);
 	}
 
+	@Override
+	public List<FaqVO> selectAllUser(String category) {
+		return faqDao.selectAllUser(category);
+	}
+
 }

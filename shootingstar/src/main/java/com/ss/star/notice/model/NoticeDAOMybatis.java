@@ -55,6 +55,11 @@ public class NoticeDAOMybatis implements NoticeDAO {
 		return sqlSession.selectOne(namespace+"getTotalRecord", searchVo);
 	}
 
+	@Override
+	public List<NoticeVO> selectAllUser() {
+		return sqlSession.selectList(namespace+"selectAllUser");
+	}
+
 
 
 

@@ -54,6 +54,11 @@ public class FaqDAOMybatis implements FaqDAO {
 		return sqlSession.update(namespace+"faqEdit", faqVo);
 	}
 
+	@Override
+	public List<FaqVO> selectAllUser(String category) {
+		return sqlSession.selectList(namespace+"selectAllUser", category);
+	}
+
 
 	
 }
