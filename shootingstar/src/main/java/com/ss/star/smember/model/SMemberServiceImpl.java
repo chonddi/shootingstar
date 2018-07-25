@@ -43,5 +43,10 @@ public class SMemberServiceImpl implements SMemberService{
 	public int selectCountSMemberId(String sMemberId) {
 		return sMemberDao.selectCountSMemberId(sMemberId);
 	}
+
+	@Override
+	public int updateOutDate(String sMemberId) {
+		return sMemberDao.updateOutDate(sMemberId);
+	}
 	
 }

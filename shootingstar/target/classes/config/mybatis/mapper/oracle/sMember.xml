@@ -22,4 +22,8 @@
 	<select id="selectCountSMemberId" parameterType="String" resultType="int">
 		select count(*) from smember where smemberid=#{sMemberId}
 	</select>
+	
+	<update id="updateOutDate" parameterType="String">
+		update sMember set outdate=sysdate where sMemberId=#{sMemberId}
+	</update>
 </mapper>

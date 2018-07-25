@@ -21,12 +21,16 @@ public class SendMsgDaoMybatis implements SendMsgDAO{
 		return sqlSession.insert(namespace+"insertReceiveMsg", receiveMsgVo);
 	}
 	@Override
-	public List<Map<String, Object>> selectSendMsg(Map<String, String> map) {
+	public List<Map<String, Object>> selectSendMsg(Map<String, Object> map) {
 		return sqlSession.selectList(namespace+"selectSendMsg", map);
 	}
 	@Override
 	public List<Map<String, Object>> selectReceiveMsg(Map<String, String> map) {
 		return sqlSession.selectList(namespace+"selectReceiveMsg", map);
+	}
+	@Override
+	public int getTotalRecord(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"getTotalRecord", map);
 	}
 	
 }

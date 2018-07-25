@@ -64,7 +64,7 @@
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
 							<li><a href="#">이용방법</a></li>
-							<li><a href="#">공지사항</a></li>
+							<li><a href="<c:url value='/notice/noticeList.do'/>">공지사항</a></li>
 							<c:if test="${!empty sessionScope.memberId}">
 								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>
 							</c:if>

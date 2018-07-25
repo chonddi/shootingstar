@@ -69,7 +69,7 @@
 				if (bool) {
 					if ($('#pwd').val().length < 8 | $('#pwd').val().length>15) {
 						alert('비밀번호는 8~15자리 입니다.');
-						$('#pwd1').focus();
+						$('#pwd').focus();
 						bool = false;
 					} else if ($('#pwd').val() != $('#pwd2').val()) {
 						alert('비밀번호가 일치하지 않습니다.');

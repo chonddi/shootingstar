@@ -29,4 +29,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int selectCountSMemberId(String sMemberId) {
 		return sqlSession.selectOne(namespace+"selectCountSMemberId", sMemberId);
 	}
+	@Override
+	public int updateOutDate(String sMemberId) {
+		return sqlSession.update(namespace+"updateOutDate", sMemberId);
+	}
 }

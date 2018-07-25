@@ -6,7 +6,7 @@ body {
 
 #logo {
 	margin-bottom: 20px;
-	margin-left:
+	cursor: pointer;
 }
 
 .container-fluid {
@@ -22,14 +22,17 @@ body {
 	line-height: 30px;
 	text-align: center;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 #topMenu>ul>li>a {
 	text-decoration: none;
+	cursor: pointer;
 }
 
 #topMenu>ul>li>ul>li>a {
 	text-decoration: none;
+	cursor: pointer;
 }
 
 #topMenu>ul>li>ul {
