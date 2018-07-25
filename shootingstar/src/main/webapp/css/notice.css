@@ -7,14 +7,14 @@
 @import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
 * { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; } 
 body{
-margin:30px;
+
 font-family:"Nanum Gothic";}
 table{
 	margin:0 auto;
-    font-size:15px;
+/*     font-size:15px; */
 	border-collapse: non-collapsed;
 	position: static;
-width: 1200px;
+
 }
 
 .notice {
@@ -30,6 +30,7 @@ width: 1200px;
   	  padding: 10px;
   	  height:40px;
   	  font-size: 16px;
+  	  text-align: center;
   }
   td {
     border-bottom: 1px solid #f0f0f0;
@@ -39,16 +40,18 @@ width: 1200px;
 .title{
 	height:80px;
 	font-size: 16px;
-
+	vertical-align: middle;
 }
 .content{
 	background-color: #f0f0f0;
 	font-size: 14px;
 	text-align:left;
-
+	vertical-align: top;
 	}
 
-h1{padding:20px;}
+h1{padding:20px;
+font-size: 50px;
+font-weight: bold;}
 
 #width{padding-left:200px;
 	padding-right:200px;}

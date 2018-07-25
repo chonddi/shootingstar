@@ -29,7 +29,8 @@ private static final Logger logger
 	@RequestMapping(value="/noticeList.do")
 	public String noticeList(Model model) {
 		
-		List<NoticeVO> list = noticeService.selectAll();
+		/*List<NoticeVO> list = noticeService.selectAll();*/
+		List<NoticeVO> list = noticeService.selectAllUser();
 		model.addAttribute("list", list);
 		
 		logger.info("공지사항 페이지! list.size()={}",list.size());

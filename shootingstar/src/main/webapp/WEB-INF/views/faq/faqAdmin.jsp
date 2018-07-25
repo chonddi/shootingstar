@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../inc/adminTop.jsp"%>
 <%
 pageContext.setAttribute("br", "<br/>");
 pageContext.setAttribute("cn", "\n");
@@ -14,7 +15,7 @@ pageContext.setAttribute("cn", "\n");
 <title>FAQ 관리자</title>
 
 <style type="text/css">
-
+#title{text-align: left;}
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
@@ -105,8 +106,9 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 				<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
 	 					<c:choose>
 							<c:when test="${vo.delflag=='Y' }">
-				<td colspan=1>Q. ${vo.faqNo}</td>
-				<td colspan=5 class="notitle" style="color:gray ; font-size:1.0em">${vo.faqTitle }</td>	
+				<td colspan=1></td>
+				<td colspan=1  id='quest'>Q. ${vo.faqNo}</td>
+				<td colspan=4 class="notitle" style="color:gray ; font-size:1.0em">${vo.faqTitle }</td>	
 				<td colspan=1 class="notitle">
 								<span style="color:red ; font-size:1.0em">삭제된 글입니다</span>
 							</c:when>
@@ -171,3 +173,4 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 	<!-- 검색없음!!! 페이징!!! -->
 	</body>
 	</html>
+<%@ include file="../inc/adminBottom.jsp"%>

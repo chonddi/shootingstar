@@ -1,8 +1,10 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../inc/top.jsp"%>
 <%
 pageContext.setAttribute("br", "<br/>");
 pageContext.setAttribute("cn", "\n");
@@ -13,7 +15,8 @@ pageContext.setAttribute("cn", "\n");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ</title>
 <style type="text/css">
-
+th{text-align: center;}
+#title{vertical-align: middle;}
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -24,7 +27,8 @@ $(document).ready(function(){
 
 	$('th').not(':first').css('border-left','1px solid gray'); //옆줄
 
-	$('.faq .tbody .content').hide(); //내용(짝수tr) 숨김
+	$('.faq .tbody .content').hide(); 
+	$('#delete').hide();
 		
 	$('.faq .tbody .title').find('#title').click(function(){
 		$(this).parent().next().toggle();
@@ -43,17 +47,13 @@ $(document).ready(function(){
 		 if(this.text 가 param.category와 같다면){
 			this.text에 css
 		}); */
-/* 	var param= ${param.category} ;
-	$('th').each(function(){
-		if($(this).text()=='정산'){
-			alert(param);
-		}
-	}); */
 
 /* 	$('th').click(function(){
 		$(this).css('color','blue')
 	}); */
+
 });
+
 
 
 	
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	<tr id="linetop"><td colspan=7></td>
 	</tr>
 		<tr>		
-		<th onclick='location.href="<c:url value='/faq/faqList.do?category=일반'/>"'>
+		<th width=150px onclick='location.href="<c:url value='/faq/faqList.do?category=일반'/>"'>
 		일반</th>
 		<th onclick='location.href="<c:url value='/faq/faqList.do?category=가입/탈퇴'/>"'>
 		가입/탈퇴</th>
@@ -90,7 +90,7 @@ $(document).ready(function(){
 		<tbody class="tbody">
 	 	<c:if test="${empty list }">
 		 	<tr class="notitle">
-				<td colspan=7 style="color:gray ; font-size:1.0em">공지사항이 없습니다</td>
+				<td colspan=7 style="color:gray ; font-size:1.0em">등록된 FAQ가 없습니다</td>
 			</tr>
 		</c:if>
 		
@@ -98,16 +98,16 @@ $(document).ready(function(){
 		<!--for 돌려서 db 출력  -->
 			<c:forEach var="vo" items="${list}">
 			<tr class="title">
-			
-				<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
+			 
+				<%-- <!--  삭제된 원본글에 '삭제된 글' 처리 -->
 	 					<c:choose>
 							<c:when test="${vo.delflag=='Y' }">
-							<td colspan=7 class="notitle">
+							<td colspan=7 class="notitle" id="delete">
 								<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
 							</c:when>
-						<c:otherwise> 
+						<c:otherwise>  --%>
 				
-				<td width=150px id='quest'>Q ${vo.rownum}.</td>
+				<td id='quest'>Q ${vo.rownum}.</td>
 				
 				<td id="title" colspan=6>
 				
@@ -120,8 +120,8 @@ $(document).ready(function(){
 					
 				</td>
 				<%-- <td><fmt:formatDate value="${vo.faqRegdate}" pattern="yyyy-MM-dd"/></td> --%>
-				</c:otherwise>
-					</c:choose>
+				<%-- </c:otherwise>
+					</c:choose>  --%>
 			</tr>
 			<tr class="content">
 			<td id="answer">
@@ -135,7 +135,7 @@ $(document).ready(function(){
 				</td>
 			</tr>
 
-			</c:forEach>
+		</c:forEach>
 		<!-- for 끝 -->
 		</c:if> 
 		</tbody>
@@ -144,3 +144,4 @@ $(document).ready(function(){
 	<!-- 검색없음!!! 페이징!!! -->
 	</body>
 	</html>
+<%@ include file="../inc/bottom.jsp"%>	

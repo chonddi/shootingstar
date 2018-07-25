@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../inc/top.jsp"%>
+<%
+pageContext.setAttribute("br", "<br/>");
+pageContext.setAttribute("cn", "\n");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +15,7 @@
 
 <title>슈팅스타 공지사항</title>
 <style type="text/css">
- #width{padding-left:200px;
+#width{padding-left:200px;
 	padding-right:200px;}
 #titleNo{
 	font-weight: bold;
@@ -54,14 +59,14 @@ $('.notice .tbody .title').find('#title').click(function(){
 	<!--for 돌려서 db 출력  -->
 		<c:forEach var="vo" items="${list}">
 		<tr class="title">
-		
+		<%-- 
 			<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
  					<c:choose>
 						<c:when test="${vo.delflag=='Y' }">
 						<td colspan=5>
 							<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
 						</c:when>
-					<c:otherwise> 
+					<c:otherwise>  --%>
 			<td id="titleNo">${vo.nNo}.</td>
 			<td id="title">
 			
@@ -77,12 +82,12 @@ $('.notice .tbody .title').find('#title').click(function(){
 			<td id="icon" class="off" width="50px">
 				
 			</td>
-			</c:otherwise>
-				</c:choose>
+<%-- 			</c:otherwise>
+				</c:choose> --%>
 		</tr>
 		<tr class="content">
 			<td colspan=4>
-			<div id="width">${vo.nContent }</div></td>
+			<div id="width">${fn:replace(vo.nContent, cn, br)}</div></td>
 		</tr>
 
 		</c:forEach>
@@ -94,3 +99,4 @@ $('.notice .tbody .title').find('#title').click(function(){
 <!-- 검색없음!!! 페이징!!! -->
 </body>
 </html>
+<%@ include file="../inc/bottom.jsp"%>

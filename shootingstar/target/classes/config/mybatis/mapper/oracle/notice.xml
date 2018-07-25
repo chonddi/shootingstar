@@ -22,6 +22,11 @@
 		order by nNo desc
 
 	</select>
+	<select id="selectAllUser" resultType="NoticeVO">
+		select * from NOTICE where delflag='N'
+		order by nNo desc
+
+	</select>
 	
 		<insert id="insertNotice" parameterType="NoticeVO">
 		<selectKey keyProperty="nNo" order="BEFORE" resultType="int">

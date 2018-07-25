@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../inc/adminTop.jsp"%>
+<%
+pageContext.setAttribute("br", "<br/>");
+pageContext.setAttribute("cn", "\n");
+/*
+자바스크립트 줄바꿈 : cn  
+html 줄바꿈: br 
+&nbsp; (non breaking space, 공백을 다수 표시)
+cn부터 먼저 해줘야함
+*/
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -163,7 +174,7 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 				</c:choose>	
 		</tr>
 		<tr class="content">
-			<td colspan=6><div id="width">${vo.nContent }</div></td>
+			<td colspan=6><div id="width">${fn:replace(vo.nContent, cn, br)}</div></td>
 		</tr>
 		</c:forEach>
 	<!-- for 끝 -->
@@ -180,3 +191,4 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 <!-- 검색없음!!! 페이징!!! -->
 </body>
 </html>
+<%@ include file="../inc/adminBottom.jsp"%>

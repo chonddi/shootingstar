@@ -14,4 +14,5 @@ public interface NoticeService {
 	public int noticeBack(NoticeVO noticeVo);
 	public int deleteOne(NoticeVO noticeVo);
 	public int getTotalRecord(SearchVO searchVo);
+	public List<NoticeVO> selectAllUser();
 }
