@@ -50,30 +50,56 @@ public class QRController {
 
 	@RequestMapping("/QRUpdate.do")
 	@ResponseBody
-	public int QRUpdate(@RequestParam(defaultValue="0") int qrNo, @RequestParam(defaultValue="0") int qNo, @RequestParam String content) {
-		logger.info("댓글수정 처리, 파라미터 qrNo={}, qNo={}", qrNo, qNo);
-		logger.info("댓글수정 처리, 파라미터 content={}", content);
+	public int QRUpdate(@RequestParam(defaultValue = "0") int qrNo, @RequestParam(defaultValue = "0") int qNo,
+			@RequestParam String content) {
+		logger.info("댓글 수정 처리, 파라미터 qrNo={}, qNo={}", qrNo, qNo);
+		logger.info("댓글 수정 처리, 파라미터 content={}", content);
 
 		QRVO QRVo = new QRVO();
 		QRVo.setQrNo(qrNo);
 		QRVo.setqNo(qNo);
 		QRVo.setContent(content);
-		
+
 		int cnt = qService.QRUpdate(QRVo);
-		logger.info("댓글수정 결과, cnt={}", cnt);
+		logger.info("댓글 수정 결과, cnt={}", cnt);
 
 		return cnt;
 	}
-	
+
+	@RequestMapping("/QRDelete.do")
+	@ResponseBody
+	public int QRDelete(@RequestParam(defaultValue = "0") int qrNo) {
+		logger.info("댓글 삭제 처리, 파라미터 qrNo={}", qrNo);
+
+		int cnt = qService.QRDelete(qrNo);
+		logger.info("댓글 삭제 결과, cnt={}", cnt);
+
+		return cnt;
+	}
+
 	@RequestMapping("/QRreply.do")
 	@ResponseBody
-	public String reply(@ModelAttribute QRVO QRVo) {
+	public String QRreply(@ModelAttribute QRVO QRVo) {
 		logger.info("대댓글쓰기 처리, 파라미터 vo={}", QRVo);
 
-		int cnt = qService.insertQR(QRVo);
+		int cnt = qService.QRreply(QRVo);
 		logger.info("대댓글쓰기 결과, cnt={}", cnt);
 
 		return "success";
+	}
+
+	@RequestMapping("/QRreplyList.do")
+	@ResponseBody
+	public List<QRVO> QRreplyList(@RequestParam int qrNo, Model model) {
+		logger.info("QRreplyList, 파라미터 qrNo={}", qrNo);
+
+		List<QRVO> list = qService.QRreplyList(qrNo);
+		logger.info("대댓글 목록 조회 결과, list.size={}", list.size());
+
+		model.addAttribute("list", list);
+
+		return list;
+
 	}
 
 }

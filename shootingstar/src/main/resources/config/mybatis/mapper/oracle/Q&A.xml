@@ -69,13 +69,19 @@
     </update>
     
     <delete id="QRDelete" parameterType="int">
-        DELETE FROM QNARE WHERE QRNO = #{qrNo}
+        delete from qnare where qrno=#{qrNo}
     </delete>
     
     <insert id="QRreply" parameterType="QRVO">
 	    insert into qnare(qrno, qno, id, content, parent)
 		values(qnare_seq.nextval, #{qNo}, #{id}, #{content}, #{qrNo})
     </insert>
+    
+    <select id="QRreplyList" parameterType="int" resultType="QRVO">
+    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate
+    	from qnare
+    	where qrno=#{qrNo} and parent=#{qrNo}
+    </select>
 
 	
 <!-- 
