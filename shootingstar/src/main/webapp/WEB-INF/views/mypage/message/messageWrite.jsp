@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>쪽지 보내기</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/msgWrite.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
@@ -31,8 +31,8 @@
 				if(bool){
 					if(confirm("전송하시겠습니까?")){
 						$('form[name=msgFrm]').submit();
+						setTimeout(function() {self.close()}, 100);
 						opener.parent.location.reload();
-						setTimeout(function() {self.close()}, 10);
 					}
 				}
 			}

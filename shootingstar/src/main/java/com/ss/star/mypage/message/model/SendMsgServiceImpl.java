@@ -47,17 +47,6 @@ public class SendMsgServiceImpl implements SendMsgService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode) {
-		Map<String, String> map = new HashMap<>();
-		map.put("recipient", userId);
-		map.put("code", userCode);
-		
-		List<Map<String, Object>> list = sendMsgDao.selectReceiveMsg(map);
-		
-		return list;
-	}
-
-	@Override
 	public int getTotalRecord(String userId, String userCode, SearchVO searchVo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("sender", userId);
@@ -69,6 +58,29 @@ public class SendMsgServiceImpl implements SendMsgService{
 		return total;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("recipient", userId);
+		map.put("code", userCode);
+		map.put("searchVo", searchVo);
+		
+		List<Map<String, Object>> list = sendMsgDao.selectReceiveMsg(map);
+		return list;
+	}
+
+	@Override
+	public int getTotalRecordReceive(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("recipient", userId);
+		map.put("code", userCode);
+		map.put("searchVo", searchVo);
+		
+		int total = sendMsgDao.getTotalRecordReceive(map);
+		return total;
+	}
+
+	
 	
 
 

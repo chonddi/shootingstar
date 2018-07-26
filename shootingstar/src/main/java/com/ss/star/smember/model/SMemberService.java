@@ -13,4 +13,5 @@ public interface SMemberService {
 	public String selectNameById(String sMemberId);
 	public int selectCountSMemberId(String sMemberId);
 	public int updateOutDate(String sMemberId);
+	public int updateSMember(SMemberVO sMemberVo);
 }

@@ -48,5 +48,10 @@ public class SMemberServiceImpl implements SMemberService{
 	public int updateOutDate(String sMemberId) {
 		return sMemberDao.updateOutDate(sMemberId);
 	}
+
+	@Override
+	public int updateSMember(SMemberVO sMemberVo) {
+		return sMemberDao.updateSMember(sMemberVo);
+	}
 	
 }

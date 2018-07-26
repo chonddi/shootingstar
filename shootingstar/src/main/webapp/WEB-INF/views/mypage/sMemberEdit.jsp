@@ -97,12 +97,15 @@
 	color:white;
 	font-weight: bold;
 }
+.spanFont{
+	font-size: 0.9em;
+}
 </style>
 			회원정보 수정
 	</div>
 	<div class="selectedPage">
 		<form name="frm" id="editFrm" method="post"
-				action="<c:url value='/mypage/sMemberEdit.do'/>">
+				action="<c:url value='/mypage/sMemberEdit.do'/>" enctype="multipart/form-data">
 			<table id="editTable">
 				<tr>
 					<td>아이디</td>
@@ -138,11 +141,23 @@
 				</tr>
 				<tr>
 					<td>신분증 사본</td>
-					<td><input type="file" id="identifi" name="identifi" class="valid2" style="display: inline-block;"></td>
+					<td style="padding-bottom: 10px;"><input type="file" id="identifi" name="identi" class="valid2">
+						<c:set var="cut" value="${fn:indexOf(sMemberVo.identification,'.')}"/>
+						<c:set var="identi" value="${fn:substring(sMemberVo.identification,0,cut-17)}" />
+						<c:set var="ext" value="${fn:substringAfter(sMemberVo.identification,'.')}" />
+						<span class="spanFont"> 기존 파일명: ${identi}.${ext}</span>
+						<input type="hidden" name="oldIdenti" value="${sMemberVo.identification}">
+					</td>
 				</tr>
 				<tr>
 					<td>계좌사본</td>
-					<td><input type="file" id="account" name="account" class="valid2" style="display: inline-block;"></td>
+					<td style="padding-bottom: 10px;"><input type="file" id="account" name="account" class="valid2">
+						<c:set var="cut" value="${fn:indexOf(sMemberVo.accountCopy,'.')}"/>
+						<c:set var="ant" value="${fn:substring(sMemberVo.accountCopy,0,cut-17)}" />
+						<c:set var="ext" value="${fn:substringAfter(sMemberVo.accountCopy,'.')}" />
+						<span class="spanFont"> 기존 파일명: ${ant}.${ext}</span>
+						<input type="hidden" name="oldAnt" value="${sMemberVo.accountCopy}">
+					</td>
 				</tr>
 			</table><br>
 			<div style="text-align: center;">

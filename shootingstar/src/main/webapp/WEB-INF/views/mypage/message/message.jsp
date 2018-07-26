@@ -18,40 +18,19 @@
 		frmPage.submit();
 	}
 </script>
-<style type="text/css">
-#msg{
-	color:#1f1f1f;
-	font-weight:700;
-	border-bottom: 2px solid #e46c0a;
-}
-.msgBtn{
-	margin-bottom: 30px;
-}
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
-#msgTbl tr>td{
-	padding-top:20px;
-}
-.divPage{
-	text-align: center;
-}
-.divSearch{
-	width:60%;
-	margin: 0 auto;
-	text-align: right;
-	margin-top:20px;
-}
-</style>
 		쪽지함
 	</div>
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
 		action="<c:url value='/mypage/message/message.do'/>">
-		<input type="text" name="currentPage" >
-		<input type="text" name="searchKeyword" value="${param.searchKeyword}">
-		<input type="text" name="searchCondition" value="${param.searchCondition}">	
+		<input type="hidden" name="currentPage" >
+		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
+		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 	<div class="selectedPage">
-		<div class="msgBtn"><span>보낸쪽지</span><span><input type="button" id="receiveMsg" value="받은쪽지"></span></div>
+		<div class="msgBtn"><div class="nowMsgType" style="float: left">보낸쪽지</div> <div class="btnMsgType" style="float: left"><input type="button" id="receiveMsg" value="받은쪽지"></div></div>
 		<table id="msgTbl">
 			<colgroup>
 				<col style="width:20%">
@@ -76,7 +55,7 @@
 		    	</c:forEach>
 			</c:if>    
 	    </table><br>
-		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div>
+		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div><br>
 		
 		<!-- 페이지처리 -->
 		<div class="divPage">
@@ -109,6 +88,7 @@
 			<!--  페이지 번호 끝 -->
 		</div>
 	</div>
+	<!-- 검색조건 -->
 	<div class="divSearch">
 	   	<form name="frmSearch" method="post" 
 	   		action='<c:url value="/mypage/message/message.do"/>'>

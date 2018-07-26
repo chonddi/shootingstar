@@ -59,7 +59,7 @@
 				if(bool){
 					$('.valid2').each(function(idx, item){
 						if($(this).val()==""){
-						alert($(this).parent().find('span').html()+"을 첨부해주세요");
+						alert($(this).parent().prev().html()+"을 첨부해주세요");
 						$(this).focus();
 						
 						bool=false;  //submit() 이벤트 진행을 막는다
@@ -251,7 +251,7 @@ span{
 				<div><table id="fileTbl">
 					<tr>
 						<td>신분증 사본</td>
-						<td><input type="file" id="identifi" name="identifi" class="valid2" style="display: inline-block;"></td>
+						<td><input type="file" id="identifi" name="identi" class="valid2" style="display: inline-block;"></td>
 					</tr>
 					<tr style="margin-top: 10px">
 						<td>계좌 사본</td>

@@ -1,8 +1,11 @@
 package com.ss.star.mypage.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,15 +17,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ss.star.common.PaginationInfo;
-import com.ss.star.common.SearchVO;
-import com.ss.star.common.Utility;
+import com.ss.star.common.FileUploadUtil2;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
-import com.ss.star.mypage.message.model.SendMsgService;
-import com.ss.star.mypage.message.model.SendMsgVO;
 import com.ss.star.smember.model.SMemberService;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -33,7 +31,7 @@ public class MypageController {
 	private Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Autowired private MemberService memberService;
 	@Autowired private SMemberService sMemberService;
-	@Autowired private SendMsgService sendMsgService;
+	@Autowired FileUploadUtil2 fileUploadUtil;
 
 	//정보수정
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
@@ -92,6 +90,72 @@ public class MypageController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
+		return "common/message";
+	}
+	
+	@RequestMapping("/sMemberEdit.do")
+	public String sMemberEdit_post(@ModelAttribute SMemberVO sMemberVo, HttpServletRequest request, HttpSession session, Model model,
+				@RequestParam String oldIdenti, @RequestParam String oldAnt) throws IllegalStateException, IOException {
+		String sMemberId = (String)session.getAttribute("sMemberId");
+		logger.info("전문가 회원정보 수정 sMemberVo:{}, sMemberId: {}", sMemberVo, sMemberId);
+		logger.info("기존 파일 identi: {}, ant: {}", oldIdenti, oldAnt);
+		
+		int result = sMemberService.checkPwd(sMemberId, sMemberVo.getsPwd());
+		logger.info("정보수정 비밀번호 확인 결과 result: {}", result);
+		
+		String msg="", url="/mypage/memberEdit.do";
+		if(result==SMemberService.LOGIN_OK) {
+			sMemberVo.setsMemberId(sMemberId);
+			
+			List<Map<String, String>> list = fileUploadUtil.fileUpload(request);
+			logger.info("회원가입 파일의 list.size(): {}",list.size());
+			
+			String identification="", accountCopy="";
+			if(list.size()>0) {
+				for(Map<String, String> map : list) {
+					if(map.get("identiCopy").equals("identi")){
+						identification=map.get("originalFileName");
+						sMemberVo.setIdentification(identification);
+						logger.info("identification: {}, accountCopy: {}", identification, accountCopy);
+					}else {
+						accountCopy = map.get("originalFileName");
+						sMemberVo.setAccountCopy(accountCopy);
+						logger.info("identification: {}, accountCopy: {}", identification, accountCopy);
+					}
+				}
+			}
+			
+			int cnt = sMemberService.updateSMember(sMemberVo);
+			logger.info("회원정보 수정 결과, cnt={}", cnt);
+			
+			if(cnt>0) {
+				//올드파일 o x => 삭제
+				if(identification !=null && !identification.isEmpty()){
+					File file = new File(fileUploadUtil.getUploadPath(request, FileUploadUtil2.PATH_FLAG_IDENTI), oldIdenti);
+					if(file.exists()) {
+						boolean bool=file.delete();
+						logger.info("identi 파일 삭제 여부: {}", bool);
+					}
+				}else if(accountCopy !=null && !accountCopy.isEmpty()) {
+					File file = new File(fileUploadUtil.getUploadPath(request, FileUploadUtil2.PATH_FLAG_IDENTI), oldAnt);
+					if(file.exists()) {
+						boolean bool=file.delete();
+						logger.info("Ant 파일 삭제 여부: {}", bool);
+					}
+				}
+				
+				msg="수정완료";			
+			}else {
+				msg="글 수정 실패";
+			}
+			
+		}else {
+			msg="비밀번호가 틀렸습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		return "common/message";
 	}
 
@@ -177,112 +241,5 @@ public class MypageController {
 		logger.info("나의 견적상황 화면, 세션 memberId:{}", memberId);
 
 	}
-	//쪽지
-	@RequestMapping("/message/message.do")
-	public void message(HttpSession session, Model model, @ModelAttribute SearchVO searchVo) {
-		logger.info("쪽지 리스트 searchVo: {}", searchVo);
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVO 에 값 셋팅
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("setting 후 searchVo={}", searchVo);
-		
-		String userCode = (String) session.getAttribute("userCode");
-		String userId = "";
-		if("1".equals(userCode)) {
-			userId=(String)session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId=(String)session.getAttribute("sMemberId");
-		}
-		logger.info("쪽지목록, userId:{}, userCode:{}",userId, userCode);
-
-
-		List<Map<String, Object>> list = sendMsgService.selectSendMsg(userId, userCode, searchVo);
-		logger.info("보낸쪽지 리스트 list.size(): {}", list.size());
-		
-		//전체 레코드 개수 조회
-		int totalRecord=sendMsgService.getTotalRecord(userId, userCode, searchVo);
-		pagingInfo.setTotalRecord(totalRecord);
-		logger.info("전체 레코드 개수={}", totalRecord);
-		
-
-		model.addAttribute("sendList", list);
-		model.addAttribute("pageVo", pagingInfo);
-	}
-
-	@RequestMapping("/message/messageReceive.do")
-	public void messageReceive(HttpSession session, Model model) {
-		String userCode = (String) session.getAttribute("userCode");
-		String userId = "";
-		if("1".equals(userCode)) {
-			userId=(String)session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId=(String)session.getAttribute("sMemberId");
-		}
-		logger.info("쪽지목록, userId:{}, userCode:{}",userId, userCode);
-
-		List<Map<String, Object>> list = sendMsgService.selectReceiveMsg(userId, userCode);
-		logger.info("받은쪽지 리스트 list.size(): {}", list.size());
-
-		model.addAttribute("receiveList", list);
-	}
-
-	//쪽지쓰기
-	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.GET)
-	public void messageWrite() {
-		logger.info("쪽지쓰기");
-	}
-
-	@RequestMapping("/message/messageWriteReceiver.do")
-	@ResponseBody
-	public int messageWrite_receiver(HttpSession session,@RequestParam String receiver) {
-		String userCode=(String)session.getAttribute("userCode");
-		logger.info("receiver: {}", receiver);
-
-		int result=3;
-		if("1".equals(userCode)) {
-			result = sMemberService.selectCountSMemberId(receiver);
-		}else if("2".equals(userCode)) {
-			result = memberService.selectCountMemberId(receiver);
-		}
-		logger.info("쪽지 키다운 userCode: {}, result: {}", userCode, result);
-		return result;
-	}
-
-	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.POST)
-	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String recipient, Model model) {
-		String userCode = (String)session.getAttribute("userCode");
-		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
-
-		String userId="";
-		if("1".equals(userCode)) {
-			userId = (String) session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId = (String) session.getAttribute("sMemberId");
-		}
-		sendMsgVo.setSender(userId);
-		sendMsgVo.setCode(userCode);
-
-		logger.info("sendMsgVo: {}", sendMsgVo);
-
-		int cnt = sendMsgService.insertAll(sendMsgVo, recipient);
-		logger.info("cnt: {}", cnt);
-
-		String msg = "", url="/mypage/message/messageWrite.do";
-		if(cnt>0) {
-			msg="전송되었습니다.";
-		}else {
-			msg="전송 실패했습니다.";
-		}
-
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-
-		return "common/message";
-	}
+	
 }

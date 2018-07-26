@@ -33,4 +33,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int updateOutDate(String sMemberId) {
 		return sqlSession.update(namespace+"updateOutDate", sMemberId);
 	}
+	@Override
+	public int updateSMember(SMemberVO sMemberVo) {
+		return sqlSession.update(namespace+"updateSMember", sMemberVo);
+	}
 }

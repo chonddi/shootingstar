@@ -1,5 +1,49 @@
-@charset "UTF-8";
+@CHARSET "UTF-8";
 
+/* sendMsg, receiveMsg */
+#msg{
+	color:#1f1f1f;
+	font-weight:700;
+	border-bottom: 2px solid #e46c0a;
+}
+.msgBtn{
+	margin-bottom: 30px;
+}
+#msgTbl tr>td{
+	padding-top:20px;
+}
+.divPage{
+	text-align: center;
+}
+.divPage a{
+	cursor: pointer;
+}
+.divSearch{
+	width:60%;
+	margin: 0 auto;
+	text-align: right;
+	margin-top:20px;
+}
+.btnMsgType{
+	border:none;
+	
+}
+.nowMsgType{
+	color:#345f93;
+	font-weight: bold;
+}
+#sendMsg{
+	border:  none;
+    width: 100px;
+    height: 30px;
+    font-size: 0.8em;
+    background: #9b9b9b;
+    color: white;
+    border-radius: 5px 5px;
+}
+
+
+/* msgWrite */
 .h1{
 	font-size:0.8em;
 	background-color: rgba(30, 30, 30, 1);

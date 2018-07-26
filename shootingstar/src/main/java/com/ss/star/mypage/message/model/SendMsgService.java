@@ -10,6 +10,7 @@ public interface SendMsgService {
 	public int insertAll(SendMsgVO sendMsgVo, String recipient);
 	//public List<SendMsgVO > selectMsg(Map<String, String> map);
 	public List<Map<String, Object>> selectSendMsg(String userId, String userCode, SearchVO searchVo);
-	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode);
 	public int getTotalRecord(String userId, String userCode, SearchVO searchVo);
+	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode, SearchVO searchVo);
+	public int getTotalRecordReceive(String userId, String userCode, SearchVO searchVo);
 }
