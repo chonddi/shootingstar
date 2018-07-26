@@ -115,20 +115,33 @@ $(document).ready(function(){
 		                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
 		                    html += "</span></b></h6>";
 		                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
-		                    html += "<tr><td></td></tr>";
+		                    html += "<tr><td></td></tr>";	
 		                    html += "<tr><td></td></tr>";
 		                    html += "</table></div>";
 		                    html += "</div>";
 		                    html += "<input type='hidden' id='id_" + data[i].qrNo + "' value='" + data[i].qrNo + "'>";
 		                    
-		                    //$("#cCnt").html(cCnt);	
-		    	            //$("#replyList").html(html);
+		                    $("#cCnt").html(cCnt);
+		    	            $("#replyList").html(html);
 		    	            
 	                	} else if(($("#id_" + data[i].parent).val() == data[i].parent) && data[i].levels == 1){
-	                		reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
+	                		html += "<div class='ajxDiv2'>";
+		                    html += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+		                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn1' onclick=\"qrReply(" + data[i].qrNo + ", " + data[i].qNo + ")\">답글</a>&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
+		                    html += "</span></b></h6>";
+		                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
+		                    html += "<tr><td></td></tr>";	
+		                    html += "<tr><td></td></tr>";
+		                    html += "</table></div>";
+		                    html += "</div>";
+		                    html += "<input type='hidden' id='id_" + data[i].qrNo + "' value='" + data[i].qrNo + "'>";
+
+		                    reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
 	                		reply += "<div class='ajxDiv3'>";
 	                		reply += "<div><table id='tbr_" + data[i].qrNo + "'><h6><b>" + data[i].id;
-	                		//reply += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
 	                		reply += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
 	                		reply += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
 	                		reply += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
@@ -139,6 +152,10 @@ $(document).ready(function(){
 	                		reply += "</table></div>";
 	                		reply += "</div>";
 
+		                    $("#cCnt").html(cCnt);
+		    	            $("#replyList").html(html);
+	        	            $("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
+		    	            
 	                		//$(reply).appendTo($("#tb_" + data[i].parent));
 	                		//$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
 	                	}
@@ -154,9 +171,9 @@ $(document).ready(function(){
 		            $("#replyList").html(html);
 	            }
 	            
-	            $("#cCnt").html(cCnt);	
-	            $("#replyList").html(html);
-	            $("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
+	            //$("#cCnt").html(cCnt);	
+	            //$("#replyList").html(html);
+	            //$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
 	            	            
 	            if(code == 1){
 	            	$(".ajxBtn1").hide();
