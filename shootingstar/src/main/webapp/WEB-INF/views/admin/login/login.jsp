@@ -25,8 +25,8 @@ $(document).ready(function(){
 		<fieldset>
 			<legend>관리자 로그인</legend>
 			<div>
-				<label for="userid" class="label">아이디</label>
-				<input type="text" name="userid" class="valid" placeholder="아이디를 입력하세요" value="${!cookie.ck_admin_userid.value}">
+				<label for="adminId" class="label">아이디</label>
+				<input type="text" name="adminId" class="valid" placeholder="아이디를 입력하세요" value="${!cookie.ck_admin_userid.value}">
 			</div>
 			<div>
 				<label for="pwd" class="label">비밀번호</label>

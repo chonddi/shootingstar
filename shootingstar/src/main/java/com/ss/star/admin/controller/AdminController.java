@@ -20,5 +20,6 @@ public class AdminController {
 	public void login() {
 		logger.info("관리자 로그인 화면 보여주기");
 	}
-
+	
+	
 }
