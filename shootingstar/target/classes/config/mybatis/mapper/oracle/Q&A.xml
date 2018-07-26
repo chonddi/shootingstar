@@ -46,7 +46,7 @@
 			select qnare_seq.nextval from dual
 		</selectKey>
 			insert into qnare(qrno, qno, id, content, parent)
-			values(#{qrNo}, #{qNo}, #{id}, #{content}, #{qrNo})
+			values(#{qrNo}, #{qNo}, #{id}, #{content}, 0)
 	</insert>
 	
 	<select id="QRCount" resultType="int">
@@ -54,8 +54,8 @@
     </select>
     
     <select id="QRList" parameterType="int" resultType="QRVO">
-    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate, (sysdate-regdate)*24 as newImgTerm from qnare
-    	where qno=#{qNo}
+    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate, parent, levels, (sysdate-regdate)*24 as newImgTerm from qnare
+    	where qno=#{qNo} order by qrno
     </select>
     
      <select id="QRselectByNo" parameterType="int" resultType="QRVO">
@@ -73,16 +73,16 @@
     </delete>
     
     <insert id="QRreply" parameterType="QRVO">
-	    insert into qnare(qrno, qno, id, content, parent)
-		values(qnare_seq.nextval, #{qNo}, #{id}, #{content}, #{qrNo})
+	    insert into qnare(qrno, qno, id, content, parent, levels)
+		values(qnare_seq.nextval, #{qNo}, #{id}, #{content}, #{qrNo}, +1)
     </insert>
-    
+<!--     
     <select id="QRreplyList" parameterType="int" resultType="QRVO">
     	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate
     	from qnare
     	where qrno=#{qrNo} and parent=#{qrNo}
     </select>
-
+ -->
 	
 <!-- 
 	

@@ -100,36 +100,64 @@ $(document).ready(function(){
 			data: $("#commentForm").serialize(),
 			success:function(data){
 				var html = "";
+				var reply = "";
 	            var cCnt = data.length;
 	            var code = $("input[name=code]").val();
 	            
-	            //$("<a>").attr("href", "#").text("수정").click(function (){fn_replyUpdate(result)}).appendTo(div);
-	            
 	            if(data.length > 0){
-	                for(i=0; i<data.length; i++){	                	
-	                    html += "<div class='ajxDiv2'>";
-	                    html += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
-	                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
-	                    html += "<a class='ajxBtn1' onclick=\"qrReply(" + data[i].qrNo + ", " + data[i].qNo + ")\">답글</a>&nbsp;&nbsp;";
-	                    html += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
-	                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
-	                    html += "</span></b></h6>";
-	                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
-	                    html += "<tr><td></td></tr>";
-	                    html += "</table></div>";
-	                    html += "</div>";
+	                for(i=0; i<data.length; i++){
+	                	if(data[i].levels == 0){
+		                    html += "<div class='ajxDiv2'>";
+		                    html += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+		                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn1' onclick=\"qrReply(" + data[i].qrNo + ", " + data[i].qNo + ")\">답글</a>&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
+		                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
+		                    html += "</span></b></h6>";
+		                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
+		                    html += "<tr><td></td></tr>";
+		                    html += "<tr><td></td></tr>";
+		                    html += "</table></div>";
+		                    html += "</div>";
+		                    html += "<input type='hidden' id='id_" + data[i].qrNo + "' value='" + data[i].qrNo + "'>";
+		                    
+		                    //$("#cCnt").html(cCnt);	
+		    	            //$("#replyList").html(html);
+		    	            
+	                	} else if(($("#id_" + data[i].parent).val() == data[i].parent) && data[i].levels == 1){
+	                		reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
+	                		reply += "<div class='ajxDiv3'>";
+	                		reply += "<div><table id='tbr_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+	                		//reply += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+	                		reply += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
+	                		reply += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
+	                		reply += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
+	                		reply += "</span></b></h6>";
+	                		reply += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
+	                		reply += "<tr><td></td></tr>";
+	                		reply += "<tr><td></td></tr>";
+	                		reply += "</table></div>";
+	                		reply += "</div>";
+
+	                		//$(reply).appendTo($("#tb_" + data[i].parent));
+	                		//$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
+	                	}
 	                }
+	                
 	            } else {	                
 	                html += "<div class='ajxDiv2'>";
 	                html += "<div style='color:gray;'><table><h6>등록된 댓글이 없습니다.</h6>";
 	                html += "</table></div>";
 	                html += "</div>";
+	                
+	                $("#cCnt").html(cCnt);	
+		            $("#replyList").html(html);
 	            }
 	            
 	            $("#cCnt").html(cCnt);	
-	            //$("#reTable").prepend(html);
 	            $("#replyList").html(html);
-	            
+	            $("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
+	            	            
 	            if(code == 1){
 	            	$(".ajxBtn1").hide();
 	            }
@@ -225,7 +253,6 @@ $(document).ready(function(){
 	    });
 		
  		var a = "";
- 		var html = "";
 		
 		a += "<table class='reGroup'><tr><td>";
 		a += "<img id='subline' src='<c:url value='/images/subline.png'/>'>";
@@ -233,7 +260,8 @@ $(document).ready(function(){
 	    a += "<button class='btn_sub2' type='button' onclick=\"qrReplySub(" + qrNo + ", " + qNo + ")\">등록</button></td>";
 	    a += "</tr></div>";
 	    
-	    $("#tb_" + qrNo).find("td").html(a);
+	    //$(".ajxDiv2").find("#tb_" + qrNo).last("td").html(a);
+	    $("#tb_" + qrNo + " tr:last").find("td").html(a);
 	    	    
 	}
 	
@@ -247,14 +275,15 @@ $(document).ready(function(){
 	        data : {'qrNo' : qrNo, 'qNo' : qNo, 'content' : reContent, 'id' : $('input[name=id]').val()},
 	        success : function(data){
 	            if(data == "success") {
-	            	$("#tb_" + qrNo).find("td").html("");
+	            	//$(".ajxDiv2").find("#tb_" + qrNo).first("td").html("");
+	            	$("#tb_" + qrNo + " tr:last").find("td").html("");
 	            	getCommentList(); //대댓글 등록 후 목록 출력
-	            	qrReplyList(qrNo);
+	            	//qrReplyList(qrNo);
 				}
 			}
 		});
 	}
- 	
+/*  	
  	//대댓글 목록
  	function qrReplyList(qrNo){ 		
  		$.ajax({
@@ -285,7 +314,7 @@ $(document).ready(function(){
 			}
 		});
  	}
-
+ */
  	
  /* 	
  	//대댓글 등록
