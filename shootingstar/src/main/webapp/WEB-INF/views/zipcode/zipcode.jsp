@@ -12,6 +12,11 @@
 		text-align: center;
 		margin: 10px;
 	}
+	.box2 a, #divPage a{
+		text-decoration: none;
+		color:black;
+    	font-size: 0.9em;
+	}
 </style>
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/paging.js'/>"></script>
@@ -149,7 +154,7 @@
 		//opener.frm1.address.value=address;
 		$(opener.document).find("#zipcode").val(zipcode);
 		$(opener.document).find("#address1").val(address);
-
+		$(opener.document).find("#address2").val('');
 		self.close();
 	}
 	
@@ -160,7 +165,7 @@
 
 	<h1>도로명 주소 검색</h1>
 	<p>도로명 주소, 건물명 또는 지번을 입력하세요</p>
-	<p style="color:blue;font-weight: bold">
+	<p style="color:blue;font-weight: bold;font-size:0.9em;">
 		검색어 예: 도로명 (반포대로 58), 건물명(독립기념관), 지번(삼성동 25)
 	</p>
 	
@@ -172,7 +177,7 @@
 		
 		<label for="dong">지역명</label>
 		<input type="text" name="keyword" id="dong" value='${param.keyword }'>
-		<input type="submit" value="찾기">		
+		<input type="submit" style="background: #9b9b9b;color:white; border:none;border-radius:5px 5px;padding-bottom: 5px;" value="찾기">		
 	</form>
 	<br>
 	<div id="divCount"></div>

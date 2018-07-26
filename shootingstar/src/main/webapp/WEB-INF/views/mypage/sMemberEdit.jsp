@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="mypageTop.jsp"%>
-    
+<script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
 	$(function(){
 		/* 유효성 */
@@ -25,13 +25,13 @@
 				alert('현재 비밀번호를 입력해주세요');
 				$('#oldPwd').focus();
 				bool=false;
-			}else if ($('#sPwd').val().length < 8 | $('#sPwd').val().length>15) {
+			}else if ($('#pwd').val().length < 8 | $('#pwd').val().length>15) {
 				alert('비밀번호는 8~15자리 입니다.');
-				$('#sPwd').focus();
+				$('#pwd').focus();
 				bool = false;
-			} else if ($('#sPwd').val() != $('#sPwd2').val()) {
+			} else if ($('#pwd').val() != $('#pwd2').val()) {
 				alert('새 비밀번호가 일치하지 않습니다.');
-				$('#sPwd2').focus();
+				$('#pwd2').focus();
 				bool = false;
 			}
 			return bool;
@@ -168,9 +168,9 @@
 	<div class="selectName">비밀번호 변경</div>
 	<div class="selectedPage">
 		<form method="post" id="changePwd" action="<c:url value='/mypage/passwordEdit.do'/>">
-			<div><input type="password" id="oldPwd" placeholder="현재 비밀번호"> </div>
-			<div><input type="password" id="sPwd" placeholder="새 비밀번호 (8~15자리)"></div>
-			<div><input type="password" id="sPwd2" placeholder="새 비밀번호 확인"></div>
+			<div><input type="password" id="oldPwd" name="oldPwd" placeholder="현재 비밀번호"> </div>
+			<div><input type="password" id="pwd" name="pwd" placeholder="새 비밀번호 (8~15자리)"></div>
+			<div><input type="password" id="pwd2" placeholder="새 비밀번호 확인"></div>
 			<div><input type="submit" id="changeBtn" class="btns" value="변경하기"></div>
 		</form>
 	</div>

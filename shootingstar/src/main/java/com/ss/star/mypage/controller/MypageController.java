@@ -93,6 +93,7 @@ public class MypageController {
 		return "common/message";
 	}
 	
+	//전문가 회원수정
 	@RequestMapping("/sMemberEdit.do")
 	public String sMemberEdit_post(@ModelAttribute SMemberVO sMemberVo, HttpServletRequest request, HttpSession session, Model model,
 				@RequestParam String oldIdenti, @RequestParam String oldAnt) throws IllegalStateException, IOException {
@@ -159,6 +160,60 @@ public class MypageController {
 		return "common/message";
 	}
 
+	//비밀번호 변경
+	@RequestMapping("/passwordEdit.do")
+	public String passwordEdit(HttpSession session, @RequestParam String pwd, @RequestParam String oldPwd, Model model) {
+		logger.info("비밀번호변경 oldPwd: {}, pwd: {}", oldPwd, pwd);
+		String userCode=(String)session.getAttribute("userCode");
+		logger.info("userCode:{}", userCode);
+		String userId="", msg="", url="/mypage/memberEdit.do";
+		
+		if("1".equals(userCode)) {
+			userId=(String) session.getAttribute("memberId");
+			logger.info("userId: {}", userId);
+			int result=memberService.checkPwd(userId, oldPwd);
+			logger.info("비밀번호 체크 결과 result:{}", result);
+			
+			if(result==MemberService.LOGIN_OK) {
+				//비밀번호수정
+				int cnt=memberService.updatePwd(pwd, userId);
+				if(cnt>0) {
+					msg="수정되었습니다.";
+				}else {
+					msg="수정 실패하였습니다.";
+				}
+			}else if(result==MemberService.PWD_DISAGREE) {
+				msg="비밀번호가 틀렸습니다.";
+			}
+		}else if("2".equals(userCode)) {
+			userId=(String) session.getAttribute("sMemberId");
+			logger.info("userId: {}", userId);
+			int result=sMemberService.checkPwd(userId, oldPwd);
+			logger.info("비밀번호 체크 결과 result:{}", result);
+			
+			if(result==SMemberService.LOGIN_OK) {
+				//비밀번호 수정
+				int cnt = sMemberService.updatePwd(pwd, userId);
+				if(cnt>0) {
+					msg="수정되었습니다.";
+				}else {
+					msg="수정 실패하였습니다.";
+				}
+			}else if(result==SMemberService.PWD_DISAGREE) {
+				msg="비밀번호가 틀렸습니다.";
+			}
+			
+		}else {
+			msg="잘못된 접근입니다.";
+			url="/index.do";
+			
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	//회원탈퇴
 	@RequestMapping(value="/del.do", method=RequestMethod.GET)
 	public void del() {

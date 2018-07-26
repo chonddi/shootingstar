@@ -105,7 +105,7 @@ public class MessageController {
 		logger.info("받은 쪽지 전체 레코드 개수={}", totalRecord);
 		
 
-		model.addAttribute("sendList", list);
+		model.addAttribute("receiveList", list);
 		model.addAttribute("pageVo", pagingInfo);
 	}
 

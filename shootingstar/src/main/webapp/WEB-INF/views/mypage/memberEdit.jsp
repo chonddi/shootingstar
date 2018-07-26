@@ -129,8 +129,8 @@
 	<div class="selectName">비밀번호 변경</div>
 	<div class="selectedPage">
 		<form method="post" id="changePwd" action="<c:url value='/mypage/passwordEdit.do'/>">
-			<div><input type="password" id="oldPwd" placeholder="현재 비밀번호"> </div>
-			<div><input type="password" id="pwd" placeholder="새 비밀번호 (8~15자리)"></div>
+			<div><input type="password" id="oldPwd" name="oldPwd" placeholder="현재 비밀번호"> </div>
+			<div><input type="password" id="pwd" name="pwd" placeholder="새 비밀번호 (8~15자리)"></div>
 			<div><input type="password" id="pwd2" placeholder="새 비밀번호 확인"></div>
 			<div><input type="submit" id="changeBtn" class="btns" value="변경하기"></div>
 		</form>

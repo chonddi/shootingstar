@@ -1,5 +1,8 @@
 package com.ss.star.member.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +55,15 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int selectCountMemberId(String memberId) {
 		return memberDao.selectCountMemberId(memberId);
+	}
+
+	@Override
+	public int updatePwd(String pwd, String userId) {
+		Map<String, String> map = new HashMap<>();
+		map.put("pwd", pwd);
+		map.put("memberId", userId);
+		
+		return memberDao.updatePwd(map);
 	}
 	
 	

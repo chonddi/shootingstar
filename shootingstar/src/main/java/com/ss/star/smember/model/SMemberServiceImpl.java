@@ -1,5 +1,8 @@
 package com.ss.star.smember.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +55,15 @@ public class SMemberServiceImpl implements SMemberService{
 	@Override
 	public int updateSMember(SMemberVO sMemberVo) {
 		return sMemberDao.updateSMember(sMemberVo);
+	}
+
+	@Override
+	public int updatePwd(String sPwd, String userId) {
+		Map<String, String> map = new HashMap<>();
+		map.put("sPwd", sPwd);
+		map.put("sMemberId", userId);
+		
+		return sMemberDao.updatePwd(map);
 	}
 	
 }
