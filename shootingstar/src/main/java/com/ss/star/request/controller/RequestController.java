@@ -117,17 +117,25 @@ public class RequestController {
 		}
 				
 		String rtype="";
-		if(ck1==null) {
+		
+		if(ck1!=null&&ck2!=null) {
+			rtype=ck1+", "+ck2;
+		}else if(ck1==null) {
 			rtype=ck2;
 		}else if(ck2==null) {
 			rtype=ck1;
-		}else if(ck1==null&&ck2==null) {
-			rtype=" ";
 		}else {
-			rtype=ck1+", "+ck2;
+			rtype="미선택";
 		}
 	
-	
+		
+		String date = vo.getRQDate();
+		if(date==null||date.isEmpty()) {
+			vo.setRQDate("추후협의");
+		}
+		
+		
+		
 		if(cg1.equals("인물/프로필")) {
 			vo.setCgNo(1);
 		}else if(cg1.equals("푸드")) {
@@ -168,7 +176,6 @@ public class RequestController {
 			logger.info("견적 등록 결과, cnt={}", cnt);
 			
 			if(cnt>=0) {
-				model.addAttribute("msg", "REQUEST 등록에 성공하였습니다.");
 				model.addAttribute("url", "/request/list.do");
 				
 				return "common/message";

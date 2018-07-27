@@ -260,10 +260,10 @@
 							</c:when>
 							<c:otherwise>				
 									<!-- 내용 일부만 보여주기 -->
-									<c:if test="${fn:length(vo.RQDetail)>23}">	
-										${fn:substring(vo.RQDetail, 0, 23)}...
+									<c:if test="${fn:length(vo.RQDetail)>18}">	
+										${fn:substring(vo.RQDetail, 0, 18)}...
 									</c:if>
-									<c:if test="${fn:length(vo.RQDetail)<=23}">
+									<c:if test="${fn:length(vo.RQDetail)<=18}">
 										${vo.RQDetail}
 									</c:if>								
 								</a>
@@ -283,47 +283,47 @@
 					<td class="pick" id="ttl"> 
 					<c:choose>
 				       <c:when test="${vo.pickCount>='1'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 
 					
 					<c:choose>
 				      <c:when test="${vo.pickCount>='2'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 								
 					<c:choose>
 				      <c:when test="${vo.pickCount>='3'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 				       <c:when test="${vo.pickCount>='4'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 				       <c:when test="${vo.pickCount>='5'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>		
 					

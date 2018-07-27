@@ -42,12 +42,12 @@
 			<nav id="topMenu">
 				<ul>
 
-					<li><a class="menuLink" href="#">REQUEST</a>
+					<li><a class="menuLink" href="<c:url value='/request/list.do'/>">REQUEST</a>
 						<ul>
 							<c:if test="${!empty sessionScope.memberId}">
 								<li><a href="<c:url value='/request/write.do'/>">견적작성</a></li>
 							</c:if>
-							<li><a href="#">견적목록</a></li>
+							<li><a href="<c:url value='/request/list.do'/>">견적목록</a></li>
 						</ul></li>
 					<li><a class="menuLink" href="#">PORTPOLIO</a>
 						<ul>
@@ -72,7 +72,7 @@
 				</ul>
 				<ul >
 					<li><img id="userli" alt="마이 페이지"
-						src="<c:url value='/images/user.png'/>">
+						src="<c:url value='/images/mem48.png'/>">
 						<ul id="userul">
 						<c:if test="${empty sessionScope.userCode}">
 							<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
