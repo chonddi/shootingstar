@@ -132,7 +132,7 @@
 	<span id="textleng"></span>
 	</div>
 	<div class="center">
-		<input type="button" class="button" id="regit" value="등록"/>
+		<input type="button" class="button" id="regit" value="보내기"/>
 		&nbsp;
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>

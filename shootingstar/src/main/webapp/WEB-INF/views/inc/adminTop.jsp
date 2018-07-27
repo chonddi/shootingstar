@@ -15,7 +15,9 @@
 <title>ShootingStar</title>
 <style type="text/css">
 
-
+nav ul {
+	list-style: none;
+}
 </style>
 
 <!-- 부트스트랩 -->
@@ -29,8 +31,8 @@
 
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/resetCss.css'/>">
+<%--  <link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/resetCss.css'/>"> --%> 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/adminTop.css'/>">
 <link rel="stylesheet" type="text/css"
@@ -79,7 +81,7 @@
 							<li ><a href="<c:url value='#'/>">관리자 정보수정</a></li>
 						</ul>
 					</li>
-					<%-- <li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">회원관리<span class="caret"></span></a>
+<%-- 					 <li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu pull-right" style=width:300px>
 							<li><a href="<c:url value='#'/>">멤버십 만료 회원 조회</a></li>
 							<li><a href="<c:url value='#'/>">모든 회원 조회<span class="caret" id="multi"></span></a>
@@ -90,8 +92,8 @@
 							</li>
 						</ul> 
 						
-					</li> --%>
-					 <li id="adminCtg"><a class="menuLink" href="#" >회원관리 ▼</a>
+					</li>  --%>
+				 <li id="adminCtg"><a class="menuLink" href="#" >회원관리 ▼</a>
 						<ul>
 							<li><a href="<c:url value='#'/>">멤버십 만료 회원 조회</a></li>
 							<li><a href="<c:url value='#'/>">모든 회원 조회 ▼</span></a>
@@ -101,7 +103,7 @@
 								</ul>
 							</li>
 						</ul> 
-					
+					</li> 
 					<li id="adminCtg"><a class="menuLink" href="#" >게시물관리 ▼</a>
 						<ul>
 							<li><a href="<c:url value='#'/>">견적 요청 글 관리</a></li>

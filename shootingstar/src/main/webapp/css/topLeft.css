@@ -2,7 +2,7 @@
 /* container */
 #container	{
 	/*clear: both;*/
-	width:10%; 
+	width:15%; 
 	/*margin: 40px;*/
 	float:left;
 	overflow: auto;
@@ -10,8 +10,9 @@
 	}
 	#container #leftNavi	{
 		float: center; /*background:#FFCCCC;*/
-		width: 100%;
-		padding: 70px 0 0 0;
+		width: auto;
+		padding: 100px 0 0 0;
+		height: auto;
 		}
 /* 		#container #leftNavi dt	{
 			padding: 7px 5px 25px 20px;
@@ -23,7 +24,7 @@
 			 padding: 20px; 
 			font-weight: bold;
 			}
-			#container #leftNavi li a	{
+			#container #leftNavi li a	{ 
 				text-decoration: none;
 				display: block;
 				/* color: #585721;
@@ -31,14 +32,14 @@
 				padding: 10px 5px;*/
 				}
  				#container #leftNavi>li:hover, #container #leftNavi>li:focus	{
-					background:#C6D9F1;
+					background-color:#C6D9F1;
 					} 
 				#container li ul li{
-				 	padding: 5px 0px 0px 50px;  /* 상우하좌 */
+				 	padding: 5px 0px 0px 5px;  /* 상우하좌 */
 				}
 
-#container li>ul {
-	/* background: white;  */
+#container li ul {
+	background-color:#C6D9F1;
 	display: none; /* 평상시에는 서브메뉴가 안보이게 하기 */
 	height: auto;
 	position: absolute;
@@ -46,7 +47,7 @@
 	font-weight: bold;
 	color: #376092;
 	float:left;
-	padding-top: 20px;
+/* 	padding-top: 20px; */
 	
 }
 
@@ -55,8 +56,8 @@
 	display: block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 }
 #adminCtg ul{
-	padding-left:100px;
+	padding-left:10px;
 	text-align: left;
-	width:400px;
+	
 	
 }

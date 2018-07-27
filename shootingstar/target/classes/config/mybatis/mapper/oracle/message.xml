@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sql.message">
+	
+	<resultMap id="msgDetailMap" type="map" >
+		<id column="sMsgNo" jdbcType="BIGINT" property="sMsgNo"/>
+    	<result column="content" jdbcType="CLOB" javaType="java.lang.String" property="content"/>
+    	<result column="title" jdbcType="VARCHAR" property="title"/>
+    	<result column="recipient" jdbcType="VARCHAR" property="recipient"/>
+		<result column="regdate" jdbcType="TIMESTAMP" property="regdate"/>
+	</resultMap>
 
 	<sql id="messageViewCol">
 		sMsgNo, sender, title, content, sDelFlag, regdate, code, rMsgNo, recipient, rDelFlag, readFlag
@@ -83,6 +91,10 @@
 		where 
 		<include refid="searchWhere"></include>
 		recipient=#{recipient} and code!=#{code}		
+	</select>
+	
+	<select id="selectDetail" parameterType="int" resultMap="msgDetailMap">
+		select sMsgNo, title, content, regdate, recipient from message where sMsgno=#{sMsgNo}	
 	</select>
 </mapper>
 

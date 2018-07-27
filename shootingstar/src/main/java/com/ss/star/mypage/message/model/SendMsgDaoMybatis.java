@@ -36,5 +36,9 @@ public class SendMsgDaoMybatis implements SendMsgDAO{
 	public int getTotalRecordReceive(Map<String, Object> map) {
 		return sqlSession.selectOne(namespace+"getTotalRecordReceive", map);
 	}
+	@Override
+	public Map<String, Object> selectDetail(int sMsgNo) {
+		return sqlSession.selectOne(namespace+"selectDetail", sMsgNo);
+	}
 	
 }

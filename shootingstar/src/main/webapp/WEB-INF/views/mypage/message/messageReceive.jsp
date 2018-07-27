@@ -3,7 +3,7 @@
 <%@ include file="../mypageTop.jsp"%>
 <script type="text/javascript">
 	$(function(){
-		$('#sendMsgType').click(function(){
+		$('.anotherBtn').click(function(){
 			location.href="<c:url value='/mypage/message/message.do'/>";
 		});
 	});
@@ -25,7 +25,7 @@
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 	<div class="selectedPage">
-		<div class="msgBtn"><span class="btnMsgType"><input type="button" id="sendMsgType" value="보낸쪽지"></span> <span class="nowMsgType">받은쪽지</span></div>
+		<div class="msgBtn"><span class="btnMsgType"><input type="button" class="anotherBtn" value="보낸쪽지"></span> <span class="nowMsgType">받은쪽지</span></div>
 		<table id="msgTbl">
 			<colgroup>
 				<col style="width:20%">
@@ -44,12 +44,19 @@
 		    	<c:forEach var="receiveMap" items="${receiveList}">
 				<tr>
 					<td>${receiveMap["RECIPIENT"] }</td>
-		    		<td><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${receiveMap["SMSGNO"]}'/>">${receiveMap["TITLE"]}</a></td>
+		    		<td>
+		    			<c:if test="${receiveMap['READFLAG']=='N'}">
+		    				<b><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${receiveMap["SMSGNO"]}'/>">${receiveMap["TITLE"]}</a></b>		
+		    			</c:if>
+		    			<c:if test="${receiveMap['READFLAG']=='Y'}">
+		    				<b><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${receiveMap["SMSGNO"]}'/>">${receiveMap["TITLE"]}</a></b>		
+		    			</c:if>
+		    		</td>
 		    		<td><fmt:formatDate value="${receiveMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 		    	</c:forEach>
 	    	</c:if>
-	    </table><br>
+	    </table>
 	    
 	    <!-- 페이지처리 -->
 		<div class="divPage">
