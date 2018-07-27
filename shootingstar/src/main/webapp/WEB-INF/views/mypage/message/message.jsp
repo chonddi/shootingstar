@@ -8,7 +8,7 @@
 			y = (screen.availHeight - 550) / 2;
 			window.open("<c:url value='/mypage/message/messageWrite.do'/>","쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
 		});
-		$('#receiveMsg').click(function(){
+		$('.anotherBtn').click(function(){
 			location.href="<c:url value='/mypage/message/messageReceive.do'/>";
 		});
 		
@@ -17,12 +17,31 @@
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
+	function msgView(sender, sMsgNo) {
+		document.detailFrm.sender.value=sender;
+		document.detailFrm.sMsgNo.value=sMsgNo;
+		msgViewSubmit();
+	}
+	function msgViewSubmit(){
+		frm = document.getElementById("detailFrm");
+		x = (screen.availWidth - 460) / 2;
+		y = (screen.availHeight - 550) / 2;
+		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		frm.action = "<c:url value='/mypage/message/messageDetail.do'/>";
+		frm.target = "viewer";
+		frm.method = "post";
+		frm.submit();
+	}
 </script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
 		쪽지함
 	</div>
 	<!-- 페이징 처리를 위한 form -->
+	<form id="detailFrm" name="detailFrm">
+		<input type="hidden" name="sender">
+		<input type="hidden" name="sMsgNo">
+	</form>
 	<form name="frmPage" method="post"
 		action="<c:url value='/mypage/message/message.do'/>">
 		<input type="hidden" name="currentPage" >
@@ -30,7 +49,7 @@
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 	<div class="selectedPage">
-		<div class="msgBtn"><div class="nowMsgType" style="float: left">보낸쪽지</div> <div class="btnMsgType" style="float: left"><input type="button" id="receiveMsg" value="받은쪽지"></div></div>
+		<div class="msgBtn"><span class="nowMsgType">보낸쪽지</span> <span class="btnMsgType"><input type="button" class="anotherBtn" value="받은쪽지"></span></div>
 		<table id="msgTbl">
 			<colgroup>
 				<col style="width:20%">
@@ -49,13 +68,13 @@
 		    	<c:forEach var="sendMap" items="${sendList}">
 				<tr>
 					<td>${sendMap["RECIPIENT"] }</td>
-		    		<td><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${sendMap["SMSGNO"]}'/>">${sendMap["TITLE"]}</a></td>
+		    		<td><a href="#" onclick="msgView('${sendMap['SENDER']}','${sendMap['SMSGNO']}')">${sendMap["TITLE"]}</a></td>
 		    		<td><fmt:formatDate value="${sendMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 		    	</c:forEach>
 			</c:if>    
 	    </table><br>
-		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div><br>
+		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div>
 		
 		<!-- 페이지처리 -->
 		<div class="divPage">

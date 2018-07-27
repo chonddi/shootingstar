@@ -12,8 +12,13 @@
 #msgTbl tr>td{
 	padding-top:20px;
 }
+#msgTbl a:hover{
+	font-weight: bold;
+	cursor: pointer;
+}
 .divPage{
 	text-align: center;
+	margin-top:35px;
 }
 .divPage a{
 	cursor: pointer;
@@ -24,13 +29,27 @@
 	text-align: right;
 	margin-top:20px;
 }
-.btnMsgType{
-	border:none;
-	
+.anotherBtn{
+	background: #f6f6f6;
+    border-radius: 2px;
+    vertical-align: baseline;
+    padding: 8px;
+    font-weight: bold;	
+    border:1px solid black;
+}
+.anotherBtn:hover{
+	background: #e3e3e3;
+}
+.anotherBtn:active{
+	border:1px solid black;
 }
 .nowMsgType{
-	color:#345f93;
-	font-weight: bold;
+	color: white;
+    font-weight: bold;
+    background: #345f93;
+    padding: 7px 8px;
+    border: 1px solid black;
+    border-radius: 2px;
 }
 #sendMsg{
 	border:  none;

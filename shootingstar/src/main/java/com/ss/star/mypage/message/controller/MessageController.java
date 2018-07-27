@@ -32,7 +32,7 @@ public class MessageController {
 	@Autowired private SendMsgService sendMsgService;
 	@Autowired private MemberService memberService;
 	@Autowired private SMemberService sMemberService;
-	
+		
 	//보낸쪽지
 	@RequestMapping("/message.do")
 	public void message(HttpSession session, Model model, @ModelAttribute SearchVO searchVo) {
@@ -49,12 +49,8 @@ public class MessageController {
 		logger.info("setting 후 searchVo={}", searchVo);
 		
 		String userCode = (String) session.getAttribute("userCode");
-		String userId = "";
-		if("1".equals(userCode)) {
-			userId=(String)session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId=(String)session.getAttribute("sMemberId");
-		}
+		String userId = Utility.getUserId(userCode, session);
+		
 		logger.info("보낸 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
 
@@ -87,12 +83,8 @@ public class MessageController {
 		logger.info("setting 후 searchVo={}", searchVo);
 		
 		String userCode = (String) session.getAttribute("userCode");
-		String userId = "";
-		if("1".equals(userCode)) {
-			userId=(String)session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId=(String)session.getAttribute("sMemberId");
-		}
+		String userId = Utility.getUserId(userCode, session);
+		
 		logger.info("받은 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
 
@@ -136,12 +128,9 @@ public class MessageController {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
 
-		String userId="";
-		if("1".equals(userCode)) {
-			userId = (String) session.getAttribute("memberId");
-		}else if("2".equals(userCode)) {
-			userId = (String) session.getAttribute("sMemberId");
-		}
+		String userId=Utility.getUserId(userCode, session);
+		logger.info("userid: {}", userId);
+		
 		sendMsgVo.setSender(userId);
 		sendMsgVo.setCode(userCode);
 
@@ -161,5 +150,28 @@ public class MessageController {
 		model.addAttribute("url", url);
 
 		return "common/message";
+	}
+	
+	@RequestMapping("/messageDetail.do")
+	public String messageDetail(@RequestParam String sender, @RequestParam int sMsgNo, HttpSession session, Model model) {
+		logger.info("메세지 디테일 입력된 값 sender: {}, sMsgNo: {}", sender, sMsgNo);
+		String userCode = (String)session.getAttribute("userCode");
+
+		String userId = Utility.getUserId(userCode, session);
+		if(userId.equals(sender)) {
+			Map<String, Object> map = sendMsgService.selectDetail(sMsgNo);
+			logger.info("map.size(): {}", map.size());
+			
+			
+			
+			model.addAttribute("map", map);
+			
+			return "mypage/message/messageDetail";
+		}else {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/index.do");
+			
+			return "common/message";
+		}
 	}
 }

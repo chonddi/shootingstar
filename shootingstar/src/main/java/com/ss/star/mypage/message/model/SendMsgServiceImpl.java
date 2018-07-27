@@ -80,6 +80,11 @@ public class SendMsgServiceImpl implements SendMsgService{
 		return total;
 	}
 
+	@Override
+	public Map<String, Object> selectDetail(int sMsgNo) {
+		return sendMsgDao.selectDetail(sMsgNo);
+	}
+
 	
 	
 

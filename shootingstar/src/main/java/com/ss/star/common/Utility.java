@@ -1,6 +1,7 @@
 package com.ss.star.common;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class Utility {
 	public static final int BLOCK_SIZE=10;
@@ -19,4 +20,14 @@ public class Utility {
 		
 	}
 	
+	public static String getUserId(String userCode, HttpSession session) {
+		String result="";
+		if("1".equals(userCode)) {
+			result=(String)session.getAttribute("memberId");
+		}else if("2".equals(userCode)) {
+			result=(String)session.getAttribute("sMemberId");
+		}
+		
+		return result;
+	}
 }
