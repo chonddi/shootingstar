@@ -85,6 +85,11 @@ public class SendMsgServiceImpl implements SendMsgService{
 		return sendMsgDao.selectDetail(sMsgNo);
 	}
 
+	@Override
+	public int updateRead(int sMsgNo) {
+		return sendMsgDao.updateRead(sMsgNo);
+	}
+
 	
 	
 

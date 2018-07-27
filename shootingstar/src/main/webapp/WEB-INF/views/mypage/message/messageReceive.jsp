@@ -12,11 +12,50 @@
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
+	
+	function msgRead(recipient, sMsgNo, code) {
+		document.detailFrm.recipient.value=recipient;
+		document.detailFrm.sMsgNo.value=sMsgNo;
+		document.detailFrm.code.value=code;
+		msgViewSubmit();
+	}
+	function msgView(recipient, sMsgNo, code) {
+		document.detailFrm.recipient.value=recipient;
+		document.detailFrm.sMsgNo.value=sMsgNo;
+		document.detailFrm.code.value=code;
+		msgViewSubmit2();
+	}
+	
+	function msgViewSubmit(){
+		frm = document.getElementById("detailFrm");
+		x = (screen.availWidth - 460) / 2;
+		y = (screen.availHeight - 550) / 2;
+		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		frm.action = "<c:url value='/mypage/message/messageDetailRead.do'/>";
+		frm.target = "viewer";
+		frm.method = "post";
+		frm.submit();
+	}
+	function msgViewSubmit2(){
+		frm = document.getElementById("detailFrm");
+		x = (screen.availWidth - 460) / 2;
+		y = (screen.availHeight - 550) / 2;
+		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		frm.action = "<c:url value='/mypage/message/messageDetail2.do'/>";
+		frm.target = "viewer";
+		frm.method = "post";
+		frm.submit();
+	}
 </script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
 		쪽지함
 	</div>
+	<form id="detailFrm" name="detailFrm" method="post" action="<c:url value='/mypage/message/messageDetail.do'/>"> 
+	<input type="hidden" name="recipient">
+		<input type="hidden" name="sMsgNo">
+		<input type="hidden" name="code">
+	</form>
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
 		action="<c:url value='/mypage/message/message.do'/>">
@@ -43,13 +82,15 @@
 			<c:if test="${!empty receiveList }">
 		    	<c:forEach var="receiveMap" items="${receiveList}">
 				<tr>
-					<td>${receiveMap["RECIPIENT"] }</td>
+					<td>${receiveMap["SENDER"] }</td>
 		    		<td>
 		    			<c:if test="${receiveMap['READFLAG']=='N'}">
-		    				<b><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${receiveMap["SMSGNO"]}'/>">${receiveMap["TITLE"]}</a></b>		
+		    				<b><a href="#" onclick="msgRead('${receiveMap['RECIPIENT']}','${receiveMap['SMSGNO']}','${receiveMap['CODE']}')">
+		    					${receiveMap["TITLE"]}</a></b>
+		    				<img alt="new이미지" src="<c:url value='/images/new.png'/>">		
 		    			</c:if>
 		    			<c:if test="${receiveMap['READFLAG']=='Y'}">
-		    				<b><a href="<c:url value='/mypage/message/msgDetail.do?sMsgNo=${receiveMap["SMSGNO"]}'/>">${receiveMap["TITLE"]}</a></b>		
+		    				<b><a href="#" onclick="msgView('${receiveMap['RECIPIENT']}','${receiveMap['SMSGNO']}','${receiveMap['CODE']}')">${receiveMap["TITLE"]}</a></b>		
 		    			</c:if>
 		    		</td>
 		    		<td><fmt:formatDate value="${receiveMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

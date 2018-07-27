@@ -14,4 +14,5 @@ public interface SendMsgService {
 	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode, SearchVO searchVo);
 	public int getTotalRecordReceive(String userId, String userCode, SearchVO searchVo);
 	public Map<String, Object> selectDetail(int sMsgNo);
+	public int updateRead(int sMsgNo);
 }

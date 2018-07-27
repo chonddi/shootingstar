@@ -36,7 +36,7 @@ public class MailController {
     @RequestMapping(value = "/checkMail.do", produces = "application/text; charset=utf8")
     @ResponseBody
     private String checkMail(@RequestParam String memberId, @RequestParam String userCode) {
-    	logger.info("id 중복 확인 memberId: {}, userCode: {}", memberId, userCode);
+    	logger.info("id 중복 확인 userid: {}, userCode: {}", memberId, userCode);
         if(userCode.equals("1")) {
         	MemberVO memberVo = memberService.selectID(memberId);
         	return gson.toJson(memberVo);
@@ -57,7 +57,7 @@ public class MailController {
         String subject = "회원가입 승인 번호 입니다.";
         StringBuilder sb = new StringBuilder();
         sb.append("회원가입 승인번호는 ").append(joinCode).append(" 입니다.");
-        return mailService.send(subject, sb.toString(), "hand0208@gmail.com", memberId);
+        return mailService.send(subject, sb.toString(), "hkedushootingstar@gmail.com", memberId);
     }
     
     @RequestMapping("/code.do")

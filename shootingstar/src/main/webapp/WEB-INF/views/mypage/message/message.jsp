@@ -17,9 +17,10 @@
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
-	function msgView(sender, sMsgNo) {
+	function msgView(sender, sMsgNo, code) {
 		document.detailFrm.sender.value=sender;
 		document.detailFrm.sMsgNo.value=sMsgNo;
+		document.detailFrm.code.value=code;
 		msgViewSubmit();
 	}
 	function msgViewSubmit(){
@@ -41,6 +42,7 @@
 	<form id="detailFrm" name="detailFrm">
 		<input type="hidden" name="sender">
 		<input type="hidden" name="sMsgNo">
+		<input type="hidden" name="code">
 	</form>
 	<form name="frmPage" method="post"
 		action="<c:url value='/mypage/message/message.do'/>">
@@ -68,7 +70,7 @@
 		    	<c:forEach var="sendMap" items="${sendList}">
 				<tr>
 					<td>${sendMap["RECIPIENT"] }</td>
-		    		<td><a href="#" onclick="msgView('${sendMap['SENDER']}','${sendMap['SMSGNO']}')">${sendMap["TITLE"]}</a></td>
+		    		<td><a href="#" onclick="msgView('${sendMap['SENDER']}','${sendMap['SMSGNO']}','${sendMap['CODE']}')">${sendMap["TITLE"]}</a></td>
 		    		<td><fmt:formatDate value="${sendMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 		    	</c:forEach>

@@ -49,7 +49,7 @@ public class MessageController {
 		logger.info("setting 후 searchVo={}", searchVo);
 		
 		String userCode = (String) session.getAttribute("userCode");
-		String userId = Utility.getUserId(userCode, session);
+		String userId = (String) session.getAttribute("userid");
 		
 		logger.info("보낸 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
@@ -83,7 +83,7 @@ public class MessageController {
 		logger.info("setting 후 searchVo={}", searchVo);
 		
 		String userCode = (String) session.getAttribute("userCode");
-		String userId = Utility.getUserId(userCode, session);
+		String userId = (String) session.getAttribute("userid");
 		
 		logger.info("받은 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
@@ -125,10 +125,10 @@ public class MessageController {
 
 	@RequestMapping(value="/messageWrite.do", method=RequestMethod.POST)
 	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String recipient, Model model) {
-		String userCode = (String)session.getAttribute("userCode");
+		String userCode = (String) session.getAttribute("userCode");
 		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
 
-		String userId=Utility.getUserId(userCode, session);
+		String userId=(String) session.getAttribute("userid");
 		logger.info("userid: {}", userId);
 		
 		sendMsgVo.setSender(userId);
@@ -153,20 +153,70 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/messageDetail.do")
-	public String messageDetail(@RequestParam String sender, @RequestParam int sMsgNo, HttpSession session, Model model) {
+	public String messageDetail(@RequestParam String sender, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model) {
 		logger.info("메세지 디테일 입력된 값 sender: {}, sMsgNo: {}", sender, sMsgNo);
 		String userCode = (String)session.getAttribute("userCode");
-
-		String userId = Utility.getUserId(userCode, session);
-		if(userId.equals(sender)) {
+		logger.info("메세지 디테일 입력된 값 code: {}, userCode: {}", code, userCode);
+		String userid = (String) session.getAttribute("userid");
+		logger.info("userid: {}",userid);
+		
+		if(userid.equals(sender)&&code.equals(userCode)) {
 			Map<String, Object> map = sendMsgService.selectDetail(sMsgNo);
 			logger.info("map.size(): {}", map.size());
-			
-			
-			
 			model.addAttribute("map", map);
 			
 			return "mypage/message/messageDetail";
+		}else {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/index.do");
+			
+			return "common/message";
+		}
+	}
+	
+	@RequestMapping("/messageDetailRead.do")
+	public String messageDetailRead(@RequestParam String recipient, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model){
+		logger.info("메세지 디테일 read, recipient:{}, sMsgNo: {}", recipient, sMsgNo);
+		String userCode = (String)session.getAttribute("userCode");
+		logger.info("메세지 디테일 read, code: {}", code, userCode);
+		String userid = (String) session.getAttribute("userid");
+		logger.info("userid: {}",userid);
+		
+		if(userid.equals(recipient)&&code.equals(userCode)) {
+			int cnt = sendMsgService.updateRead(sMsgNo);
+			if(cnt>0) {
+				model.addAttribute("recipient", recipient);
+				model.addAttribute("sMsgNo", sMsgNo);
+				model.addAttribute("code", code);
+				return "/mypage/message/messageDetail2.do";
+			}else {
+				model.addAttribute("msg", "잘못된 접근입니다.");
+				model.addAttribute("url", "/index.do");
+				
+				return "common/message";
+			}
+		}else {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/index.do");
+			
+			return "common/message";
+		}
+	}
+
+	@RequestMapping("/messageDetail2.do")
+	public String messageDetail2(@RequestParam String recipient, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model) {
+		logger.info("메세지 디테일 입력된 값 recipient: {}, sMsgNo: {}", recipient, sMsgNo);
+		String userCode = (String)session.getAttribute("userCode");
+		logger.info("메세지 디테일 입력된 값 code: {}, userCode: {}", code, userCode);
+		String userid = (String) session.getAttribute("userid");
+		logger.info("userid: {}",userid);
+		
+		if(userid.equals(recipient)&&code.equals(userCode)) {
+			Map<String, Object> map = sendMsgService.selectDetail(sMsgNo);
+			logger.info("map.size(): {}", map.size());
+			model.addAttribute("map", map);
+			
+			return "mypage/message/messageDetail2";
 		}else {
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			model.addAttribute("url", "/index.do");

@@ -12,4 +12,5 @@ public interface SendMsgDAO {
 	public List<Map<String, Object>> selectReceiveMsg(Map<String, Object> map);
 	public int getTotalRecordReceive(Map<String, Object> map);
 	public Map<String, Object> selectDetail(int sMsgNo);
+	public int updateRead(int sMsgNo);
 }

@@ -31,8 +31,8 @@
 				if(bool){
 					if(confirm("전송하시겠습니까?")){
 						$('form[name=msgFrm]').submit();
-						setTimeout(function() {self.close()}, 100);
 						opener.parent.location.reload();
+						setTimeout(function() {self.close()}, 100);
 					}
 				}
 			}

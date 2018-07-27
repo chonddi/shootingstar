@@ -38,18 +38,16 @@ public class MypageController {
 	public String memberEdit(HttpSession session, Model model) {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("회원정보 수정 userCode: {}", userCode);
+		String userid =(String)session.getAttribute("userid");
+		logger.info("회원정보 수정 userid: {}", userid);
 
 		if("1".equals(userCode)) {
-			String memberId =(String)session.getAttribute("memberId");
-			logger.info("회원정보 수정 memberId: {}", memberId);
-			MemberVO memberVo= memberService.selectID(memberId);
+			MemberVO memberVo= memberService.selectID(userid);
 			model.addAttribute("memberVo", memberVo);
 
 			return "mypage/memberEdit";
 		}else if("2".equals(userCode)) {
-			String sMemberId =(String)session.getAttribute("sMemberId");
-			logger.info("회원정보 수정 sMemberId: {}", sMemberId);
-			SMemberVO sMemberVo= sMemberService.selectID(sMemberId);
+			SMemberVO sMemberVo= sMemberService.selectID(userid);
 			model.addAttribute("sMemberVo", sMemberVo);
 
 			return "mypage/sMemberEdit";
@@ -63,16 +61,16 @@ public class MypageController {
 
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.POST)
 	public String memberEdit_post(@ModelAttribute MemberVO memberVo, HttpSession session, Model model) {
-		String memberId = (String)session.getAttribute("memberId");
-		logger.info("회원정보수정 입력된 vo: {}, session아이디: {}", memberVo, memberId);
+		String userid = (String)session.getAttribute("userid");
+		logger.info("회원정보수정 입력된 vo: {}, session아이디: {}", memberVo, userid);
 
-		int result = memberService.checkPwd(memberId, memberVo.getPwd());
+		int result = memberService.checkPwd(userid, memberVo.getPwd());
 		logger.info("비밀번호 체크 결과 result: {}", result);
 
 		String msg="", url="/mypage/memberEdit.do";
 		if(result==MemberService.LOGIN_OK) {
 			//정보 수정
-			memberVo.setMemberId(memberId);
+			memberVo.setMemberId(userid);
 			int cnt = memberService.updateMember(memberVo);
 			if(cnt>0) {
 				msg="수정되었습니다.";
@@ -97,16 +95,16 @@ public class MypageController {
 	@RequestMapping("/sMemberEdit.do")
 	public String sMemberEdit_post(@ModelAttribute SMemberVO sMemberVo, HttpServletRequest request, HttpSession session, Model model,
 				@RequestParam String oldIdenti, @RequestParam String oldAnt) throws IllegalStateException, IOException {
-		String sMemberId = (String)session.getAttribute("sMemberId");
-		logger.info("전문가 회원정보 수정 sMemberVo:{}, sMemberId: {}", sMemberVo, sMemberId);
+		String userid = (String)session.getAttribute("userid");
+		logger.info("전문가 회원정보 수정 sMemberVo:{}, sMemberId: {}", sMemberVo, userid);
 		logger.info("기존 파일 identi: {}, ant: {}", oldIdenti, oldAnt);
 		
-		int result = sMemberService.checkPwd(sMemberId, sMemberVo.getsPwd());
+		int result = sMemberService.checkPwd(userid, sMemberVo.getsPwd());
 		logger.info("정보수정 비밀번호 확인 결과 result: {}", result);
 		
 		String msg="", url="/mypage/memberEdit.do";
 		if(result==SMemberService.LOGIN_OK) {
-			sMemberVo.setsMemberId(sMemberId);
+			sMemberVo.setsMemberId(userid);
 			
 			List<Map<String, String>> list = fileUploadUtil.fileUpload(request);
 			logger.info("회원가입 파일의 list.size(): {}",list.size());
@@ -166,11 +164,12 @@ public class MypageController {
 		logger.info("비밀번호변경 oldPwd: {}, pwd: {}", oldPwd, pwd);
 		String userCode=(String)session.getAttribute("userCode");
 		logger.info("userCode:{}", userCode);
-		String userId="", msg="", url="/mypage/memberEdit.do";
+		String msg="", url="/mypage/memberEdit.do";
+
+		String userId=(String) session.getAttribute("userid");
+		logger.info("userId: {}", userId);
 		
 		if("1".equals(userCode)) {
-			userId=(String) session.getAttribute("memberId");
-			logger.info("userId: {}", userId);
 			int result=memberService.checkPwd(userId, oldPwd);
 			logger.info("비밀번호 체크 결과 result:{}", result);
 			
@@ -186,8 +185,6 @@ public class MypageController {
 				msg="비밀번호가 틀렸습니다.";
 			}
 		}else if("2".equals(userCode)) {
-			userId=(String) session.getAttribute("sMemberId");
-			logger.info("userId: {}", userId);
 			int result=sMemberService.checkPwd(userId, oldPwd);
 			logger.info("비밀번호 체크 결과 result:{}", result);
 			
@@ -224,20 +221,20 @@ public class MypageController {
 	public String del_post(HttpSession session, Model model, @RequestParam String chkPwd) {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("회원정보 수정 userCode: {}", userCode);
+		String userid = (String)session.getAttribute("userid");
+		logger.info("탈퇴 처리 memberId: {}", userid);
 
 		String msg="", url="/index.do";
 		if("1".equals(userCode)) {
-			String memberId = (String)session.getAttribute("memberId");
-			logger.info("탈퇴 처리 memberId: {}", memberId);
-			int result = memberService.checkPwd(memberId, chkPwd);
+			int result = memberService.checkPwd(userid, chkPwd);
 			logger.info("비밀번호 체크 결과 result: {}", result);
 
 			if(result==MemberService.LOGIN_OK) {
 				//탈퇴
-				int cnt = memberService.updateOutDate(memberId);
+				int cnt = memberService.updateOutDate(userid);
 				if(cnt>0) {
 					//세션 날리기
-					session.removeAttribute("memberId");
+					session.removeAttribute("userid");
 					session.removeAttribute("userCode");
 					session.removeAttribute("name");
 					msg="탈퇴되었습니다.";
@@ -254,20 +251,17 @@ public class MypageController {
 			}
 
 		}else if("2".equals(userCode)) {
-
-			String sMemberId = (String)session.getAttribute("sMemberId");
-			logger.info("탈퇴 처리 sMemberId: {}", sMemberId);
-			int result = sMemberService.checkPwd(sMemberId, chkPwd);
+			int result = sMemberService.checkPwd(userid, chkPwd);
 			logger.info("비밀번호 체크 결과 result: {}", result);
 
 			if(result==MemberService.LOGIN_OK) {
 				//탈퇴
-				int cnt = sMemberService.updateOutDate(sMemberId);
+				int cnt = sMemberService.updateOutDate(userid);
 				if(cnt>0) {
 					//세션 날리기
-					session.removeAttribute("sMemberId");
+					session.removeAttribute("userid");
 					session.removeAttribute("userCode");
-					session.removeAttribute("sName");
+					session.removeAttribute("name");
 					msg="탈퇴되었습니다.";
 				}else {
 					msg="탈퇴처리가 실패했습니다.";
@@ -292,8 +286,8 @@ public class MypageController {
 	//나의 견적상황
 	@RequestMapping("/myRequest.do")
 	public void myRequest(HttpSession session) {
-		String memberId = (String) session.getAttribute("memberId");
-		logger.info("나의 견적상황 화면, 세션 memberId:{}", memberId);
+		String userid = (String) session.getAttribute("userid");
+		logger.info("나의 견적상황 화면, 세션 memberId:{}", userid);
 
 	}
 	
