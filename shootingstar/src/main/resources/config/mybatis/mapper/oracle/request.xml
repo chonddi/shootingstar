@@ -3,6 +3,14 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.request">
 	
+	<resultMap id="pickAll" type="PickAllVO">
+		<result property="pickNo" column="pickno" />
+		<result property="RQNo" column="rqno" />
+		<result property="sMemberId" column="smemberid" />
+		<result property="sPrice" column="sprice" />
+		<result property="choice" column="chioce" />
+		<result property="sName" column="sname" />
+	</resultMap>
 	
 	<sql id="requestCol">
 		rqno, memberid, cgno, rqprice, rqregion, rqdate,
@@ -22,7 +30,7 @@
 			select request_seq.nextval from dual
 		</selectKey>
 		insert into request(rqno, memberid, cgno, rqprice, rqregion, rqdate, rqtype, rqdetail) 
-		values(#{RQNo}, 'gg', #{cgNo}, #{RQPrice}, #{RQRegion} ,#{RQDate}, #{RQType}, #{RQDetail})
+		values(#{RQNo}, #{memberId}, #{cgNo}, #{RQPrice}, #{RQRegion} ,#{RQDate}, #{RQType}, #{RQDetail})
 	</insert>
 
 	<insert id="insertReqImg" parameterType="RequestImgVO">
@@ -38,7 +46,7 @@
 		    select rownum as RNUM, list.*
 		    from (
 		    	<choose>
-			        <when test="cgNo==null or cgNo==''">
+			        <when test="cgNo==null or cgNo=='' or cgNo==0">
 		        select 
 				<include refid="requestCol"></include>		
 				 from request
@@ -84,13 +92,50 @@
 	<select id="selectByNo" parameterType="int" resultType="RequestVO">
 		select * from request where RQNo=#{RQNo}
 	</select>
+	
+	<select id="pickByNo" parameterType="int" resultType="RequestPickVO">
+		select * from pick where RQNo=#{RQNo}
+	</select>
+	
+	
+	<select id="selectPList" parameterType="int" resultMap="pickAll">
+		select * from pickAll
+		where rqno=#{no}
+	</select>
+	
 
 	<select id="selectByNoImg" parameterType="int" resultType="RequestImgVO">
 		select * from requestimg where RQNo=#{RQNo}
 	</select>
+	
+
+	<insert id="insertPick" parameterType="RequestPickVO">
+		insert into pick (pickno, rqno, smemberid, sprice)
+		values(pick_seq.nextval, #{RQNo}, #{sMemberId}, #{sPrice})
+	</insert>
+	
+	
+	<update id="updatePick" parameterType="int">
+		update request
+		set pickcount=pickcount+1
+		where rqno=#{no}
+	</update>
+	
+	
+	<select id="getPickCount" parameterType="int" resultType="int">
+		select pickcount from request
+		where rqno=#{no}
+	</select>
+	
 
 	
+	
+	
+	
+	
 </mapper>
+
+
 
 
 

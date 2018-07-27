@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+/* Qlist */
+body {
+	padding: 5px;
+	margin: 5px;
+}
+
+h1 {
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+table {
+	border-spacing: 0px;
+}
+
+tr th {
+	width: 1300px;
+	border-top: 3px solid black;
+	border-bottom: 1px solid rgba(213, 213, 213, 1);
+	font-size: 1em;
+	color: rgba(70, 70, 70, 1);
+	text-align: center;
+	padding: 15px 0px 15px 0px;
+}
+
+tr td {
+	width: 1300px;
+	border-bottom: 1px solid rgba(213, 213, 213, 1);
+	font-size: 1em;
+	color: gray;
+	text-align: center;
+	padding: 15px 0px 15px 0px;
+}
+
+#regit {
+	width: 170px;
+	height: 50px;
+	color: white;
+	background-color: rgba(30, 30, 30, 1);
+	border-style: none;
+}
+
+.divPage {
+	height: 10px;
+	text-align: center;
+}
+
+a, a:visited {
+	color: gray;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.divBtn {
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.pageNum1, .pageNum2, .pageNum3 {
+	font-size: 1.0em;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	margin: 0 4px;
+	line-height: 35px;
+}
+
+.pageNum1 {
+	color: white;
+	font-weight: bold;
+	background-color: rgba(30, 30, 30, 1);
+	cursor: pointer;
+}
+
+.pageNum2 {
+	color: black;
+	background-color: white;
+	cursor: pointer;
+}
+
+.pageNum3 {
+	font-size: 0.8em;
+	color: gray;
+	background-color: white;
+	cursor: pointer;
+}

@@ -1,8 +1,10 @@
 package com.ss.star.request.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,13 +57,43 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public RequestImgVO selectByNoImg(int no) {
+	public List<RequestImgVO> selectByNoImg(int no) {
 		return requestDao.selectByNoImg(no);	
 	}
+
+	@Override
+	public int insertPick(RequestPickVO pvo) {
+		
+		int pno=pvo.getRQNo();
+		int result;
+		int seq= requestDao.getPickCount(pno);
+		
+		if (seq<5) {
+			int seq1=requestDao.insertPick(pvo);
+			int seq2=requestDao.updatePick(pno);
+			
+			result=1;
+		}else {
+			result=0;
+		}
+		return result;
+	}
+
 	
 	
-	
-	
+	@Override
+	public List<RequestPickVO> pickByNo(int no) {
+		return requestDao.pickByNo(no);
+	}
+
+	@Override
+	public List<PickAllVO> selectPList(int no) {
+		return requestDao.selectPList(no);
+	}
+
+
+
+
 	
 }
 

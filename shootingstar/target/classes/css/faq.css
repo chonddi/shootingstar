@@ -1,0 +1,103 @@
+@charset "UTF-8";
+ @font-face{
+	font-family:"Nanum Gothic";
+	src: url('fonts/NanumGothic.ttf') format('truetype');
+
+}  
+@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
+* { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; } 
+body{
+
+font-family:"Nanum Gothic";
+   }
+table{
+	 margin:0 auto; 
+    /* font-size:15px; */
+    border-collapse: non-collapsed; 
+	position: static;
+
+}
+
+.faq {
+	text-align:center;
+	align-content:center;
+    width: 100%;
+     border-collapse: collapse; 
+
+  }
+  th{
+  	  /* border-top: 2px solid black; 
+  	  border-bottom: 1px solid black; 
+  	  */
+  	  margin:0px;
+  	  padding:0px;
+  	  height:20px;
+  	  font-size: 16px;
+ 	text-align: center;
+  }
+
+tbody .title{
+text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1px;
+
+  }
+
+.title{
+	height:80px;
+	font-size: 16px;
+	cursor: pointer;
+	vertical-align: middle;
+
+}
+.notitle{
+	height:80px;
+	font-size: 16px;
+	text-align: center;
+	vertical-align: middle;
+}
+.content{
+	background-color: #f0f0f0;
+	font-size: 14px;
+	text-align:left;
+	padding:10px;
+	text-align: left;
+	}
+
+h1{padding:20px;
+font-size: 50px;
+font-weight: bold;}
+
+#width{ 
+	padding-right:200px;
+	line-height: 150%;
+	margin:20px;}
+#answer{
+	width:30px;
+	padding:25px;
+	vertical-align: top;
+
+}
+#quest{
+	width:50px;
+	padding-left:30px;
+	padding-right:15px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+	.faq th {
+	    margin: 0 0 0 0;
+	    /* padding: 10px 30px 10px 30px; */
+	    font-weight: bold;
+	    cursor: pointer;
+	}
+
+	#linetop{
+	height:20px;
+	border-top: 2px solid black;
+	
+	}
+	#linebot{
+	height:20px;
+	border-bottom: 1px solid black;
+	} 

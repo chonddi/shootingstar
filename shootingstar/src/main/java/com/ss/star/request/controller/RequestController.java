@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,9 @@ import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.request.model.ctgRequestVO;
 import com.ss.star.IndexController;
+import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
+import com.ss.star.request.model.RequestPickVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
 
@@ -81,7 +84,6 @@ public class RequestController {
 			n = nf.parse(price);
 			i = n.intValue();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		 
@@ -100,12 +102,12 @@ public class RequestController {
 	public String request_post(@RequestParam String selOne, String selTwo, String dtSel, String sTime,
 			@RequestParam(required=false)String ck1, @RequestParam(required=false)String ck2, String cg1,
 			@ModelAttribute RequestVO vo,@ModelAttribute RequestImgVO ivo,  HttpServletRequest request,
-			Model model) {
+			HttpSession session, Model model) {
 		
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequestVO={}", vo);
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequetImgVO={}", ivo);
 		
-		String region = selOne+selTwo;
+		String region = selOne+" "+selTwo;
 		
 		String stime ="";
 		if(sTime==null) {
@@ -113,13 +115,14 @@ public class RequestController {
 		}else {
 			stime=dtSel+", "+sTime;
 		}
-		
-
+				
 		String rtype="";
 		if(ck1==null) {
 			rtype=ck2;
 		}else if(ck2==null) {
 			rtype=ck1;
+		}else if(ck1==null&&ck2==null) {
+			rtype=" ";
 		}else {
 			rtype=ck1+", "+ck2;
 		}
@@ -145,6 +148,8 @@ public class RequestController {
 			vo.setCgNo(9);
 		}
 		
+		String memberid = (String)session.getAttribute("memberId");
+		vo.setMemberId(memberid);		
 		vo.setRQRegion(region);
 		vo.setRQDate(stime);
 		vo.setRQType(rtype);
@@ -181,8 +186,12 @@ public class RequestController {
 	
 	
 	@RequestMapping("/list.do")
-	public String list(@ModelAttribute ctgRequestVO searchVo, Model model) {
+	public String list(@ModelAttribute ctgRequestVO searchVo, Model model, HttpSession session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
+		
+		String memberid = (String)session.getAttribute("memberId");
+		String smemberid = (String)session.getAttribute("sMemberId");
+		String usercode = (String)session.getAttribute("userCode");
 		
 		//[1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -206,34 +215,170 @@ public class RequestController {
 		logger.info("전체 레코드 개수={}", totalRecord);
 		
 	
+		String vmemberid="";
+		
+		if(memberid!=null &&!memberid.isEmpty()) {
+			vmemberid=memberid;
+		}else if(smemberid!=null &&!smemberid.isEmpty()) {
+			vmemberid=smemberid;
+		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pageVo", pagingInfo);
+		model.addAttribute("vmemberid", vmemberid);
+		model.addAttribute("ucode", usercode);
+		logger.info("현재 session의 id={}", vmemberid);
+		logger.info("현재 session의 usercode={}", usercode);
 		
 		return "request/list";
+		
 	}
+	
 	
 	
 	@RequestMapping("/detail.do")
-	public String detail(@RequestParam int no, HttpServletRequest request, Model model) {
-		logger.info("글 번호, 파라미터 no={}", no);
-	
+	public String detail(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
+		logger.info("request 글 번호, 파라미터 no={}", no);
+		
+		String memberid = (String)session.getAttribute("memberId");
+		String usercode = (String)session.getAttribute("userCode");
+		
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
 		
-		RequestImgVO ivo = requestService.selectByNoImg(no);
-		logger.info("파라미터 RequestImgVO, ivo={}", ivo);
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+		
+		String vmemberid=vo.getMemberId();
+		
+		List<PickAllVO> pList=requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
 		
 		
-		if(ivo!=null) {
-			String fileInfo = Utility.getFileInfo(ivo.getOriginalFileName(), request);
-			model.addAttribute("fileInfo", fileInfo);
-			}
 		
 		model.addAttribute("vo", vo);
-		model.addAttribute("ivo", ivo);
+		model.addAttribute("list", list);
+		model.addAttribute("pList",pList);
+		model.addAttribute("vmemberid", vmemberid);
+		logger.info("현재 session 로그인 id, vmemberid={}", vmemberid);
+
+		
+		if (usercode.equals("2")) {
+			return "request/sdetail";
+		}
 	
+		
 		return "request/detail";
+		
+		
+	}
+	
+	@RequestMapping("/sdetail.do")
+	public String sdetail(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
+		logger.info("request 글 번호, 파라미터 no={}", no);
+	
+		String smemberid = (String)session.getAttribute("sMemberId");
+		logger.info("현재 session 아이디, smemberid={}", smemberid);
+		
+		RequestVO vo=requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+		
+		model.addAttribute("no", no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		
+		List<RequestPickVO> idList=requestService.pickByNo(no);
+		logger.info("파라미터 idList, idList={}", idList);
+		
+		if(idList.size()>1) {
+			Boolean trans=false; 
+			for(int i=0;i<=idList.size();i++) {		
+				trans=idList.get(i).getsMemberId().contains(smemberid);
+				
+				if(trans==true) {
+					break; 
+				}
+			}
+			logger.info("해당 아이디 검색 결과, boolean={}", trans);
+			
+			if(trans==true) {
+				return "redirect:sdetail2.do"; 
+			}
+	
+		}
+	
+		return "request/sdetail";
+	}
+	
+	
+	@RequestMapping("/sdetail2.do")
+	public String sdetail2(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
+		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
+	
+		String smemberid = (String)session.getAttribute("sMemberId");
+		logger.info("현재 session 아이디, smemberid={}", smemberid);
+		
+		RequestVO vo=requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
+		
+		List<RequestPickVO> pList=requestService.pickByNo(no);
+		logger.info("pick한 금액을 담은 pvo, pvo={}", pList);
+		
+		
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("pList", pList);
+		model.addAttribute("list", list);
+	
+		return "request/sdetail2";
 	
 	}
+	
+	
+	@RequestMapping(value="/addpick.do")
+	public String addpick(@ModelAttribute RequestPickVO pvo, @RequestParam String price,
+			HttpSession session, Model model) {
+		
+		String smemberid = (String)session.getAttribute("sMemberId");
+		
+		NumberFormat nf = new DecimalFormat("#,##0"); 
+		Number n;
+		
+		int i=0;
+		try {
+			n = nf.parse(price);
+			i = n.intValue();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 
+		
+		logger.info("전문가 회원 - pick 등록, 파라미터 RequestPickVO={}", pvo);
+		
+		pvo.setsPrice(i);
+		pvo.setsMemberId(smemberid);
+		
+		
+		logger.info("세팅 후 RequestPickVO={}", pvo);
+		
+		model.addAttribute("pvo", pvo);
+		
+		int cnt=requestService.insertPick(pvo);
+		logger.info("Pick 등록 결과, cnt={}", cnt);
+		
+		if(cnt>=0) {
+			model.addAttribute("url", "/request/list.do");
+			
+			return "common/message";
+		}
+		
+		return "redirect:/request/list.do"; 
+	}
+	
+	
+	
 }

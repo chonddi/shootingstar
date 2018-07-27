@@ -37,5 +37,12 @@
 	     <beans:property name="order" value="0" />
 	</beans:bean>
 	
+	<interceptors>    	
+	    <interceptor>
+	        <mapping path="/request/detail.do" />
+			 <beans:ref bean ="loginInterceptor" />		
+	    </interceptor>    
+	</interceptors>
+	
 	
 </beans:beans>
