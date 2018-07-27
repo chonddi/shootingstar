@@ -27,4 +27,24 @@ public class ManagerServiceImpl implements ManagerService  {
 		return result;
 	}
 
+	@Override
+	public String selectNameById(String adminId) {
+		return managerDao.selectNameById(adminId);
+	}
+
+	@Override
+	public int checkSignup(String adminId) {
+		return managerDao.checkSignup(adminId);
+	}
+
+	@Override
+	public int checkDuplicate(String userid) {
+		int result = managerDao.checkDuplicate(userid);
+		if(result>0) {
+			return EXIST_ID;
+		}else {
+			return AVAILABLE_ID;
+		}
+	}
+
 }

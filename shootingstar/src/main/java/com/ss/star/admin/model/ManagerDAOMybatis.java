@@ -6,17 +6,27 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ManagerDAOMybatis implements ManagerDAO {
-	private String namespace="com.sql.manager";
+	private String namespace="com.sql.manager.";
 	@Autowired SqlSessionTemplate sqlSession;
 	@Override
 	public ManagerVO selectID(String email) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"selectID", email);
 	}
 	@Override
 	public String selectPwdById(String adminId) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"selectPwdById", adminId);
+	}
+	@Override
+	public String selectNameById(String adminId) {
+		return sqlSession.selectOne(namespace+"selectNameById", adminId);
+	}
+	@Override
+	public int checkSignup(String adminId) {
+		return sqlSession.selectOne(namespace+"checkSignup", adminId);
+	}
+	@Override
+	public int checkDuplicate(String adminId) {
+		return sqlSession.selectOne(namespace+"checkDuplicate", adminId);
 	}
 	
 	

@@ -3,16 +3,22 @@
 
 <mapper namespace="com.sql.manager">
 	<select id="selectID" parameterType="string" resultType="managerVo">
-		select * from manager where adminId=#{adminId}
+		select * from admin where adminId=#{adminId}
 	</select>
 	
 	<select id="selectPwdById" parameterType="String" resultType="String">
-		select pwd from manager where adminId=#{adminId}
+		select pwd from admin where adminId=#{adminId}
 	</select>
 	
 	<select id="selectNameById" parameterType="String" resultType="String">
-		select adminName from manager where adminId=#{adminId}
+		select adminName from admin where adminId=#{adminId}
 	</select>
+	
+	<select id="checkDuplicate" parameterType="String" resultType="int">
+		select count(*) from admin
+		where adminId=#{adminId}
+	</select>
+
 	
 <!-- <insert id="insertMember" parameterType="managerVo">
 		insert into member(memberid, name, pwd, tel) values(#{memberId}, #{name}, #{pwd}, #{tel})
@@ -27,10 +33,6 @@
 	<update id="updateOutDate" parameterType="String">
 		update member set outdate=sysdate where memberId=#{memberId}
 	</update>
-	
-	<select id="selectCountMemberId" parameterType="String" resultType="int">
-		select count(*) from member where memberid=#{memberId}
-	</select>
 	
 	<update id="updatePwd" parameterType="map">
 		update member set pwd=#{pwd} where memberId=#{memberId}

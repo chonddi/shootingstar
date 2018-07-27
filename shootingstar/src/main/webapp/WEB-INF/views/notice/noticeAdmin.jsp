@@ -44,7 +44,12 @@ vertical-align: middle;}
 tr{
 vertical-align: middle;}
 #lastth{width:100px;}
-#button{padding: 10px 0 10px 0}
+.button{padding: 10px 0 10px 0;
+}
+#button{
+width:100px;
+height:60px;
+}
 </style>
 
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -100,8 +105,8 @@ $(document).ready(function(){
 </head>
 <body>
 <h1>공지사항</h1>
-<p id="button">
-<input type="button" value="공지사항작성" 
+<p class="button">
+<input type="button" value="공지사항작성" id="button"
  onclick="location.href='<c:url value="/notice/noticeWrite.do"/>'"/>
 </p>
 <form name="deleteNotice" method="post"
@@ -191,9 +196,8 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 	</c:if> 
 	</tbody>
 </table>
-<p id="button">
-<input type="submit" value="삭제"/>
-
+<p class="button">
+<input type="submit" value="삭제" id="button"/>
  </p>
 </form>
 

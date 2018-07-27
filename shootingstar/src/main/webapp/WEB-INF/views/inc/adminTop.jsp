@@ -57,6 +57,7 @@ nav ul {
 						<c:if test="${empty sessionScope.userCode}">
 							<li><a href="<c:url value='/admin/login/login.do'/>">로그인</a></li>
 						</c:if>
+						
 						<c:if test="${!empty sessionScope.userCode}">
 							<li><a href="<c:url value='/admin/mypage.do'/>">마이페이지</a></li>
 						</c:if>
@@ -77,7 +78,7 @@ nav ul {
 				<ul id="leftNavi" >
 					<li id="adminCtg" ><a class="menuLink" href="#" >관리자페이지 ▼</span></a>
 						<ul>
-							<li ><a href="<c:url value='#'/>">관리자 신규등록</a></li>
+							<li ><a href="<c:url value='/admin/register.do'/>">관리자 신규등록</a></li>
 							<li ><a href="<c:url value='#'/>">관리자 정보수정</a></li>
 						</ul>
 					</li>

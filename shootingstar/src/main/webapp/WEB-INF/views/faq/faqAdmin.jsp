@@ -17,7 +17,12 @@ pageContext.setAttribute("cn", "\n");
 <style type="text/css">
 #title{text-align: left;
 vertical-align: middle;}
-
+.button{padding: 10px 0 10px 0;
+}
+#button{
+width:100px;
+height:60px;
+}
 
 </style>
 
@@ -60,8 +65,10 @@ function allChecked(bool){
 	</head>
 	<body>
 	<h1>FAQ</h1>
-	<input type="button" style=margin:10px; value="FAQ작성" 
+	<p class="button">
+	<input type="button" style=margin:10px; value="FAQ작성" id="button" 
  	onclick="location.href='<c:url value="/faq/faqWrite.do"/>'"/>
+ 	</p>
 <form name="deleteFaq" method="post"
 action="<c:url value='/faq/deleteFaq.do'/>">
 
@@ -170,8 +177,9 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 		</c:if> 
 		</tbody>
 	</table>   
-
-<input type="submit" value="삭제"/>
+<p class="button">
+<input type="submit" value="삭제" id="button"/>
+</p>
 </form>
 	<!-- 검색없음!!! 페이징!!! -->
 	</body>
