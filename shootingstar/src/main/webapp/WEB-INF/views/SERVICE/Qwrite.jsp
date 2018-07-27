@@ -20,15 +20,21 @@
 				alert("내용을 입력하세요.");
 				$('#qContent').focus();
 				return false;
-			}
-			
-			if(confirm("등록하시겠습니까?")){
+			}else if(confirm("등록하시겠습니까?")){
 				$('form[name=frmWrite]').submit();
 				opener.parent.location.reload();
 				setTimeout(function() {self.close()}, 10);
+			}else if($("#userid").val() == ""){
+				alert("로그아웃 되었습니다.");
+				if(confirm("로그인 페이지로 이동하시겠습니까?")){
+					window.opener.location.href="<c:url value='/login/login.do'/>";
+					self.close();
+				}
+					return false;
 			}
+			
 		});
-		
+			
 		$('#qTitle').keydown(function(){
 			if($(this).val().length > 30){
 				alert("제목은 30자 이내만 가능합니다.");
@@ -97,6 +103,9 @@
 	
 <!-- 임시 memberid -->
 <input type="hidden" id="memberid" name="memberid" value="YBM"/>
+<!-- 세션 유저 코드 값 -->
+<%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
+<input type="hidden" id="userid" value="1">
 
 </form>       
 </body>

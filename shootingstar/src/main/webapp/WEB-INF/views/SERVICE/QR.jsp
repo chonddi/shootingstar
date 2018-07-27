@@ -57,7 +57,7 @@ $(document).ready(function(){
 	
 	//댓글 등록
  	$("#btn_sub").click(function(){
- 		/* <c:if test="${empty sessionScope.userid}">
+ 		<c:if test="${empty sessionScope.userid}">
 			alert('로그인이 필요한 서비스입니다.');
 			if(confirm("로그인 화면으로 이동하시겠습니까?")){
 				location.href="<c:url value='/login/login.do'/>";
@@ -68,7 +68,7 @@ $(document).ready(function(){
 			alert('댓글을 입력하세요');
 			$("#rememo").focus();
 			return false;
-	}*/
+	}
 		
 		$.ajax({
 	        type:'POST',
@@ -115,33 +115,20 @@ $(document).ready(function(){
 		                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
 		                    html += "</span></b></h6>";
 		                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
-		                    html += "<tr><td></td></tr>";	
+		                    html += "<tr><td></td></tr>";
 		                    html += "<tr><td></td></tr>";
 		                    html += "</table></div>";
 		                    html += "</div>";
 		                    html += "<input type='hidden' id='id_" + data[i].qrNo + "' value='" + data[i].qrNo + "'>";
 		                    
-		                    $("#cCnt").html(cCnt);
+		                    $("#cCnt").html(cCnt);	
 		    	            $("#replyList").html(html);
 		    	            
 	                	} else if(($("#id_" + data[i].parent).val() == data[i].parent) && data[i].levels == 1){
-	                		html += "<div class='ajxDiv2'>";
-		                    html += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
-		                    html += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
-		                    html += "<a class='ajxBtn1' onclick=\"qrReply(" + data[i].qrNo + ", " + data[i].qNo + ")\">답글</a>&nbsp;&nbsp;";
-		                    html += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
-		                    html += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
-		                    html += "</span></b></h6>";
-		                    html += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
-		                    html += "<tr><td></td></tr>";	
-		                    html += "<tr><td></td></tr>";
-		                    html += "</table></div>";
-		                    html += "</div>";
-		                    html += "<input type='hidden' id='id_" + data[i].qrNo + "' value='" + data[i].qrNo + "'>";
-
-		                    reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
+	                		reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
 	                		reply += "<div class='ajxDiv3'>";
 	                		reply += "<div><table id='tbr_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+	                		//reply += "<div><table id='tb_" + data[i].qrNo + "'><h6><b>" + data[i].id;
 	                		reply += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
 	                		reply += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
 	                		reply += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
@@ -152,12 +139,8 @@ $(document).ready(function(){
 	                		reply += "</table></div>";
 	                		reply += "</div>";
 
-		                    $("#cCnt").html(cCnt);
-		    	            $("#replyList").html(html);
-	        	            $("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
-		    	            
 	                		//$(reply).appendTo($("#tb_" + data[i].parent));
-	                		//$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
+	                		$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
 	                	}
 	                }
 	                
@@ -289,7 +272,7 @@ $(document).ready(function(){
 	    $.ajax({
 	        url : "<c:url value='/SERVICE/QRreply.do'/>",
 	        type : 'post',
-	        data : {'qrNo' : qrNo, 'qNo' : qNo, 'content' : reContent, 'id' : $('input[name=id]').val()},
+	        data : {'qrNo' : qrNo, 'qNo' : qNo, 'content' : reContent, 'id' : $('input[name=userid]').val()},
 	        success : function(data){
 	            if(data == "success") {
 	            	//$(".ajxDiv2").find("#tb_" + qrNo).first("td").html("");
@@ -393,9 +376,9 @@ $(document).ready(function(){
 	        </div>
 	        <div id="replyList"></div>
 	    </div>
-	    <%-- <input type="hidden" name="id" value="${sessionScope.id}"> --%>
+	    <%-- <input type="hidden" name="userid" value="${sessionScope.userid}"> --%>
 	    <%-- <input type="hidden" name="code" value="${sessionScope.code}"> --%>
-	    <input type="hidden" name="id" value="댓글용아이디"> <!-- 고객 임시 아이디 -->
+	    <input type="hidden" name="userid" value="댓글용아이디"> <!-- 고객 임시 아이디 -->
 	    <input type="hidden" name="code" value="3"> <!-- 임시 멤버 코드값 -->
 	    <input type="hidden" name="qNo" value="${param.qNo}">
     </form>
