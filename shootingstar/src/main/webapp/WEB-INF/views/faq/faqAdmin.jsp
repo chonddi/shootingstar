@@ -15,7 +15,10 @@ pageContext.setAttribute("cn", "\n");
 <title>FAQ 관리자</title>
 
 <style type="text/css">
-#title{text-align: left;}
+#title{text-align: left;
+vertical-align: middle;}
+
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
@@ -71,7 +74,7 @@ action="<c:url value='/faq/deleteFaq.do'/>">
 		<th width=50px ><input type="checkbox" name="chkAll" 
 	    	onclick="allChecked(this.checked)">
 		</th>	
-		<th onclick='location.href="<c:url value='/faq/faqAdmin.do?category=일반'/>"'>
+		<th width=90px onclick='location.href="<c:url value='/faq/faqAdmin.do?category=일반'/>"'>
 		일반</th>
 		<th onclick='location.href="<c:url value='/faq/faqAdmin.do?category=가입/탈퇴'/>"'>
 		가입/탈퇴</th>

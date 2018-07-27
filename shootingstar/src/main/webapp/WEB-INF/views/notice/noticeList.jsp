@@ -20,6 +20,10 @@ pageContext.setAttribute("cn", "\n");
 #titleNo{
 	font-weight: bold;
 }
+th{
+vertical-align: middle;}
+td{
+vertical-align: middle;}
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
