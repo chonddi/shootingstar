@@ -90,7 +90,7 @@
 	  			<tr style="text-align:center">
 					<td>${vo.qNo}</td>
 					<td style="text-align:left">
-						<c:if test="${sessionScope.id == vo.memberid}">
+						<c:if test="${sessionScope.userid == vo.memberid}">
 							<a href="#" onclick="detailFunc(${vo.qNo}, '${vo.memberid}')">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 								<c:if test="${fn:length(vo.qTitle)>50}">	
@@ -101,7 +101,7 @@
 								</c:if>
 							</a>
 						</c:if>
-						<c:if test="${sessionScope.id != vo.memberid}">
+						<c:if test="${sessionScope.userid != vo.memberid}">
 							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>&nbsp;
 							<img src="<c:url value='/images/lock.PNG'/>" alt="lock 이미지" style="vertical-align:middle;">
 						</c:if>
@@ -115,10 +115,10 @@
 						</c:if>
 					</td>
 					<td>
-						<c:if test="${sessionScope.id == vo.memberid}">
+						<c:if test="${sessionScope.userid == vo.memberid}">
 							${vo.memberid}
 						</c:if>
-						<c:if test="${sessionScope.id != vo.memberid}">
+						<c:if test="${sessionScope.userid != vo.memberid}">
 							<c:if test="${fn:length(vo.memberid)>3}">
 								<span style="color:gray;font-size:0.9em;">	
 									${fn:substring(vo.qTitle, 0, 3)}****
