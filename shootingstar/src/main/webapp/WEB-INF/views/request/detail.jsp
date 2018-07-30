@@ -103,8 +103,8 @@ function payBtn(QRNo){
 			 <table class="box2">
 			 <colgroup>
 				<col style="width:8%;" />
-				<col style="width:30%;" />
-				<col style="width:20%;" />
+				<col style="width:25%;" />
+				<col style="width:25%;" />
 				<col style="width:*;" />		
 			 </colgroup>
 			 	<thead >
@@ -120,14 +120,15 @@ function payBtn(QRNo){
 			
 			 <c:forEach var="pvo" items="${pList}">
 			<tr>
-			<td><img src="../images/rchecks.png" style="vertical-align:middle"> </td>
+			<td><img src="../images/rchecks.png" style="vertical-align:middle; width:30px; height:30px;"> </td>
 			 <td>
-			<img src="../images/faceb.png" style="vertical-align:middle"> ${pvo.sName} 전문가</td>
-			 <td>
-			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원
+			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${pvo.sName}</div> 전문가</td>
+			 <td >
+			  <div class="pdt">
+			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원 </div>
 			 </td>
 			 <td>
-			  <button onclick="payBtn(${pvo.RQNo})">결제하기</button>
+			  <button onclick="payBtn(${pvo.RQNo})">선택하기</button>
 			 </td>
 			<tr>
 			 </c:forEach>

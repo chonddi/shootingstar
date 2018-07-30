@@ -275,7 +275,8 @@ public class RequestController {
 	
 	@RequestMapping("/detail2.do")
 	public String detail2(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
-		
+	
+	return "request/detail2";
 		
 		
 	}
@@ -330,8 +331,8 @@ public class RequestController {
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
 		
-		List<RequestPickVO> pList=requestService.pickByNo(no);
-		logger.info("pick한 금액을 담은 pvo, pvo={}", pList);
+		List<PickAllVO> pList=requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
 		
 		
 		List<RequestImgVO> list = requestService.selectByNoImg(no);

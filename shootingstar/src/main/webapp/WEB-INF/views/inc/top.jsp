@@ -72,7 +72,7 @@
 				</ul>
 				<ul >
 					<li><img id="userli" alt="마이 페이지"
-						src="<c:url value='/images/lm.png'/>" style="width:40px; height:88px;">
+						src="<c:url value='/images/lm.png'/>" style="width:38px; height:88px;">
 						<ul id="userul">
 						<c:if test="${empty sessionScope.userCode}">
 							<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>

@@ -125,15 +125,17 @@ function setComma(inNum){
 			 
 		<div id="pS5"> 
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/'/>" onsubmit="return send(this)"> 
-			 
-			 <br><br><div class="title2">PICK하기</div> <div class="title5">${vo.memberId}님의 최종결정을 기다리는 중 입니다.</div><br>
-			 			
+			 <c:forEach var="pvo" items="${pList}">
+			 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님의 결정을 기다리는 중 입니다.</div><br><br>
+			 	<div style="font-size:20px;"> 해당 고객 회원님이  ${pvo.sName}님의 PICK을 선택하시면 세부조율단계로 넘어가고,<br>
+			 	${pvo.sName}님이 고객회원님과 조율한 최종가격을 입력하면
+			 	마지막 결제단계로 넘어가게 됩니다.</div> <br>
 			 		
 			 			
 			 	  ${sessionScope.userid}님이 제시하신 금액: 
 			 	  
 			 	  
-			 	  <c:forEach var="pvo" items="${pList}">
+			 	  
 			 	  		<c:if test="${pvo.sMemberId == sessionScope.userid }">
 			 	  
 			 				<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
