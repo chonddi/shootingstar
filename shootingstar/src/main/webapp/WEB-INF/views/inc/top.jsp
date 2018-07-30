@@ -37,14 +37,14 @@
 		<div class="container-fluid">
 			<a class="navbar-brand" href="<c:url value='/index.do'/>"><img id="logo"
 				alt="ShootingStar" src="<c:url value='/images/mainTopLogo.png'/>"
-				width="210" /></a>
+				width="130" /></a>
 
 			<nav id="topMenu">
 				<ul>
 
 					<li><a class="menuLink" href="<c:url value='/request/list.do'/>">REQUEST</a>
 						<ul>
-							<c:if test="${!empty sessionScope.memberId}">
+							<c:if test="${sessionScope.userCode==1}">
 								<li><a href="<c:url value='/request/write.do'/>">견적작성</a></li>
 							</c:if>
 							<li><a href="<c:url value='/request/list.do'/>">견적목록</a></li>
@@ -52,11 +52,11 @@
 					<li><a class="menuLink" href="#">PORTPOLIO</a>
 						<ul>
 							<li><a href="#">포트폴리오 목록</a></li>
-							<c:if test="${!empty sessionScope.sMemberId }">
+							<c:if test="${sessionScope.userCode==2}">
 								<li><a href="<c:url value='/portfolio/portfolioWrite.do'/>">포트폴리오 등록</a></li>
 							</c:if>
 						</ul></li>
-					<li><a class="menuLink" href="#">ABOUT SHOOTING&nbsp;STAR</a>
+					<li><a class="menuLink" href="#">ABOUT</a>
 						<ul>
 							<li><a href="#">회사소개</a></li>
 							<li><a href="#">인사말</a></li>
@@ -81,10 +81,10 @@
 						<c:if test="${!empty sessionScope.userCode}">
 							<li><a href="<c:url value='/mypage/memberEdit.do'/>">내 정보 수정</a></li>
 						</c:if>
-						<c:if test="${!empty sessionScope.memberId }">	
+						<c:if test="${sessionScope.userCode==1}">	
 							<li><a href="#">나의 견적현황 조회</a></li>
 						</c:if>
-						<c:if test="${!empty sessionScope.sMemberId}">
+						<c:if test="${sessionScope.userCode==2}">
 							<li><a href="#">나의 포트폴리오 조회</a></li>
 							<li><a href="#">EMAIL문의</a></li>
 						</c:if>	
@@ -92,10 +92,10 @@
 							<li><a href="#">나의 거래이력</a></li>
 							<li><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></li>
 						</c:if>
-						<c:if test="${!empty sessionScope.memberId}">
+						<c:if test="${sessionScope.userCode==1}">
 							<li><a href="#">내 마일리지</a></li>
 						</c:if>
-						<c:if test="${!empty sessionScope.sMemberId}">
+						<c:if test="${sessionScope.userCode==2}">
 							<li><a href="#">멤버십 관리</a></li>
 						</c:if>
 						<c:if test="${!empty sessionScope.userCode}">

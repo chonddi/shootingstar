@@ -10,7 +10,6 @@ public class PickAllVO {
 	private String choice;
 	private String sName;
 	
-	
 	public int getPickNo() {
 		return pickNo;
 	}
@@ -53,6 +52,8 @@ public class PickAllVO {
 		return "PickAllVO [pickNo=" + pickNo + ", RQNo=" + RQNo + ", sMemberId=" + sMemberId + ", sPrice=" + sPrice
 				+ ", choice=" + choice + ", sName=" + sName + "]";
 	}
+	
+	
 	
 	
 	

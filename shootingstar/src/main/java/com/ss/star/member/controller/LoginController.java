@@ -47,7 +47,7 @@ public class LoginController {
 			logger.info("로그인 처리 memberId로  불러온 결과 name: {}",name);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("userid", memberId);
+			request.getSession().setAttribute("memberid", memberId);
 			//userName
 			request.getSession().setAttribute("name", name);
 			request.getSession().setAttribute("userCode", "1");
@@ -83,7 +83,7 @@ public class LoginController {
 	@RequestMapping("/loginSMember.do")
 	public String login_sMember(@RequestParam String sMemberId, @RequestParam String sPwd, @RequestParam(required=false) String sSaveId,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		logger.info("전문가회원 로그인 sMemberId: {}, sPpwd: {}", sMemberId, sPwd);
+		logger.info("전문가회원 로그인 sMemberId: {}, sPwd: {}", sMemberId, sPwd);
 		logger.info("sSaveId:{}", sSaveId);
 		
 		int result = sMemberService.checkPwd(sMemberId, sPwd);
@@ -98,10 +98,13 @@ public class LoginController {
 			logger.info("로그인 처리 sMemberId로  불러온 결과 sName: {}",sName);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("userid", sMemberId);
+			request.getSession().setAttribute("memberid", sMemberId);
 			//userName
-			request.getSession().setAttribute("name", sName);
+			request.getSession().setAttribute("sName", sName);
 			request.getSession().setAttribute("userCode", "2");
+			
+			logger.info("현재 session의 memberId: {}", sMemberId);
+			
 			//[2] 쿠키
 			Cookie cookie= new Cookie("sSaveId", sMemberId);
 			cookie.setPath("/");
@@ -136,11 +139,11 @@ public class LoginController {
 		logger.info("로그아웃 처리 userCode: {}", userCode);
 		
 		if("1".equals(userCode)) {
-			session.removeAttribute("memberId");
+			session.removeAttribute("memberid");
 			session.removeAttribute("userCode");
 			session.removeAttribute("name");
 		}else if("2".equals(userCode)) {
-			session.removeAttribute("sMemberId");
+			session.removeAttribute("memberid");
 			session.removeAttribute("userCode");
 			session.removeAttribute("sName");
 		}

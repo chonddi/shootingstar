@@ -1,19 +1,26 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Poor+Story&subset=korean');
+
 
 #mainHeaderAd {
-	width: 1903px;
-	height: 500px;
+	
+	font-weight:400;
+	width: 1930px;
+	height: 510px;
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin-top: -50px;
+	margin-top: -80px;
 	margin-left: -320px;
+
 }
 
 #mainSentence {
 	z-index: 100;
 	color: white;
 	font-size: 50px;
-	margin-left: 520px;
+	margin-left: 550px;
 	padding-top: 140px;
 }
 
@@ -46,13 +53,13 @@
 }
 
 #tableDiv {
-	margin-top: 35px;
-	margin-left: 120px;
+	margin-top: 45px;
+	margin-left: 180px;
 }
 
 #mainBtn {
 	margin-left: 330px;
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
 .container-fluid {
@@ -73,4 +80,148 @@ article {
 	width: 1300px;
 
 	margin-top: 120px;
+}
+
+
+.snip1445 {
+
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 10px 1%;
+  width:330px;
+  height:210px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  background-color: #000000;
+}
+.snip1445 *,
+.snip1445 *:before,
+.snip1445 *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.55s ease;
+  transition: all 0.55s ease;
+}
+.snip1445 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+.snip1445 figcaption {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  padding: 5px 10px 10px;
+}
+.snip1445 figcaption:before,
+.snip1445 figcaption:after {
+  height: 2px;
+  width: 400px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+.snip1445 figcaption:before {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.snip1445 figcaption:after {
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.snip1445 figcaption div:before,
+.snip1445 figcaption div:after {
+  width: 2px;
+  height: 300px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+.snip1445 figcaption div:before {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.snip1445 figcaption div:after {
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.snip1445 h2,
+.snip1445 h4 {
+  margin: 0;
+  text-transform: uppercase;
+  
+}
+.snip1445 h2 {
+  font-weight: 400;
+
+font-family: 'Sunflower', sans-serif;
+}
+.snip1445 h4 {
+  display: block;
+
+  background-color: #ffffff;
+  padding: 5px 10px;
+  color: #000000;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight:700;
+
+}
+.snip1445 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.snip1445:hover img,
+.snip1445.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+.snip1445:hover figcaption:before,
+.snip1445.hover figcaption:before,
+.snip1445:hover figcaption:after,
+.snip1445.hover figcaption:after,
+.snip1445:hover figcaption div:before,
+.snip1445.hover figcaption div:before,
+.snip1445:hover figcaption div:after,
+.snip1445.hover figcaption div:after {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.snip1445:hover figcaption:before,
+.snip1445.hover figcaption:before,
+.snip1445:hover figcaption:after,
+.snip1445.hover figcaption:after {
+  -webkit-transition-delay: 0.15s;
+  transition-delay: 0.15s;
+}
+.figbody{
+	margin:0 auto;
+	width:1200px;
+	height:800px;
+	padding-top:30px;
+	padding-left:42px;
+	font-family: 'Sunflower', sans-serif;
+}
+.prt{
+	width:1200px;
+	height:130px;
+	text-align:center;
+	padding-top:80px;
+	font-family: 'Sunflower', sans-serif;
+	font-size:1.8em;
+	font-weight:300;
 }

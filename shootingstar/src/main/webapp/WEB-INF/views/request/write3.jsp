@@ -12,9 +12,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">

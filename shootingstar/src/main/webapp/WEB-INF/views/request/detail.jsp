@@ -56,10 +56,10 @@ function viewImage(img){
 
 <body>
 
-<div>
+<div class="rbody">
 
 
-	<!-- <div class="main2"> -->
+		
 	
 	 			<div class="title2">
 					${vo.memberId}님의 Request 입니다.</div>
@@ -79,7 +79,7 @@ function viewImage(img){
 			
 			</div> 
 			
-		   
+		  
 		   
 		
 			<div id="pS4"> 

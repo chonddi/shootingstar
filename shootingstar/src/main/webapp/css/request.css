@@ -8,7 +8,7 @@ body{
 }
 
 .main1 {
-	width: 1500px;
+	width: 1200px;
 	margin: 0 auto;
 	position:relative;
 
@@ -109,8 +109,8 @@ textarea::placeholder {
  	 margin-bottom:3%;
 	 font-weight:200;
 	 text-transform: uppercase;
-	 width: 1400px;
-	 height:600px;
+	 width: 1200px;
+	 height:500px;
 	 padding-top: 5%;
 	 padding-bottom: 30px;
 	 border: 1px solid #649ac7;

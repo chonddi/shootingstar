@@ -97,8 +97,8 @@
 <c:if test="${empty param.searchKeyword}">
 	<p>총 ${pageVo.totalRecord}건의 REQUEST가 조회되었습니다. </p> 
 </c:if>
-<hr><br>
-
+<br><hr>
+<br><br>
 <%-- <c:if test="${!empty param.cgNo }">
 	<p>${ctgProductVO.cgName } 상품 : ${pagingInfo.totalRecord } 건 입니다.</p>
 </c:if> --%>
@@ -110,7 +110,21 @@
 		
 		Category
 		<select name="cgNo" onchange="this.form.submit()">
-			<option></option>
+			<option>
+			<c:choose>
+				 <c:when test="${cno ==null }">---전체---</c:when>
+				 <c:when test="${cno ==1 }">-인물/프로필-</c:when>
+				 <c:when test="${cno ==2 }">---푸드---</c:when>
+				 <c:when test="${cno ==3 }">---패션---</c:when>
+				 <c:when test="${cno ==4 }">---웨딩---</c:when>
+				 <c:when test="${cno ==5 }">-행사/컨퍼런스-</c:when>
+				 <c:when test="${cno ==6 }">-건축/인테리어-</c:when>
+				 <c:when test="${cno ==7 }">---공연---</c:when>
+				 <c:when test="${cno ==8 }">---광고---</c:when>
+				 <c:when test="${cno ==9 }">-스냅사진-</c:when>
+			</c:choose>
+			
+			</option>
 			<option value="0">전체</option>
 			<option value="1" 
 				<c:if test="${param.eventName=='1'}">selected</c:if>
@@ -350,12 +364,13 @@
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
 	<c:forEach var="i" begin="${pageVo.firstPage }" end="${pageVo.lastPage}">
 		<c:if test="${i==pageVo.currentPage }">
-			<span style="color: blue;font-weight: bold;font-size:1.0em">
+			<span class="pageNum1">
 				${i}</span>
 		</c:if>
 		<c:if test="${i!=pageVo.currentPage }">
 			<a href="#" onclick="pageFunc(${i})">
-			[${i }]</a>
+			<span class="pageNum2">
+			[${i }]</span></a>
 		</c:if>
 	</c:forEach>
 		
