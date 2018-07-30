@@ -139,52 +139,14 @@
     }
        
 </script>
+<link rel="stylesheet" href="<c:url value='/css/register.css'/>">
 <style type="text/css">
-.formDiv>div, fieldset>div {
-	margin: 10px;
-}
-
 .regiAll {
 	width: 460px;
-	margin: 0 auto;
-	border:1px solid #d9d9d9;
-	padding:30px;
-}
-
-input[type=text], input[type=password] {
-	height: 35px;
-	border: none;
-	border-bottom: 1px solid #d9d9d9;
-}
-
-legend {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-span{
-	font-size: 0.8em;
-}
-#submits{
-	text-align:center;
 }
 #memJoin{
 	width: 400px;
-	height: 35px;
 	background: #2c8e06;
-	color:white;
-	border: none;
-	font-size: 0.9em;
-}
-
-#idChkBtn, #btnZipcode{	
-    border:  none;
-    width: 100px;
-    height: 30px;
-    font-size: 0.8em;
-    background: #9b9b9b;
-    color: white;
-    border-radius: 5px 5px;
 }
 .addr{
 	font-size: 0.8em;
@@ -196,17 +158,7 @@ span{
 	font-size:0.9em;
 	padding-top: 20px;
 }
-.first{
-	margin-top:0px;
-}
-.second{
-	padding-left: 10px;
-	padding-top: 16px;
-}
-.third{
-	padding-left: 20px;
-	font-size: 0.8em;
-}
+
 </style>
 <div class="regiAll">
 

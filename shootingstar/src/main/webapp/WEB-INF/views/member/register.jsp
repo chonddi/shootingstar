@@ -10,12 +10,6 @@
 			$('.chk').prop('checked', this.checked);
 		});
 
-		/* 결제~~~~~~~~~~~~~~~~~~~~복붙용
-		$('#btn').click(function(){
-			window.open('<c:url value="/member/hpin.do"/>', 'hp', 
-			'width=830,height=600,left=400,top=300,location=yes,resizable=yes');
-		});// */
-
 		//이메일 인증 코드
 		$('#codeBtn').click(function() {
 			$.ajax({
@@ -140,61 +134,14 @@
 		return false;
 	}
 </script>
+<link rel="stylesheet" href="<c:url value='/css/register.css'/>">
 <style type="text/css">
-.formDiv>div, fieldset>div {
-	margin: 10px;
-}
-
 .regiAll {
 	width: 430px;
-	margin: 0 auto;
-	border:1px solid #d9d9d9;
-	padding:30px;
-}
-
-input[type=text], input[type=password] {
-	height: 35px;
-	border: none;
-	border-bottom: 1px solid #d9d9d9;
-}
-
-legend {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-span{
-	font-size: 0.8em;
-}
-#submits{
-	text-align:center;
 }
 #memJoin{
 	width: 350px;
-	height: 35px;
 	background: #0e4699;
-	color:white;
-	border: none;
-	font-size: 0.9em;
-}
-
-#idChkBtn{	
-    border:  none;
-    width: 100px;
-    height: 30px;
-    font-size: 0.8em;
-    background: #9b9b9b;
-    color: white;
-    border-radius: 5px 5px;
-}
-.second{
-	padding-left: 10px;
-	padding-top: 16px;
-	font-size: 0.9em;
-}
-.third{
-	padding-left: 20px;
-	font-size: 0.8em;
 }
 </style>
 <div class="regiAll">

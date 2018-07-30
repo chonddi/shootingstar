@@ -13,4 +13,6 @@ public interface SendMsgDAO {
 	public int getTotalRecordReceive(Map<String, Object> map);
 	public Map<String, Object> selectDetail(int sMsgNo);
 	public int updateRead(int sMsgNo);
+	public int deleteMulti(Map<String, String[]> map);
+	public int rDeleteMulti(Map<String, String[]> map);
 }

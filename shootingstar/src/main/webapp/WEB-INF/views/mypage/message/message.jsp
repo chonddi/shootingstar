@@ -3,24 +3,15 @@
 <%@ include file="../mypageTop.jsp"%>
 <script type="text/javascript">
 	$(function(){
-		$('#sendMsg').click(function(){
-			x = (screen.availWidth - 460) / 2;
-			y = (screen.availHeight - 550) / 2;
-			window.open("<c:url value='/mypage/message/messageWrite.do'/>","쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
-		});
+		//받은쪽지 클릭
 		$('.anotherBtn').click(function(){
 			location.href="<c:url value='/mypage/message/messageReceive.do'/>";
 		});
 		
 	});
-	function pageFunc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		frmPage.submit();
-	}
-	function msgView(sender, sMsgNo, code) {
-		document.detailFrm.sender.value=sender;
+	
+	function msgView(sMsgNo) {
 		document.detailFrm.sMsgNo.value=sMsgNo;
-		document.detailFrm.code.value=code;
 		msgViewSubmit();
 	}
 	function msgViewSubmit(){
@@ -33,17 +24,17 @@
 		frm.method = "post";
 		frm.submit();
 	}
+	
 </script>
+<script  src="<c:url value='/js/message.js'/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
 		쪽지함
 	</div>
-	<!-- 페이징 처리를 위한 form -->
 	<form id="detailFrm" name="detailFrm">
-		<input type="hidden" name="sender">
 		<input type="hidden" name="sMsgNo">
-		<input type="hidden" name="code">
 	</form>
+	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
 		action="<c:url value='/mypage/message/message.do'/>">
 		<input type="hidden" name="currentPage" >
@@ -52,30 +43,43 @@
 	</form>
 	<div class="selectedPage">
 		<div class="msgBtn"><span class="nowMsgType">보낸쪽지</span> <span class="btnMsgType"><input type="button" class="anotherBtn" value="받은쪽지"></span></div>
+		<form name="frmDel" method="post" action="<c:url value='/mypage/message/deleteMulti.do'/>">
 		<table id="msgTbl">
 			<colgroup>
-				<col style="width:20%">
-				<col style="width:66%">
+				<col style="width:3%;" />
+				<col style="width:20%;">
+				<col style="width:63%;">
 				<col style="width:*">
 			</colgroup>
 			<tr>
+			 	<th scope="col"><input type="checkbox" name="chkAll" 
+	    			onclick="allChecked(this.checked)"></th>
 				<th scope="col">받는사람</th>
 				<th scope="col">제목</th>
 				<th scope="col">보낸날짜</th>
 			</tr>
 			<c:if test="${empty sendList}">
-				<td colspan="3" style="text-align:center">보낸 쪽지가 없습니다.</td>
+				<td> </td>
+				<td> </td>
+				<td style="text-align:center">보낸 쪽지가 없습니다.</td>
+				<td> </td>
 			</c:if>
 			<c:if test="${!empty sendList }">
+				${pageVo.totalRecord}개의 쪽지가 있습니다.<br><br>
 		    	<c:forEach var="sendMap" items="${sendList}">
 				<tr>
+					<td>
+						<input type="checkbox" name="chk" value="${sendMap['SMSGNO']}">
+					</td>
 					<td>${sendMap["RECIPIENT"] }</td>
-		    		<td><a href="#" onclick="msgView('${sendMap['SENDER']}','${sendMap['SMSGNO']}','${sendMap['CODE']}')">${sendMap["TITLE"]}</a></td>
+		    		<td><a href="#" onclick="msgView('${sendMap['SMSGNO']}')">${sendMap["TITLE"]}</a></td>
 		    		<td><fmt:formatDate value="${sendMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 		    	</c:forEach>
 			</c:if>    
 	    </table><br>
+	    <input type="submit" value="글 삭제" >
+    </form>
 		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div>
 		
 		<!-- 페이지처리 -->
