@@ -15,4 +15,5 @@ public interface SMemberService {
 	public int updateOutDate(String sMemberId);
 	public int updateSMember(SMemberVO sMemberVo);
 	public int updatePwd(String sPwd, String userId);
+	public int updateTempPwd(String tempPwd);
 }

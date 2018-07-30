@@ -1,6 +1,7 @@
 package com.ss.star.mail.controller;
 
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,6 +59,25 @@ public class MailController {
         StringBuilder sb = new StringBuilder();
         sb.append("회원가입 승인번호는 ").append(joinCode).append(" 입니다.");
         return mailService.send(subject, sb.toString(), "hkedushootingstar@gmail.com", memberId);
+    }
+    
+    @RequestMapping(value = "/sendToken.do", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    private boolean sendToken(@RequestParam String memberId, @RequestParam String userCode) {
+    	logger.info("토큰보내기");
+    	String tempPwd = UUID.randomUUID().toString().replace("-", "");
+    	int cnt=0;
+    	if("1".equals(userCode)) {
+    		cnt = memberService.updateTempPwd(tempPwd);
+    	}else {
+    		cnt=sMemberService.updateTempPwd(tempPwd);
+    	}
+    	
+    	String subject = "[슈팅스타]비밀번호 찾기입니다.";
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("http://localhost:9090/star/login/findPassword.do?token=").append(tempPwd).append("&userCode=").append(userCode);
+    	
+    	return mailService.send(subject, sb.toString(), "hkedushootingstar@gmail.com", memberId);
     }
     
     @RequestMapping("/code.do")

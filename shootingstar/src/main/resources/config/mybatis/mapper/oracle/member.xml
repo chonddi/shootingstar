@@ -33,6 +33,11 @@
 	<update id="updatePwd" parameterType="map">
 		update member set pwd=#{pwd} where memberId=#{memberId}
 	</update>
+	
+	<!-- 임시비밀번호 -->
+	<update id="updateTempPwd" parameterType="String">
+		update member set tempPwd=#{tempPwd}
+	</update>
 </mapper>
 
 

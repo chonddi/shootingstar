@@ -12,4 +12,5 @@ public interface MemberDAO {
 	public int updateOutDate(String memberId);
 	public int selectCountMemberId(String memberId);
 	public int updatePwd(Map<String, String> map);
+	public int updateTempPwd(String tempPwd);
 }

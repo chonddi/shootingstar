@@ -158,4 +158,16 @@ public class LoginController {
 		logger.info("비밀번호 찾기 userCode: {}", userCode);
 		
 	}
+	
+	@RequestMapping("/findPassword.do")
+	public String findPassword(@RequestParam(defaultValue="0") String tempPwd, Model model) {
+		logger.info("비밀번호 찾기 토큰입력 tempPwd: {}", tempPwd);
+		
+		if("0".equals(tempPwd)) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/login/login.do");
+			
+			return "common/message";
+		}
+	}
 }

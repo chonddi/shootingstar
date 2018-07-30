@@ -65,6 +65,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.updatePwd(map);
 	}
+
+	@Override
+	public int updateTempPwd(String tempPwd) {
+		return memberDao.updateTempPwd(tempPwd);
+	}
 	
 	
 }

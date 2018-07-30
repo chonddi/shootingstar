@@ -24,10 +24,9 @@ function checkMail() {
 			var data = JSON.parse(xhttp.responseText);
 			if (data == null) {
 				alert("가입하지 않은 이메일 입니다.");
-				$("#joincode").css("display", "none");
+				$('#memberId').focus();
 			} else {
-				sendMail(memberId);
-				$("#joincode").css("display", "");
+				sendToken(memberId, userCode);
 			}
 		}
 	};
@@ -39,7 +38,7 @@ function checkMail() {
 }
 
 //이메일 인증 메일 발송
-function sendMail(memberId) {
+function sendToken(memberId, userCode) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
@@ -49,10 +48,10 @@ function sendMail(memberId) {
 				alert("올바른 메일 형식이 아닙니다.");
 		}
 	};
-	xhttp.open("POST", 'sendMail.do', true);
+	xhttp.open("POST", 'sendToken.do', true);
 	xhttp.setRequestHeader("Content-Type",
 			"application/x-www-form-urlencoded;charset=UTF-8");
-	xhttp.send('memberId=' + memberId);
+	xhttp.send('memberId=' + memberId + "&userCode="+userCode);
 	return false;
 }
 </script>
@@ -72,11 +71,7 @@ function sendMail(memberId) {
 		<input type="text" placeholder="이메일" id="memberId" name="memberId"
 			class="valid"><br>
 		<input type="text" id="userCode" value="${param.userCode}">
-		<input type="button" id="idChkBtn" value="이메일 인증" onclick="checkMail()" />
-	</div>
-	<div id="joincode" style="display: none">
-		<input type='number' name="inputCode" id="inputCode" placeholder="인증번호">
-		<input type="button" id="codeBtn" value="확인" />
+		<input type="button" id="idChkBtn" value="확인" onclick="checkMail()" />
 	</div>
 </body>
 </html>

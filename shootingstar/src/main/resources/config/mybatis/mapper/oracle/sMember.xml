@@ -50,4 +50,9 @@
 	<update id="updatePwd" parameterType="map">
 		update sMember set sPwd=#{sPwd} where sMemberId=#{sMemberId}
 	</update>
+	
+	<!-- 임시비밀번호 -->
+	<update id="updateTempPwd" parameterType="String">
+		update smember set tempPwd=#{tempPwd}
+	</update>
 </mapper>

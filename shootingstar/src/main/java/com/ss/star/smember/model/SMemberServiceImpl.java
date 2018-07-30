@@ -65,5 +65,10 @@ public class SMemberServiceImpl implements SMemberService{
 		
 		return sMemberDao.updatePwd(map);
 	}
+
+	@Override
+	public int updateTempPwd(String tempPwd) {
+		return sMemberDao.updateTempPwd(tempPwd);
+	}
 	
 }
