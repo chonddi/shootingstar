@@ -47,7 +47,7 @@ public class LoginController {
 			logger.info("로그인 처리 memberId로  불러온 결과 name: {}",name);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("memberid", memberId);
+			request.getSession().setAttribute("userid", memberId);
 			//userName
 			request.getSession().setAttribute("name", name);
 			request.getSession().setAttribute("userCode", "1");
@@ -98,9 +98,9 @@ public class LoginController {
 			logger.info("로그인 처리 sMemberId로  불러온 결과 sName: {}",sName);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("memberid", sMemberId);
+			request.getSession().setAttribute("userid", sMemberId);
 			//userName
-			request.getSession().setAttribute("sName", sName);
+			request.getSession().setAttribute("name", sName);
 			request.getSession().setAttribute("userCode", "2");
 			
 			logger.info("현재 session의 memberId: {}", sMemberId);
@@ -133,22 +133,29 @@ public class LoginController {
 
 	}
 	
+	//로그아웃
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("로그아웃 처리 userCode: {}", userCode);
 		
 		if("1".equals(userCode)) {
-			session.removeAttribute("memberid");
+			session.removeAttribute("userid");
 			session.removeAttribute("userCode");
 			session.removeAttribute("name");
 		}else if("2".equals(userCode)) {
-			session.removeAttribute("memberid");
+			session.removeAttribute("userid");
 			session.removeAttribute("userCode");
-			session.removeAttribute("sName");
+			session.removeAttribute("name");
 		}
 		
 		return "redirect:/index.do";
 	}
 	
+	//비밀번호 찾기
+	@RequestMapping("/forgotPassword.do")
+	public void forgotPassword(@RequestParam String userCode) {
+		logger.info("비밀번호 찾기 userCode: {}", userCode);
+		
+	}
 }
