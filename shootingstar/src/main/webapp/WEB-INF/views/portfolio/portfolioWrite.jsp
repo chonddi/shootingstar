@@ -136,7 +136,9 @@
 			<option value="">카테고리를 선택해 주세요 !</option>
 			<!-- 반복문 시작 -->
 			<%-- <c:forEach var="vo" items="${list }"> --%> 
-			<option value="1">일번</option>
+			<c:forEach var="vo" items="${list }" >
+				<option value="${vo.cgNo }">${vo.cgName}</option>
+			</c:forEach>
 			<%-- 		</c:forEach> --%>
 			<!-- 반복문 끝 -->
 		</select> <br>

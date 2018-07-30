@@ -61,6 +61,10 @@
 		select * from pfdetail where pfno=#{pfNo}
 	</select>
 	
+	<select id="selectBySmemberId" parameterType="String" resultType="portfolioVO">
+		select * from portfolio where smemberid = #{smemberId} and rownum=1 order by pfno desc
+	</select>
+	
 	
 </mapper>
 

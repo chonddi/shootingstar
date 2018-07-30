@@ -12,6 +12,7 @@ import com.ss.star.common.SearchVO;
 @Repository
 public class PortfolioDAOMybatis implements PortfolioDAO {
 	private String namespace = "config.mybatis.mapper.oracle.portfolio.";
+	private String namespace2 = "config.mybatis.mapper.oracle.review.";
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -46,6 +47,18 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 		// TODO Auto-generated method stub
 		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetail", pfNo);
 		return list;
+	}
+
+	@Override
+	public List<reviewVO> selectReview(int pfNo) {
+		List<reviewVO> list = sqlSession.selectList(namespace2+"selectReview", pfNo);
+		return list;
+	}
+
+	@Override
+	public PortfolioVO selectBySmemberId(String smemberId) {
+		PortfolioVO vo = sqlSession.selectOne(namespace+"selectBySmemberId", smemberId);
+		return vo;
 	}
 
 }

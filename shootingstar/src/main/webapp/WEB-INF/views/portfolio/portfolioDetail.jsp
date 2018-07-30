@@ -20,6 +20,23 @@
 			lastRow : 'nojustify',
 			margins : 5
 		});
+		
+		var result = $('#result').val();
+		var communication = $('#communication').val();
+		var total = $('#total').val();
+		$('#resultStar').val(result);
+		$('#communicationStar').val(communication);
+		$('#totalStar').val(total);
+		$('#avgStar').append(isNaN(total)?"0.0":total);
+		
+		$('#a2').click(function(e){
+			e.preventDefault();
+			document.getElementById("detailArticle2").scrollIntoView();
+		});
+		$('#a3').click(function(e){
+			e.preventDefault();
+			document.getElementById("avgStar1").scrollIntoView();
+		});
 	});
 </script>
 
@@ -142,7 +159,7 @@
 }
 
 #das {
-	padding: 15px;
+	padding: 25px;
 	line-height: 30px;
 }
 
@@ -229,9 +246,9 @@
 }
 
 .memberCommentDiv {
-	padding-top: 30px;
-	margin-left: 155px;
-	line-height: 30px;
+    padding-top: 25px;
+    margin-left: 30px;
+    line-height: 50px;
 }
 
 .memberComment {
@@ -247,6 +264,13 @@
 .memberInfo1 {
 	font-size: 0.9em;
 	color: #a1a1a1;
+}
+#dasCg{
+	font-size: 1.4em;
+	font-weight: bold;
+}
+#dasExpert{
+	font-size: 0.8em;
 }
 </style>
 
@@ -267,9 +291,9 @@
 			</c:forEach>
 	<div id="detailArticle">
 		<ul class="nav nav-pills">
-			<li role="presentation" class="active"><a href="#">포트폴리오</a></li>
-			<li role="presentation"><a href="#">전문가 한마디</a></li>
-			<li role="presentation"><a href="#">후기</a></li>
+			<li role="presentation" class="active"><a>포트폴리오</a></li>
+			<li role="presentation"><a href="#" id="a2">전문가 한마디</a></li>
+			<li role="presentation"><a href="#" id="a3">후기</a></li>
 		</ul>
 		<div id="imgContainer">
 
@@ -283,6 +307,8 @@
 		</div>
 		<div id="detailArticleBottom">
 			<c:forEach var="map" items="${list }" end="0">
+			<c:set var="sname" value='${map["SNAME"] }'/>
+			<c:set var="cgname" value='${map["CGNAME"] }'/>
 				<c:set var="pr" value='${map["PR"] }'></c:set>
 				<div id="detailArticle2">전문가 소개<br> 
 					<span id="da2Name">${map["SNAME"] }</span>
@@ -290,8 +316,8 @@
 				</div>
 				<div id="detailArticleSide">
 					<div id="das">
-						${map["CGNAME"] }</span><br>
-						 ${map["SNAME"] } 전문가</span><br>
+						<span id="dasCg">${map["CGNAME"] }</span><br>
+						 <span id="dasExpert">${map["SNAME"] } 전문가</span><br>
 					</div>
 				</div>
 			</c:forEach>
@@ -304,58 +330,52 @@
 				<span>♡ 좋아요</span>
 				<hr>
 			</div>
+			<c:set var="result"/>
+			<c:set var="communication"/>
 			<div id="comment">
 				<span id="comment1">후기</span>
 				<div id="star">
-					<table id="starTable" border="1" width="900px">
+					<table id="starTable" border="1">
 						<tr>
-							<td><span id="avgStar1">★</span><span id="avgStar">9.8</span></td>
-							<td>총평점 <input type="hidden" class="rating" data-readonly
-								value="1" /></td>
-							<td>결과물<input type="hidden" class="rating" data-readonly
-								value="3" />
+							<td><span id="avgStar1">★</span><span id="avgStar"></span></td>
+							<td>총평점 <input type="hidden" id="totalStar" class="rating" data-readonly
+								value="" /></td>
+							<td>결과물<input type="hidden" id="resultStar" class="rating" data-readonly
+								value="" />
 							</td>
-							<td>커뮤니케이션 <input type="hidden" class="rating" data-readonly
-								value="5" /></td>
+							<td>커뮤니케이션 <input type="hidden" id="communicationStar" class="rating" data-readonly
+								value="" /></td>
 						</tr>
 					</table>
 				</div>
 			</div>
-			<div class="comment2">
-				<img alt="이미지" src="../images/로고최종글자없이20180719142549736.png"
-					width="120px">
-				<div class="memberCommentDiv">
-					<span class="memberComment">멤버가 작성한 코멘트가 들어갑니다.</span><br> <span
-						class="memberInfo">★9.8 <span class="memberInfo1">멤버이름
-							| 멤버관심사 | 작성일 | 전문가이름</span></span>
+
+			<c:forEach var="vo2" items="${list2 }">
+				<div class="comment2">
+					<div class="memberCommentDiv">
+						<span class="memberComment">${vo2.content }</span><br> <span
+							class="memberInfo">★${(vo2.communication+vo2.result)/2} <span class="memberInfo1">${vo2.memberId }
+								| ${cgname } | <fmt:formatDate value="${vo2.regdate }" pattern="yy-MM-dd"/> |  ${sname } 전문가 </span></span>
+					</div>
+					<input type="hidden" value='${result=result+vo2.result}'>
+					<input type="hidden" value='${communication=communication+vo2.communication}'>
 				</div>
-			</div>
-			<div class="comment2">
-				<img alt="이미지" src="../images/로고최종글자없이20180719142549736.png"
-					width="120px">
-				<div class="memberCommentDiv">
-					<span class="memberComment">멤버가 작성한 코멘트가 들어갑니다.</span><br> <span
-						class="memberInfo">★9.8 <span class="memberInfo1">멤버이름
-							| 멤버관심사 | 작성일 | 전문가이름</span></span>
-				</div>
-			</div>
-			<div class="comment2">
-				<img alt="이미지" src="../images/로고최종글자없이20180719142549736.png"
-					width="120px">
-				<div class="memberCommentDiv">
-					<span class="memberComment">멤버가 작성한 코멘트가 들어갑니다.</span><br> <span
-						class="memberInfo">★9.8 <span class="memberInfo1">멤버이름
-							| 멤버관심사 | 작성일 | 전문가이름</span></span>
-				</div>
-			</div>
+			</c:forEach>
+			
+			<c:set var="result" value='${result/reviewSize }'></c:set>
+			<c:set var="communication" value='${communication/reviewSize }'></c:set>
+			
+			<input type="hidden" id="result" value='${result }'>
+			<input type="hidden" id="communication" value='${communication }'>
+			
+			<input type="hidden" id="total" value="${(result+communication)/2 }">
 
 		</div>
 
 	</div>
 
 	<script type="text/javascript" src="<c:url value='/js/tooltip.js'/>"></script>
-	<script type="text/javascript"
-		src="<c:url value='/js/bootstrap-rating.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/bootstrap-rating.js'/>"></script>
 	<script>
 		$(function() {
 			$('input.check').on('change', function() {

@@ -25,6 +25,7 @@ import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.portfolio.model.PortfolioVO;
+import com.ss.star.portfolio.model.reviewVO;
 
 @Controller
 @RequestMapping("/portfolio")
@@ -74,39 +75,58 @@ public class PortfolioController {
 	}
 
 	@RequestMapping(value = "/portfolioWrite.do", method = RequestMethod.GET)
-	public void portfolioWrite_get() {
+	public String portfolioWrite_get(Model model) {
 		logger.info("포트폴리오 등록 화면 보여주기");
+		
+		List<CategoryVO> list=cgService.selectCategoryAll();
+		logger.info("카테고리 조회 결과, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return "portfolio/portfolioWrite";
 	}
 
 	@RequestMapping(value = "/portfolioWrite.do", method = RequestMethod.POST)
-	public String portfolioWrite_post(HttpSession session,@ModelAttribute PortfolioVO protfolioVo, MultipartHttpServletRequest request)
+	public String portfolioWrite_post(HttpSession session,@ModelAttribute PortfolioVO portfolioVo, MultipartHttpServletRequest request)
 			throws IOException {
 		logger.info("포트폴리오 등록 처리, 파라미터 vo={},protfolioVo");
-		String sMemberId = (String) session.getAttribute("sMemberId");
-		protfolioVo.setSmemberId(sMemberId);
+		String smemberId = (String) session.getAttribute("userid");
+		portfolioVo.setSmemberId(smemberId);
 		
 		//파일 업로드 처리
-				String fileName="", originalFileName="";
-				List<Map<String, Object>> fileList = null;
-				try {
-					fileList = fileUploadUtil.fileUpload(request, fileUploadUtil.PATH_FLAG_IMAGE);
-					System.out.println(fileList.size());
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					logger.info("2M 이상의 파일은 업로드 불가!");
-					e.printStackTrace();
-				}
-				int cnt=pfService.insertPf(protfolioVo, fileList);
-	
-		return "portfolio/protfolioWrite";
+		String fileName="", originalFileName="";
+		List<Map<String, Object>> fileList = null;
+		try {
+			fileList = fileUploadUtil.fileUpload(request, fileUploadUtil.PATH_FLAG_IMAGE);
+			System.out.println(fileList.size());
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.info("2M 이상의 파일은 업로드 불가!");
+			e.printStackTrace();
+		}
+		int cnt=pfService.insertPf(portfolioVo, fileList);
+		
+		PortfolioVO vo = pfService.selectBySmemberId(smemberId);
+		int pfNo = vo.getPfNo();
+		return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
 	}
 	
 	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
 	public String portfolio_detail(@RequestParam int pfNo, Model model) {
-		logger.info("포트폴리오 디테일 화면 보여주기");
+		
+		
+		logger.info("포트폴리오 디테일 화면 보여주기, pfNo={}", pfNo);
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
 		model.addAttribute("list", list);
+		
+		List<reviewVO> list2 = pfService.selectReview(pfNo);
+		model.addAttribute("list2", list2);
+		logger.info("list2 값={}", list2.size());
+		
+		int reviewSize = list2.size();
+		model.addAttribute("reviewSize",reviewSize);
+		
 		return "portfolio/portfolioDetail";
 		
 	}
