@@ -130,11 +130,11 @@ function setComma(inNum){
 			 			
 			 		
 			 			
-			 	  ${sessionScope.memberid}님이 제시하신 금액: 
+			 	  ${sessionScope.userid}님이 제시하신 금액: 
 			 	  
 			 	  
 			 	  <c:forEach var="pvo" items="${pList}">
-			 	  		<c:if test="${pvo.sMemberId == sessionScope.memberId }">
+			 	  		<c:if test="${pvo.sMemberId == sessionScope.userid }">
 			 	  
 			 				<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
 			 		

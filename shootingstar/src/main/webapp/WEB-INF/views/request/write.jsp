@@ -39,7 +39,7 @@ $(".hover").mouseleave(
 
 		<div class="main">
 		
-		<form name="frmWrite1" method="post" id="frm1" action="<c:url value='/request/write2.do'/>" 
+		<form name="frmWrite1" method="post" id="frmA" action="<c:url value='/request/write2.do'/>" 
 					onsubmit="return send(this)">
 					
 				<div class="frmfrm">	

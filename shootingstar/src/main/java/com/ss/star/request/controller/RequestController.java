@@ -110,15 +110,16 @@ public class RequestController {
 				
 		String rtype="";
 		
-		if(ck1!=null&&ck2!=null) {
+		if(ck1==null&&ck2==null) {
+			rtype="미선택";
+		}else if(ck1!=null&&ck2!=null) {
 			rtype=ck1+", "+ck2;
 		}else if(ck1==null) {
 			rtype=ck2;
 		}else if(ck2==null) {
 			rtype=ck1;
-		}else {
-			rtype="미선택";
 		}
+
 	
 		
 		
@@ -178,7 +179,7 @@ public class RequestController {
 		}
 		
 		
-		return "redirect:/request/list.do";  
+		return "redirect:/request/list.do";
 		
 	}
 	
@@ -252,6 +253,8 @@ public class RequestController {
 		
 		List<PickAllVO> pList=requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
+		
+		
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);

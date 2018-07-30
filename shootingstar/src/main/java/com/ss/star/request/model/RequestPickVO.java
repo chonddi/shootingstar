@@ -9,6 +9,7 @@ public class RequestPickVO {
 	private String sMemberId;
 	private int sPrice;
 	private String choice;
+	
 	public int getPickNo() {
 		return pickNo;
 	}

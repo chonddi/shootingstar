@@ -10,15 +10,22 @@
 <head>
 <meta charset="utf-8">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert2@7.17.0/dist/sweetalert2.all.js"></script> -->
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 
 
+
+<link href="../css/datepicker.min.css" rel="stylesheet" type="text/css">
+     <script src="../js/datepicker.min.js"></script>
+      <script src="../js/i18n/datepicker.en.js"></script>
+
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
 <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
 
 
 <script type="text/javascript">
@@ -309,30 +316,37 @@ function removeAll(e){
 }
 
 
-//날짜선택
-$(function(){
 
-        $('.input-group.date').datepicker({
-       	   calendarWeeks: false,
-           todayHighlight: true,
-           autoclose: true,
-           format: "yyyy/mm/dd",
-           language: "kr"
-
-        });
-
-    });
-
-
-$( document ).ready(function() {
+  
+$( document ).ready(function() { 
+	
+	
+	//파일업로드 갯수 5개로 제한
+	$("input[type=file]").change(function(){
+		
+		var mfile=document.getElementById("oky2");
+		if(mfile.files.length>=6){
+			alert("업로드 가능한 파일 갯수는 최대 5개 입니다.");
+			
+			if($.browser.msie){     //익스플로러일 경우 - input type file 초기화
+		        $("#oky2").replaceWith( $("#oky2").clone(true) );
+				}else{    			//다른 브라우저일 경우- input type file 초기화
+		       $("#oky2").val("");
+			}
+		}
+	});
+	
+	
+	
+	//sweetalert으로 coonfirm창 띄우기
 	document.querySelector('#frm1').addEventListener('submit', function(e) {
 		  var form = this;
-
-		  e.preventDefault(); // <--- prevent form from submitting
-
+		  e.preventDefault(); 
+	
 		  swal({
 		      title: "글을 등록 하시겠습니까?",
-		      text: "pick이 하나 이상이면 금액수정이 불가합니다.계속하시겠습니까?",
+		      text: "pick된 글은 금액수정이 불가합니다. 계속하시겠습니까?",
+		      html: true,
 		      icon: "warning",
 		      buttons: [
 		        '아니요!',
@@ -353,12 +367,7 @@ $( document ).ready(function() {
 		      }
 		    })
 		});
-	});
-
-
-
-
-
+	}); 
 
 </script>
 <script>
@@ -413,10 +422,11 @@ $( document ).ready(function() {
 				    </select>
 						
 						<br><br>
-	
-					<div class="input-group date" style="width:300px;">
-					 <input type="text" id="pS1" name="dtSel" class="form-control" autocomplete=off><span class="input-group-addon">
-				 	<i class="glyphicon glyphicon-calendar"></i></span>
+					<div class="chkT">
+					<img src="../images/cal1.png" style="vertical-align:middle; float:left;"/>
+					 <input type="text" id="pS1" name="dtSel" class="datepicker-here" data-language='kr' 
+					 	data-position="left top"  style="vertical-align:middle;" autocomplete=off>
+				 
 					
 					
 							<div class="left">	
@@ -425,25 +435,28 @@ $( document ).ready(function() {
 						        <option value="오전">오전</option>
 						        <option value="오후">오후</option>
 						    </select>
-						    </div>	
-				    
+						    </div>
+						</div>		
+				  		 <div class="chkS">
+						   	<input type="checkbox" name="ck1" value="웹용"> 웹용 &nbsp;&nbsp;
+							<input type="checkbox" name="ck2" value="인쇄용"> 인쇄용
+							<div style="font-size:16px;">(0개 선택 시 "미선택"으로 입력됩니다.)</div>
+							<input type="hidden" name="RQPrice" value=${price }>
+							<input type="hidden" name="cg1" value=${cg1 }>
+						</div>
 					</div>
 					<br><br>
 				
-					<input type="checkbox" name="ck1" value="웹용" /> 웹용 &nbsp;&nbsp;
-					<input type="checkbox" name="ck2" value="인쇄용"/> 인쇄용
-					<input type="hidden" name="RQPrice" value=${price }>
-					<input type="hidden" name="cg1" value=${cg1 }>
+					
+
+
 			
-
-
-			</div> 
 			
 		   
 		   
 			 <div class="pS2">
 				    <span id="pS3"> 촬영에 대한 세부요청사항을 작성해주세요</span> <br>
-				  <textarea name="RQDetail" id="pS2" cols=45 rows=8 autofocus required wrap="soft" 
+				  <textarea name="RQDetail" id="pS2" cols=40 rows=8 autofocus required wrap="soft" 
 				  		placeholder="이곳에 요구사항을 작성해주세요.
 				  		예):총 몇 명인가요? 몇 가지 컨셉인가요? 어떤 제품인가요? 제품은 총 몇 개 인가요?
 				  		 <--내용의 첫 일부분이 제목으로 노출됩니다.-->" style="resize: none;"></textarea>
@@ -452,9 +465,12 @@ $( document ).ready(function() {
 		  		
 			 <div class="pS3">
 					 <span id="pS3"> 참고자료</span><br>
-					 참고용 사진을 업로드 해주세요. (권장 최대 5개)
+					 참고용 사진을 업로드 해주세요. (최대 5개까지 가능합니다)
+					
 					        
-		        <input type="file" multiple="multiple"  class="oky2" name="file" maxlength="5"/>
+		        <input type="file" multiple="multiple"  class="oky2" id="oky2" name="file"/>
+		        
+		       
  
 			</div>
 			  		 

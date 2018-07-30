@@ -152,7 +152,7 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 			 <div id="pS5"> 
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/addpick.do'/>"> 
 			 
-			 <br><hr><br><div class="title2">PICK하기</div>매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다. <div class="title5">${vo.memberId}님과 매칭하길 원하는 금액을 입력해주세요.</div><br>
+			 <br><br><div class="title2">PICK하기</div>매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다. <div class="title5">${vo.memberId}님과 매칭하길 원하는 금액을 입력해주세요.</div><br>
 			 				
 			 		<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
 		            style="text-align:right;" class="price1" name="price" autocomplete=off />

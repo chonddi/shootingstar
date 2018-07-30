@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Poor+Story&subset=korean');
@@ -58,6 +59,7 @@ body{
 	 font-size:2.7em;
 	 text-transform: uppercase;
 	 margin: 0 auto;
+	 padding-left:50px;
 }
 .title2{
 	font-family: 'Do Hyeon', sans-serif;
@@ -223,7 +225,7 @@ figure.snip1384.hover i {
 	text-align:left;
 	height:200px;
 	margin-bottom:40px;
-	padding-left:40px;
+	padding-left:70px;
 	padding-top:20px;
 }
 .pS1{
@@ -235,13 +237,14 @@ figure.snip1384.hover i {
 	color:black;
 	text-align:left;
 	height:200px;
-	padding-left:40px;
+	
 	margin-bottom:40px;
 	
 }
 #pS1{
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 1.0em;
+	float:left;
 }
 .pS2{
 	float:left;
@@ -281,14 +284,27 @@ figure.snip1384.hover i {
 #pS4{
 	float:left;
 	font-family: 'Do Hyeon', sans-serif;
-	width:1235px;
+	width:1200px;
 	height:100px;
+	color:black;
+	margin:0 auto;
+	text-align:center;
+	padding-right:100px;
+
+}
+#pS4a{
+	float:left;
+	font-family: 'Do Hyeon', sans-serif;
+	width:1200px;
+	height:130px;
 	color:black;
 	margin:0 auto;
 	text-align:left;
 	padding-top:10px;
 	padding-right:100px;
 	padding-left:40px;
+
+
 }
 #pS5{
 	float:left;
@@ -306,6 +322,7 @@ figure.snip1384.hover i {
 #frm1{
 	width:1235px;
 	height:600px;
+	padding-left:50px;
 	
 }
 #frm5{
@@ -383,4 +400,27 @@ figure.snip1384.hover i {
 	color: gray;
 	background-color: white;
 	cursor: pointer;
+}
+.left{
+	float:left;
+}
+
+#sTime{
+	font-size:18px;
+	margin-left:10px;
+	padding:2px;
+}
+.chkS{
+	clear:both;
+	font-size:20px;
+	padding-top:23px;
+}
+.chkT{
+	padding-top:18px;
+}
+#selOne{
+	font-size:18px;
+}
+#selTwo{
+	font-size:18px;
 }

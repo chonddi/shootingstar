@@ -78,7 +78,7 @@ function setComma(inNum){
 		
 		
 		
-		 <form name="frm1" method="post" class="cau1"
+		 <form name="frmB" method="post" class="cau1"
 		action="<c:url value='/request/write3.do'/>" onsubmit="return send(this)">
 				
 		            <span id="cg1">선택하신 카테고리는  <span id="cg2">${cg1}</span> 입니다.</span> <br><br>

@@ -127,7 +127,7 @@ function payBtn(QRNo){
 			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원
 			 </td>
 			 <td>
-			  <button onclick="payBtn(${pvo.QRNo})">결제하기</button>
+			  <button onclick="payBtn(${pvo.RQNo})">결제하기</button>
 			 </td>
 			<tr>
 			 </c:forEach>
