@@ -53,13 +53,15 @@ $(document).ready(function(){
 	});
 });
 
+function payBtn(QRNo){
+	location.href="<c:url value='/request/detail2.do?no=" + QRNo + "'/>";
+}
 
 
 </script>
 </head>
 
 <body>
-
 <div class="rbody">
 
 
@@ -125,7 +127,7 @@ $(document).ready(function(){
 			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원
 			 </td>
 			 <td>
-			  <button id="payBtn">결제하기</button>
+			  <button onclick="payBtn(${pvo.QRNo})">결제하기</button>
 			 </td>
 			<tr>
 			 </c:forEach>

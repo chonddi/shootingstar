@@ -39,7 +39,7 @@
 	<button id="btn1">예</button><input type="button" onclick='btn2()' value="아니오">
 	
 	<form name="frm" method="post" action="<c:url value=''/>">
-		<input type="text" name="asd" value="N">
+		
 		
 	</form>
 </body>

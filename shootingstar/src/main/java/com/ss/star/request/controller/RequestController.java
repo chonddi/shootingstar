@@ -272,6 +272,13 @@ public class RequestController {
 		
 	}
 	
+	@RequestMapping("/detail2.do")
+	public String detail2(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
+		
+		
+		
+	}
+	
 	@RequestMapping("/sdetail.do")
 	public String sdetail(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
