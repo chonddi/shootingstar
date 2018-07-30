@@ -4,11 +4,6 @@
 <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="<c:url value='/css/loginstyle.css'/>">
-<style type="text/css">
-	.regiBtn{
-		border-style: none;
-	}
-</style>
 <script type="text/javascript">
 	$(function(){
 		$('.regiBtn').click(function(){
@@ -17,6 +12,17 @@
 		if($('.ids').val()!=""){
 			 $('.labels').addClass('active highlight');
 		}
+		
+		$('#forgotM').click(function(){
+			x = (screen.availWidth - 460) / 2;
+			y = (screen.availHeight - 550) / 2;
+			window.open("<c:url value='/login/forgotPassword.do?userCode=1'/>","비밀번호 찾기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		});
+		$('#forgotSM').click(function(){
+			x = (screen.availWidth - 460) / 2;
+			y = (screen.availHeight - 550) / 2;
+			window.open("<c:url value='/login/forgotPassword.do?userCode=2'/>","비밀번호 찾기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		});
 	});
 </script>
  <div class="form">
@@ -53,7 +59,7 @@
             </label>
             <input type="password"required autocomplete="off" name="pwd"/>
           </div>
-          <p class="forgot"><a href="#">Forgot Password?</a></p><br>
+          <p class="forgot"><a href="#" id="forgotM">Forgot Password?</a></p><br>
           <button type="submit" class="button button-block">로그인</button>
           <input type="button" class="regiBtn" value="회원가입">
           </form>
@@ -85,7 +91,7 @@
             </label>
             <input type="password"required autocomplete="off" name="sPwd"/>
           </div>
-          <p class="forgot"><a href="#">Forgot Password?</a></p><br>
+          <p class="forgot"><a href="#" id="forgotSM">Forgot Password?</a></p><br>
           <button class="button button-block">로그인</button>
 	      <input type="button" class="regiBtn" value="회원가입">
 	      

@@ -151,7 +151,7 @@ textarea {
   outline: none;
   border-radius: 0;
   padding: 15px 0;
-  font-size: 2rem;
+  font-size: 1.5em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -172,4 +172,7 @@ textarea {
 .forgot {
   margin-top: -20px;
   text-align: right;
+}
+.regiBtn{
+	border-style: none;
 }

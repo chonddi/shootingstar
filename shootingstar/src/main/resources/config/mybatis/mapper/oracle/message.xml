@@ -37,7 +37,7 @@
 				 from message
 				 where
 				<include refid="searchWhere"></include>					
-				 sender=#{sender} and code=#{code}
+				 sender=#{sender} and code=#{code} and sdelflag='N'
 				order by smsgno desc
 		    )list
 		)    
@@ -51,7 +51,7 @@
 		select count(*) from message
 		where 
 		<include refid="searchWhere"></include>
-		sender=#{sender} and code=#{code}		
+		sender=#{sender} and code=#{code} and sdelflag='N'
 	</select>
 	
 	
@@ -67,7 +67,7 @@
 				 from message
 				 where
 				<include refid="searchWhere"></include>					
-				 recipient=#{recipient} and code!=#{code}
+				 recipient=#{recipient} and code!=#{code} and rdelflag='N'
 				order by smsgno desc
 		    )list
 		)    
@@ -81,17 +81,34 @@
 		select count(*) from message
 		where 
 		<include refid="searchWhere"></include>
-		recipient=#{recipient} and code!=#{code}		
+		recipient=#{recipient} and code!=#{code} and rdelflag='N'	
 	</select>
 	
 	<select id="selectDetail" parameterType="int" resultType="map">
-		select sMsgNo, title, content, regdate, recipient, sender from message where sMsgno=#{sMsgNo}	
+		select sMsgNo, rMsgNo, title, content, regdate, recipient, sender, code from message where sMsgno=#{sMsgNo}	
 	</select>
 	
 	<update id="updateRead" parameterType="int">
 		update message set readflag='Y' where smsgno=#{sMsgNo}
 	</update>
 	
+	<delete id="deleteMulti" parameterType="map">
+		update sendmsg set sdelflag='Y'
+		where sMsgNo in 
+		<foreach item="sMsgNo" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{sMsgNo}
+		</foreach>
+	</delete>
+	
+	<delete id="rDeleteMulti" parameterType="map">
+		update receivemsg set rdelflag='Y'
+		where rMsgNo in 
+		<foreach item="rMsgNo" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{rMsgNo}
+		</foreach>
+	</delete>
 </mapper>
 
 

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,16 +81,66 @@ public class SendMsgServiceImpl implements SendMsgService{
 		int total = sendMsgDao.getTotalRecordReceive(map);
 		return total;
 	}
-
+	
 	@Override
 	public Map<String, Object> selectDetail(int sMsgNo) {
 		return sendMsgDao.selectDetail(sMsgNo);
 	}
 
 	@Override
+	public int selectDetailChk(int sMsgNo, HttpSession session) {
+		Map<String, Object> map = sendMsgDao.selectDetail(sMsgNo);
+		String sender =(String)map.get("sender");
+		String code = (String)map.get("code");
+		String userid =(String)session.getAttribute("userid");
+		String userCode= (String)session.getAttribute("userCode");
+		System.out.println("sender: "+sender+", code: "+code+", userid: "+userid+", userCode: "+userCode);
+		int result = 0;
+		if(userid.equals(sender) && 
+					code.equals(userCode)){
+			result = SESSION_CHECK_OK;
+		}else {
+			result=SESSION_CHECK_NOTOK;
+		}
+		System.out.println("result: "+result);
+		return result;
+	}
+	
+	@Override
+	public int selectDetailChk2(int sMsgNo, HttpSession session) {
+		Map<String, Object> map = sendMsgDao.selectDetail(sMsgNo);
+		String recipient =(String)map.get("recipient");
+		String code = (String)map.get("code");
+		String userid =(String)session.getAttribute("userid");
+		String userCode= (String)session.getAttribute("userCode");
+		System.out.println("recipient: "+recipient+", code: "+code+", userid: "+userid+", userCode: "+userCode);
+		int result = 0;
+		if(userid.equals(recipient) && 
+				!code.equals(userCode)){
+			result = SESSION_CHECK_OK;
+		}else {
+			result=SESSION_CHECK_NOTOK;
+		}
+		System.out.println("result: "+result);
+		return result;
+	}
+	
+
+	@Override
 	public int updateRead(int sMsgNo) {
 		return sendMsgDao.updateRead(sMsgNo);
 	}
+
+	@Override
+	public int deleteMulti(Map<String, String[]> map) {
+		return sendMsgDao.deleteMulti(map);
+	}
+
+	@Override
+	public int rDeleteMulti(Map<String, String[]> map) {
+		return sendMsgDao.rDeleteMulti(map);
+	}
+
 
 	
 	

@@ -83,7 +83,7 @@ public class LoginController {
 	@RequestMapping("/loginSMember.do")
 	public String login_sMember(@RequestParam String sMemberId, @RequestParam String sPwd, @RequestParam(required=false) String sSaveId,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		logger.info("전문가회원 로그인 sMemberId: {}, sPpwd: {}", sMemberId, sPwd);
+		logger.info("전문가회원 로그인 sMemberId: {}, sPwd: {}", sMemberId, sPwd);
 		logger.info("sSaveId:{}", sSaveId);
 		
 		int result = sMemberService.checkPwd(sMemberId, sPwd);
@@ -102,6 +102,9 @@ public class LoginController {
 			//userName
 			request.getSession().setAttribute("name", sName);
 			request.getSession().setAttribute("userCode", "2");
+			
+			logger.info("현재 session의 memberId: {}", sMemberId);
+			
 			//[2] 쿠키
 			Cookie cookie= new Cookie("sSaveId", sMemberId);
 			cookie.setPath("/");
@@ -130,22 +133,29 @@ public class LoginController {
 
 	}
 	
+	//로그아웃
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("로그아웃 처리 userCode: {}", userCode);
 		
 		if("1".equals(userCode)) {
-			session.removeAttribute("memberId");
+			session.removeAttribute("userid");
 			session.removeAttribute("userCode");
 			session.removeAttribute("name");
 		}else if("2".equals(userCode)) {
-			session.removeAttribute("sMemberId");
+			session.removeAttribute("userid");
 			session.removeAttribute("userCode");
-			session.removeAttribute("sName");
+			session.removeAttribute("name");
 		}
 		
 		return "redirect:/index.do";
 	}
 	
+	//비밀번호 찾기
+	@RequestMapping("/forgotPassword.do")
+	public void forgotPassword(@RequestParam String userCode) {
+		logger.info("비밀번호 찾기 userCode: {}", userCode);
+		
+	}
 }

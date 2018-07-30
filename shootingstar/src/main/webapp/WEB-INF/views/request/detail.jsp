@@ -47,19 +47,25 @@ function viewImage(img){
  imgWin.document.close();
 }
 
+$(document).ready(function(){
+	$("#payBtn").click(function(){
+		
+	});
+});
 
-
+function payBtn(QRNo){
+	location.href="<c:url value='/request/detail2.do?no=" + QRNo + "'/>";
+}
 
 
 </script>
 </head>
 
 <body>
+<div class="rbody">
 
-<div>
 
-
-	<!-- <div class="main2"> -->
+		
 	
 	 			<div class="title2">
 					${vo.memberId}님의 Request 입니다.</div>
@@ -79,7 +85,7 @@ function viewImage(img){
 			
 			</div> 
 			
-		   
+		  
 		   
 		
 			<div id="pS4"> 
@@ -120,6 +126,9 @@ function viewImage(img){
 			 <td>
 			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원
 			 </td>
+			 <td>
+			  <button onclick="payBtn(${pvo.QRNo})">결제하기</button>
+			 </td>
 			<tr>
 			 </c:forEach>
 		  </tbody>
@@ -128,7 +137,6 @@ function viewImage(img){
 		  </div>
 
 </div>
-
 
 </body>
 </html>

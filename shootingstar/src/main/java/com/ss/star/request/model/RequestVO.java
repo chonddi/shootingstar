@@ -26,8 +26,8 @@ public class RequestVO {
 	public String getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(String memberID) {
-		memberId = memberID;
+	public void setMemberId(String memberid) {
+		memberId = memberid;
 	}
 	public int getCgNo() {
 		return cgNo;
@@ -86,11 +86,12 @@ public class RequestVO {
 	
 	@Override
 	public String toString() {
-		return "RequestVO [RQNo=" + RQNo + ", MemberId=" + memberId + ", cgNo=" + cgNo + ", RQPrice=" + RQPrice
+		return "RequestVO [RQNo=" + RQNo + ", memberId=" + memberId + ", cgNo=" + cgNo + ", RQPrice=" + RQPrice
 				+ ", RQRegion=" + RQRegion + ", RQDate=" + RQDate + ", RQType=" + RQType + ", pickCount=" + pickCount
 				+ ", RQDetail=" + RQDetail + ", regDate=" + regDate + ", delFlag=" + delFlag + "]";
 	}
 	
+
 	
 	
 }

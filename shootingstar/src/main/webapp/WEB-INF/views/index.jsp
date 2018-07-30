@@ -3,21 +3,29 @@
 <%@ include file="inc/top.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>">
-<style type="text/css">
 
-</style>
+<script type="text/javascript">
+$(".hover").mouseleave(
+		  function () {
+		    $(this).removeClass("hover");
+		  }
+		);
+		
+</script>
+
 <head>
     <!-- Custom styles for this template -->
     <link href="css/agency.css" rel="stylesheet">
 </head>
 
 <div id="mainHeaderAd"
-			style="background-image: url('<c:url value='/images/Honeycam.gif'/>');">
+			style="background-image: url('<c:url value='/images/mmain.gif'/>');">
 			<div id="mainSentence">
-				나에게 딱 맞는 포토그래퍼를 찾으세요 !
+				원하는 항목, 보다 합리적인 가격에<br>
+				나에게 딱 맞는 포토그래퍼를 찾아보세요 !
 				<p id="mainBtn">
-					<a class="btn btn-info" href="#" role="button"
-						style="width: 150px;">견적신청</a>
+					<a class="btn btn-info" href="<c:url value='/request/write.do'/>" role="button"
+						style="width: 150px; font-size: 0.35em;">견적신청</a>
 				</p>
 				<div id="tableDiv">
 					<table id="mainTable">
@@ -28,159 +36,120 @@
 						<tr id="mainTr">
 							<td class="border1">등록 전문가 수&nbsp;</td>
 							<td class="border2">&nbsp;견적 요청 수&nbsp;</td>
-							<td class="border2">&nbsp;요청별 견적서&nbsp;</td>
-							<td class="border3">&nbsp;첫 견적 도착시간</td>
+							<td class="border3">&nbsp;요청별 견적서&nbsp;</td>
+							
 						</tr>
 						<tr> 
 							<td class="border1">1업체&nbsp;</td>
 							<td class="border2">&nbsp;2개&nbsp;</td>
-							<td class="border2">&nbsp;3.2개&nbsp;</td>
-							<td class="border3">&nbsp;1.5분</td>
+							<td class="border3">&nbsp;3.2개&nbsp;</td>
+							
 						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
 
- <!-- Portfolio Grid --> 
-    <section class="bg-light" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Portfolio</h2>
-            <h3 class="section-subheading text-muted">category</h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/profile.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Profile</h4>
-              <p class="text-muted">인물/프로필</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/food.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Food</h4>
-              <p class="text-muted">음식</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/fashion.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Fashion</h4>
-              <p class="text-muted">패션</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/wedding.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Wedding</h4>
-              <p class="text-muted">웨딩</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/party.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Event</h4>
-              <p class="text-muted">행사</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/interior.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Interior</h4>
-              <p class="text-muted">인테리어</p>
-            </div>
-          </div>
-           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/concert.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Concert</h4>
-              <p class="text-muted">공연</p>
-            </div>
-          </div>
-           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/advertisment.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Advertisment</h4>
-              <p class="text-muted">광고</p>
-            </div>
-          </div>
-           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x">카테고리</i>
-                </div>
-              </div>
-              <img class="img-fluid" src="<c:url value='/images/snap.jpg'/>" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Snap</h4>
-              <p class="text-muted">스냅사진</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="prt">
 
+PORTPOLIO
+by category
+
+</div>
+
+
+
+<div class="figbody">
+
+	<figure class="snip1445">
+	  <img src="images/profile.jpg" alt="sample21" />
+	   <figcaption>
+	    <div>
+	      <h2>Profile</h2>
+	      <h4>인물/프로필</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/food.jpg" alt="sample21" />
+	  <figcaption>
+	    <div>
+	      <h2>Food</h2>
+	      <h4>음식</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/fashion.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Fashion</h2>
+	      <h4>패션</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure><figure class="snip1445"><img src="images/wedding.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Wedding</h2>
+	      <h4>웨딩</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/party.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Events</h2>
+	      <h4>행사/컨퍼런스</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/interior.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Architecture&Interior</h2>
+	      <h4>건축/인테리어</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/concert.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Concert</h2>
+	      <h4>공연</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/advertisment.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Advertisement</h2>
+	      <h4>광고</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/snap.jpg" alt="sample51" />
+	  <figcaption>
+	    <div>
+	      <h2>Snapshots</h2>
+	      <h4>스냅사진</h4>
+	    </div>
+	  </figcaption>
+	  <a href="#"></a>
+	</figure>
+	
+</div>
 
 <%@ include file="inc/bottom.jsp"%>

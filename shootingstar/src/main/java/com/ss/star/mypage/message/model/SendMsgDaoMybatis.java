@@ -44,5 +44,13 @@ public class SendMsgDaoMybatis implements SendMsgDAO{
 	public int updateRead(int sMsgNo) {
 		return sqlSession.update(namespace+"updateRead", sMsgNo);
 	}
+	@Override
+	public int deleteMulti(Map<String, String[]> map) {
+		return sqlSession.update(namespace+"deleteMulti", map);
+	}
+	@Override
+	public int rDeleteMulti(Map<String, String[]> map) {
+		return sqlSession.update(namespace+"rDeleteMulti", map);
+	}
 	
 }

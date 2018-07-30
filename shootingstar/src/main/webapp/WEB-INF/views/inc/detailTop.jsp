@@ -55,7 +55,7 @@
 							<li><a href="#">포트폴리오 상세보기</a></li>
 							<li><a href="#">포트폴리오 등록 (전문가)</a></li>
 						</ul></li>
-					<li><a class="menuLink" href="#">ABOUT SHOOTING&nbsp;STAR</a>
+					<li><a class="menuLink" href="#">ABOUT</a>
 						<ul>
 							<li><a href="#">회사소개</a></li>
 							<li><a href="#">인사말</a></li>

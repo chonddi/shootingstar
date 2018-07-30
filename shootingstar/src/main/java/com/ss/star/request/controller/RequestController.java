@@ -1,12 +1,9 @@
 package com.ss.star.request.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,27 +13,22 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
-import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
-import com.ss.star.request.model.ctgRequestVO;
-import com.ss.star.IndexController;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
 import com.ss.star.request.model.RequestPickVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
+import com.ss.star.request.model.ctgRequestVO;
 
 @Controller
 @RequestMapping("/request")
@@ -129,8 +121,8 @@ public class RequestController {
 		}
 	
 		
-		String date = vo.getRQDate();
-		if(date==null||date.isEmpty()) {
+		
+		if(vo.getRQDate()==null||vo.getRQDate().isEmpty()||vo.getRQDate().equals(" ")) {
 			vo.setRQDate("추후협의");
 		}
 		
@@ -156,13 +148,13 @@ public class RequestController {
 			vo.setCgNo(9);
 		}
 		
-		String memberid = (String)session.getAttribute("memberId");
+		String memberid = (String)session.getAttribute("userid");
 		vo.setMemberId(memberid);		
 		vo.setRQRegion(region);
 		vo.setRQDate(stime);
 		vo.setRQType(rtype);
 				
-		
+		logger.info("setting 후 ID, RequestVO={}", vo);
 		logger.info("setting 후 RequestVO, RequestVO={}", vo);
 	
 		List<Map<String, Object>> fileList;
@@ -196,9 +188,10 @@ public class RequestController {
 	public String list(@ModelAttribute ctgRequestVO searchVo, Model model, HttpSession session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
 		
-		String memberid = (String)session.getAttribute("memberId");
-		String smemberid = (String)session.getAttribute("sMemberId");
+		String memberid = (String)session.getAttribute("userid");
 		String usercode = (String)session.getAttribute("userCode");
+		logger.info("list.do 실행 후 id={}", memberid);
+		logger.info("list.do 실행 후 usercode={}", usercode);
 		
 		//[1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -214,7 +207,11 @@ public class RequestController {
 		List<RequestVO> list =requestService.selectAll(searchVo);
 		logger.info("견적 글 목록 조회 결과, list.size={}", list.size());
 		
-		
+		int cno= searchVo.getCgNo();
+		if (cno!=0) {
+			model.addAttribute("cno", cno);
+			logger.info("검색을 적용한 카테고리, cno={}", cno);
+		}
 		
 		//전체 레코드 개수 조회
 		int totalRecord=requestService.getTotalRecord(searchVo);
@@ -222,19 +219,14 @@ public class RequestController {
 		logger.info("전체 레코드 개수={}", totalRecord);
 		
 	
-		String vmemberid="";
+		String vmemberid=memberid;
 		
-		if(memberid!=null &&!memberid.isEmpty()) {
-			vmemberid=memberid;
-		}else if(smemberid!=null &&!smemberid.isEmpty()) {
-			vmemberid=smemberid;
-		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pageVo", pagingInfo);
 		model.addAttribute("vmemberid", vmemberid);
 		model.addAttribute("ucode", usercode);
-		logger.info("현재 session의 id={}", vmemberid);
+		logger.info("현재 session의 id={}", memberid);
 		logger.info("현재 session의 usercode={}", usercode);
 		
 		return "request/list";
@@ -247,7 +239,7 @@ public class RequestController {
 	public String detail(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 		
-		String memberid = (String)session.getAttribute("memberId");
+		String memberid = (String)session.getAttribute("userid");
 		String usercode = (String)session.getAttribute("userCode");
 		
 		RequestVO vo=requestService.selectByNo(no);
@@ -280,12 +272,19 @@ public class RequestController {
 		
 	}
 	
+	@RequestMapping("/detail2.do")
+	public String detail2(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
+		
+		
+		
+	}
+	
 	@RequestMapping("/sdetail.do")
 	public String sdetail(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 	
-		String smemberid = (String)session.getAttribute("sMemberId");
-		logger.info("현재 session 아이디, smemberid={}", smemberid);
+		String memid = (String)session.getAttribute("userid");
+		logger.info("sdetail 현재 session 아이디, userid={}", memid);
 		
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
@@ -297,12 +296,12 @@ public class RequestController {
 		model.addAttribute("list", list);
 		
 		List<RequestPickVO> idList=requestService.pickByNo(no);
-		logger.info("파라미터 idList, idList={}", idList);
+		logger.info("sdetail 파라미터 idList, idList={}", idList);
 		
-		if(idList.size()>1) {
+		if(idList.size()>=1) {
 			Boolean trans=false; 
 			for(int i=0;i<=idList.size();i++) {		
-				trans=idList.get(i).getsMemberId().contains(smemberid);
+				trans=idList.get(i).getsMemberId().contains(memid);
 				
 				if(trans==true) {
 					break; 
@@ -324,8 +323,8 @@ public class RequestController {
 	public String sdetail2(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
 	
-		String smemberid = (String)session.getAttribute("sMemberId");
-		logger.info("현재 session 아이디, smemberid={}", smemberid);
+		String memberid = (String)session.getAttribute("userid");
+		logger.info("sdetail2 현재 session 아이디, userid={}", memberid);
 		
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
@@ -348,10 +347,10 @@ public class RequestController {
 	
 	
 	@RequestMapping(value="/addpick.do")
-	public String addpick(@ModelAttribute RequestPickVO pvo, @RequestParam String price,
+	public String addpick(@ModelAttribute RequestPickVO pvo, @RequestParam String price, @RequestParam int rqno,
 			HttpSession session, Model model) {
 		
-		String smemberid = (String)session.getAttribute("sMemberId");
+		String memberid = (String)session.getAttribute("userid");
 		
 		NumberFormat nf = new DecimalFormat("#,##0"); 
 		Number n;
@@ -367,8 +366,8 @@ public class RequestController {
 		logger.info("전문가 회원 - pick 등록, 파라미터 RequestPickVO={}", pvo);
 		
 		pvo.setsPrice(i);
-		pvo.setsMemberId(smemberid);
-		
+		pvo.setsMemberId(memberid);
+		pvo.setRQNo(rqno);
 		
 		logger.info("세팅 후 RequestPickVO={}", pvo);
 		

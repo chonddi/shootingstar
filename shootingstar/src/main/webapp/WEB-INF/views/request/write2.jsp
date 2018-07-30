@@ -16,7 +16,7 @@ $(document).ready(function(){
     	if($('.price').val()==""){
     		$('#okyoky').css('background','#eceded');
     	}else{
-    		$('#okyoky').css('background','#033E5B');
+    		$('#okyoky').css('background','#469bc4');
     		
     	}	
     }); 

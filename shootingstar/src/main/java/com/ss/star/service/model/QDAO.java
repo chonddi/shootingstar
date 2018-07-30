@@ -20,7 +20,7 @@ public interface QDAO {
     public int QRDelete(int qrNo);
     public List<QRVO> QRselectByNo(int qrNo);
     public int QRreply(QRVO QRVo);
-    public List<QRVO> QRreplyList(int qrNo); 
+    public List<QRVO> QRreplyList(); 
 	
 	/*public int getTotalRecord(SearchVO searchVo);
 	public int updateReadCount(int no);

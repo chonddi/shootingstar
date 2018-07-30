@@ -114,7 +114,7 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 
 <body>
 
-<div>
+<div class="rbody">
 
 
 	<!-- <div class="main2"> -->
@@ -158,7 +158,7 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 		            style="text-align:right;" class="price1" name="price" autocomplete=off />
 		            &nbsp; <span id="cg5">원</span>  <br><br>
 		            
-		            <input type="hidden" name="RQNo" value="${vo.RQNo}"/>
+		            <input type="hidden" name="rqno" value="${vo.RQNo}"/>
 		            
 		            <button class="oky1" id="oky1">PICK</button>
 		     </form>

@@ -1,5 +1,6 @@
 package com.ss.star.mypage.message.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,15 +154,24 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/messageDetail.do")
-	public String messageDetail(@RequestParam String sender, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model) {
-		logger.info("메세지 디테일 입력된 값 sender: {}, sMsgNo: {}", sender, sMsgNo);
+	public String messageDetail(@RequestParam(defaultValue="0") int sMsgNo, HttpSession session, Model model) {
 		String userCode = (String)session.getAttribute("userCode");
-		logger.info("메세지 디테일 입력된 값 code: {}, userCode: {}", code, userCode);
+		logger.info("보낸쪽지 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
 		logger.info("userid: {}",userid);
 		
-		if(userid.equals(sender)&&code.equals(userCode)) {
-			Map<String, Object> map = sendMsgService.selectDetail(sMsgNo);
+		if(sMsgNo==0) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/index.do");
+			
+			return "common/message";
+		}
+		
+		int result = sendMsgService.selectDetailChk(sMsgNo, session);
+		logger.info("디테일 체크 결과 result: {}", result);
+		
+		if(result==sendMsgService.SESSION_CHECK_OK) {
+			Map<String, Object> map=sendMsgService.selectDetail(sMsgNo);
 			logger.info("map.size(): {}", map.size());
 			model.addAttribute("map", map);
 			
@@ -170,58 +180,132 @@ public class MessageController {
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			model.addAttribute("url", "/index.do");
 			
-			return "common/message";
+			return "common/selfClose";
 		}
+		
 	}
 	
 	@RequestMapping("/messageDetailRead.do")
-	public String messageDetailRead(@RequestParam String recipient, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model){
-		logger.info("메세지 디테일 read, recipient:{}, sMsgNo: {}", recipient, sMsgNo);
+	public String messageDetailRead(@RequestParam(defaultValue="0") int sMsgNo, HttpSession session, Model model){
 		String userCode = (String)session.getAttribute("userCode");
-		logger.info("메세지 디테일 read, code: {}", code, userCode);
+		logger.info("받은쪽지 안읽은 상태 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
 		logger.info("userid: {}",userid);
 		
-		if(userid.equals(recipient)&&code.equals(userCode)) {
+		
+		if(sMsgNo==0) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/selfClose.do");
+			
+			return "common/message";
+		}
+		
+		int result = sendMsgService.selectDetailChk2(sMsgNo, session);
+		logger.info("디테일 체크 결과 result: {}", result);
+		
+		if(result==sendMsgService.SESSION_CHECK_OK) {
 			int cnt = sendMsgService.updateRead(sMsgNo);
 			if(cnt>0) {
-				model.addAttribute("recipient", recipient);
-				model.addAttribute("sMsgNo", sMsgNo);
-				model.addAttribute("code", code);
-				return "/mypage/message/messageDetail2.do";
+				return "redirect:/mypage/message/messageDetail2.do?sMsgNo="+sMsgNo;
 			}else {
 				model.addAttribute("msg", "잘못된 접근입니다.");
-				model.addAttribute("url", "/index.do");
-				
+				model.addAttribute("url", "/selfClose.do");
+
 				return "common/message";
 			}
 		}else {
 			model.addAttribute("msg", "잘못된 접근입니다.");
-			model.addAttribute("url", "/index.do");
+			model.addAttribute("url", "/selfClose.do");
 			
-			return "common/message";
+			return "common/selfClose";
 		}
+		
 	}
 
 	@RequestMapping("/messageDetail2.do")
-	public String messageDetail2(@RequestParam String recipient, @RequestParam int sMsgNo, @RequestParam String code, HttpSession session, Model model) {
-		logger.info("메세지 디테일 입력된 값 recipient: {}, sMsgNo: {}", recipient, sMsgNo);
+	public String messageDetail2(@RequestParam(defaultValue="0") int sMsgNo, HttpSession session, Model model) {
 		String userCode = (String)session.getAttribute("userCode");
-		logger.info("메세지 디테일 입력된 값 code: {}, userCode: {}", code, userCode);
+		logger.info("받은쪽지 안읽은 상태 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
 		logger.info("userid: {}",userid);
 		
-		if(userid.equals(recipient)&&code.equals(userCode)) {
-			Map<String, Object> map = sendMsgService.selectDetail(sMsgNo);
+		if(sMsgNo==0) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/selfClose.do");
+			
+			return "common/message";
+		}
+		
+		int result = sendMsgService.selectDetailChk2(sMsgNo, session);
+		logger.info("디테일 체크 결과 result: {}", result);
+		
+		if(result==sendMsgService.SESSION_CHECK_OK) {
+			Map<String, Object> map=sendMsgService.selectDetail(sMsgNo);
 			logger.info("map.size(): {}", map.size());
 			model.addAttribute("map", map);
 			
 			return "mypage/message/messageDetail2";
 		}else {
 			model.addAttribute("msg", "잘못된 접근입니다.");
-			model.addAttribute("url", "/index.do");
+			model.addAttribute("url", "/selfClose.do");
 			
-			return "common/message";
+			return "common/selfClose";
 		}
+	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String deleteMulti(@RequestParam String[] chk, Model model) {
+		logger.info("여러 글 삭제 chk.length: {}", chk.length);
+		
+		if(chk!=null) {
+			int i=0;
+			for(String no : chk) {
+				logger.info("{} : 파라미터 => {}", i++, no);
+			}
+		}//if
+		
+		Map<String, String[]> map = new HashMap<>();
+		map.put("nos", chk);
+		int cnt=sendMsgService.deleteMulti(map);
+		logger.info("여러 글 삭제 결과, cnt={}", cnt);
+		
+		String msg="", url="/mypage/message/message.do";
+		if(cnt>0) {
+			msg="삭제되었습니다.";
+		}else {
+			msg="삭제를 실패했습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/rDeleteMulti.do")
+	public String rDeleteMulti(@RequestParam String[] chk, Model model) {
+		logger.info("여러 글 삭제 chk.length: {}", chk.length);
+		
+		if(chk!=null) {
+			int i=0;
+			for(String no : chk) {
+				logger.info("{} : 파라미터 => {}", i++, no);
+			}
+		}//if
+		
+		Map<String, String[]> map = new HashMap<>();
+		map.put("nos", chk);
+		int cnt=sendMsgService.rDeleteMulti(map);
+		logger.info("여러 글 삭제 결과, cnt={}", cnt);
+		
+		String msg="", url="/mypage/message/messageReceive.do";
+		if(cnt>0) {
+			msg="삭제되었습니다.";
+		}else {
+			msg="삭제를 실패했습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

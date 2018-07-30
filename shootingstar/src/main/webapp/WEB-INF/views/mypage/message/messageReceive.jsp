@@ -3,27 +3,17 @@
 <%@ include file="../mypageTop.jsp"%>
 <script type="text/javascript">
 	$(function(){
+		//보낸쪽지로 이동
 		$('.anotherBtn').click(function(){
 			location.href="<c:url value='/mypage/message/message.do'/>";
 		});
+		
 	});
-	
-	function pageFunc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		frmPage.submit();
-	}
-	
-	function msgRead(recipient, sMsgNo, code) {
-		document.detailFrm.recipient.value=recipient;
+
+	//읽으면 readFlag Y로
+	function msgRead(sMsgNo) {
 		document.detailFrm.sMsgNo.value=sMsgNo;
-		document.detailFrm.code.value=code;
 		msgViewSubmit();
-	}
-	function msgView(recipient, sMsgNo, code) {
-		document.detailFrm.recipient.value=recipient;
-		document.detailFrm.sMsgNo.value=sMsgNo;
-		document.detailFrm.code.value=code;
-		msgViewSubmit2();
 	}
 	
 	function msgViewSubmit(){
@@ -36,6 +26,11 @@
 		frm.method = "post";
 		frm.submit();
 	}
+	//상세보기
+	function msgView(sMsgNo) {
+		document.detailFrm.sMsgNo.value=sMsgNo;
+		msgViewSubmit2();
+	}
 	function msgViewSubmit2(){
 		frm = document.getElementById("detailFrm");
 		x = (screen.availWidth - 460) / 2;
@@ -46,58 +41,71 @@
 		frm.method = "post";
 		frm.submit();
 	}
+	
 </script>
+<script  src="<c:url value='/js/message.js'/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
 		쪽지함
 	</div>
-	<form id="detailFrm" name="detailFrm" method="post" action="<c:url value='/mypage/message/messageDetail.do'/>"> 
-	<input type="hidden" name="recipient">
+	<form id="detailFrm" name="detailFrm" method="post"> 
 		<input type="hidden" name="sMsgNo">
-		<input type="hidden" name="code">
 	</form>
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
-		action="<c:url value='/mypage/message/message.do'/>">
+		action="<c:url value='/mypage/message/messageReceive.do'/>">
 		<input type="hidden" name="currentPage" >
 		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 	<div class="selectedPage">
 		<div class="msgBtn"><span class="btnMsgType"><input type="button" class="anotherBtn" value="보낸쪽지"></span> <span class="nowMsgType">받은쪽지</span></div>
+		<form name="frmDel" method="post" action="<c:url value='/mypage/message/rDeleteMulti.do'/>">
 		<table id="msgTbl">
 			<colgroup>
+				<col style="width:3%;" />
 				<col style="width:20%">
-				<col style="width:66%">
+				<col style="width:63%">
 				<col style="width:*">
 			</colgroup>
 			<tr>
+				<th scope="col"><input type="checkbox" name="chkAll" 
+	    			onclick="allChecked(this.checked)"></th>
 				<th scope="col">보낸 사람</th>
 				<th scope="col">제목</th>
 				<th scope="col">보낸날짜</th>
 			</tr>
 			<c:if test="${empty receiveList}">
-				<td colspan="3" style="text-align: center">받은 쪽지가 없습니다.</td>
+				<td> </td>
+				<td> </td>
+				<td style="text-align:center">받은 쪽지가 없습니다.</td>
+				<td> </td>
 			</c:if>
 			<c:if test="${!empty receiveList }">
+				${pageVo.totalRecord}개의 쪽지가 있습니다.<br><br>
 		    	<c:forEach var="receiveMap" items="${receiveList}">
 				<tr>
+					<td>
+						<input type="checkbox" name="chk" value="${receiveMap['RMSGNO']}">
+					</td>
 					<td>${receiveMap["SENDER"] }</td>
 		    		<td>
 		    			<c:if test="${receiveMap['READFLAG']=='N'}">
-		    				<b><a href="#" onclick="msgRead('${receiveMap['RECIPIENT']}','${receiveMap['SMSGNO']}','${receiveMap['CODE']}')">
+		    				<b><a href="#" onclick="msgRead('${receiveMap['SMSGNO']}')">
 		    					${receiveMap["TITLE"]}</a></b>
 		    				<img alt="new이미지" src="<c:url value='/images/new.png'/>">		
 		    			</c:if>
 		    			<c:if test="${receiveMap['READFLAG']=='Y'}">
-		    				<b><a href="#" onclick="msgView('${receiveMap['RECIPIENT']}','${receiveMap['SMSGNO']}','${receiveMap['CODE']}')">${receiveMap["TITLE"]}</a></b>		
+		    				<b><a href="#" onclick="msgView('${receiveMap['SMSGNO']}')">${receiveMap["TITLE"]}</a></b>		
 		    			</c:if>
 		    		</td>
 		    		<td><fmt:formatDate value="${receiveMap['REGDATE']}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 		    	</c:forEach>
 	    	</c:if>
-	    </table>
+	    </table><br>
+	    <input type="submit" value="글 삭제" >
+    </form>
 	    
 	    <!-- 페이지처리 -->
 		<div class="divPage">

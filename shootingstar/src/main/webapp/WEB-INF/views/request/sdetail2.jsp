@@ -86,7 +86,7 @@ function setComma(inNum){
 
 <body>
 
-<div>
+<div class="rbody">
 
 
 	<!-- <div class="main2"> -->
@@ -126,15 +126,15 @@ function setComma(inNum){
 		<div id="pS5"> 
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/'/>" onsubmit="return send(this)"> 
 			 
-			 <br><hr><br><div class="title2">PICK하기</div> <div class="title5">${vo.memberId}님의 최종결정을 기다리는 중 입니다.</div><br>
+			 <br><br><div class="title2">PICK하기</div> <div class="title5">${vo.memberId}님의 최종결정을 기다리는 중 입니다.</div><br>
 			 			
 			 		
 			 			
-			 	  ${sessionScope.sMemberId}님이 제시하신 금액: 
+			 	  ${sessionScope.memberid}님이 제시하신 금액: 
 			 	  
 			 	  
 			 	  <c:forEach var="pvo" items="${pList}">
-			 	  		<c:if test="${pvo.sMemberId == sessionScope.sMemberId }">
+			 	  		<c:if test="${pvo.sMemberId == sessionScope.memberId }">
 			 	  
 			 				<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
 			 		
@@ -143,7 +143,7 @@ function setComma(inNum){
 
 		            <input type="hidden" name="RQNo" value="${vo.RQNo}"/>
 		            
-		   			<button class="oky1" onclick="submit">취소하기</button>
+		   			
 		     </form>
 		            
 		            <br>
