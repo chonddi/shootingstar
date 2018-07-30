@@ -253,8 +253,6 @@ public class RequestController {
 		List<PickAllVO> pList=requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
 		
-		
-		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("pList",pList);
