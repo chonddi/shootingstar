@@ -22,7 +22,7 @@
 				return false;
 			}else if(confirm("등록하시겠습니까?")){
 				$('form[name=frmWrite]').submit();
-				opener.parent.location.reload();
+				setTimeout(function() {opener.parent.location.reload()}, 10);
 				setTimeout(function() {self.close()}, 10);
 			}else if($("#userid").val() == ""){
 				alert("로그아웃 되었습니다.");

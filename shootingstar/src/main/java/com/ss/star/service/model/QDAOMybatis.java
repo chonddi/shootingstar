@@ -82,8 +82,8 @@ public class QDAOMybatis implements QDAO {
 	}
 
 	@Override
-	public List<QRVO> QRreplyList(int qrNo) {
-		List<QRVO> list = sqlSession.selectList(namespace + "QRreplyList", qrNo);
+	public List<QRVO> QRreplyList() {
+		List<QRVO> list = sqlSession.selectList(namespace + "QRreplyList");
 		return list;
 	}
 

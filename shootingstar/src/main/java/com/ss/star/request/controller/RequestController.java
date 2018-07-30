@@ -1,12 +1,9 @@
 package com.ss.star.request.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,27 +13,22 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
-import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
-import com.ss.star.request.model.ctgRequestVO;
-import com.ss.star.IndexController;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
 import com.ss.star.request.model.RequestPickVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
+import com.ss.star.request.model.ctgRequestVO;
 
 @Controller
 @RequestMapping("/request")
@@ -156,7 +148,7 @@ public class RequestController {
 			vo.setCgNo(9);
 		}
 		
-		String memberid = (String)session.getAttribute("memberid");
+		String memberid = (String)session.getAttribute("userid");
 		vo.setMemberId(memberid);		
 		vo.setRQRegion(region);
 		vo.setRQDate(stime);
@@ -196,7 +188,7 @@ public class RequestController {
 	public String list(@ModelAttribute ctgRequestVO searchVo, Model model, HttpSession session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
 		
-		String memberid = (String)session.getAttribute("memberid");
+		String memberid = (String)session.getAttribute("userid");
 		String usercode = (String)session.getAttribute("userCode");
 		logger.info("list.do 실행 후 id={}", memberid);
 		logger.info("list.do 실행 후 usercode={}", usercode);
@@ -247,7 +239,7 @@ public class RequestController {
 	public String detail(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 		
-		String memberid = (String)session.getAttribute("memberid");
+		String memberid = (String)session.getAttribute("userid");
 		String usercode = (String)session.getAttribute("userCode");
 		
 		RequestVO vo=requestService.selectByNo(no);
@@ -284,8 +276,8 @@ public class RequestController {
 	public String sdetail(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 	
-		String memid = (String)session.getAttribute("memberid");
-		logger.info("sdetail 현재 session 아이디, memberid={}", memid);
+		String memid = (String)session.getAttribute("userid");
+		logger.info("sdetail 현재 session 아이디, userid={}", memid);
 		
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
@@ -324,8 +316,8 @@ public class RequestController {
 	public String sdetail2(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
 	
-		String memberid = (String)session.getAttribute("memberid");
-		logger.info("sdetail2 현재 session 아이디, memberid={}", memberid);
+		String memberid = (String)session.getAttribute("userid");
+		logger.info("sdetail2 현재 session 아이디, userid={}", memberid);
 		
 		RequestVO vo=requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
@@ -351,7 +343,7 @@ public class RequestController {
 	public String addpick(@ModelAttribute RequestPickVO pvo, @RequestParam String price, @RequestParam int rqno,
 			HttpSession session, Model model) {
 		
-		String memberid = (String)session.getAttribute("memberid");
+		String memberid = (String)session.getAttribute("userid");
 		
 		NumberFormat nf = new DecimalFormat("#,##0"); 
 		Number n;

@@ -90,10 +90,10 @@ public class QRController {
 
 	@RequestMapping("/QRreplyList.do")
 	@ResponseBody
-	public List<QRVO> QRreplyList(@RequestParam int qrNo, Model model) {
-		logger.info("QRreplyList, 파라미터 qrNo={}", qrNo);
+	public List<QRVO> QRreplyList(Model model) {
+		logger.info("QRreplyList 처리");
 
-		List<QRVO> list = qService.QRreplyList(qrNo);
+		List<QRVO> list = qService.QRreplyList();
 		logger.info("대댓글 목록 조회 결과, list.size={}", list.size());
 
 		model.addAttribute("list", list);

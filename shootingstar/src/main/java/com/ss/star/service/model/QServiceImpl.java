@@ -69,8 +69,8 @@ public class QServiceImpl implements QService {
 	}
 
 	@Override
-	public List<QRVO> QRreplyList(int qrNo) {
-		return qDao.QRreplyList(qrNo);
+	public List<QRVO> QRreplyList() {
+		return qDao.QRreplyList();
 	}
 
 }

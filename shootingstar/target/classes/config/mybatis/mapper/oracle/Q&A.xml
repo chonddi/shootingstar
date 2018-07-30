@@ -76,13 +76,12 @@
 	    insert into qnare(qrno, qno, id, content, parent, levels)
 		values(qnare_seq.nextval, #{qNo}, #{id}, #{content}, #{qrNo}, +1)
     </insert>
-<!--     
-    <select id="QRreplyList" parameterType="int" resultType="QRVO">
-    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate
+
+    <select id="QRreplyList" resultType="QRVO">
+    	select qrno, qno, id, content, to_char(regdate,'YYYY.MM.DD. HH24:MI') as regdate, parent, levels
     	from qnare
-    	where qrno=#{qrNo} and parent=#{qrNo}
+    	where levels=1 order by qrno
     </select>
- -->
 	
 <!-- 
 	

@@ -47,7 +47,11 @@ function viewImage(img){
  imgWin.document.close();
 }
 
-
+$(document).ready(function(){
+	$("#payBtn").click(function(){
+		
+	});
+});
 
 
 
@@ -120,6 +124,9 @@ function viewImage(img){
 			 <td>
 			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원
 			 </td>
+			 <td>
+			  <button id="payBtn">결제하기</button>
+			 </td>
 			<tr>
 			 </c:forEach>
 		  </tbody>
@@ -128,7 +135,6 @@ function viewImage(img){
 		  </div>
 
 </div>
-
 
 </body>
 </html>
