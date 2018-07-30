@@ -9,9 +9,15 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	private String namespace="com.sql.manager.";
 	@Autowired SqlSessionTemplate sqlSession;
 	@Override
-	public ManagerVO selectID(String email) {
-		return sqlSession.selectOne(namespace+"selectID", email);
+	public ManagerVO selectID(String adminId) {
+		return sqlSession.selectOne(namespace+"selectID", adminId);
 	}
+
+	@Override
+	public int insertManager(ManagerVO vo) {
+		return sqlSession.insert(namespace+"insertManager", vo);
+	}
+	
 	@Override
 	public String selectPwdById(String adminId) {
 		return sqlSession.selectOne(namespace+"selectPwdById", adminId);
@@ -24,10 +30,14 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	public int checkSignup(String adminId) {
 		return sqlSession.selectOne(namespace+"checkSignup", adminId);
 	}
+
 	@Override
 	public int checkDuplicate(String adminId) {
 		return sqlSession.selectOne(namespace+"checkDuplicate", adminId);
 	}
-	
-	
+
+	@Override
+	public int adminUpdate(ManagerVO vo) {
+		return sqlSession.update(namespace+"adminUpdate", vo);
+	}
 }

@@ -7,10 +7,14 @@ import org.springframework.stereotype.Service;
 public class ManagerServiceImpl implements ManagerService  {
 @Autowired ManagerDAO managerDao;
 	@Override
-	public ManagerVO selectID(String email) {
-		return managerDao.selectID(email);
+	public ManagerVO selectID(String adminId) {
+		return managerDao.selectID(adminId);
 	}
-
+	@Override
+	public int insertManager(ManagerVO vo) {
+		return managerDao.insertManager(vo);
+	}
+	
 	@Override
 	public int checkPwd(String adminId, String pwd) {
 		String realPwd = managerDao.selectPwdById(adminId);
@@ -36,15 +40,22 @@ public class ManagerServiceImpl implements ManagerService  {
 	public int checkSignup(String adminId) {
 		return managerDao.checkSignup(adminId);
 	}
-
 	@Override
-	public int checkDuplicate(String userid) {
-		int result = managerDao.checkDuplicate(userid);
+	public int checkDuplicate(String adminId) {
+		int result = managerDao.checkDuplicate(adminId);
 		if(result>0) {
 			return EXIST_ID;
 		}else {
 			return AVAILABLE_ID;
 		}
 	}
-
+	@Override
+	public int adminUpdate(ManagerVO vo) {
+		int result= managerDao.adminUpdate(vo);
+		if(result>0) {
+			return LOGIN_OK;
+		}else {
+			return PWD_DISAGREE;
+		}
+	}
 }

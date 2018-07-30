@@ -79,7 +79,7 @@ nav ul {
 					<li id="adminCtg" ><a class="menuLink" href="#" >관리자페이지 ▼</span></a>
 						<ul>
 							<li ><a href="<c:url value='/admin/register.do'/>">관리자 신규등록</a></li>
-							<li ><a href="<c:url value='#'/>">관리자 정보수정</a></li>
+							<li ><a href="<c:url value='/admin/adminEdit.do'/>">관리자 정보수정</a></li>
 						</ul>
 					</li>
 <%-- 					 <li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">회원관리<span class="caret"></span></a>

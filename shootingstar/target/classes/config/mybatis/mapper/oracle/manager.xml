@@ -14,20 +14,24 @@
 		select adminName from admin where adminId=#{adminId}
 	</select>
 	
+	<insert id="insertManager" parameterType="managerVo">
+		insert into admin(adminId,adminName,pwd)
+		values(#{adminId},#{adminName},#{pwd})
+	</insert>
+	
 	<select id="checkDuplicate" parameterType="String" resultType="int">
 		select count(*) from admin
 		where adminId=#{adminId}
 	</select>
 
-	
-<!-- <insert id="insertMember" parameterType="managerVo">
-		insert into member(memberid, name, pwd, tel) values(#{memberId}, #{name}, #{pwd}, #{tel})
-	</insert>
-	
-	
-	
+	<update id="adminUpdate" parameterType="managerVo">
+		update admin set adminName=#{adminName}
+		where adminId=#{adminId} and pwd=#{pwd}
+	</update>
+<!-- 
 	<update id="updateMember" parameterType="managerVo">
-		update member set tel=#{tel} where memberId=#{memberId}
+		update member set tel=#{tel} 
+		where memberId=#{memberId}
 	</update>
 	
 	<update id="updateOutDate" parameterType="String">
