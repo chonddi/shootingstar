@@ -47,4 +47,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int updateTempPwd(String tempPwd) {
 		return sqlSession.update(namespace+"updateTempPwd", tempPwd);
 	}
+	@Override
+	public String selectTempPwd(String tempPwd) {
+		return sqlSession.selectOne(namespace+"selectTempPwd", tempPwd);
+	}
 }

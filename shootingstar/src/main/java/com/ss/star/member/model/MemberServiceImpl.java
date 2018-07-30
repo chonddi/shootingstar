@@ -70,6 +70,11 @@ public class MemberServiceImpl implements MemberService{
 	public int updateTempPwd(String tempPwd) {
 		return memberDao.updateTempPwd(tempPwd);
 	}
+
+	@Override
+	public String selectTempPwd(String tempPwd) {
+		return memberDao.selectTempPwd(tempPwd);
+	}
 	
 	
 }

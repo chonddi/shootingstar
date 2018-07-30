@@ -10,7 +10,7 @@ public class MemberVO {
 	private int mileage;
 	private Timestamp regdate;
 	private Timestamp outdate;
-	
+	private String tempPwd;
 	public String getMemberId() {
 		return memberId;
 	}
@@ -53,10 +53,16 @@ public class MemberVO {
 	public void setOutdate(Timestamp outdate) {
 		this.outdate = outdate;
 	}
+	public String getTempPwd() {
+		return tempPwd;
+	}
+	public void setTempPwd(String tempPwd) {
+		this.tempPwd = tempPwd;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel + ", mileage="
-				+ mileage + ", regdate=" + regdate + ", outdate=" + outdate + "]";
+				+ mileage + ", regdate=" + regdate + ", outdate=" + outdate + ", tempPwd=" + tempPwd + "]";
 	}
 	
 	

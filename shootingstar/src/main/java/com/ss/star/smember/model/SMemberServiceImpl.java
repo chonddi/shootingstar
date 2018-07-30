@@ -70,5 +70,10 @@ public class SMemberServiceImpl implements SMemberService{
 	public int updateTempPwd(String tempPwd) {
 		return sMemberDao.updateTempPwd(tempPwd);
 	}
+
+	@Override
+	public String selectTempPwd(String tempPwd) {
+		return sMemberDao.selectTempPwd(tempPwd);
+	}
 	
 }

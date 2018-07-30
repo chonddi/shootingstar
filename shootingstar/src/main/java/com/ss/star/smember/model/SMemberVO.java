@@ -17,7 +17,7 @@ public class SMemberVO {
 	private Timestamp outdate;
 	private Timestamp membership;
 	private String authority;
-	
+	private String tempPwd;
 	public String getsMemberId() {
 		return sMemberId;
 	}
@@ -102,13 +102,19 @@ public class SMemberVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+	public String getTempPwd() {
+		return tempPwd;
+	}
+	public void setTempPwd(String tempPwd) {
+		this.tempPwd = tempPwd;
+	}
 	@Override
 	public String toString() {
 		return "SMemberVO [sMemberId=" + sMemberId + ", sName=" + sName + ", sPwd=" + sPwd + ", sTel=" + sTel + ", pr="
 				+ pr + ", zipcode=" + zipcode + ", address1=" + address1 + ", address2=" + address2
 				+ ", identification=" + identification + ", accountCopy=" + accountCopy + ", regdate=" + regdate
-				+ ", outdate=" + outdate + ", membership=" + membership + ", authority=" + authority + "]";
+				+ ", outdate=" + outdate + ", membership=" + membership + ", authority=" + authority + ", tempPwd="
+				+ tempPwd + "]";
 	}
-	
 	
 }

@@ -38,6 +38,10 @@
 	<update id="updateTempPwd" parameterType="String">
 		update member set tempPwd=#{tempPwd}
 	</update>
+	
+	<select id="selectTempPwd" parameterType="String" resultType="string">
+		select memberid from member where tempPwd = #{tempPwd}
+	</select>
 </mapper>
 
 

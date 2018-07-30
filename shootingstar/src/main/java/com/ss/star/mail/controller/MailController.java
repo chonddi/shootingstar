@@ -66,16 +66,18 @@ public class MailController {
     private boolean sendToken(@RequestParam String memberId, @RequestParam String userCode) {
     	logger.info("토큰보내기");
     	String tempPwd = UUID.randomUUID().toString().replace("-", "");
+    	logger.info("토큰: {}", tempPwd);
+    	
     	int cnt=0;
     	if("1".equals(userCode)) {
     		cnt = memberService.updateTempPwd(tempPwd);
     	}else {
-    		cnt=sMemberService.updateTempPwd(tempPwd);
+    		cnt = sMemberService.updateTempPwd(tempPwd);
     	}
-    	
+    	logger.info("updateTempPwd 결과 cnt: {}", cnt);
     	String subject = "[슈팅스타]비밀번호 찾기입니다.";
     	StringBuilder sb = new StringBuilder();
-    	sb.append("http://localhost:9090/star/login/findPassword.do?token=").append(tempPwd).append("&userCode=").append(userCode);
+    	sb.append("http://localhost:9090/star/login/findPassword.do?tempPwd="+tempPwd).append("&userCode="+userCode);
     	
     	return mailService.send(subject, sb.toString(), "hkedushootingstar@gmail.com", memberId);
     }

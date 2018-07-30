@@ -16,4 +16,5 @@ public interface SMemberService {
 	public int updateSMember(SMemberVO sMemberVo);
 	public int updatePwd(String sPwd, String userId);
 	public int updateTempPwd(String tempPwd);
+	public String selectTempPwd(String tempPwd);
 }

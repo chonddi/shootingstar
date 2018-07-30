@@ -160,7 +160,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/findPassword.do")
-	public String findPassword(@RequestParam(defaultValue="0") String tempPwd, Model model) {
+	public String findPassword(@RequestParam(defaultValue="0") String tempPwd, @RequestParam String userCode
+				,Model model) {
 		logger.info("비밀번호 찾기 토큰입력 tempPwd: {}", tempPwd);
 		
 		if("0".equals(tempPwd)) {
@@ -169,5 +170,35 @@ public class LoginController {
 			
 			return "common/message";
 		}
+		String userid="";
+		if("1".equals(userCode)) {
+			userid=memberService.selectTempPwd(tempPwd);
+			if(userid!=null) {
+				model.addAttribute("userid", userid);
+				return "login/findPassword";
+			}else {
+				model.addAttribute("msg", "잘못된 접근입니다.");
+				model.addAttribute("url", "/login/login.do");
+				
+				return "common/message";
+			}
+			
+		}else {
+			userid=sMemberService.selectTempPwd(tempPwd);
+			if(userid!=null) {
+				model.addAttribute("userid", userid);
+				return "login/findPassword";
+			}else {
+				model.addAttribute("msg", "잘못된 접근입니다.");
+				model.addAttribute("url", "/login/login.do");
+				
+				return "common/message";
+			}
+		}
+	}
+	
+	@RequestMapping("forgotPasswordChk.do")
+	public void forgotPasswordChk() {
+		logger.info("임시번호 발급 후 나가기 페이지");
 	}
 }

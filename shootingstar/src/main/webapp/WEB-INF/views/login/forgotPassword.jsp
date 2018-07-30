@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +30,7 @@ function checkMail() {
 			}
 		}
 	};
-	xhttp.open("POST", 'checkMail.do', true);
+	xhttp.open("POST", "<c:url value='/member/checkMail.do' />", true);
 	xhttp.setRequestHeader("Content-Type",
 			"application/x-www-form-urlencoded;charset=UTF-8");
 	xhttp.send('memberId=' + memberId + "&userCode="+userCode);
@@ -43,12 +43,12 @@ function sendToken(memberId, userCode) {
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200)
-				alert("메일을 정상적으로 보냈습니다.");
+				document.location.href="<c:url value='/login/forgotPasswordChk.do'/>";
 			else
 				alert("올바른 메일 형식이 아닙니다.");
 		}
 	};
-	xhttp.open("POST", 'sendToken.do', true);
+	xhttp.open("POST", '<c:url value="/member/sendToken.do"/>', true);
 	xhttp.setRequestHeader("Content-Type",
 			"application/x-www-form-urlencoded;charset=UTF-8");
 	xhttp.send('memberId=' + memberId + "&userCode="+userCode);

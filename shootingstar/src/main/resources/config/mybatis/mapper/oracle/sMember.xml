@@ -55,4 +55,8 @@
 	<update id="updateTempPwd" parameterType="String">
 		update smember set tempPwd=#{tempPwd}
 	</update>
+	
+	<select id="selectTempPwd" parameterType="String" resultType="string">
+		select smemberid from smember where tempPwd = #{tempPwd}
+	</select>
 </mapper>

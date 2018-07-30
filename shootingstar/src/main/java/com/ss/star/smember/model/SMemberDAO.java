@@ -13,4 +13,5 @@ public interface SMemberDAO {
 	public int updateSMember(SMemberVO sMemberVo);
 	public int updatePwd(Map<String, String> map);
 	public int updateTempPwd(String tempPwd);
+	public String selectTempPwd(String tempPwd);
 }
