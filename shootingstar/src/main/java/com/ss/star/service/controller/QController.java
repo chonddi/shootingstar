@@ -50,7 +50,7 @@ public class QController {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
 
 		// 임시 id 지정
-		Session.setAttribute("id", "YBM");
+		Session.setAttribute("userid", "YBM");
 
 		// [1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -82,15 +82,15 @@ public class QController {
 		logger.info("상세보기, 파라미터 QdetailVo={}", QdetailVo);
 
 		// 임시 아이디
-		Session.setAttribute("id", QdetailVo.getMemberid());
-		System.out.println("\ndetail 임시 아이디 id=" + Session.getAttribute("id") + "\n");
+		Session.setAttribute("userid", QdetailVo.getMemberid());
+		System.out.println("\ndetail 임시 아이디 id=" + Session.getAttribute("userid") + "\n");
 		System.out.println("QdetailVo 아이디=" + QdetailVo.getMemberid() + "\n");
 
 		if (QdetailVo.getqNo() == 0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";
-		} else if (QdetailVo.getMemberid() != Session.getAttribute("id")) {
+		} else if (QdetailVo.getMemberid() != Session.getAttribute("userid")) {
 			model.addAttribute("msg", "비공개 글입니다.");
 			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sql.manager">
+	<select id="selectID" parameterType="string" resultType="managerVo">
+		select * from admin where adminId=#{adminId}
+	</select>
+	
+	<select id="selectPwdById" parameterType="String" resultType="String">
+		select pwd from admin where adminId=#{adminId}
+	</select>
+	
+	<select id="selectNameById" parameterType="String" resultType="String">
+		select adminName from admin where adminId=#{adminId}
+	</select>
+	
+	<select id="checkDuplicate" parameterType="String" resultType="int">
+		select count(*) from admin
+		where adminId=#{adminId}
+	</select>
+
+	
+<!-- <insert id="insertMember" parameterType="managerVo">
+		insert into member(memberid, name, pwd, tel) values(#{memberId}, #{name}, #{pwd}, #{tel})
+	</insert>
+	
+	
+	
+	<update id="updateMember" parameterType="managerVo">
+		update member set tel=#{tel} where memberId=#{memberId}
+	</update>
+	
+	<update id="updateOutDate" parameterType="String">
+		update member set outdate=sysdate where memberId=#{memberId}
+	</update>
+	
+	<update id="updatePwd" parameterType="map">
+		update member set pwd=#{pwd} where memberId=#{memberId}
+	</update> -->
+</mapper>
+
+
+
+
+
+
+
+
+

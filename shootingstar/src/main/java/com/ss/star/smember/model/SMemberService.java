@@ -1,4 +1,4 @@
-package com.ss.star.smember.model;
+ package com.ss.star.smember.model;
 
 public interface SMemberService {
 
@@ -12,4 +12,7 @@ public interface SMemberService {
 	public int checkPwd(String sMemberId, String sPwd);	
 	public String selectNameById(String sMemberId);
 	public int selectCountSMemberId(String sMemberId);
+	public int updateOutDate(String sMemberId);
+	public int updateSMember(SMemberVO sMemberVo);
+	public int updatePwd(String sPwd, String userId);
 }

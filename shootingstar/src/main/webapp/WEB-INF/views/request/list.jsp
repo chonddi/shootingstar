@@ -9,7 +9,10 @@
 <head>
 <title>Request 목록</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="<c:url value='../css/request2.css'/>">
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
@@ -19,16 +22,61 @@
 			$(this).css('background','');
 		});	
 		
-	
-		
 	});
+	
 	
 	function pageFunc(curPage){
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
 	
+	
+ 	 function onClick(memberId, vmemberid, rqno) { 
+ 		if(memberId==vmemberid){ 
+ 			location.href="<c:url value='/request/detail.do?no="+rqno+"'/>"
+ 		
+ 		}else{
+ 		 
+			swal({
+				text: "회원님 본인의 Request글 상세보기만 제공합니다.",
+				icon: "error",
+				button: "확인"
+				}); 
+ 			}
+			
+		}	 
+ 	 
+ 	 
+ 	 
+ 	function onClick2(rqno) { 
+ 		
+ 		location.href="<c:url value='/request/sdetail.do?no="+rqno+"'/>"
+ 		
+			}	
+ 	
+	function onClick3() { 
+ 		
+ 		location.href="<c:url value='/request/detail.do'/>"
+ 		
+			}	
+					
+		 
+ 	 
+ 	
+	 
+		 
+	
+	
 
+	
+
+	
+
+	function onLoad() {
+		
+	}
+
+	
 
 </script>
 <style type="text/css">
@@ -38,13 +86,16 @@
 	 }	
 </style>	
 </head>	
-<body>
-<div id="title">REQUEST 리스트</div>
+<body onload="onLoad()">
+
+<div class="title">REQUEST 리스트</div>
+
+
 <c:if test="${!empty param.searchKeyword}">
-	<p>검색어 : ${param.searchKeyword}, ${fn:length(list)}건 검색되었습니다. </p> 
+	<p>검색어: ${param.searchKeyword}(으)로  ${fn:length(list)}건 검색되었습니다. </p> 
 </c:if>
 <c:if test="${empty param.searchKeyword}">
-	<p>${pageVo.totalRecord}건의 REQUEST가 조회되었습니다. </p> <br>
+	<p>총 ${pageVo.totalRecord}건의 REQUEST가 조회되었습니다. </p> 
 </c:if>
 <hr><br>
 
@@ -52,74 +103,78 @@
 	<p>${ctgProductVO.cgName } 상품 : ${pagingInfo.totalRecord } 건 입니다.</p>
 </c:if> --%>
 
-
-<form name="frmPage1" method="post"
-	action="<c:url value='/request/list.do'/>">
-<div class="divRight">	
-	카테고리별
-	<select name="cgNo">
-		<option value="0"></option>
-		<option value="1" 
-			<c:if test="${param.eventName=='1'}">selected</c:if>
-			>인물/프로필</option>
-		<option value="2"
-			<c:if test="${param.eventName=='2'}">selected</c:if>
-			>푸드</option>
-		<option value="3"
-			<c:if test="${param.eventName=='3'}">selected</c:if>
-			>패션</option>	
-		<option value="4"
-			<c:if test="${param.eventName=='4'}">selected</c:if>
-			>웨딩</option>	
-		<option value="5"
-			<c:if test="${param.eventName=='5'}">selected</c:if>
-			>행사/컨퍼런스</option>	
-		<option value="6"
-			<c:if test="${param.eventName=='6'}">selected</c:if>
-			>건축/인테리어</option>	
-		<option value="7"
-			<c:if test="${param.eventName=='7'}">selected</c:if>
-			>공연</option>	
-		<option value="8"
-			<c:if test="${param.eventName=='8'}">selected</c:if>
-			>광고</option>	
-		<option value="9"
-			<c:if test="${param.eventName=='9'}">selected</c:if>
-			>스냅사진</option>	
-					
-	</select>
-	<input type ="image" src="<c:url value='../images/black18s.png'/>" 
-		align="absmiddle" >	
-</div>
-</form>
-
-
-
-
-<div class="divSearch">
-   	<form name="frmSearch" method="post" 
-   		action='<c:url value="/request/list.do"/>'>
-        <select name="searchCondition">        	
-          <option value="memberId"
-            	<c:if test="${param.searchCondition=='memberId'}">
-            		selected="selected"
-            	</c:if>
-            >작성자</option>
-            <option value="RQDetail"
-            	<c:if test="${param.searchCondition=='RQDetail'}">
-            		selected="selected"
-            	</c:if>
-            >내용</option>
-           
-        </select>   
-        <input type="text" name="searchKeyword" title="검색어 입력"
-        	value="${param.searchKeyword}">   
-		<input type ="image" src="<c:url value='../images/black18s.png'/>" 
-		align="absmiddle" >	
+<div class="divA">
+	<div class="divLeft">
+	<form name="frmPage1" method="post"
+		action="<c:url value='/request/list.do'/>">
 		
+		Category
+		<select name="cgNo" onchange="this.form.submit()">
+			<option></option>
+			<option value="0">전체</option>
+			<option value="1" 
+				<c:if test="${param.eventName=='1'}">selected</c:if>
+				>인물/프로필</option>
+			<option value="2"
+				<c:if test="${param.eventName=='2'}">selected</c:if>
+				>푸드</option>
+			<option value="3"
+				<c:if test="${param.eventName=='3'}">selected</c:if>
+				>패션</option>	
+			<option value="4"
+				<c:if test="${param.eventName=='4'}">selected</c:if>
+				>웨딩</option>	
+			<option value="5"
+				<c:if test="${param.eventName=='5'}">selected</c:if>
+				>행사/컨퍼런스</option>	
+			<option value="6"
+				<c:if test="${param.eventName=='6'}">selected</c:if>
+				>건축/인테리어</option>	
+			<option value="7"
+				<c:if test="${param.eventName=='7'}">selected</c:if>
+				>공연</option>	
+			<option value="8"
+				<c:if test="${param.eventName=='8'}">selected</c:if>
+				>광고</option>	
+			<option value="9"
+				<c:if test="${param.eventName=='9'}">selected</c:if>
+				>스냅사진</option>	
+						
+		</select>
 		
+	
+	</form>
+	</div>
+
+	<div class="divSearch">
+	   	<form name="frmSearch" method="post" 
+	   		action='<c:url value="/request/list.do"/>'>
+	        <select name="searchCondition">        	
+	          <option value="memberId"
+	            	<c:if test="${param.searchCondition=='memberId'}">
+	            		selected="selected"
+	            	</c:if>
+	            >작성자</option>
+	            <option value="RQDetail"
+	            	<c:if test="${param.searchCondition=='RQDetail'}">
+	            		selected="selected"
+	            	</c:if>
+	            >내용</option>
+	           <option value="RQNo"
+	            	<c:if test="${param.searchCondition=='RQNo'}">
+	            		selected="selected"
+	            	</c:if>
+	            >글번호</option>
+	        </select>   
+	        <input type="text" name="searchKeyword" title="검색어 입력"
+	        	value="${param.searchKeyword}">   
+			<input type ="image" src="<c:url value='../images/black18s.png'/>" 
+			align="absmiddle" >	
 			
-    </form>
+			
+				
+	    </form>
+	</div>
 </div>
 
 <!-- 페이징 처리를 위한 form -->
@@ -135,24 +190,26 @@
 <table class="box2">
 	<colgroup>
 		<col style="width:8%;" />
-		<col style="width:15%;" />
-		<col style="width:29%;" />
 		<col style="width:10%;" />
+		<col style="width:29%;" />
 		<col style="width:20%;" />
+		<col style="width:15%;" />
 		<col style="width:*;" />		
 	</colgroup>
 	<thead >
-	  <tr id="tl" style="text-align: center">
+	  <tr>
 	
-	    <th scope="col" id="ttl">번호</th>
-	    <th scope="col" id="ttl">카테고리</th>
-	    <th scope="col" id="ttl">내용</th>
-	    <th scope="col" id="ttl">작성자</th>
-	    <th scope="col" id="ttl">작성일</th>
-	    <th scope="col" id="ttl">PICK</th>
+	    <th scope="col" id="ttlt">번호</th>
+	    <th scope="col" id="ttlt">카테고리</th>
+	    <th scope="col" id="ttlt">내용</th>
+	    <th scope="col" id="ttlt">작성자</th>
+	    <th scope="col" id="ttlt">작성일</th>
+	    <th scope="col" id="ttlt">PICK</th>
 	  </tr>
 	</thead> 
+	
 	<tbody>  
+	
 		<c:if test="${empty list }">
 			<tr>
 				<td colspan="6" style="text-align: center">
@@ -165,8 +222,8 @@
 		  	<c:forEach var="vo" items="${list}">
 	  			<tr >
 	  				
-					<td>${vo.RQNo}</td>
-					<td> 
+					<td id="ttl">${vo.RQNo}</td>
+					<td id="ttl"> 
 					<c:choose>
 						 <c:when test="${vo.cgNo ==1 }">인물/프로필</c:when>
 						 <c:when test="${vo.cgNo ==2 }">푸드</c:when>
@@ -179,21 +236,34 @@
 						 <c:when test="${vo.cgNo ==9 }">스냅사진</c:when>
 						</c:choose>
 					</td>
-					<td > <a href='<c:url value="/request/detail.do?no=${vo.RQNo}"/>'>
+					
+					
+					<td id="ttl" > 
+						<fmt:formatNumber value="${vo.RQNo}" type="number" var="rqno"/> 
+						
+						
+						<c:if test="${ucode==1}">
+						<a onclick='onClick("${vo.memberId}", "${vmemberid}", "${rqno}")'>
+						</c:if>
+						<c:if test="${ucode==2}">
+						<a onclick='onClick2("${rqno}")'>
+						</c:if>
+						<c:if test="${ucode!=1&&ucode!=2}">
+						<a onclick='onClick3()'>
+						</c:if>
+								
 						<!-- 삭제된 원본글인 경우 삭제된 글로 처리 -->
 						<c:choose>
 							<c:when test="${vo.delFlag=='Y'}">
 								<span style="color:gray;font-size: 1.0em">
 									삭제된 글입니다.</span>
 							</c:when>
-							<c:otherwise>
-							
-													
+							<c:otherwise>				
 									<!-- 내용 일부만 보여주기 -->
-									<c:if test="${fn:length(vo.RQDetail)>23}">	
-										${fn:substring(vo.RQDetail, 0, 23)}...
+									<c:if test="${fn:length(vo.RQDetail)>18}">	
+										${fn:substring(vo.RQDetail, 0, 18)}...
 									</c:if>
-									<c:if test="${fn:length(vo.RQDetail)<=23}">
+									<c:if test="${fn:length(vo.RQDetail)<=18}">
 										${vo.RQDetail}
 									</c:if>								
 								</a>
@@ -201,55 +271,59 @@
 							</c:otherwise>
 						</c:choose>		
 					</td>
-					<td> ${vo.memberId} </td>
-					<td><fmt:formatDate value="${vo.regDate}"
+					
+					
+					
+					
+					<td id="ttl"> ${vo.memberId} </td>
+					<td id="ttl"><fmt:formatDate value="${vo.regDate}"
 						pattern="yyyy-MM-dd"/> </td>
 					
 					<!-- pickcount 갯수 표시 -->
-					<td class="pick"> 
+					<td class="pick" id="ttl"> 
 					<c:choose>
 				       <c:when test="${vo.pickCount>='1'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 
 					
 					<c:choose>
 				      <c:when test="${vo.pickCount>='2'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 								
 					<c:choose>
 				      <c:when test="${vo.pickCount>='3'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 				       <c:when test="${vo.pickCount>='4'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 				       <c:when test="${vo.pickCount>='5'}">
-				           <input type ="image" src="<c:url value='../images/checkedb.png'/>">
+				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
-					<input type ="image" src="<c:url value='../images/ucheckedb.png'/>">
+					<input type ="image" src="<c:url value='../images/uckb.png'/>">
 					</c:otherwise>
 					</c:choose>		
 					

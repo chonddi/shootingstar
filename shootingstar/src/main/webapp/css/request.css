@@ -1,19 +1,15 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 @import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 
 body{
 	width: 1903px;
 	
-	font-family: 'Do Hyeon', sans-serif;
-	font-size: 1.0em;
-	font-weight:200;
-	color:black;
 }
 
 .main1 {
 	width: 1500px;
-	
+	margin: 0 auto;
 	position:relative;
 
 
@@ -48,6 +44,11 @@ body{
 #cg4{
 	font-family: 'Do Hyeon', sans-serif;
 	font-size:45px;
+	vertical-align:middle;
+}
+#cg5{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:30px;
 	vertical-align:middle;
 }
 
@@ -95,6 +96,7 @@ textarea::placeholder {
 	 color: black;
  	 text-align: left;
  	 font-size:20px;
+ 	 padding-left:30px;
  	 margin-bottom:3%;
 	 font-weight:200;
 	 text-transform: uppercase;
@@ -103,14 +105,16 @@ textarea::placeholder {
 	 font-family: 'Do Hyeon', sans-serif;
 	 color: black;
  	 font-size:20px;
+ 	 margin: 0 auto;
  	 margin-bottom:3%;
 	 font-weight:200;
 	 text-transform: uppercase;
-	 width: 1200px;
+	 width: 1400px;
+	 height:600px;
 	 padding-top: 5%;
-	 padding-bottom: 10%;
-     padding-left:20%;
+	 padding-bottom: 30px;
 	 border: 1px solid #649ac7;
+	 text-align:center;
 }
 
 #caut{
@@ -124,12 +128,17 @@ textarea::placeholder {
 	 
 }
 #sm{
-	margin-left:25%;
+	margin:0 auto;
 	
 }
 
 .price{
 	font-size:45px;
+	text-align:center;
+	vertical-align:middle;
+}
+.price1{
+	font-size:30px;
 	text-align:center;
 	vertical-align:middle;
 }
@@ -179,6 +188,60 @@ textarea::placeholder {
 }
 
 .oky:hover {
+	background:#eceded;
+	background:-o-linear-gradient(90deg, #eceded, #eceded);
+	background:-moz-linear-gradient( center top, #eceded 5%, #eceded 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eceded), color-stop(1, #eceded) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eceded', endColorstr='#eceded');
+	background:-webkit-linear-gradient(#eceded, #eceded);
+	background:-ms-linear-gradient(#eceded, #eceded);
+	background:linear-gradient(#eceded, #eceded);
+}
+
+.oky1 {
+	font-family: 'Do Hyeon', sans-serif;
+	text-decoration:none;
+	box-shadow:#b9b9b9 1px 5px 2px;
+	o-box-shadow:#b9b9b9 1px 5px 2px;
+	-moz-box-shadow:#b9b9b9 1px 5px 2px;
+	-webkit-box-shadow:#b9b9b9 1px 5px 2px;
+	background:#eceded;
+	background:-o-linear-gradient(90deg, #eceded, #eceded);
+	background:-moz-linear-gradient( center top, #eceded 5%, #eceded 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eceded), color-stop(1, #eceded) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eceded', endColorstr='#eceded');
+	background:-webkit-linear-gradient(#eceded, #eceded);
+	background:-ms-linear-gradient(#eceded, #eceded);
+	background:linear-gradient(#eceded, #eceded);
+	text-indent:0px;
+	line-height:10px;
+	-moz-border-radius:12px 0 12px 12px;
+	-webkit-border-radius:12px 0 12px 12px;
+	border-radius:12px 0 12px 12px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	font-weight:100;
+	color:#b9b9b9;
+	width:90px;
+	height:35px;
+	padding:1px;
+	border-color:#eceded;
+	border-width:1px;
+	border-style:solid;
+}
+
+.oky1:active {
+	box-shadow:#b9b9b9 1px 0 2px;
+	o-box-shadow:#b9b9b9 1px 0 2px;
+	-moz-box-shadow:#b9b9b9 1px 0 2px;
+	-webkit-box-shadow:#b9b9b9 1px 0 2px;
+	position:relative;
+	top:5px
+}
+
+.oky1:hover {
 	background:#eceded;
 	background:-o-linear-gradient(90deg, #eceded, #eceded);
 	background:-moz-linear-gradient( center top, #eceded 5%, #eceded 100% );

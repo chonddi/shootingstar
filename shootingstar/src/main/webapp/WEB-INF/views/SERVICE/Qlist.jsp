@@ -8,6 +8,22 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/QlistStyle.css'/>" />
 <script type="text/javascript">
+	$(document).ready(function(){
+		$("#regit").click(function(){
+			if($("#userid").val() == ""){
+				alert("로그인이 필요한 서비스입니다.");
+				location.href="<c:url value='/login/login.do'/>";
+				return false;
+			}else if($("#userid").val() == 2){
+				alert("고객 회원만 이용가능한 서비스입니다.");
+				return false;
+			}else{
+				QwOpen();
+			}
+			
+		});
+	});
+
 	function QwOpen(){
 		x = (screen.availWidth - 600) / 2;
 		y = (screen.availHeight - 500) / 2;
@@ -31,6 +47,9 @@
 <h1>Q&A</h1>
 <br><br>
 <span style="color:gray;">관리자에게 1:1로 문의하실 사항이 있으시면 글을 작성해주세요.</span>
+<!-- 세션 유저 코드 값 -->
+<%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
+<input type="hidden" id="userid" value="1">
 <!-- 페이징 처리를 위한 form -->
 <form name="frmPage" method="post" action="<c:url value='/SERVICE/Qlist.do'/>">
 <input type="hidden" name="currentPage" >	
@@ -71,7 +90,7 @@
 	  			<tr style="text-align:center">
 					<td>${vo.qNo}</td>
 					<td style="text-align:left">
-						<c:if test="${sessionScope.id == vo.memberid}">
+						<c:if test="${sessionScope.userid == vo.memberid}">
 							<a href="#" onclick="detailFunc(${vo.qNo}, '${vo.memberid}')">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 								<c:if test="${fn:length(vo.qTitle)>50}">	
@@ -82,7 +101,7 @@
 								</c:if>
 							</a>
 						</c:if>
-						<c:if test="${sessionScope.id != vo.memberid}">
+						<c:if test="${sessionScope.userid != vo.memberid}">
 							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>&nbsp;
 							<img src="<c:url value='/images/lock.PNG'/>" alt="lock 이미지" style="vertical-align:middle;">
 						</c:if>
@@ -96,10 +115,10 @@
 						</c:if>
 					</td>
 					<td>
-						<c:if test="${sessionScope.id == vo.memberid}">
+						<c:if test="${sessionScope.userid == vo.memberid}">
 							${vo.memberid}
 						</c:if>
-						<c:if test="${sessionScope.id != vo.memberid}">
+						<c:if test="${sessionScope.userid != vo.memberid}">
 							<c:if test="${fn:length(vo.memberid)>3}">
 								<span style="color:gray;font-size:0.9em;">	
 									${fn:substring(vo.qTitle, 0, 3)}****
@@ -155,7 +174,7 @@
 </div>
 <br>
 <div class="divBtn">
-	<input type="button" id="regit" value="Q&A 작성하기" style="cursor:pointer;" onclick="QwOpen()">
+	<input type="button" id="regit" value="Q&A 작성하기" style="cursor:pointer;">
 </div>
 <br>
 </body>

@@ -4,8 +4,9 @@
 $(document).ready(function(){
 	//우편번호찾기
 	$('#btnZipcode').click(function(){
-		window.open('/star/zipcode/zipcode.do', 'zip', 
-		'width=500,height=600,left=0,top=0,location=yes,resizable=yes');
+		x = (screen.availWidth - 500) / 2;
+		y = (screen.availHeight - 600) / 2;
+		window.open('/star/zipcode/zipcode.do', 'zip',"left=" + x + ", top=" + y + ", width=500, height=600, location=yes, resizable=yes");
 	});
 });
 

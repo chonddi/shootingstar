@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -324,6 +324,38 @@ $(function(){
     });
 
 
+$( document ).ready(function() {
+	document.querySelector('#frm1').addEventListener('submit', function(e) {
+		  var form = this;
+
+		  e.preventDefault(); // <--- prevent form from submitting
+
+		  swal({
+		      title: "글을 등록 하시겠습니까?",
+		      text: "pick이 하나 이상이면 금액수정이 불가합니다.계속하시겠습니까?",
+		      icon: "warning",
+		      buttons: [
+		        '아니요!',
+		        '네!'
+		      ],
+		      dangerMode: true,
+		    }).then(function(isConfirm) {
+		      if (isConfirm) {
+		        swal({
+		          title: '완료되었습니다',
+		          text: 'pick등록이 완료되었습니다.',
+		          icon: 'success'
+		        }).then(function() {
+		          form.submit(); // <--- submit form programmatically
+		        });
+		      } else {
+		        swal("Cancelled", "취소되었습니다:)", "error");
+		      }
+		    })
+		});
+	});
+
+
 
 
 
@@ -346,7 +378,7 @@ $(function(){
 	<br><br>
 	<!-- <div class="main2"> -->
 		<form name="frm1" id="frm1" method="post" enctype="multipart/form-data" 
-			action="<c:url value='/request/write4.do'/>" onsubmit="return send(this)">
+			action="<c:url value='/request/write4.do'/>" >
 	 		
 	 			<div class="pS">   
 					  촬영을 원하시는 지역  <br><br>
@@ -411,8 +443,10 @@ $(function(){
 		   
 			 <div class="pS2">
 				    <span id="pS3"> 촬영에 대한 세부요청사항을 작성해주세요</span> <br>
-				  <textarea name="RQDetail" id="pS2" cols=50 rows=7 autofocus required wrap="soft" 
-				  		placeholder="이곳에 요구사항을 작성해주세요. 내용의 첫 일부분이 제목으로 노출됩니다." style="resize: none;"></textarea>
+				  <textarea name="RQDetail" id="pS2" cols=45 rows=8 autofocus required wrap="soft" 
+				  		placeholder="이곳에 요구사항을 작성해주세요.
+				  		예):총 몇 명인가요? 몇 가지 컨셉인가요? 어떤 제품인가요? 제품은 총 몇 개 인가요?
+				  		 <--내용의 첫 일부분이 제목으로 노출됩니다.-->" style="resize: none;"></textarea>
 			 </div>
 		  		
 		  		
@@ -420,11 +454,11 @@ $(function(){
 					 <span id="pS3"> 참고자료</span><br>
 					 참고용 사진을 업로드 해주세요. (권장 최대 5개)
 					        
-		        <input multiple="multiple" type="file" class="oky2" name="file" />
+		        <input type="file" multiple="multiple"  class="oky2" name="file" maxlength="5"/>
  
 			</div>
 			  		 
-			 <div id="pS4"> <button class="oky" onclick="submit">입력완료</button></div>
+			 <div id="pS4"> <button class="oky">입력완료</button></div>
 		</form>  
      <!-- </div> -->
 <!--    </div> -->

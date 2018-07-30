@@ -39,6 +39,17 @@ cn부터 먼저 해줘야함
  */
  #width{padding-left:200px;
 	padding-right:200px;}
+th{
+vertical-align: middle;}
+tr{
+vertical-align: middle;}
+#lastth{width:100px;}
+.button{padding: 10px 0 10px 0;
+}
+#button{
+width:100px;
+height:60px;
+}
 </style>
 
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -94,9 +105,10 @@ $(document).ready(function(){
 </head>
 <body>
 <h1>공지사항</h1>
-<input type="button" value="공지사항작성" 
+<p class="button">
+<input type="button" value="공지사항작성" id="button"
  onclick="location.href='<c:url value="/notice/noticeWrite.do"/>'"/>
-
+</p>
 <form name="deleteNotice" method="post"
 action="<c:url value='/notice/noticeDelete.do'/>">
  <table class="notice">
@@ -106,7 +118,7 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 		<col style="width:50%;" />
 		<col style="width:15%;" />
 		<col style="width:15%;" />
-		<col style="width:7%;" />
+		<col style="width:100px;" />
 </colgroup>
 	<thead>
 		<tr>
@@ -137,8 +149,11 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 			<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
  					<c:choose>
 						<c:when test="${vo.delflag=='Y' }">
-						<td colspan=5>
-							<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
+						<td colspan=4>
+							<span style="color:gray ; font-size:1.0em">${vo.nTitle }</span>
+						</td>
+						<td colspan=1>
+							<span style="color:red ; font-size:1.0em">삭제된 글입니다</span>
 						</c:when>
 					<c:otherwise> 
 			<td>
@@ -162,12 +177,12 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 				
 				<c:choose>
 					<c:when test="${vo.delflag=='N' }">
-						<td onclick="location.href='<c:url value="/notice/deleteOne.do?nNo=${vo.nNo }"/>'" >
+						<td id="lastth" onclick="location.href='<c:url value="/notice/deleteOne.do?nNo=${vo.nNo }"/>'" >
 						삭제
 						</td>
 					</c:when>
 				<c:otherwise> 
-			<td onclick="location.href='<c:url value="/notice/noticeBack.do?nNo=${vo.nNo }"/>'" >
+			<td  id="lastth" onclick="location.href='<c:url value="/notice/noticeBack.do?nNo=${vo.nNo }"/>'" >
 				복구
 			</td>
 				</c:otherwise>
@@ -181,9 +196,8 @@ action="<c:url value='/notice/noticeDelete.do'/>">
 	</c:if> 
 	</tbody>
 </table>
-<p id="button">
-<input type="submit" value="삭제"/>
-
+<p class="button">
+<input type="submit" value="삭제" id="button"/>
  </p>
 </form>
 

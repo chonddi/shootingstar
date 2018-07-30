@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>쪽지 보내기</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/msgWrite.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
@@ -32,7 +32,7 @@
 					if(confirm("전송하시겠습니까?")){
 						$('form[name=msgFrm]').submit();
 						opener.parent.location.reload();
-						setTimeout(function() {self.close()}, 10);
+						setTimeout(function() {self.close()}, 100);
 					}
 				}
 			}
@@ -132,7 +132,7 @@
 	<span id="textleng"></span>
 	</div>
 	<div class="center">
-		<input type="button" class="button" id="regit" value="등록"/>
+		<input type="button" class="button" id="regit" value="보내기"/>
 		&nbsp;
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>

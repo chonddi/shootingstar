@@ -1,5 +1,7 @@
 package com.ss.star.member.model;
 
+import java.util.Map;
+
 public interface MemberDAO {
 
 	public MemberVO selectID(String email);
@@ -9,4 +11,5 @@ public interface MemberDAO {
 	public int updateMember(MemberVO memberVo);
 	public int updateOutDate(String memberId);
 	public int selectCountMemberId(String memberId);
+	public int updatePwd(Map<String, String> map);
 }

@@ -12,6 +12,11 @@ public interface RequestDAO {
 	public List<RequestVO> selectAll(ctgRequestVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
 	public RequestVO selectByNo(int no);
-	public RequestImgVO selectByNoImg(int no);
+	public List<RequestImgVO> selectByNoImg(int no);
+	public int insertPick(RequestPickVO pvo);
+	public int getPickCount(int no);
+	public int updatePick (int no);
+	public List<RequestPickVO> pickByNo(int no);
+	public List<PickAllVO> selectPList(int no);
 
 }

@@ -1,5 +1,7 @@
 package com.ss.star.member.model;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,5 +44,10 @@ public class MemberDAOMybatis implements MemberDAO{
 	@Override
 	public int selectCountMemberId(String memberId) {
 		return sqlSession.selectOne(namespace+"selectCountMemberId", memberId);
+	}
+
+	@Override
+	public int updatePwd(Map<String, String> map) {
+		return sqlSession.update(namespace+"updatePwd", map);
 	}
 }

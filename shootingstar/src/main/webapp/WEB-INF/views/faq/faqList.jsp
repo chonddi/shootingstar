@@ -16,7 +16,8 @@ pageContext.setAttribute("cn", "\n");
 <title>FAQ</title>
 <style type="text/css">
 th{text-align: center;}
-#title{vertical-align: middle;}
+#title{vertical-align: middle;
+text-align: left;}
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>

@@ -29,6 +29,10 @@
 	<select id="selectCountMemberId" parameterType="String" resultType="int">
 		select count(*) from member where memberid=#{memberId}
 	</select>
+	
+	<update id="updatePwd" parameterType="map">
+		update member set pwd=#{pwd} where memberId=#{memberId}
+	</update>
 </mapper>
 
 

@@ -34,7 +34,7 @@
 	height: 400px;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: 
+	background-position: center;
 }
 
 #pfTitle {

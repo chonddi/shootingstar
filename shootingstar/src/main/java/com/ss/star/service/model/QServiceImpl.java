@@ -47,7 +47,7 @@ public class QServiceImpl implements QService {
 	public List<QRVO> QRList(int qNo) {
 		return qDao.QRList(qNo);
 	}
-	
+
 	@Override
 	public List<QRVO> QRselectByNo(int qrNo) {
 		return qDao.QRselectByNo(qrNo);
@@ -66,6 +66,11 @@ public class QServiceImpl implements QService {
 	@Override
 	public int QRreply(QRVO QRVo) {
 		return qDao.QRreply(QRVo);
+	}
+
+	@Override
+	public List<QRVO> QRreplyList(int qrNo) {
+		return qDao.QRreplyList(qrNo);
 	}
 
 }

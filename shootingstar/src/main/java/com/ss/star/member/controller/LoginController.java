@@ -47,7 +47,7 @@ public class LoginController {
 			logger.info("로그인 처리 memberId로  불러온 결과 name: {}",name);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("memberId", memberId);
+			request.getSession().setAttribute("userid", memberId);
 			//userName
 			request.getSession().setAttribute("name", name);
 			request.getSession().setAttribute("userCode", "1");
@@ -98,9 +98,9 @@ public class LoginController {
 			logger.info("로그인 처리 sMemberId로  불러온 결과 sName: {}",sName);
 			//[1] 세션
 			//userid
-			request.getSession().setAttribute("sMemberId", sMemberId);
+			request.getSession().setAttribute("userid", sMemberId);
 			//userName
-			request.getSession().setAttribute("sName", sName);
+			request.getSession().setAttribute("name", sName);
 			request.getSession().setAttribute("userCode", "2");
 			//[2] 쿠키
 			Cookie cookie= new Cookie("sSaveId", sMemberId);

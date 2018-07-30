@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -29,7 +30,7 @@ public class FileUploadUtil2 {
 	public static final int PATH_FLAG_IDENTI=11;	//신분증
 	public static final int PATH_FLAG_ACCOUNT=22;	//계좌사본
 	
-	public String getUploadPath(int pathFlag) {
+	public String getUploadPath(HttpServletRequest request, int pathFlag) {
 		//업로드 폴더 구하는 메서드
 		String upPath="";
 		String type=fileUploadProps2.getProperty("file.upload.type");
@@ -49,6 +50,7 @@ public class FileUploadUtil2 {
 			}else {//계좌사본
 				upPath=fileUploadProps2.getProperty("accountCopy.upload.path");
 			}
+			upPath=request.getSession().getServletContext().getRealPath(upPath);
 		}
 		logger.info("업로드 경로 : {}", upPath);
 		return upPath;
@@ -68,37 +70,42 @@ public class FileUploadUtil2 {
 		//파일 업로드 처리하는 메서드
 		MultipartHttpServletRequest multiRequest =(MultipartHttpServletRequest)request;
 		
-		MultipartFile identification=multiRequest.getFile("identifi");
-		MultipartFile accountCopy=multiRequest.getFile("account");
-		List<Map<String, String>> list = new ArrayList<>();
+		Map<String, MultipartFile> fileMap = multiRequest.getFileMap();
+		//Map<String, MultipartFile> getFileMap();
+		//MultipartFile은 임시파일상태
 		
-		if(identification!=null && !identification.isEmpty() 
-				&&accountCopy!=null && !accountCopy.isEmpty()) {
-			String originalFileName = identification.getOriginalFilename();
-			String originalFileName2 = accountCopy.getOriginalFilename();
-			logger.info("originalFileName: {}, originalFileName2: {} ", originalFileName,originalFileName2);
-			
-	        String path = getUploadPath(PATH_FLAG_IDENTI);
-	        String path2 = getUploadPath(PATH_FLAG_ACCOUNT);
-	        String safeFile = getUniqueFileName(originalFileName);
-	        String safeFile2 =getUniqueFileName(originalFileName2);
-	        try {
-	            identification.transferTo(new File(path, safeFile));
-	            accountCopy.transferTo(new File(path2, safeFile2));
-	        } catch (IllegalStateException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        
-	        Map<String, String> map = new HashMap<>();
-	        map.put("identification", safeFile);
-	        map.put("accountCopy", safeFile2);
-
-			list.add(map);
+		//파일정보를 저장할 컬렉션
+		List<Map<String, String>> list=  new ArrayList<>();
+		
+		Iterator<String> iter = fileMap.keySet().iterator();
+		while(iter.hasNext()) {
+			String key = iter.next();
+			MultipartFile tempFile = fileMap.get(key);
+			//업로드된 파일이 있으면
+			if(!tempFile.isEmpty()) {
+				//업로드된 파일 정보 구하기
+				String originalFileName=tempFile.getOriginalFilename();
+				String fileName = getUniqueFileName(originalFileName);
+				
+				//업로드 처리하기
+				if(key.equals("identi")) {
+					File file = new File(getUploadPath(request, PATH_FLAG_IDENTI), fileName);
+					tempFile.transferTo(file);
+				}else {
+					File file = new File(getUploadPath(request, PATH_FLAG_ACCOUNT), fileName);
+					tempFile.transferTo(file);
+				}
+				
+				//파일 정보를 map에 저장
+				Map<String, String> map = new HashMap<>();
+				map.put("originalFileName", fileName);
+				map.put("identiCopy", key);
+				
+				//map을 list에 저장
+				list.add(map);
+			}
 		}
 		return list;
-		
 	}
 
 	public String getUniqueFileName(String originalFileName) {

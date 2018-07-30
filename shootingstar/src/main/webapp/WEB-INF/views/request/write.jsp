@@ -86,7 +86,7 @@ $(".hover").mouseleave(
 					    <h3>웨딩</h3><br>
 					    <p> 본식촬영, 스튜디오, 야외촬영, 드론촬영, 리허설촬영 </p><i class="ion-ios-arrow-right"></i>
 					  </figcaption>
-					   <a href="<c:url value='/request/write2.do'><c:param name="cg1" value="인물/프로필"></c:param></c:url>"></a>
+					   <a href="<c:url value='/request/write2.do'><c:param name="cg1" value="웨딩"></c:param></c:url>"></a>
 					  </figure>
 					  
 					    <figure class="snip1384">

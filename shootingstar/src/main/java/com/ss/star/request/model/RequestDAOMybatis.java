@@ -54,9 +54,58 @@ public class RequestDAOMybatis implements RequestDAO {
 
 
 	@Override
-	public RequestImgVO selectByNoImg(int no) {
-		return sqlSession.selectOne(namespace+"selectByNoImg", no);
-	}		
+	public List<RequestImgVO> selectByNoImg(int no) {
+		
+		List<RequestImgVO> list
+		=sqlSession.selectList(namespace+"selectByNoImg", no);
+		return list;
+		
+	}
+
+
+	@Override
+	public int insertPick(RequestPickVO pvo) {
+		int cnt=sqlSession.insert(namespace+"insertPick", pvo);
+		return cnt;
+	}
+
+
+	@Override
+	public int getPickCount(int no) {
+		return sqlSession.selectOne(namespace+"getPickCount", no);
+	}
+
+
+	@Override
+	public int updatePick(int no) {
+		return sqlSession.update(namespace+"updatePick", no);
+	}
+
+
+	@Override
+	public List<RequestPickVO> pickByNo(int no) {
+		
+		List<RequestPickVO> list
+		=sqlSession.selectList(namespace+"pickByNo", no);
+		return list;
+		
+	}
+
+
+	@Override
+	public List<PickAllVO> selectPList(int no) {
+		
+		List<PickAllVO> list
+		=sqlSession.selectList(namespace+"selectPList", no);
+		
+		return list;
+	}
+
+
+	
+
+
+	
 	
 	
 

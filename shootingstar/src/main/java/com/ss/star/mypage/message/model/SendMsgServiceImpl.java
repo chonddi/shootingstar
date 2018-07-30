@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.common.SearchVO;
+
 @Service
 public class SendMsgServiceImpl implements SendMsgService{
 
@@ -34,25 +36,62 @@ public class SendMsgServiceImpl implements SendMsgService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectSendMsg(String userId, String userCode) {
-		Map<String, String> map = new HashMap<>();
+	public List<Map<String, Object>> selectSendMsg(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("sender", userId);
 		map.put("code",	userCode);
+		map.put("searchVo", searchVo);
 		
 		List<Map<String, Object>> list = sendMsgDao.selectSendMsg(map);
 		return list;
 	}
 
 	@Override
-	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode) {
-		Map<String, String> map = new HashMap<>();
+	public int getTotalRecord(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sender", userId);
+		map.put("code",	userCode);
+		map.put("searchVo", searchVo);
+		
+		int total =sendMsgDao.getTotalRecord(map);
+		
+		return total;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectReceiveMsg(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("recipient", userId);
 		map.put("code", userCode);
+		map.put("searchVo", searchVo);
 		
 		List<Map<String, Object>> list = sendMsgDao.selectReceiveMsg(map);
-		
 		return list;
 	}
+
+	@Override
+	public int getTotalRecordReceive(String userId, String userCode, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("recipient", userId);
+		map.put("code", userCode);
+		map.put("searchVo", searchVo);
+		
+		int total = sendMsgDao.getTotalRecordReceive(map);
+		return total;
+	}
+
+	@Override
+	public Map<String, Object> selectDetail(int sMsgNo) {
+		return sendMsgDao.selectDetail(sMsgNo);
+	}
+
+	@Override
+	public int updateRead(int sMsgNo) {
+		return sendMsgDao.updateRead(sMsgNo);
+	}
+
+	
+	
 
 
 	

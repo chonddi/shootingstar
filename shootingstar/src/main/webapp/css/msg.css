@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+
+/* sendMsg, receiveMsg */
+#msg{
+	color:#1f1f1f;
+	font-weight:700;
+	border-bottom: 2px solid #e46c0a;
+}
+.msgBtn{
+	margin-bottom: 30px;
+}
+#msgTbl tr>td{
+	padding-top:20px;
+}
+#msgTbl a:hover{
+	font-weight: bold;
+	cursor: pointer;
+}
+.divPage{
+	text-align: center;
+	margin-top:35px;
+}
+.divPage a{
+	cursor: pointer;
+}
+.divSearch{
+	width:60%;
+	margin: 0 auto;
+	text-align: right;
+	margin-top:20px;
+}
+.anotherBtn{
+	background: #f6f6f6;
+    border-radius: 2px;
+    vertical-align: baseline;
+    padding: 8px;
+    font-weight: bold;	
+    border:1px solid black;
+}
+.anotherBtn:hover{
+	background: #e3e3e3;
+}
+.anotherBtn:active{
+	border:1px solid black;
+}
+.nowMsgType{
+	color: white;
+    font-weight: bold;
+    background: #345f93;
+    padding: 7px 8px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+#sendMsg{
+	border:  none;
+    width: 100px;
+    height: 30px;
+    font-size: 0.8em;
+    background: #9b9b9b;
+    color: white;
+    border-radius: 5px 5px;
+}
+
+
+/* msgWrite */
+.h1{
+	font-size:0.8em;
+	background-color: rgba(30, 30, 30, 1);
+	color:white;
+	padding: 10px;
+}
+
+h1{
+	margin:0;
+}
+
+.msgDiv{
+	border:1px solid rgba(180, 180, 180, 1);
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.text{
+	border:none;
+	margin:10px;
+	width:96%;
+}
+
+.center{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.button{
+	cursor: pointer;
+	font-size: 1.0em;
+}
+
+#textleng{
+	text-align: right;
+	margin: 0 20px 15px 0;
+	display: inherit;
+	color:gray;
+}
+
+#content{
+	height:14em;
+	resize: none;
+	line-height: 2em;
+}
+
+#regit, #cancel{
+	width: 130px;
+	height: 40px;	
+	border-style: none;
+}
+
+#regit{
+	color: white;
+	background-color: rgba(0, 200, 60, 1);
+}
+
+#cancel{
+	background-color: white;
+	border:1px solid rgba(180, 180, 180, 1);
+}
