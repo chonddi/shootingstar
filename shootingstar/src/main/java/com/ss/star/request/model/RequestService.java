@@ -16,5 +16,6 @@ public interface RequestService {
 	public int insertPick(RequestPickVO pvo);
 	public List<RequestPickVO> pickByNo(int no);
 	public List<PickAllVO> selectPList(int no);
+	public PickAllVO selectByPick(int no);
 
 }

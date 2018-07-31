@@ -18,5 +18,6 @@ public interface RequestDAO {
 	public int updatePick (int no);
 	public List<RequestPickVO> pickByNo(int no);
 	public List<PickAllVO> selectPList(int no);
+	public PickAllVO selectByPick(int no);
 
 }

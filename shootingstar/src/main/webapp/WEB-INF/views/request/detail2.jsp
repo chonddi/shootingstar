@@ -30,16 +30,16 @@
 </head>
 <body>
 <form name="frm2" method="post" action="<c:url value='/request/detail.do?no=${param.RQNo }'/>">
-	<c:if test="${pvo.sPrice == 0}">
+	<c:if test="${empty pvo.sPrice}">
 		<div class="payDiv">
 			<p>${pvo.sName} 전문가님이 아직 최종금액을 입력하지 않았습니다.</p>
 			<p>* 전문가회원이 최종가격을 입력한 후 결제단계로 이동 가능합니다.</p>
 		</div>
 	</c:if>
-	<c:if test="${pvo.sPrice > 1}">
+	<c:if test="${!empty pvo.sPrice}">
 		<div>	
 			<p>${pvo.sName} 전문가님이 입력하신 최종 금액은</p>
-			<p>\${pvo.sPrice} 원입니다.</p>
+			<p>${pvo.sPrice} 원입니다.</p>
 			<p>결제하시겠습니까?</p>
 			
 			<button class="oky" id="btn1">예</button>&nbsp;<input type="button" class="oky" onclick='btn2()' value="아니오">

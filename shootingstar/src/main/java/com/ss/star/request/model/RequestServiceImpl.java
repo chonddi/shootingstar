@@ -1,44 +1,38 @@
 package com.ss.star.request.model;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ss.star.request.model.ctgRequestVO;
-import com.ss.star.common.SearchVO;
-
-
 @Service
 public class RequestServiceImpl implements RequestService {
-	
-	@Autowired private RequestDAO requestDao;
+
+	@Autowired
+	private RequestDAO requestDao;
 
 	@Override
 	@Transactional
 	public int insertRequest(RequestVO vo, List<Map<String, Object>> fileList) {
-	
-		int cnt= requestDao.insertRequest(vo);
-		int rqNo=vo.getRQNo();
+
+		int cnt = requestDao.insertRequest(vo);
+		int rqNo = vo.getRQNo();
 		try {
-	         for(Map<String, Object> map : fileList) {
-	               RequestImgVO ivo = new RequestImgVO();
-	               ivo.setFileName((String)map.get("fileName"));
-	               ivo.setOriginalFileName((String)map.get("originalFileName"));
-	               ivo.setRQNo(rqNo);
-	               cnt=requestDao.insertReqImg(ivo);
-	         }//for
-	      }catch(RuntimeException e) {
-	         cnt=-1;   //rollback시 에러 처리를 위해 cnt값을 -1로 셋팅
-	         e.printStackTrace();
-	      }
-	      return cnt;
-	   }
+			for (Map<String, Object> map : fileList) {
+				RequestImgVO ivo = new RequestImgVO();
+				ivo.setFileName((String) map.get("fileName"));
+				ivo.setOriginalFileName((String) map.get("originalFileName"));
+				ivo.setRQNo(rqNo);
+				cnt = requestDao.insertReqImg(ivo);
+			} // for
+		} catch (RuntimeException e) {
+			cnt = -1; // rollback시 에러 처리를 위해 cnt값을 -1로 셋팅
+			e.printStackTrace();
+		}
+		return cnt;
+	}
 
 	@Override
 	public List<RequestVO> selectAll(ctgRequestVO searchVo) {
@@ -46,41 +40,39 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public int getTotalRecord(ctgRequestVO searchVo) {		
+	public int getTotalRecord(ctgRequestVO searchVo) {
 		return requestDao.getTotalRecord(searchVo);
 	}
 
 	@Override
 	public RequestVO selectByNo(int no) {
-		return requestDao.selectByNo(no);	
-	
+		return requestDao.selectByNo(no);
+
 	}
 
 	@Override
 	public List<RequestImgVO> selectByNoImg(int no) {
-		return requestDao.selectByNoImg(no);	
+		return requestDao.selectByNoImg(no);
 	}
 
 	@Override
 	public int insertPick(RequestPickVO pvo) {
-		
-		int pno=pvo.getRQNo();
+
+		int pno = pvo.getRQNo();
 		int result;
-		int seq= requestDao.getPickCount(pno);
-		
-		if (seq<5) {
-			int seq1=requestDao.insertPick(pvo);
-			int seq2=requestDao.updatePick(pno);
-			
-			result=1;
-		}else {
-			result=0;
+		int seq = requestDao.getPickCount(pno);
+
+		if (seq < 5) {
+			int seq1 = requestDao.insertPick(pvo);
+			int seq2 = requestDao.updatePick(pno);
+
+			result = 1;
+		} else {
+			result = 0;
 		}
 		return result;
 	}
 
-	
-	
 	@Override
 	public List<RequestPickVO> pickByNo(int no) {
 		return requestDao.pickByNo(no);
@@ -91,15 +83,9 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.selectPList(no);
 	}
 
+	@Override
+	public PickAllVO selectByPick(int no) {
+		return requestDao.selectByPick(no);
+	}
 
-
-
-	
 }
-
-	
-	
-	
-
-	
-

@@ -104,6 +104,11 @@
 		where rqno=#{no}
 	</select>
 	
+	<select id="selectByPick" parameterType="int" resultType="PickAllVO">
+		select * from pickAll
+		where rqno=#{no}
+	</select>
+	
 
 	<select id="selectByNoImg" parameterType="int" resultType="RequestImgVO">
 		select * from requestimg where RQNo=#{RQNo}

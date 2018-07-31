@@ -251,7 +251,8 @@ public class RequestController {
 	}
 
 	@RequestMapping("/detail2.do")
-	public String detail2(@RequestParam(defaultValue="0") int no, HttpServletRequest request, Model model, HttpSession session) {
+	public String detail2(@RequestParam(defaultValue = "0") int no, HttpServletRequest request, Model model,
+			HttpSession session) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 
 		// 임시 세션아이디
@@ -260,8 +261,8 @@ public class RequestController {
 
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
-		
-		if(no==0) {
+
+		if (no == 0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/index.do");
 			return "common/message";
@@ -272,7 +273,7 @@ public class RequestController {
 
 		String vmemberid = vo.getMemberId();
 
-		List<PickAllVO> pvo = requestService.selectPList(no);
+		PickAllVO pvo = requestService.selectByPick(no);
 		logger.info("파라미터pvo, pvo={}", pvo);
 
 		model.addAttribute("vo", vo);
