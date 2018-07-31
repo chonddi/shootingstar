@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ss.star.mypage.message.model.ReceiveMsgVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -67,13 +70,36 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int updateTempPwd(String tempPwd) {
-		return memberDao.updateTempPwd(tempPwd);
+	public int updateTempPwd(String tempPwd, String memberId) {
+		Map<String, String> map = new HashMap<>();
+		map.put("tempPwd", tempPwd);
+		map.put("memberId", memberId);
+		return memberDao.updateTempPwd(map);
 	}
 
 	@Override
 	public String selectTempPwd(String tempPwd) {
 		return memberDao.selectTempPwd(tempPwd);
+	}
+
+	@Override
+	@Transactional
+	public int changeNewPwd(String pwd, String userid) {
+		
+		int cnt = 0;
+		
+		try {
+			MemberVO memberVo = new MemberVO();
+			memberVo.setPwd(pwd);
+			memberVo.setMemberId(userid);
+			cnt=memberDao.changeNewPwd(memberVo);
+			
+			cnt=memberDao.deleteTempPwd(userid);
+		}catch(RuntimeException e) {
+			cnt=-1;	//rollback 처리값
+			e.printStackTrace();
+		}
+		return cnt;
 	}
 	
 	

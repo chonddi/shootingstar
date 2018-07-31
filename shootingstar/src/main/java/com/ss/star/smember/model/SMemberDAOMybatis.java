@@ -1,7 +1,6 @@
 package com.ss.star.smember.model;
 
 import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,11 +43,19 @@ public class SMemberDAOMybatis implements SMemberDAO{
 		return sqlSession.update(namespace+"updatePwd", map);
 	}
 	@Override
-	public int updateTempPwd(String tempPwd) {
-		return sqlSession.update(namespace+"updateTempPwd", tempPwd);
+	public int updateTempPwd(Map<String, String> map) {
+		return sqlSession.update(namespace+"updateTempPwd", map);
 	}
 	@Override
 	public String selectTempPwd(String tempPwd) {
 		return sqlSession.selectOne(namespace+"selectTempPwd", tempPwd);
+	}
+	@Override
+	public int changeNewPwd(SMemberVO sMemberVo) {
+		return sqlSession.update(namespace+"changeNewPwd", sMemberVo);
+	}
+	@Override
+	public int deleteTempPwd(String sMemberId) {
+		return sqlSession.update(namespace+"deleteTempPwd", sMemberId);
 	}
 }

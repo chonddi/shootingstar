@@ -62,16 +62,30 @@ function sendToken(memberId, userCode) {
 	color:white;
 	padding: 10px;
 }
+.findPwdDiv{
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: -.5px;
+}
+#memJoin{
+	width: 365px;
+	background: #0e4699;
+	margin-top:45px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
-	<h1 class="h1">비밀번호 찾기</h1>
-		<div>가입한 이메일로 비밀번호 변경 방법을 전달드립니다</div>
-	<div>
-		<input type="text" placeholder="이메일" id="memberId" name="memberId"
-			class="valid"><br>
-		<input type="text" id="userCode" value="${param.userCode}">
-		<input type="button" id="idChkBtn" value="확인" onclick="checkMail()" />
+	<div style="width: 400px; margin:0 auto;">
+		<h1 class="h1">비밀번호 찾기</h1>
+			<div class="findPwdDiv">가입한 이메일로 비밀번호 변경 방법을 전달드립니다</div>
+		<div class="findPwdDiv">
+			<input type="text" placeholder="이메일" id="memberId" name="memberId"
+				class="valid" size="48"><br>
+			<input type="hidden" id="userCode" value="${param.userCode}">
+			<input type="button" id="memJoin" value="확인" onclick="checkMail()" />
+		</div>
 	</div>
 </body>
 </html>

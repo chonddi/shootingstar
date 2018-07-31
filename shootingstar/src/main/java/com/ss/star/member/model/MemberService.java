@@ -14,6 +14,7 @@ public interface MemberService {
 	public int updateOutDate(String memberId);
 	public int selectCountMemberId(String memberId);
 	public int updatePwd(String pwd, String userId);
-	public int updateTempPwd(String tempPwd);
+	public int updateTempPwd(String tempPwd, String memberId);
 	public String selectTempPwd(String tempPwd);
+	public int changeNewPwd(String pwd, String userid);
 }

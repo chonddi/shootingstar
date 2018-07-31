@@ -52,12 +52,22 @@ public class MemberDAOMybatis implements MemberDAO{
 	}
 
 	@Override
-	public int updateTempPwd(String tempPwd) {
-		return sqlSession.update(namespace+"updateTempPwd", tempPwd);
+	public int updateTempPwd(Map<String, String> map) {
+		return sqlSession.update(namespace+"updateTempPwd", map);
 	}
 
 	@Override
 	public String selectTempPwd(String tempPwd) {
 		return sqlSession.selectOne(namespace+"selectTempPwd", tempPwd);
+	}
+
+	@Override
+	public int changeNewPwd(MemberVO memberVo) {
+		return sqlSession.update(namespace+"changeNewPwd", memberVo);
+	}
+
+	@Override
+	public int deleteTempPwd(String memberId) {
+		return sqlSession.update(namespace+"deleteTempPwd", memberId);
 	}
 }

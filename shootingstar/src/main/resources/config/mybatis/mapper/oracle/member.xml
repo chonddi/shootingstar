@@ -35,13 +35,22 @@
 	</update>
 	
 	<!-- 임시비밀번호 -->
-	<update id="updateTempPwd" parameterType="String">
-		update member set tempPwd=#{tempPwd}
+	<update id="updateTempPwd" parameterType="map">
+		update member set tempPwd=#{tempPwd} where memberid=#{memberId}
 	</update>
 	
 	<select id="selectTempPwd" parameterType="String" resultType="string">
-		select memberid from member where tempPwd = #{tempPwd}
+		select memberid from member where tempPwd = #{tempPwd} 
 	</select>
+	
+	<update id="changeNewPwd" parameterType="memberVo">
+		update member set pwd = #{pwd} where memberid=#{memberId}
+	</update>
+	
+	<update id="deleteTempPwd" parameterType="String">
+		update member set temppwd='' where memberid=#{memberId}
+	</update>
+	
 </mapper>
 
 

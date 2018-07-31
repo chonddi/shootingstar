@@ -15,9 +15,11 @@ body {
   text-decoration: none;
   color: #346093;
   transition: .5s ease;
+  cursor:pointer;
 }
 .forgot a:hover {
   color: #337ab7;
+  cursor:pointer;
 }
 
 .form {

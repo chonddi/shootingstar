@@ -19,6 +19,12 @@ public class IndexController {
 		logger.info("Welcome index!");
 		return "index";
 	}
+
+	@RequestMapping(value = "/common/selfClose.do", method = RequestMethod.GET)
+	public String selfClose() {
+		logger.info("selfClose");
+		return "/common/selfClose";
+	}
 	
 }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.star.member.model.MemberService;
@@ -159,10 +160,10 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping("/findPassword.do")
+	@RequestMapping(value="/findPassword.do", method=RequestMethod.GET)
 	public String findPassword(@RequestParam(defaultValue="0") String tempPwd, @RequestParam String userCode
 				,Model model) {
-		logger.info("비밀번호 찾기 토큰입력 tempPwd: {}", tempPwd);
+		logger.info("비밀번호 찾기 토큰입력 페이지 tempPwd: {}", tempPwd);
 		
 		if("0".equals(tempPwd)) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -196,9 +197,36 @@ public class LoginController {
 			}
 		}
 	}
+	@RequestMapping(value="findPassword.do", method=RequestMethod.POST)
+	public String findPassword_post(@RequestParam String pwd, @RequestParam String userid, @RequestParam String userCode, Model model) {
+		logger.info("비밀번호 찾기 후 변경 처리 입력한 pwd: {}, userid: {}", pwd, userid);
+		logger.info("userCode: {}", userCode);
+		
+		int cnt = 0;
+		String msg="", url="";
+		if("1".equals(userCode)) {
+			cnt = memberService.changeNewPwd(pwd, userid);
+		}else {
+			cnt = sMemberService.changeNewPwd(pwd, userid);
+		}
+		logger.info("비밀번호 변경 후 cnt: {}");
+		if(cnt>0) {
+			msg="비밀번호가 변경되었습니다.";
+			url="/login/login.do";
+		}else {
+			msg="변경 실패, 재시도 해주십시오";
+			url="/login/login.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 	
 	@RequestMapping("forgotPasswordChk.do")
 	public void forgotPasswordChk() {
 		logger.info("임시번호 발급 후 나가기 페이지");
 	}
+	
 }

@@ -32,6 +32,7 @@ span{
 	color:white;
 	border: none;
 	font-size: 0.9em;
+	cursor: pointer;
 }
 
 #idChkBtn, #btnZipcode{	

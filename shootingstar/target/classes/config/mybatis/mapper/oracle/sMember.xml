@@ -52,11 +52,19 @@
 	</update>
 	
 	<!-- 임시비밀번호 -->
-	<update id="updateTempPwd" parameterType="String">
-		update smember set tempPwd=#{tempPwd}
+	<update id="updateTempPwd" parameterType="map">
+		update smember set tempPwd=#{tempPwd} where smemberId=#{sMemberId}
 	</update>
 	
 	<select id="selectTempPwd" parameterType="String" resultType="string">
 		select smemberid from smember where tempPwd = #{tempPwd}
 	</select>
+	
+	<update id="changeNewPwd" parameterType="smemberVo">
+		update smember set spwd = #{sPwd} where smemberid=#{sMemberId}
+	</update>
+	
+	<update id="deleteTempPwd" parameterType="String">
+		update smember set temppwd='' where smemberid=#{sMemberId}
+	</update>
 </mapper>

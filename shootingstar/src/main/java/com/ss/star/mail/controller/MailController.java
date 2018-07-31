@@ -70,9 +70,9 @@ public class MailController {
     	
     	int cnt=0;
     	if("1".equals(userCode)) {
-    		cnt = memberService.updateTempPwd(tempPwd);
+    		cnt = memberService.updateTempPwd(tempPwd, memberId);
     	}else {
-    		cnt = sMemberService.updateTempPwd(tempPwd);
+    		cnt = sMemberService.updateTempPwd(tempPwd, memberId);
     	}
     	logger.info("updateTempPwd 결과 cnt: {}", cnt);
     	String subject = "[슈팅스타]비밀번호 찾기입니다.";
