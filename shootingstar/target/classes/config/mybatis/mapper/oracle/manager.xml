@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sql.manager">
+<!-- 관리자페이지  -->
 	<select id="selectID" parameterType="string" resultType="managerVo">
 		select * from admin where adminId=#{adminId}
 	</select>
@@ -28,19 +29,23 @@
 		update admin set adminName=#{adminName}
 		where adminId=#{adminId} and pwd=#{pwd}
 	</update>
-<!-- 
-	<update id="updateMember" parameterType="managerVo">
-		update member set tel=#{tel} 
+	
+	<update id="pwdUpdate" parameterType="managerVo">
+		update admin set pwd=#{newPwd}
+		where adminId=#{adminId}
+	</update>
+	
+<!-- 회원관리 -->
+	<select id="memberList" parameterType="String" resultType="MemberVO">
+		select rownum, memberId, name, pwd, tel, mileage, regdate, outdate 
+		from member 
+		order by regdate desc
+	</select>
+	<update id="updateMember" parameterType="memberVo">
+		update member set name=#{name}, tel=#{tel}, mileage=#{mileage}
 		where memberId=#{memberId}
 	</update>
 	
-	<update id="updateOutDate" parameterType="String">
-		update member set outdate=sysdate where memberId=#{memberId}
-	</update>
-	
-	<update id="updatePwd" parameterType="map">
-		update member set pwd=#{pwd} where memberId=#{memberId}
-	</update> -->
 </mapper>
 
 

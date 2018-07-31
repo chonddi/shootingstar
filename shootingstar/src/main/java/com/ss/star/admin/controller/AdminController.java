@@ -1,5 +1,7 @@
 package com.ss.star.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ss.star.admin.model.ManagerService;
 import com.ss.star.admin.model.ManagerVO;
+import com.ss.star.member.model.MemberVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -85,23 +87,31 @@ public class AdminController {
 		}
 		
 	 @RequestMapping(value="/adminEdit.do", method=RequestMethod.POST)
-	 public String edit_post(HttpSession session, @ModelAttribute ManagerVO vo , Model model) {
+	 public String edit_post(HttpSession session, @ModelAttribute ManagerVO vo , Model model, 
+			 @RequestParam String adminId, String pwd, String newPwd) {
 		 logger.info("관리자 수정 처리 managerVo: {}", vo);
 		 	
-		 	
-			int cnt= managerService.adminUpdate(vo);
-			
-			String msg="수정실패.", url="/admin/adminEdit.do";
-			if(cnt==ManagerService.LOGIN_OK) {
-				msg="수정되었습니다.";
-				url="/admin/adminEdit.do";
-			}else if(cnt==ManagerService.PWD_DISAGREE){
-				msg="비밀번호틀림.";
-				url="/admin/adminEdit.do";
-			}
-			logger.info("cnt={}",cnt);
+		 int cnt= managerService.adminUpdate(vo);
+		 cnt=managerService.checkPwd(adminId, pwd);
+		 
+		 String msg="",url="/admin/adminEdit.do";
+
+				if(cnt==ManagerService.LOGIN_OK) {
+				msg="수정 성공";
+					if(newPwd!="") {
+				 		cnt=managerService.pwdUpdate(vo);
+				 		msg="비밀번호가 변경되었습니다";
+				 	}
+				}else if(cnt==ManagerService.PWD_DISAGREE) {
+					msg="수정 실패. 비밀번호를 확인해주세요";
+				}
+
+			logger.info("관리자 수정 cnt={}",cnt);
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
-			return "common/message";
+			return"common/message";
+		 	
 	 }
+	 
+
 }

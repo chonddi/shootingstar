@@ -2,10 +2,8 @@ package com.ss.star.request.model;
 
 import java.util.List;
 
-import com.ss.star.request.model.ctgRequestVO;
 import com.ss.star.common.SearchVO;
 import com.ss.star.payment.model.PayfinishVO;
-import com.ss.star.payment.model.PaymentVO;
 
 public interface RequestDAO {
 	
@@ -22,6 +20,6 @@ public interface RequestDAO {
 	public List<PickAllVO> selectPList(int no);
 	public PickAllVO selectByPick(int no);
 	public PayfinishVO selectAll(int no);
-	public int insertPayment(PaymentVO vo);
+	public int insertPayment(PayfinishVO vo);
 
 }

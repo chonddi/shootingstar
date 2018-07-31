@@ -8,6 +8,12 @@
 			location.href="<c:url value='/mypage/message/messageReceive.do'/>";
 		});
 		
+		//쪽지보내기
+		$('#sendMsg').click(function(){
+			x = (screen.availWidth - 460) / 2;
+			y = (screen.availHeight - 550) / 2;
+			window.open("<c:url value='/mypage/message/messageWrite.do'/>","쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		});
 	});
 	
 	function msgView(sMsgNo) {
@@ -26,7 +32,7 @@
 	}
 	
 </script>
-<script  src="<c:url value='/js/message.js'/>"></script>
+
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
 
 		쪽지함
@@ -46,9 +52,9 @@
 		<form name="frmDel" method="post" action="<c:url value='/mypage/message/deleteMulti.do'/>">
 		<table id="msgTbl">
 			<colgroup>
-				<col style="width:3%;" />
-				<col style="width:20%;">
-				<col style="width:63%;">
+				<col style="width:31px" />
+				<col style="width:211px">
+				<col style="width:665px;">
 				<col style="width:*">
 			</colgroup>
 			<tr>
@@ -59,10 +65,9 @@
 				<th scope="col">보낸날짜</th>
 			</tr>
 			<c:if test="${empty sendList}">
-				<td> </td>
-				<td> </td>
-				<td style="text-align:center">보낸 쪽지가 없습니다.</td>
-				<td> </td>
+				<td></td>
+				<td colspan="2" style="text-align:center">보낸 쪽지가 없습니다.</td>
+				<td></td>
 			</c:if>
 			<c:if test="${!empty sendList }">
 				${pageVo.totalRecord}개의 쪽지가 있습니다.<br><br>
@@ -140,4 +145,5 @@
 	    </form>
 	</div>
 </div>
+<script  src="<c:url value='/js/message.js'/>"></script>
 <%@ include file="../../inc/bottom.jsp"%>

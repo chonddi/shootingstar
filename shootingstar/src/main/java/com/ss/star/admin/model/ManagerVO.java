@@ -8,6 +8,25 @@ public class ManagerVO {
 	private String adminName;
 	private String pwd;
 	private Timestamp regdate;
+	private String newPwd;
+	private int rownum;
+	
+	
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
 
 	public String getAdminId() {
 		return adminId;

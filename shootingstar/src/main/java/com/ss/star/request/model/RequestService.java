@@ -3,8 +3,6 @@ package com.ss.star.request.model;
 import java.util.List;
 import java.util.Map;
 
-import com.ss.star.request.model.ctgRequestVO;
-import com.ss.star.common.SearchVO;
 import com.ss.star.payment.model.PayfinishVO;
 
 public interface RequestService {
@@ -19,5 +17,6 @@ public interface RequestService {
 	public List<PickAllVO> selectPList(int no);
 	public PickAllVO selectByPick(int no);
 	public PayfinishVO selectAll(int no);
+	public int insertPayment(PayfinishVO vo);
 
 }

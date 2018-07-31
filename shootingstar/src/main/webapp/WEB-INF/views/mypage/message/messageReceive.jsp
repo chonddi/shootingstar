@@ -63,9 +63,9 @@
 		<form name="frmDel" method="post" action="<c:url value='/mypage/message/rDeleteMulti.do'/>">
 		<table id="msgTbl">
 			<colgroup>
-				<col style="width:3%;" />
-				<col style="width:20%">
-				<col style="width:63%">
+				<col style="width:31px" />
+				<col style="width:211px">
+				<col style="width:665px;">
 				<col style="width:*">
 			</colgroup>
 			<tr>
@@ -76,10 +76,9 @@
 				<th scope="col">보낸날짜</th>
 			</tr>
 			<c:if test="${empty receiveList}">
-				<td> </td>
-				<td> </td>
-				<td style="text-align:center">받은 쪽지가 없습니다.</td>
-				<td> </td>
+				<td></td>
+				<td colspan="2" style="text-align:center">받은 쪽지가 없습니다.</td>
+				<td></td>
 			</c:if>
 			<c:if test="${!empty receiveList }">
 				${pageVo.totalRecord}개의 쪽지가 있습니다.<br><br>

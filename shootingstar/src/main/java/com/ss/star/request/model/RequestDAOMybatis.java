@@ -98,4 +98,10 @@ public class RequestDAOMybatis implements RequestDAO {
 		return vo;
 	}
 
+	@Override
+	public int insertPayment(PayfinishVO vo) {
+		int cnt = sqlSession.insert(namespace + "insertPayment", vo);
+		return cnt;
+	}
+
 }

@@ -14,6 +14,10 @@ $(document).ready(function(){
 		}else if($('#pwd').val()==""){
 			alert('현재 비밀번호를 입력해주세요');
 			bool=false;
+		}else if ($('#newPwd').val().length < 8 | $('#newPwd').val().length>15) {
+			alert('비밀번호는 8~15자리여야 합니다.');
+			$('#newPwd').focus();
+			bool = false;
 		}else if($('#newPwd').val()!==$('#newPwd2').val()){
 			alert('새로운 비밀번호와 확인이 일치하지 않습니다');
 			bool=false;
@@ -27,6 +31,10 @@ $(document).ready(function(){
 <style type="text/css">
 .center{
 padding-top:15px}
+#comment{
+font-size: 10px;
+color:gray;
+}
 </style>
 <article>
 <div class="divForm">
@@ -37,6 +45,7 @@ padding-top:15px}
     <div>
         <label for="adminId">관리자ID</label>
         <span>${vo.adminId }</span>
+        <input type="hidden" name="adminId" id="adminId" value=${vo.adminId }>
     </div>
     <div>        
         <label for="adminName">이름</label>
@@ -46,19 +55,19 @@ padding-top:15px}
 	<hr>
     <br>
     <div>
-    	<p>(비밀번호를 수정하지 않을 경우 비워두세요)</p>
         <label for="newPwd">수정 비밀번호</label>
-        <input type="Password" name="newPwd" id="newPwd">
+        <input type="Password" name="newPwd" id="newPwd"><span> 8~15자리</span>
     </div>
     <div>
         <label for="newPwd2">수정 비밀번호 확인 </label>
         <input type="Password" name="newPwd2" id="newPwd2">
     </div>
+    <p id="comment">(비밀번호를 수정하지 않을 경우 비워두세요)</p>
     <br>
 	<hr>
     <br>
     <div>
-        <label for="pwd">비밀번호 확인</label>
+        <label for="pwd">* 비밀번호 확인</label>
         <br>
         <input type="Password" name="pwd" id="pwd">
     </div>

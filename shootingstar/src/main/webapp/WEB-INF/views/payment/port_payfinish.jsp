@@ -8,7 +8,7 @@
 <title>결제 완료</title>
 </head>
 <body>
-
+	결제 완료 페이지입니다.
 </body>
 </html>
 <%@ include file="../inc/bottom.jsp"%>

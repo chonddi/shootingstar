@@ -1,5 +1,9 @@
 package com.ss.star.admin.model;
 
+import java.util.List;
+
+import com.ss.star.member.model.MemberVO;
+
 public interface ManagerService {
 	public static final int LOGIN_OK=1;  //로그인 성공
 	public static final int ID_NONE=2;  //해당 아이디가 없다
@@ -20,4 +24,8 @@ public interface ManagerService {
 	public int checkDuplicate(String userid);
 
 	public int adminUpdate(ManagerVO vo);
+	public int pwdUpdate(ManagerVO vo);
+	public List<MemberVO> memberList();
+	
+	public int updateMember(MemberVO vo);
 }

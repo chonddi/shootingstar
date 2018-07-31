@@ -11,6 +11,17 @@ public class MemberVO {
 	private Timestamp regdate;
 	private Timestamp outdate;
 	private String tempPwd;
+	private int rownum;
+	
+	
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
