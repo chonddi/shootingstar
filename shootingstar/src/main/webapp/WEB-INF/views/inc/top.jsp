@@ -65,7 +65,7 @@
 						<ul>
 							<li><a href="#">이용방법</a></li>
 							<li><a href="<c:url value='/notice/noticeList.do'/>">공지사항</a></li>
-							<c:if test="${!empty sessionScope.memberId}">
+							<c:if test="${sessionScope.userCode==1}">
 								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>
 							</c:if>
 						</ul></li>
@@ -83,22 +83,17 @@
 						</c:if>
 						<c:if test="${sessionScope.userCode==1}">	
 							<li><a href="#">나의 견적현황 조회</a></li>
-						</c:if>
-						<c:if test="${sessionScope.userCode==2}">
-							<li><a href="#">나의 포트폴리오 조회</a></li>
-							<li><a href="#">EMAIL문의</a></li>
-						</c:if>	
-						<c:if test="${!empty sessionScope.userCode}">
 							<li><a href="#">나의 거래이력</a></li>
-							<li><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></li>
-						</c:if>
-						<c:if test="${sessionScope.userCode==1}">
 							<li><a href="#">내 마일리지</a></li>
 						</c:if>
 						<c:if test="${sessionScope.userCode==2}">
-							<li><a href="#">멤버십 관리</a></li>
-						</c:if>
+							<li><a href="#">나의 포트폴리오</a></li>
+							<li><a href="#">나의 거래이력</a></li>
+							<li><a href="#">EMAIL문의</a></li>
+							<li><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>
+						</c:if>	
 						<c:if test="${!empty sessionScope.userCode}">
+							<li><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></li>
 							<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						</c:if>
 						</ul></li>

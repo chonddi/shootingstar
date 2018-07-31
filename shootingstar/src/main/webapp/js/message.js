@@ -1,9 +1,3 @@
-//쪽지보내기
-$('#sendMsg').click(function(){
-	x = (screen.availWidth - 460) / 2;
-	y = (screen.availHeight - 550) / 2;
-	window.open("<c:url value='/mypage/message/messageWrite.do'/>","쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
-});
 
 //멀티삭제
 $('form[name=frmDel]').submit(function(){

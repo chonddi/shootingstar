@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sql.membership">
+	
+	<update id="updateMembership" parameterType="map">
+		update smember set 
+		<if test="">
+			membership=membership+#{period}
+		</if>
+		<if test="">
+			membership=sysdate+#{period}
+		</if>
+		, authority='Y' where smemberId=#{sMemberId}
+	</update>
+	
+	<insert id="insertMembership" parameterType="mSPaymentVo">
+		insert into mspayment values(mspayment_seq.nextval, #{sMemberId}, #{pMethod}, #{pContent}, #{price}, #{period}, sysdate, null)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
