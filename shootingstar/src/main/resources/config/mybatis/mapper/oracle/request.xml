@@ -9,6 +9,7 @@
 		<result property="sMemberId" column="smemberid" />
 		<result property="sPrice" column="sprice" />
 		<result property="choice" column="chioce" />
+		<result property="pLevel" column="plevel" />
 		<result property="sName" column="sname" />
 	</resultMap>
 	
@@ -126,12 +127,7 @@
 		select pickcount from request
 		where rqno=#{no}
 	</select>
-	
 
-	
-	
-	
-	
 	
 </mapper>
 

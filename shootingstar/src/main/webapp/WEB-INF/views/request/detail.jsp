@@ -53,8 +53,8 @@ $(document).ready(function(){
 	});
 });
 
-function payBtn(QRNo){
-	location.href="<c:url value='/request/detail2.do?no=" + QRNo + "'/>";
+function payBtn(RQNo){
+	location.href="<c:url value='/request/detail2.do?no=" + RQNo + "'/>";
 }
 
 
