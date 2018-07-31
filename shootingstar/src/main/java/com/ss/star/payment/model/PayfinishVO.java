@@ -11,6 +11,8 @@ public class PayfinishVO {
 	private String sMemberid;	/* 전문가 아이디 */
 	private int sPrice;			/* 결제 요금 */
 	private String sName;		/* 전문가 이름 */
+	private String name;		/* 고객 이름 */
+	private String tel;			/* 고객 전화번호 */
 
 	public int getRQNo() {
 		return RQNo;
@@ -83,12 +85,28 @@ public class PayfinishVO {
 	public void setsName(String sName) {
 		this.sName = sName;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
 	@Override
 	public String toString() {
 		return "PayfinishVO [RQNo=" + RQNo + ", CGNo=" + CGNo + ", rqRegion=" + rqRegion + ", rqDetail=" + rqDetail
 				+ ", memberid=" + memberid + ", pickNo=" + pickNo + ", sMemberid=" + sMemberid + ", sPrice=" + sPrice
-				+ ", sName=" + sName + "]";
+				+ ", sName=" + sName + ", name=" + name + ", tel=" + tel + "]";
 	}
 
 }

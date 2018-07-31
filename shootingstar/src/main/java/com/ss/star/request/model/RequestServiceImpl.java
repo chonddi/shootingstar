@@ -95,4 +95,9 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.selectAll(no);
 	}
 
+	@Override
+	public int insertPayment(PayfinishVO vo) {
+		return requestDao.insertPayment(vo);
+	}
+
 }

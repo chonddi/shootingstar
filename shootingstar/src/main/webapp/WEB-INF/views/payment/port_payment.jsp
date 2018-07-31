@@ -21,7 +21,7 @@ $(document).ready(function(){
        merchant_uid : 'merchant_' + new Date().getTime(),
        name : '견적요청 결제',
        amount : document.getElementById("sPrice").value,
-       buyer_email : $("#memberid").val(),
+       buyer_email : $("#memberId").val(),
        buyer_name : $("#name").val(),
        buyer_tel : $("#tel").val(),
    }, function(rsp) {
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		
 		alert(msg);
 		$("form[name=payfrm]").submit();
-		opener.parent.location.href="<c:url value='/detail.do?no=${param.no}'/>";
+		opener.parent.location.href="<c:url value='/payment/port_payfinish.do?no=${param.no}'/>";
           
        } else {
 			var msg = '결제에 실패하였습니다.';
@@ -48,12 +48,21 @@ $(document).ready(function(){
 
 </script>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-<form name="payfrm" method="post" action="<c:url value='/payfinish.do?no=${param.no}'/>">
-	<input type="hidden" id="memberid" name="memberid" value="${vo.memberid}"/>
+<form name="payfrm" method="post" action="<c:url value='/payment/port_payfinish.do'/>">
+	<input type="hidden" id="RQNo" name="RQNo" value="${vo.RQNo}"/>
+	<input type="hidden" id="CGNo" name="CGNo" value="${vo.CGNo}"/>
+	<input type="hidden" id="rqRegion" name="rqRegion" value="${vo.rqRegion}"/>
+	<input type="hidden" id="rqDetail" name="rqDetail" value="${vo.rqDetail}"/>
+	<input type="hidden" id="memberId" name="memberId" value="${vo.memberid}"/>
+	<input type="hidden" id="pickNo" name="pickNo" value="${vo.pickNo}"/>
+	<input type="hidden" id="sMemberid" name="sMemberid" value="${vo.sMemberid}"/>
+	<input type="hidden" id="sPrice" name="sPrice" value="${vo.sPrice}"/>
 	<input type="hidden" id="name" name="name" value="${vo.name}"/>
 	<input type="hidden" id="tel" name="tel" value="${vo.tel}"/>
-	<input type="hidden" id="sPrice" name="sPrice" value="${vo.sPrice}"/>
 	<input type="hidden" id="pMethod" name="pMethod" value="card"/>
+	<input type="hidden" id="mileage" name="mileage" value="${vo.sPrice}*0.03"/>
+	<input type="hidden" id="pickNo" name="pickNo" value="${vo.pickNo}"/>
+
 	<!-- 세션 유저 코드 값 -->
 	<input type="hidden" id="userCode" value="${sessionScope.userCode}">
 </form>

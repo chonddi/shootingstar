@@ -24,7 +24,7 @@
 	function payOpen(){
 		x = (screen.availWidth - 840) / 2;
 		y = (screen.availHeight - 605) / 2;
-		window.open("<c:url value='/payment/port_payment.do?no=${param.no}'/>","결제창","left=" + x + ", top=" + y + ", width=840, height=605, location=yes, resizable=no");
+		window.open("<c:url value='/payment/port_payment.do?no=${param.no}'/>","결제창","left=" + x + ", top=" + y + ", width=840, height=600, location=yes, resizable=no");
 	}
 </script>
 </head>
