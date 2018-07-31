@@ -69,4 +69,11 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return vo;
 	}
 
+	@Override
+	public String selectAdd(int pfNo) {
+		// TODO Auto-generated method stub
+		String address = Dao.selectAdd(pfNo);
+		return address;
+	}
+
 }

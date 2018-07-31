@@ -61,4 +61,10 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 		return vo;
 	}
 
+	@Override
+	public String selectAdd(int pfNo) {
+		String address = sqlSession.selectOne(namespace+"selectAdd", pfNo);
+		return address;
+	}
+
 }

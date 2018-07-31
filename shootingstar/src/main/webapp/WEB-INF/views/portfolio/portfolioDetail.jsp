@@ -1,17 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<% pageContext.setAttribute("br", "<br/>"); pageContext.setAttribute("cn", "\n"); %>
+<%
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
 <%@ include file="../inc/detailTop.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/justifiedGallery.css" />
 <script
 	src="${pageContext.request.contextPath}/js/jquery.justifiedGallery.js"></script>
 <head>
-
 <!-- Font Awesome CSS -->
 <link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="<c:url value='/css/bootstrap-rating.css'/>" rel="stylesheet">
+
+
+<style>
+#map_canvas {
+	width: 740px;
+	height: 400px;
+}
+</style>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -20,20 +30,20 @@
 			lastRow : 'nojustify',
 			margins : 5
 		});
-		
+
 		var result = $('#result').val();
 		var communication = $('#communication').val();
 		var total = $('#total').val();
 		$('#resultStar').val(result);
 		$('#communicationStar').val(communication);
 		$('#totalStar').val(total);
-		$('#avgStar').append(isNaN(total)?"0.0":total);
-		
-		$('#a2').click(function(e){
+		$('#avgStar').append(isNaN(total) ? "0.0" : total);
+
+		$('#a2').click(function(e) {
 			e.preventDefault();
 			document.getElementById("detailArticle2").scrollIntoView();
 		});
-		$('#a3').click(function(e){
+		$('#a3').click(function(e) {
 			e.preventDefault();
 			document.getElementById("avgStar1").scrollIntoView();
 		});
@@ -246,9 +256,9 @@
 }
 
 .memberCommentDiv {
-    padding-top: 25px;
-    margin-left: 30px;
-    line-height: 50px;
+	padding-top: 25px;
+	margin-left: 30px;
+	line-height: 50px;
 }
 
 .memberComment {
@@ -265,12 +275,18 @@
 	font-size: 0.9em;
 	color: #a1a1a1;
 }
-#dasCg{
+
+#dasCg {
 	font-size: 1.4em;
 	font-weight: bold;
 }
-#dasExpert{
+
+#dasExpert {
 	font-size: 0.8em;
+}
+
+#googleMap {
+	float: right;
 }
 </style>
 
@@ -279,16 +295,17 @@
 </head>
 
 <body>
-			<c:forEach var="map" items="${list }" end="0">
-	<div id="detailTitle" style='background-image: url("<c:url value='/images/${map["FILENAME"] }'/>")'>
-		<div id="titleSentence">
+	<c:forEach var="map" items="${list }" end="0">
+		<div id="detailTitle"
+			style='background-image: url("<c:url value='/images/${map["FILENAME"] }'/>")'>
+			<div id="titleSentence">
 				<span id="pfTitle">${map["PFTITLE"] }</span>
 				<div id="pfTitle2">
 					${map["SNAME"] } <span id="topCategory">${map["CGNAME"] }</span>
 				</div>
+			</div>
 		</div>
-	</div>
-			</c:forEach>
+	</c:forEach>
 	<div id="detailArticle">
 		<ul class="nav nav-pills">
 			<li role="presentation" class="active"><a>포트폴리오</a></li>
@@ -296,7 +313,6 @@
 			<li role="presentation"><a href="#" id="a3">후기</a></li>
 		</ul>
 		<div id="imgContainer">
-
 			<div id="mygallery">
 				<c:forEach var="map" items="${list }">
 					<a href="#"> <img alt='${map["FILENAME"] }'
@@ -307,17 +323,17 @@
 		</div>
 		<div id="detailArticleBottom">
 			<c:forEach var="map" items="${list }" end="0">
-			<c:set var="sname" value='${map["SNAME"] }'/>
-			<c:set var="cgname" value='${map["CGNAME"] }'/>
+				<c:set var="sname" value='${map["SNAME"] }' />
+				<c:set var="cgname" value='${map["CGNAME"] }' />
 				<c:set var="pr" value='${map["PR"] }'></c:set>
-				<div id="detailArticle2">전문가 소개<br> 
-					<span id="da2Name">${map["SNAME"] }</span>
+				<div id="detailArticle2">
+					전문가 소개<br> <span id="da2Name">${map["SNAME"] }</span>
 					<div id="pr">${fn:replace(pr, cn, br) }</div>
 				</div>
 				<div id="detailArticleSide">
 					<div id="das">
-						<span id="dasCg">${map["CGNAME"] }</span><br>
-						 <span id="dasExpert">${map["SNAME"] } 전문가</span><br>
+						<span id="dasCg">${map["CGNAME"] }</span><br> <span
+							id="dasExpert">${map["SNAME"] } 전문가</span><br>
 					</div>
 				</div>
 			</c:forEach>
@@ -330,21 +346,23 @@
 				<span>♡ 좋아요</span>
 				<hr>
 			</div>
-			<c:set var="result"/>
-			<c:set var="communication"/>
+			<div id="map" style="width: 320px; height: 380px"></div>
+
+			<c:set var="result" />
+			<c:set var="communication" />
 			<div id="comment">
 				<span id="comment1">후기</span>
 				<div id="star">
 					<table id="starTable" border="1">
 						<tr>
 							<td><span id="avgStar1">★</span><span id="avgStar"></span></td>
-							<td>총평점 <input type="hidden" id="totalStar" class="rating" data-readonly
-								value="" /></td>
-							<td>결과물<input type="hidden" id="resultStar" class="rating" data-readonly
-								value="" />
+							<td>총평점 <input type="hidden" id="totalStar" class="rating"
+								data-readonly value="" /></td>
+							<td>결과물<input type="hidden" id="resultStar" class="rating"
+								data-readonly value="" />
 							</td>
-							<td>커뮤니케이션 <input type="hidden" id="communicationStar" class="rating" data-readonly
-								value="" /></td>
+							<td>커뮤니케이션 <input type="hidden" id="communicationStar"
+								class="rating" data-readonly value="" /></td>
 						</tr>
 					</table>
 				</div>
@@ -354,20 +372,23 @@
 				<div class="comment2">
 					<div class="memberCommentDiv">
 						<span class="memberComment">${vo2.content }</span><br> <span
-							class="memberInfo">★${(vo2.communication+vo2.result)/2} <span class="memberInfo1">${vo2.memberId }
-								| ${cgname } | <fmt:formatDate value="${vo2.regdate }" pattern="yy-MM-dd"/> |  ${sname } 전문가 </span></span>
+							class="memberInfo">★${(vo2.communication+vo2.result)/2} <span
+							class="memberInfo1">${vo2.memberId } | ${cgname } | <fmt:formatDate
+									value="${vo2.regdate }" pattern="yy-MM-dd" /> | ${sname } 전문가
+						</span></span>
 					</div>
-					<input type="hidden" value='${result=result+vo2.result}'>
-					<input type="hidden" value='${communication=communication+vo2.communication}'>
+					<input type="hidden" value='${result=result+vo2.result}'> <input
+						type="hidden"
+						value='${communication=communication+vo2.communication}'>
 				</div>
 			</c:forEach>
-			
+
 			<c:set var="result" value='${result/reviewSize }'></c:set>
 			<c:set var="communication" value='${communication/reviewSize }'></c:set>
-			
-			<input type="hidden" id="result" value='${result }'>
-			<input type="hidden" id="communication" value='${communication }'>
-			
+
+			<input type="hidden" id="result" value='${result }'> <input
+				type="hidden" id="communication" value='${communication }'>
+
 			<input type="hidden" id="total" value="${(result+communication)/2 }">
 
 		</div>
@@ -375,7 +396,8 @@
 	</div>
 
 	<script type="text/javascript" src="<c:url value='/js/tooltip.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/bootstrap-rating.js'/>"></script>
+	<script type="text/javascript"
+		src="<c:url value='/js/bootstrap-rating.js'/>"></script>
 	<script>
 		$(function() {
 			$('input.check').on('change', function() {
@@ -430,5 +452,6 @@
 			});
 		});
 	</script>
+
 </body>
 <%@ include file="../inc/bottom.jsp"%>

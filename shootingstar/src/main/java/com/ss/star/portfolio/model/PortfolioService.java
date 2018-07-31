@@ -12,4 +12,5 @@ public interface PortfolioService {
 	public List<Map<String, Object>> selectPfDetail(int pfNo);
 	public List<reviewVO> selectReview(int pfNo);
 	public PortfolioVO selectBySmemberId(String smemberId);
+	public String selectAdd(int pfNo);
 }

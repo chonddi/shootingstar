@@ -65,6 +65,10 @@
 		select * from portfolio where smemberid = #{smemberId} and rownum=1 order by pfno desc
 	</select>
 	
+	<select id="selectAdd" parameterType="int" resultType="String">
+		select * from saddress where pfno=#{pfNo}
+	</select>
+	
 	
 </mapper>
 

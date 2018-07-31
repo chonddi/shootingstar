@@ -115,7 +115,6 @@ public class PortfolioController {
 	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
 	public String portfolio_detail(@RequestParam int pfNo, Model model) {
 		
-		
 		logger.info("포트폴리오 디테일 화면 보여주기, pfNo={}", pfNo);
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
 		model.addAttribute("list", list);
@@ -126,6 +125,9 @@ public class PortfolioController {
 		
 		int reviewSize = list2.size();
 		model.addAttribute("reviewSize",reviewSize);
+		
+		String address = pfService.selectAdd(pfNo);
+		model.addAttribute("address",address);
 		
 		return "portfolio/portfolioDetail";
 		
