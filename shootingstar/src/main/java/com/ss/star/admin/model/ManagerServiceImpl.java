@@ -1,7 +1,11 @@
 package com.ss.star.admin.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ss.star.member.model.MemberVO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService  {
@@ -57,5 +61,17 @@ public class ManagerServiceImpl implements ManagerService  {
 		}else {
 			return PWD_DISAGREE;
 		}
+	}
+	@Override
+	public int pwdUpdate(ManagerVO vo) {
+		return managerDao.pwdUpdate(vo);
+	}
+	@Override
+	public List<MemberVO> memberList() {
+		return managerDao.memberList();
+	}
+	@Override
+	public int updateMember(MemberVO vo) {
+		return managerDao.updateMember(vo);
 	}
 }
