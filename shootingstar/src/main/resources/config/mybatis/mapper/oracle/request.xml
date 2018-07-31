@@ -133,10 +133,10 @@
 		where rqno=#{no}
 	</select>
 	
-	<select id="selectAll" parameterType="int" resultType="PayfinishVO">
+	<!-- <select id="selectAll" parameterType="int" resultType="PayfinishVO">
 		select * from payfinish
 		where rqno=#{no}
-	</select>
+	</select> -->
 	
 	
 	<insert id="insertPayment" parameterType="PaymentVO">
