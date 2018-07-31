@@ -54,7 +54,7 @@ $(document).ready(function(){
 });
 
 function payBtn(RQNo){
-	location.href="<c:url value='/request/detail2.do?no=" + RQNo + "'/>";
+	location.href="<c:url value='/request/detail3.do?no=" + RQNo + "'/>";
 }
 
 
@@ -128,7 +128,9 @@ function payBtn(RQNo){
 			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원 </div>
 			 </td>
 			 <td>
-			  <button onclick="payBtn(${pvo.RQNo})">선택하기</button>
+			 	<c:if test="${pvo.sPrice }">
+			 		<button onclick="payBtn(${pvo.RQNo})">결제하기</button>
+			 	</c:if>
 			 </td>
 			<tr>
 			 </c:forEach>

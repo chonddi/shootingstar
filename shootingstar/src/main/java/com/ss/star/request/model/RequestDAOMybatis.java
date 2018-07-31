@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.PaymentVO;
 
 @Repository
 public class RequestDAOMybatis implements RequestDAO {
@@ -87,6 +89,12 @@ public class RequestDAOMybatis implements RequestDAO {
 	@Override
 	public PickAllVO selectByPick(int no) {
 		PickAllVO vo = sqlSession.selectOne(namespace + "selectByPick", no);
+		return vo;
+	}
+
+	@Override
+	public PayfinishVO selectAll(int no) {
+		PayfinishVO vo = sqlSession.selectOne(namespace + "selectAll", no);
 		return vo;
 	}
 

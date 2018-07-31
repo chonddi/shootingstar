@@ -33,3 +33,17 @@ on s.SMEMBERID = p.SMEMBERID;
 create or replace view message as
 select *
 from sendmsg natural join receivemsg;
+
+
+--결제완료를 위한 뷰테이블
+create or replace view PAYFINISH
+as
+Select r.rqno, r.cgno, r.rqregion, r.rqdetail, r.memberid, p.pickno, p.smemberid, p.sprice, p.sname From request r left JOIN pickAll p
+ON r.rqno = p.rqno
+left JOIN member m
+ON r.memberid = m.memberid;
+
+
+
+
+

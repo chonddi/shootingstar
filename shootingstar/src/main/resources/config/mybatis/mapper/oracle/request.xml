@@ -132,6 +132,17 @@
 		select pickcount from request
 		where rqno=#{no}
 	</select>
+	
+	<select id="selectAll" parameterType="int" resultType="PayfinishVO">
+		select * from payfinish
+		where rqno=#{no}
+	</select>
+	
+	
+	<insert id="insertPayment" parameterType="PaymentVO">
+		insert into rqpayment(pno, memberid, pmethod, pprice, mileage, pickno)
+		values(rqpayment_seq.nextval, #{memberId}, #{pMethod}, #{pPrice}, #{mileage}, #{pickNo})
+	</insert>
 
 	
 </mapper>

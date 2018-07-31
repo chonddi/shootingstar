@@ -250,8 +250,8 @@ public class RequestController {
 
 	}
 
-	@RequestMapping("/detail2.do")
-	public String detail2(@RequestParam(defaultValue = "0") int no, HttpServletRequest request, Model model,
+	@RequestMapping("/detail3.do")
+	public String detail3(@RequestParam(defaultValue = "0") int no, HttpServletRequest request, Model model,
 			HttpSession session) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 
@@ -285,7 +285,7 @@ public class RequestController {
 			return "request/sdetail";
 		}
 
-		return "request/detail2";
+		return "request/detail3";
 
 	}
 
@@ -390,5 +390,6 @@ public class RequestController {
 
 		return "redirect:/request/list.do";
 	}
+	 
 
 }

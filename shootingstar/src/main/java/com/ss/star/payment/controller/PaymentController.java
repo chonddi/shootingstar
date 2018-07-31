@@ -1,36 +1,83 @@
 package com.ss.star.payment.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ss.star.member.model.MemberService;
+import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
 
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
 	private static final Logger logger = LoggerFactory.getLogger(QController.class);
-	
-	@RequestMapping("/practice.do")
-	public String prt_get() {
-		logger.info("practice 화면");
 
-		return "payment/practice";
-	}
-	
-	@RequestMapping("/practice2.do")
-	public String prt2_get() {
-		logger.info("practice 화면");
+	@Autowired RequestService requestService;
+	@Autowired MemberService memberService;
 
-		return "payment/practice2";
-	}
-	
 	@RequestMapping("/port_payment.do")
-	public String port_payment() {
-		logger.info("port_payment 화면");
-		
+	public String port_payment(@RequestParam(defaultValue = "0") int no, HttpSession session, Model model) {
+		logger.info("port_payment 화면 파라미터 no={}", no);
+
+		// 임시 세션아이디
+		session.setAttribute("userid", "abc@naver.com");
+		session.setAttribute("userCode", "1");
+
+		String userid = (String) session.getAttribute("userid");
+		String usercode = (String) session.getAttribute("userCode");
+
+		if (no == 0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/index.do");
+			return "common/message";
+		}
+
+		PayfinishVO vo = requestService.selectAll(no);
+		logger.info("PayfinishVO 파라미터, vo={}", vo);
+
+		model.addAttribute("vo", vo);
+
+		if (usercode.equals("2")) {
+			model.addAttribute("msg", "고객 회원만 이용가능합니다.");
+			model.addAttribute("url", "/index.do");
+			return "common/message";
+		}
+
 		return "payment/port_payment";
+	}
+	
+	@RequestMapping("/payfinish.do")
+	public String port_payfinish(@RequestParam(defaultValue = "0") int no, HttpSession session, Model model) {
+		logger.info("port_payfinish 화면 파라미터 no={}", no);
+		
+		// 임시 세션아이디
+		session.setAttribute("userid", "abc@naver.com");
+		session.setAttribute("userCode", "1");
+
+		String userid = (String) session.getAttribute("userid");
+		String usercode = (String) session.getAttribute("userCode");
+		
+		if (no == 0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/index.do");
+			return "common/message";
+		}
+		
+		PayfinishVO vo = requestService.selectAll(no);
+		logger.info("PayfinishVO 파라미터, vo={}", vo);
+
+		model.addAttribute("vo", vo);
+		
+		return "redirect:/request/detail.do?no=" + no;
+		
 	}
 
 }

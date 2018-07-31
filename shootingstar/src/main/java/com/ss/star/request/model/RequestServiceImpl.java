@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.payment.model.PayfinishVO;
+
 @Service
 public class RequestServiceImpl implements RequestService {
 
@@ -86,6 +88,11 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public PickAllVO selectByPick(int no) {
 		return requestDao.selectByPick(no);
+	}
+
+	@Override
+	public PayfinishVO selectAll(int no) {
+		return requestDao.selectAll(no);
 	}
 
 }
