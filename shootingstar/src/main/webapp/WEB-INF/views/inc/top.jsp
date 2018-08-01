@@ -51,7 +51,7 @@
 						</ul></li>
 					<li><a class="menuLink" href="#">PORTPOLIO</a>
 						<ul>
-							<li><a href="#">포트폴리오 목록</a></li>
+							<li><a href="<c:url value='/portfolio/portfolioList.do'/>">포트폴리오 목록</a></li>
 							<c:if test="${sessionScope.userCode==2}">
 								<li><a href="<c:url value='/portfolio/portfolioWrite.do'/>">포트폴리오 등록</a></li>
 							</c:if>

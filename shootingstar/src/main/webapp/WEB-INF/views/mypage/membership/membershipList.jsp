@@ -12,7 +12,8 @@
 }
 .membershipTop{
 	font-weight: bold;
-	font-size:1.5em;
+	font-size:1.2em;
+    margin-top: 10px;
 	margin-bottom: 45px;
 }
 #membership {

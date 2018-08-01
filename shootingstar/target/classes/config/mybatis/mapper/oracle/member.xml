@@ -11,7 +11,7 @@
 	</insert>
 	
 	<select id="selectPwdById" parameterType="String" resultType="String">
-		select pwd from member where memberId=#{memberId}
+		select pwd from member where memberId=#{memberId} and outdate is null
 	</select>
 	
 	<select id="selectNameById" parameterType="String" resultType="String">

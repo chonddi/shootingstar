@@ -24,7 +24,7 @@
 	</insert>
 	
 	<select id="selectPwdById" parameterType="String" resultType="String">
-		select sPwd from smember where sMemberId=#{sMemberId}
+		select sPwd from smember where sMemberId=#{sMemberId} and outdate is null
 	</select>
 	
 	<select id="selectNameById" parameterType="String" resultType="String">
