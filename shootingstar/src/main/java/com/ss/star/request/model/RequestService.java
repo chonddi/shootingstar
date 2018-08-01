@@ -26,5 +26,6 @@ public interface RequestService {
 	public int insertPayment(PayfinishVO vo);
 	public PaymentVO selectByPay(int no);
 	public int updatePrice (HashMap<String, Object> map);
+	public int updateMileage(PayfinishVO vo);
 	 
 }

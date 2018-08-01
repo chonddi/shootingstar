@@ -66,8 +66,8 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
-	public String port_payfinish_post(@ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
-		logger.info("결제 처리 파라미터 vo={}", vo);
+	public String port_payfinish_post(@RequestParam(defaultValue="0") int RQNo , @ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
+		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
 
 		// 임시 세션아이디
 		session.setAttribute("userid", "abc@naver.com");
@@ -75,18 +75,18 @@ public class PaymentController {
 
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
+		
+		//마일리지 적립
+		double mileage = Math.ceil(vo.getMileage() * 0.03);
+		vo.setMileage(mileage);
 
 		int cnt = requestService.insertPayment(vo);
-
-		/*if (userid != vo.getMemberId()) {
-			
-		}*/
-
-		logger.info("PayfinishVO 파라미터, vo={}", vo);
-
-		model.addAttribute("vo", vo);
+		int cnt2 = requestService.updateMileage(vo);
+		logger.info("PaymentVO insert 결과 cnt={},", cnt);
+		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);
 
 		return "payment/port_payfinish";
+		//return "redirect:/payment/port_payfinish.do?no=" + vo.getRQNo();
 
 	}
 

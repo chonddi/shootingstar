@@ -14,23 +14,7 @@ public class PayfinishVO {
 	private String name; /* 고객 이름 */
 	private String tel; /* 고객 전화번호 */
 	private String pMethod; /* 결제 방법 */
-	private int mileage; /* 마일리지 */
-
-	public int getMileage() {
-		return mileage;
-	}
-
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
-	}
-
-	public String getpMethod() {
-		return pMethod;
-	}
-
-	public void setpMethod(String pMethod) {
-		this.pMethod = pMethod;
-	}
+	private double mileage; /* 마일리지 */
 
 	public int getRQNo() {
 		return RQNo;
@@ -118,6 +102,22 @@ public class PayfinishVO {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public String getpMethod() {
+		return pMethod;
+	}
+
+	public void setpMethod(String pMethod) {
+		this.pMethod = pMethod;
+	}
+
+	public double getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(double mileage) {
+		this.mileage = mileage;
 	}
 
 	@Override

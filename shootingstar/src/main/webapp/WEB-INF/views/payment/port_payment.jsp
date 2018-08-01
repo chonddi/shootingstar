@@ -41,14 +41,14 @@ $(document).ready(function(){
        		window.open("<c:url value='/request/detail.do?no=${param.no}'/>");
        }
        
-       //setTimeout(function() {self.close()}, 10);
+       setTimeout(function() {self.close()}, 10);
        
    });
 	
 });
 
 </script>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body>
 <form name="payfrm" method="post" action="<c:url value='/payment/port_payfinish.do'/>">
 	<input type="hidden" id="RQNo" name="RQNo" value="${vo.RQNo}"/>
 	<input type="hidden" id="CGNo" name="CGNo" value="${vo.CGNo}"/>
@@ -62,8 +62,8 @@ $(document).ready(function(){
 	<input type="hidden" id="name" name="name" value="${vo.name}"/>
 	<input type="hidden" id="tel" name="tel" value="${vo.tel}"/>
 	<input type="hidden" id="pMethod" name="pMethod" value="card"/>
-	<input type="hidden" id="mileage" name="mileage" value="${vo.sPrice}*0.03"/>
-
+	<input type="hidden" id="mileage" name="mileage" value="${vo.sPrice}"/>
+	
 	<!-- 세션 유저 코드 값 -->
 	<input type="hidden" id="userCode" value="${sessionScope.userCode}">
 </form>

@@ -26,6 +26,31 @@
 		y = (screen.availHeight - 605) / 2;
 		window.open("<c:url value='/payment/port_payment.do?no=${param.no}'/>","결제창","left=" + x + ", top=" + y + ", width=840, height=600, location=yes, resizable=no");
 	}
+	
+	//[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
+	//[0-9] => \d , [^0-9] => \D
+	var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+	var rgx2 = /(\d+)(\d{3})/; 
+
+	function getNumber(obj){
+		
+	  var num01;
+	  var num02;
+	  num01 = obj.value;
+	  num02 = num01.replace(rgx1,"");
+	  num01 = setComma(num02);
+	  obj.value =  num01;
+
+	}
+
+	function setComma(inNum){
+	  
+	  var outNum;
+	  outNum = inNum; 
+	  while (rgx2.test(outNum)) {
+	       outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+	   }
+	}
 </script>
 </head>
 <body>
@@ -42,6 +67,8 @@
 			<span class="spn1">${pvo.sPrice}</span><span class="spn2"> 원입니다.</span>
 			<p>결제하시겠습니까?</p>
 			<button class="oky" id="btn1">예</button>&nbsp;<input type="button" class="oky" id="btn2" value="아니오">
+			<p>사용가능한 마일리지 : <span>${mvo.mileage}</span></p>
+			<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);" style="text-align:right;" class="price2" name="price" autocomplete=off required />
 		</div>
 	</c:if>
 </form>
