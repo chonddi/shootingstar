@@ -93,8 +93,8 @@ public class RequestDAOMybatis implements RequestDAO {
 	}
 
 	@Override
-	public PayfinishVO selectAll(int no) {
-		PayfinishVO vo = sqlSession.selectOne(namespace + "selectAll", no);
+	public PayfinishVO selectPayAll(int no) {
+		PayfinishVO vo = sqlSession.selectOne(namespace + "selectPayAll", no);
 		return vo;
 	}
 
@@ -102,6 +102,12 @@ public class RequestDAOMybatis implements RequestDAO {
 	public int insertPayment(PayfinishVO vo) {
 		int cnt = sqlSession.insert(namespace + "insertPayment", vo);
 		return cnt;
+	}
+
+	@Override
+	public PaymentVO selectByPay(int no) {
+		PaymentVO vo = sqlSession.selectOne(namespace + "selectByPay", no);
+		return vo;
 	}
 
 }

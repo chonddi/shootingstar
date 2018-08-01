@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.PaymentVO;
 
 public interface RequestService {
 
@@ -16,7 +17,8 @@ public interface RequestService {
 	public List<RequestPickVO> pickByNo(int no);
 	public List<PickAllVO> selectPList(int no);
 	public PickAllVO selectByPick(int no);
-	public PayfinishVO selectAll(int no);
+	public PayfinishVO selectPayAll(int no);
 	public int insertPayment(PayfinishVO vo);
+	public PaymentVO selectByPay(int no);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.PaymentVO;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -91,13 +92,18 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public PayfinishVO selectAll(int no) {
-		return requestDao.selectAll(no);
+	public PayfinishVO selectPayAll(int no) {
+		return requestDao.selectPayAll(no);
 	}
 
 	@Override
 	public int insertPayment(PayfinishVO vo) {
 		return requestDao.insertPayment(vo);
+	}
+
+	@Override
+	public PaymentVO selectByPay(int no) {
+		return requestDao.selectByPay(no);
 	}
 
 }

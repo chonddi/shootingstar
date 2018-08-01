@@ -14,6 +14,7 @@ $(document).ready(function(){
 	
 	var IMP = window.IMP; // 생략해도 괜찮습니다.
 	IMP.init("imp26546611"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	//IMP.init("imp23383302"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
    
 	IMP.request_pay({
        pg : 'inicis', // version 1.1.0부터 지원.
@@ -37,10 +38,10 @@ $(document).ready(function(){
 			msg += '에러내용 : ' + rsp.error_msg;
 			
 			alert(msg);
-       		window.open("<c:url value='/detail.do?no=${param.no}'/>");
+       		window.open("<c:url value='/request/detail.do?no=${param.no}'/>");
        }
        
-       setTimeout(function() {self.close()}, 10);
+       //setTimeout(function() {self.close()}, 10);
        
    });
 	
@@ -53,15 +54,15 @@ $(document).ready(function(){
 	<input type="hidden" id="CGNo" name="CGNo" value="${vo.CGNo}"/>
 	<input type="hidden" id="rqRegion" name="rqRegion" value="${vo.rqRegion}"/>
 	<input type="hidden" id="rqDetail" name="rqDetail" value="${vo.rqDetail}"/>
-	<input type="hidden" id="memberId" name="memberId" value="${vo.memberid}"/>
+	<input type="hidden" id="memberId" name="memberId" value="${vo.memberId}"/>
 	<input type="hidden" id="pickNo" name="pickNo" value="${vo.pickNo}"/>
 	<input type="hidden" id="sMemberid" name="sMemberid" value="${vo.sMemberid}"/>
 	<input type="hidden" id="sPrice" name="sPrice" value="${vo.sPrice}"/>
+	<input type="hidden" id="sName" name="sName" value="${vo.sName}"/>
 	<input type="hidden" id="name" name="name" value="${vo.name}"/>
 	<input type="hidden" id="tel" name="tel" value="${vo.tel}"/>
 	<input type="hidden" id="pMethod" name="pMethod" value="card"/>
 	<input type="hidden" id="mileage" name="mileage" value="${vo.sPrice}*0.03"/>
-	<input type="hidden" id="pickNo" name="pickNo" value="${vo.pickNo}"/>
 
 	<!-- 세션 유저 코드 값 -->
 	<input type="hidden" id="userCode" value="${sessionScope.userCode}">

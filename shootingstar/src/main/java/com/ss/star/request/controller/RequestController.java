@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.Utility;
+import com.ss.star.payment.model.PaymentVO;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
 import com.ss.star.request.model.RequestPickVO;
@@ -235,10 +236,17 @@ public class RequestController {
 
 		List<PickAllVO> pList = requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
+		
+		PickAllVO cvo = requestService.selectByPick(no);
+		logger.info("파라미터 PickAllVO cvo={}", cvo);
+		
+		PaymentVO pvo = requestService.selectByPay(cvo.getPickNo());
+		logger.info("paymentVO 파라미터 pvo={}", pvo);
 
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("pList", pList);
+		model.addAttribute("pvo", pvo);
 		model.addAttribute("vmemberid", vmemberid);
 		logger.info("현재 session 로그인 id, vmemberid={}", vmemberid);
 

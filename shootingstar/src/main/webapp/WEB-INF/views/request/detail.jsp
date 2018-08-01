@@ -118,18 +118,21 @@ function payBtn(RQNo){
 				</thead>
 			<tbody>  
 			
-			 <c:forEach var="pvo" items="${pList}">
+			 <c:forEach var="plvo" items="${pList}">
 			<tr>
 			<td><img src="../images/rchecks.png" style="vertical-align:middle; width:30px; height:30px;"> </td>
 			 <td>
-			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${pvo.sName}</div> 전문가</td>
+			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${plvo.sName}</div> 전문가</td>
 			 <td >
 			  <div class="pdt">
-			  <fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" /> 원 </div>
+			  <fmt:formatNumber value="${plvo.sPrice}" pattern="#,###" /> 원 </div>
 			 </td>
 			 <td>
-			 	<c:if test="${pvo.sPrice }">
-			 		<button onclick="payBtn(${pvo.RQNo})">결제하기</button>
+			 	<c:if test="${plvo.pickNo != pvo.pickNo}">
+			 		<button onclick="payBtn(${plvo.RQNo})">결제하기</button>
+			 	</c:if>
+			 	<c:if test="${plvo.pickNo == pvo.pickNo}">
+			 		<p style="color:gray;">결제완료</p>
 			 	</c:if>
 			 </td>
 			<tr>

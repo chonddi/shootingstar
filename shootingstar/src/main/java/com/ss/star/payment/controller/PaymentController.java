@@ -44,7 +44,7 @@ public class PaymentController {
 			return "common/message";
 		}
 
-		PayfinishVO vo = requestService.selectAll(no);
+		PayfinishVO vo = requestService.selectPayAll(no);
 		logger.info("PayfinishVO 파라미터, vo={}", vo);
 
 		model.addAttribute("vo", vo);
@@ -62,7 +62,7 @@ public class PaymentController {
 	public String port_payfinish_get(@RequestParam(defaultValue = "0") int no, HttpSession session) {
 		logger.info("detail 화면 이동, 파라미터 no={}", no);
 
-		return "request/port_payfinish";
+		return "payment/port_payfinish";
 	}
 
 	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
@@ -78,9 +78,9 @@ public class PaymentController {
 
 		int cnt = requestService.insertPayment(vo);
 
-		if (userid != vo.getMemberid()) {
-
-		}
+		/*if (userid != vo.getMemberId()) {
+			
+		}*/
 
 		logger.info("PayfinishVO 파라미터, vo={}", vo);
 

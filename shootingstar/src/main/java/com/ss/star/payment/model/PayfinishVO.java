@@ -2,17 +2,35 @@ package com.ss.star.payment.model;
 
 public class PayfinishVO {
 
-	private int RQNo;			/* 견적글 번호 */
-	private int CGNo;			/* 카테고리 번호 */
-	private String rqRegion;	/* 견적요청 주소 */
-	private String rqDetail;	/* 견적 상세 요청 */
-	private String memberid;	/* 고객 아이디 */
-	private String pickNo;		/* pick 번호 */
-	private String sMemberid;	/* 전문가 아이디 */
-	private int sPrice;			/* 결제 요금 */
-	private String sName;		/* 전문가 이름 */
-	private String name;		/* 고객 이름 */
-	private String tel;			/* 고객 전화번호 */
+	private int RQNo; /* 견적글 번호 */
+	private int CGNo; /* 카테고리 번호 */
+	private String rqRegion; /* 견적요청 주소 */
+	private String rqDetail; /* 견적 상세 요청 */
+	private String memberId; /* 고객 아이디 */
+	private String pickNo; /* pick 번호 */
+	private String sMemberid; /* 전문가 아이디 */
+	private int sPrice; /* 결제 요금 */
+	private String sName; /* 전문가 이름 */
+	private String name; /* 고객 이름 */
+	private String tel; /* 고객 전화번호 */
+	private String pMethod; /* 결제 방법 */
+	private int mileage; /* 마일리지 */
+
+	public int getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
+
+	public String getpMethod() {
+		return pMethod;
+	}
+
+	public void setpMethod(String pMethod) {
+		this.pMethod = pMethod;
+	}
 
 	public int getRQNo() {
 		return RQNo;
@@ -46,12 +64,12 @@ public class PayfinishVO {
 		this.rqDetail = rqDetail;
 	}
 
-	public String getMemberid() {
-		return memberid;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getPickNo() {
@@ -85,7 +103,7 @@ public class PayfinishVO {
 	public void setsName(String sName) {
 		this.sName = sName;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -105,8 +123,9 @@ public class PayfinishVO {
 	@Override
 	public String toString() {
 		return "PayfinishVO [RQNo=" + RQNo + ", CGNo=" + CGNo + ", rqRegion=" + rqRegion + ", rqDetail=" + rqDetail
-				+ ", memberid=" + memberid + ", pickNo=" + pickNo + ", sMemberid=" + sMemberid + ", sPrice=" + sPrice
-				+ ", sName=" + sName + ", name=" + name + ", tel=" + tel + "]";
+				+ ", memberId=" + memberId + ", pickNo=" + pickNo + ", sMemberid=" + sMemberid + ", sPrice=" + sPrice
+				+ ", sName=" + sName + ", name=" + name + ", tel=" + tel + ", pMethod=" + pMethod + ", mileage="
+				+ mileage + "]";
 	}
 
 }
