@@ -1,6 +1,10 @@
 package com.ss.star.request.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.ss.star.common.SearchVO;
 import com.ss.star.payment.model.PayfinishVO;
@@ -25,5 +29,9 @@ public interface RequestDAO {
 	public PayfinishVO selectPayAll(int no);
 	public int insertPayment(PayfinishVO vo);
 	public PaymentVO selectByPay(int no);
+	public int updatePrice (HashMap<String, Object> map);
+
+
+
 
 }

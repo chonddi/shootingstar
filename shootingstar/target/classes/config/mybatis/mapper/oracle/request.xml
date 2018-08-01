@@ -146,6 +146,12 @@
 		where pickno=#{no}
 	</select>
 	
+	<update id="updatePrice" parameterType="hashmap">
+		update pickall
+		set sprice = #{price}
+		where rqno=#{no}
+	</update>
+	
 
 	<select id="selectPayAll" parameterType="int" resultType="PayfinishVO">
 		select * from payfinish
@@ -153,7 +159,7 @@
 	</select>
 	
 	
-	<insert id="insertPayment" parameterType="PaymentVO">
+	<insert id="insertPayment" parameterType="PayfinishVO">
 		insert into rqpayment(pno, memberid, pmethod, pprice, mileage, pickno)
 		values(rqpayment_seq.nextval, #{memberId}, #{pMethod}, #{sPrice}, #{mileage}, #{pickNo})
 	</insert>

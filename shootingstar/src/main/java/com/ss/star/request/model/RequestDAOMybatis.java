@@ -1,6 +1,8 @@
 package com.ss.star.request.model;
 
+import java.util.HashMap;
 import java.util.List;
+
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,5 +126,12 @@ public class RequestDAOMybatis implements RequestDAO {
 		PaymentVO vo = sqlSession.selectOne(namespace + "selectByPay", no);
 		return vo;
 	}
+
+	@Override
+	public int updatePrice(HashMap<String, Object> map) {
+		return sqlSession.update(namespace+"updatePrice", map);
+	}
+
+	
 
 }

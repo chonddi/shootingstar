@@ -1,5 +1,6 @@
 package com.ss.star.request.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -116,5 +117,12 @@ public class RequestServiceImpl implements RequestService {
 	public PaymentVO selectByPay(int no) {
 		return requestDao.selectByPay(no);
 	}
+
+	@Override
+	public int updatePrice(HashMap<String, Object> map) {
+		return requestDao.updatePrice(map);
+	}
+
+	
 
 }

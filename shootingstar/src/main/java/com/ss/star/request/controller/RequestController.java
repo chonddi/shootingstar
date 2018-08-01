@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.Utility;
+import com.ss.star.member.model.MemberService;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PaymentVO;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
@@ -39,6 +42,8 @@ public class RequestController {
 
 	@Autowired
 	RequestService requestService;
+	@Autowired
+	MemberService memberService;
 	@Autowired
 	private FileUploadUtil3 fileUploadUtil;
 
@@ -313,40 +318,65 @@ public class RequestController {
 	}
 
 	@RequestMapping("/detail3.do")
-	public String detail3(@RequestParam(defaultValue = "0") int no, HttpServletRequest request, Model model,
+	public String detail3(@RequestParam(defaultValue = "0") int no, @RequestParam int pno,
+			@RequestParam String price, @RequestParam String sname, @RequestParam String vname,
+			HttpServletRequest request, Model model,
 			HttpSession session) {
+		
 		logger.info("request 글 번호, 파라미터 no={}", no);
+		logger.info("해당글 pick의 번호, 파라미터 pno={}", pno);
+		logger.info("거래 중인 pick된 전문가명, 파라미터 sname={}", sname);
+		logger.info("마일리지 구할 고객명, 파라미터 vname={}", vname);
+		
+		
+		//String으로 받아온 금액을 int로 변환
+		NumberFormat nf = new DecimalFormat("#,##0");
+		Number n;
 
-		// 임시 세션아이디
-		session.setAttribute("userid", "abc@naver.com");
-		session.setAttribute("userCode", "1");
-
+		int i = 0;
+		try {
+			n = nf.parse(price);
+			i = n.intValue();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		logger.info("전문가회원의  최종입력 가격, price={}", i);
+		
+		//가격 갱신에 사용될 파라미터 map에 넣기
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("price", "i");
+		map.put("no", "no");
+		
+		//결제가격 갱신
+		int result = requestService.updatePrice(map);
+		if(result>=1) {
+			logger.info("최종입력 처리결과 1이상이면 성공, result={}", result);
+		}
+		
+		//픽번호를 건네받은 경우 pLevel을 1 증가
+		if(pno!=0) {
+			int cnt= requestService.updatePlevel(pno);
+			
+			}
+		
+		
+		//현재 세션 아이디, 유저코드 받아오기
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
+		
+		MemberVO mvo = memberService.selectID(vname);
+		logger.info("파라미터mvo, mvo={}", mvo);
+		
+		model.addAttribute(mvo);
+		model.addAttribute("pno",pno);
+		model.addAttribute("sname",sname);
+		model.addAttribute("price",i);
+		
 
-		if (no == 0) {
-			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/index.do");
-			return "common/message";
+		if(usercode.equals("2")) {
+			return "request/sdetail4";
 		}
-
-		RequestVO vo = requestService.selectByNo(no);
-		logger.info("상세보기 결과, vo={}", vo);
-
-		String vmemberid = vo.getMemberId();
-
-		/*PickAllVO pvo = requestService.selectByPick(no);
-		logger.info("파라미터pvo, pvo={}", pvo);
-*/
-		model.addAttribute("vo", vo);
-		/*model.addAttribute("pvo", pvo);*/
-		model.addAttribute("vmemberid", vmemberid);
-		logger.info("현재 session 로그인 id, vmemberid={}", vmemberid);
-
-		if (usercode.equals("2")) {
-			return "request/sdetail";
-		}
-
+		
 		return "request/detail3";
 
 	}
@@ -412,7 +442,7 @@ public class RequestController {
 		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
 		
-		//전문가가 클릭한 글의 pick레벨이 1 이상일 경우 sdetail3으로 보낸다
+		//전문가가 클릭한 글의 pick레벨이 1 이상일 경우 sdetail2으로 보낸다
 		if(pList.size()>=1) {
 			int trans=0; 
 			for(int i=0;i<pList.size();i++) {		
@@ -422,7 +452,7 @@ public class RequestController {
 					break; 
 				}
 			}
-			logger.info("?대떦 ?꾩씠??寃??寃곌낵, boolean={}", trans);
+			logger.info("pLevel레벨 1 이상인지 여부, trans={}", trans);
 			
 			if(trans>=1) {
 				return "redirect:sdetail3.do"; 
@@ -437,7 +467,7 @@ public class RequestController {
 	
 	@RequestMapping("/sdetail3.do")
 	public String sdetail3(@RequestParam int no, HttpSession session, Model model) {
-		logger.info("蹂몄씤??pick??request 湲 踰덊샇, ?뚮씪誘명꽣 no={}", no);
+		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
 		
 		String memberid = (String) session.getAttribute("userid");
 		logger.info("sdetail3 현재 session 아이디, userid={}", memberid);
@@ -462,6 +492,36 @@ public class RequestController {
 		model.addAttribute("list", list);
 	
 		return "request/sdetail3";
+	
+	}
+	
+	@RequestMapping("/sdetail4.do")
+	public String sdetail4(@RequestParam int no, HttpSession session, Model model) {
+		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
+		
+		String memberid = (String) session.getAttribute("userid");
+		logger.info("sdetail3 현재 session 아이디, userid={}", memberid);
+		
+		
+		int pno = requestService.getPickNo(no);
+		String pmem = requestService.getPkMem(pno);
+		logger.info("선택받은 pick에 해당하는 id, pno={}", pno);
+		
+		RequestVO vo = requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
+
+		List<PickAllVO> pList = requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
+
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("pmem", pmem);
+		model.addAttribute("pList", pList);
+		model.addAttribute("list", list);
+	
+		return "request/sdetail4";
 	
 	}
 

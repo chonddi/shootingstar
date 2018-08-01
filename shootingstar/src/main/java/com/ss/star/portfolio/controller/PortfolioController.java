@@ -126,8 +126,8 @@ public class PortfolioController {
 		int reviewSize = list2.size();
 		model.addAttribute("reviewSize",reviewSize);
 		
-		String address = pfService.selectAdd(pfNo);
-		model.addAttribute("address",address);
+		/*String address = pfService.selectAdd(pfNo);
+		model.addAttribute("address",address);*/
 		
 		return "portfolio/portfolioDetail";
 		

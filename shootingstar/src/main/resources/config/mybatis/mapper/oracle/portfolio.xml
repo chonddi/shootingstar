@@ -67,7 +67,7 @@
 	
 	<select id="selectAdd" parameterType="int" resultType="String">
 		select * from saddress where pfno=#{pfNo}
-	</select>
+	</select> 
 	
 	
 </mapper>
