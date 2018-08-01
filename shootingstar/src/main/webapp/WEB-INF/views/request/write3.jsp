@@ -390,8 +390,8 @@ $( document ).ready(function() {
 			action="<c:url value='/request/write4.do'/>" >
 	 		
 	 			<div class="pS">   
-					  촬영을 원하시는 지역  <br><br>
-					   촬영을 원하시는 날짜 <br><br>
+					  촬영을 원하시는 지역  <br><br><br>
+					   촬영을 원하시는 날짜 <br><br><br>
 					   사용 용도 (복수선택가능)<br><br>
 			   </div>   
 			   
@@ -474,7 +474,7 @@ $( document ).ready(function() {
  
 			</div>
 			  		 
-			 <div id="pS4"> <button class="oky">입력완료</button></div>
+			 <div id="pS6"> <button class="oky">입력완료</button></div>
 		</form>  
      <!-- </div> -->
 <!--    </div> -->

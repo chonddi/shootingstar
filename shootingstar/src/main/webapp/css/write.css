@@ -1,8 +1,30 @@
-
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Poor+Story&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Gugi&subset=korean');
 @import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+
+
+.hover {
+		max-width:400px; 
+		height:30px; 
+		line-height:20px; 
+		margin:0 auto; 
+		background-color:#f4fbff;  
+		text-align:center; transition:all 0.8s, color 0.3s 0.3s;  
+		color:#504f4f; cursor: pointer;  
+		font-weight:lighter;
+	}
+	.hover:hover{
+		color:#fff;
+	}
+	
+	.effect8:hover{
+		box-shadow:
+			0 80px 0 0  rgba(0,0,0,0.25) inset, 
+			0 -80px 0 0  rgba(0,0,0,0.25) inset;
+	}
+
 
 body{
 	width: 1903px;
@@ -92,7 +114,8 @@ body{
 }
 
 figure.snip1384 {
-  font-family: 'Sunflower', sans-serif;
+  /* font-family: 'Sunflower', sans-serif; */
+  font-family: 'Gugi', cursive;
   font-weight:lighter;
   position: relative;
   float:left;
@@ -103,7 +126,7 @@ figure.snip1384 {
   width: 100%;
   color: #ffffff;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   background-color: #000000;
 }
 
@@ -152,7 +175,8 @@ figure.snip1384 h3 {
   opacity: 0; 
 }
 figure.snip1384 p {
-  font-size: 0.9em;
+  font-size: 1.0em;
+  font-family: 'Nanum Gothic', sans-serif;
   font-weight: 100;
   line-height:1.4em;
   color: #ffffff;
@@ -219,14 +243,14 @@ figure.snip1384.hover i {
 	width:600px;
 	
 	font-family: 'Do Hyeon', sans-serif;
-	font-size: 1.4em;
+	font-size: 1.5em;
 	font-weight:100;
 	color:black;
 	text-align:left;
 	height:200px;
 	margin-bottom:40px;
 	padding-left:70px;
-	padding-top:20px;
+	
 }
 .pS1{
 	float:left;
@@ -237,7 +261,7 @@ figure.snip1384.hover i {
 	color:black;
 	text-align:left;
 	height:200px;
-	
+	padding-left:30px;
 	margin-bottom:40px;
 	
 }
@@ -310,14 +334,32 @@ figure.snip1384.hover i {
 	float:left;
 	font-family: 'Do Hyeon', sans-serif;
 	width:1235px;
-	height:300px;
+	height:500px;
 	color:black;
 	margin:0 auto;
 	text-align:center;
 	padding-left:30px;
 	padding-right:100px;
-	margin-top:30px;
+	margin-top:50px;
 	margin-bottom:15px;
+}
+#pS6{
+	text-align:center;
+	padding-right:80px;
+}
+#pS7{
+	float:left;
+	font-family: 'Do Hyeon', sans-serif;
+	width:1235px;
+	height:800px;
+	color:black;
+	margin:0 auto;
+	text-align:center;
+	padding-left:30px;
+	padding-right:100px;
+	margin-top:50px;
+	margin-bottom:15px;
+	
 }
 
 #frm1{
@@ -329,6 +371,14 @@ figure.snip1384.hover i {
 #frm5{
 	border: 1px solid #F06659;
 	padding-left:20px;
+	padding-right:20px;
+	height:350px;
+}
+#frm7{
+	border: 1px solid #F06659;
+	padding-left:20px;
+	padding-right:20px;
+	height:650px;
 }
 .oky2{
 	font-family: 'Do Hyeon', sans-serif;
@@ -346,11 +396,17 @@ figure.snip1384.hover i {
 }
 #ttlt{
 	text-align:center;
-	font-size:23px;
+	font-size:20px;
 	padding-top:15px;
 	padding-bottom:20px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-weight:lighter;
+	border-bottom: 2px double grey;
+}
+#ttlt2{
+	border-bottom: 1px dashed grey;
+	height:100px;
+	vertical-align:middle;
 }
 #ttl{
 	text-align:center;
@@ -360,6 +416,7 @@ figure.snip1384.hover i {
 }
 .box2{
 	width:1235px;
+	margin-top:30px;
 }
 .divA{
 	width:1235px;
@@ -424,11 +481,39 @@ figure.snip1384.hover i {
 }
 #selOne{
 	font-size:18px;
+	padding:2px;
+	vertical-align:center;
 }
 #selTwo{
 	font-size:18px;
+	padding:1px;
+	vertical-align:center;
 }
 .pdt{
 	font-size:22px;
 	color:#345f93;
+}
+.pP1{
+	font-size:25px;
+	text-align:right; 
+	color:#69A7C2;
+	width:500px;
+	float:left;
+	
+}
+.pP2{
+	font-size:28px; 
+	color:black;
+	width:200px;
+	float:left;
+	text-align:left;
+	padding-left:15px;
+}
+.mdiv1{
+	float:left;
+	font-family: 'Do Hyeon', sans-serif;
+	width:450px;
+	height:200px;
+	margin-left:60px;
+	margin-top:40px;
 }

@@ -19,6 +19,17 @@
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+    $('.price1').keyup(function() {
+    	if($('.price1').val()==""){
+    		$('#oky1').css('background','#eceded');
+    	}else{
+    		$('#oky1').css('background','#469bc4');
+    		
+    	}	
+    }); 
+});
+
 
 //이미지 클릭시 원본 크기로 팝업 보기
 function doImgPop(img){ 
@@ -152,7 +163,8 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 			 <div id="pS5"> 
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/addpick.do'/>"> 
 			 
-			 <br><br><div class="title2">PICK하기</div>매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다. <div class="title5">${vo.memberId}님과 매칭하길 원하는 금액을 입력해주세요.</div><br>
+			 <br><br><div class="title2">PICK하기</div><div class="title5">${vo.memberId}님과 매칭하길 원하는 금액을 입력해주세요.</div><br>
+			 <div>(매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다.) </div><br><br>
 			 				
 			 		<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
 		            style="text-align:right;" class="price1" name="price" autocomplete=off />
@@ -163,9 +175,10 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 		            <button class="oky1" id="oky1">PICK</button>
 		     </form>
 		            
-		            <br>
+		            <br><br>
+		            <div style="width:1100px;padding-left:23px;">
 		            <button class="oky1" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
-		       
+		       		</div>
 		           
 		          
 			 </div>

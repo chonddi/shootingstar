@@ -142,7 +142,11 @@ textarea::placeholder {
 	text-align:center;
 	vertical-align:middle;
 }
-
+.price2{
+	font-size:20px;
+	text-align:center;
+	vertical-align:middle;
+}
 
 .oky {
 	font-family: 'Do Hyeon', sans-serif;

@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <meta charset="utf-8">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -77,6 +77,49 @@ function setComma(inNum){
   return outNum;
 
 }
+$( document ).ready(function() {
+document.querySelector('#frm7').addEventListener('submit', function(e) {
+	  var form = this;
+	  var price = $(".price2").val();
+	  
+	  e.preventDefault(); // <--- prevent form from submitting
+
+	  swal({
+	      title: "입력하신 가격:"+price+"원",
+	      text: "고객회원님이 결제하실 최종가격입니다.계속하시겠습니까??",
+	      icon: "warning",
+	      buttons: [
+		        '아니요!',
+		        '네!'
+		      ],
+		      dangerMode: true,
+	    });
+	  
+	  
+	 /*  .then(function(isConfirm) {
+	      if (isConfirm) {
+	        swal({
+	          title: '완료되었습니다',
+	          text: 'pick등록이 완료되었습니다.',
+	          icon: 'success'
+	        }).then(function() {
+	          form.submit(); // <--- submit form programmatically
+	        });
+	      } else {
+	        swal("Cancelled", "취소되었습니다:)", "error");
+	      }
+	    }) */
+	    
+	    
+	});
+});	
+	
+	
+
+
+
+
+
 
 
 
@@ -123,22 +166,49 @@ function setComma(inNum){
 					 
 			
 			 
-		<div id="pS5"> 
-			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/'/>" onsubmit="return send(this)"> 
+		<div id="pS7"> 
+			 <form name="frm1" id="frm7" method="post"  action="<c:url value='/request/'/>"> 
 			 
 			 <c:forEach var="pvo" items="${pList}">
-			 	<c:if test="${pvo.sMemberId == sessionScope.userid }">
-			 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님의 결정을 기다리는 중 입니다.</div><br><br>
-			 	<div style="font-size:20px;"> 해당 고객 회원님이 <span style="color:#c9ccc7"> ${pvo.sName}</span>님의 PICK을 선택하시면 세부조율단계로 넘어가고,<br>
-			 	<span style="color:#c9ccc7"> ${pvo.sName}</span>님이 고객회원님과 조율한 최종가격을 입력하면
-			 	마지막 결제단계로 넘어가게 됩니다.</div> <br>
+			 	
+			 <!-- PICK을 선택받지 못한 전문가가 글을 클릭할 경우 -->	
+			 	<c:if test="${pmem != sessionScope.userid && pvo.sMemberId==sessionScope.userid }">
+				 	
+				 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님이 다른전문가의 PICK을 선택하였습니다.</div><br><br>
+			 	</c:if>
+			 
+			 <!-- PICK을 선택받은 전문가가 글을 클릭할 경우 -->
+			 	<c:if test="${pvo.sMemberId == sessionScope.userid && pmem == sessionScope.userid }">
+			 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님이 고객님의 PICK을 선택하였습니다!</div><br><br>
+			 	
+			 	<div class="title5" style="text-align:left;">세부조율단계입니다.</div><br>
+			 <div style="text-align:left;border-bottom:1px solid grey;padding-bottom:20px;">고객회원과 전문가회원이 2차 협의를 하는 단계입니다.<br> 서비스 세부사항과 금액에 대한 최종결정을 하게 되고, 전문가회원이 최종금액을 입력하는 단계입니다.</div><br><br>
+			 	
+			 	<div style="font-size:20px;"> 
+			 	<span style="color:#c9ccc7"> ${pvo.sName}</span>님이 고객회원님과 조율한 최종가격을 입력하면 마지막 결제단계로 넘어가게 됩니다.</div> <br>
 			 		
 			 	  <div style="width:1000px;padding-top:20px;padding-left:130px; ">		
 			 	  <div class="pP1">${sessionScope.userid}님이 제시하신 금액:
 			 			</div><div class="pP2">	<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
 			 		
-			 			 </div>
-			 	</div>
+			 			 </div>	 	
+			 		</div>
+			 			<div class="mdiv1" style="text-align:left;">
+						 	<img src='../images/cinfo.png' style="vertical-align:middle;" />
+						 	${vo.memberId }님의 Contact Info<br>
+						 	<img src='../images/mcall.png' /> <br>
+						 	<img src='../images/mtxt.png' />[쪽지보내기]
+						 	
+						 </div>
+						 <div class="mdiv1" style="text-align:left;">
+						 	<span style="color: #F06659; font-size:1.3em;"> 최종결정 </span> <br><br>
+						 	마지막 단계인 결제단계로 넘어가시려면<br>
+						 	상호협의하신 최종가격을 입력하시고 버튼을 클릭하세요.<br><br>
+						 	<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
+		            		style="text-align:right;" class="price2" name="price" autocomplete=off required />
+		            		&nbsp; <span id="cg5">원</span>  <br><br>
+		            		<button class="oky1" id="oky1">최종선택</button>
+						 </div>
 			 		</c:if>
 			 	</c:forEach>
 
@@ -148,7 +218,6 @@ function setComma(inNum){
 		     </form>
 		            
 		            <br><br>
-		            
 		            <button class="oky1" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
 		    		
 			 </div> 
