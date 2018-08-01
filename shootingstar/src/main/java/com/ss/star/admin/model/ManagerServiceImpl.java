@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.smember.model.SMemberVO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService  {
@@ -74,4 +75,25 @@ public class ManagerServiceImpl implements ManagerService  {
 	public int updateMember(MemberVO vo) {
 		return managerDao.updateMember(vo);
 	}
+	@Override
+	public List<SMemberVO> sMemberList() {
+		return managerDao.sMemberList();
+	}
+	@Override
+	public int updateSMember(SMemberVO vo) {
+		return managerDao.updateSMember(vo);
+	}
+	@Override
+	public List<SMemberVO> sMemberOutList() {
+		return managerDao.sMemberOutList();
+	}
+	@Override
+	public int smemberOut(SMemberVO vo) {
+		return managerDao.smemberOut(vo);
+	}
+	@Override
+	public int smemberBack(SMemberVO vo) {
+		return managerDao.smemberBack(vo);
+	}
+
 }

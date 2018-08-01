@@ -12,10 +12,10 @@ th, td{ padding:10px;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>고객회원 조회</title>
+<title>전문가회원 조회</title>
 </head>
 <body>
-<h1>고객회원 목록</h1>
+<h1>멤버십이 만료된 전문가회원 목록</h1>
 <div>
 	<table id="member">
 	<thead>
@@ -23,7 +23,7 @@ th, td{ padding:10px;
 		<th>회원번호</th>
 		<th>이름</th>
 		<th>아이디</th>
-		<th>탈퇴/복구</th>
+		<th>만료일자</th>
 		<th>정보수정</th>
 	</tr>
 	</thead>
@@ -33,18 +33,13 @@ th, td{ padding:10px;
 				<tr>
 					<td>${vo.rownum }</td>
 
-					<td>${vo.name}</td>
+					<td>${vo.sName}</td>
 
-					<td>${vo.memberId}</td>
-
-<c:if test="${empty vo.outdate}">
-					<td><a href="<c:url value='/admin/member/memberOut.do?id=${vo.memberId}'/>">탈퇴</a></td>
-</c:if>
-<c:if test="${!empty vo.outdate}">
-					<td><a href="<c:url value='/admin/member/memberBack.do?id=${vo.memberId}'/>">계정복구</a></td>
-</c:if>
-
-					<td><a href="<c:url value='/admin/member/memberEdit.do?id=${vo.memberId}'/>">정보수정</a></td>
+					<td>${vo.sMemberId}</td>
+					
+					<td>${vo.membership }</td>
+						
+					<td><a href="<c:url value='/admin/member/smemberEdit.do?id=${vo.sMemberId}'/>">정보수정</a></td>
 				</tr>
 			</c:forEach>
 		</c:if>

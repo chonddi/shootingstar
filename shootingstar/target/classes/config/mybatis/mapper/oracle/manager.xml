@@ -36,7 +36,7 @@
 	</update>
 	
 <!-- 회원관리 -->
-	<select id="memberList" parameterType="String" resultType="MemberVO">
+	<select id="memberList" parameterType="String" resultType="memberVO">
 		select rownum, memberId, name, pwd, tel, mileage, regdate, outdate 
 		from member 
 		order by regdate desc
@@ -45,7 +45,37 @@
 		update member set name=#{name}, tel=#{tel}, mileage=#{mileage}
 		where memberId=#{memberId}
 	</update>
+	<update id="memberOut" parameterType="MemberVO">
+		update member set outdate='' where memberId=#{memberId}
+	</update>
+	<update id="memberBack" parameterType="MemberVO">
+		update member set outdate=sysdate  where  memberId=#{memberId}
+	</update>
 	
+
+	<select id="SMemberList" parameterType="String" resultType="SMemberVO">
+		select rownum, sMemberId, sName, membership, authority
+		from smember 
+		where membership>sysdate
+		order by regdate desc
+	</select>
+	<update id="updateSMember" parameterType="SMemberVo">
+		update smember set sName=#{sName},sTel=#{sTel}, pr=#{pr}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2},
+		identification=#{identification}, accountCopy=#{accountCopy}
+		where sMemberId=#{sMemberId}
+	</update>
+	<update id="smemberOut" parameterType="SMemberVO">
+		update smember set authority='Y' where  sMemberId=#{sMemberId}
+	</update>
+	<update id="smemberBack" parameterType="SMemberVO">
+		update smember set authority='N'  where  sMemberId=#{sMemberId}
+	</update>
+	<select id="SMemberOutList" parameterType="String" resultType="SMemberVO">
+		select rownum, sMemberId, sName, membership
+		from smember 
+		where sysdate>=membership
+		order by regdate desc
+	</select>
 </mapper>
 
 

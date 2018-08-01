@@ -85,8 +85,8 @@ nav ul {
 					<li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu pull-right" style=width:300px>
 							<li><a href="<c:url value='/admin/member/memberList.do'/>">고객 회원 정보 관리</a>
-							<li><a href="<c:url value='/admin/member/SmemberList.do'/>">전문가 회원 정보 관리</a>	
-							<li><a href="<c:url value='#'/>">멤버십 만료 회원 조회</a></li>
+							<li><a href="<c:url value='/admin/member/smemberList.do'/>">전문가 회원 정보 관리</a>	
+							<li><a href="<c:url value='/admin/member/smemberOutList.do'/>">멤버십 만료 회원 조회</a></li>
 							
 						</ul> 
 					</li>	
@@ -96,35 +96,11 @@ nav ul {
 							<li><a href="<c:url value='#'/>">포트폴리오 글 관리</a></li>
 						</ul> 
 					</li>
-				<%-- 	<li id="adminCtg" ><a class="menuLink" href="#" >관리자페이지 ▼</span></a>
-						<ul>
-							<li ><a href="<c:url value='/admin/register.do'/>">관리자 신규등록</a></li>
-							<li ><a href="<c:url value='/admin/adminEdit.do'/>">관리자 정보수정</a></li>
-						</ul>
-					</li>
-						
-					</li> 
-				 <li id="adminCtg"><a class="menuLink" href="#" >회원관리 ▼</a>
-						<ul>
-							<li><a href="<c:url value='#'/>">멤버십 만료 회원 조회</a></li>
-							<li><a href="<c:url value='/admin/member/allMember.do'/>">회원 정보 관리 </span></a>
-							<ul>
-								<li ><a href="<c:url value='#'/>">고객회원 정보수정</a></li>
-								<li ><a href="<c:url value='#'/>">전문가회원 정보수정</a></li>
-								</ul>
-							</li>
-						</ul> 
-					</li> 
-					<li id="adminCtg"><a class="menuLink" href="#" >게시물관리 ▼</a>
-						<ul>
-							<li><a href="<c:url value='#'/>">견적 요청 글 관리</a></li>
-							<li><a href="<c:url value='#'/>">포트폴리오 관리</a></li>
-						</ul>
-					</li> --%>
+				
 					<li id="adminCtg"><a class="menuLink" href="#" >결제관리</a></li>
 					<li id="adminCtg"><a class="menuLink" href="#" >등록현황</a></li>
 					<li id="adminCtg"><a class="menuLink" href="#" >페이지관리</a></li>
-					<li id="adminCtg"><a class="menuLink" href="#" >Q&A관리</a></li>
+					<li id="adminCtg"><a class="menuLink" href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A관리</a></li>
 					<li id="adminCtg"><a class="menuLink" href="#" >쪽지함</a></li>
 				</ul>
 

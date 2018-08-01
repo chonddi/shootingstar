@@ -72,6 +72,7 @@
 				}
 			});
 			return bool;
+			
 		});
 	
 		$('#changeBtn').click(function(){
@@ -87,64 +88,82 @@
 			}
 			return bool;
 		});
-/* 		
+	/*	
 		$('#outBtn').click(function(){
 			if(confirm('탈퇴하시겠습니까?')){
-				location.href="<c:url value='/admin/member/del.do'/>";
+				location.href="<c:url value='/mypage/del.do'/>";
 			}
-		});  */
+		}); */
 	});
 </script>
-		<h1>고객회원 정보 수정</h1>
+		<h1>전문가회원 정보 수정</h1>
 
 	<div class="selectedPage">
 		<form name="frm" id="editFrm" method="post"
-				action="<c:url value='/admin/member/memberEdit.do'/>">
+				action="<c:url value='/admin/member/smemberEdit.do'/>">
 			<table id="editTable">
 
 				<tr>
 					<td>아이디</td>
-					<td>${memberVo.memberId }<input type="hidden" name="memberId" value="${memberVo.memberId }"></td>
+					<td>${smemberVo.sMemberId }<input type="hidden" name="sMemberId" value="${smemberVo.sMemberId }"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name" class="valid" value="${memberVo.name }"></td>
+					<td><input type="text" name="sName" class="valid" value="${smemberVo.sName }"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td>${memberVo.pwd }</td>
+					<td>${smemberVo.sPwd }</td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td><input type="text" name="tel" class="valid" value="${memberVo.tel }"></td>
+					<td><input type="text" name="sTel" class="valid" value="${smemberVo.sTel }"></td>
 				</tr>
 				<tr>
-					<td>마일리지</td>
-					<td><input type="text" name="mileage" class="valid" value="${memberVo.mileage }"></td>
+					<td>자기소개</td>
+					<td><textarea name="pr" rows="10" cols="45" class="valid">${smemberVo.pr }</textarea></td>
 				</tr>
+				<tr>
+					<td>우편번호</td>
+					<td><input type="text" id="zipcode" name="zipcode" size="7" class="valid addr"  value="${smemberVo.zipcode }" >  
+					<input type="button" id="btnZipcode" value="우편번호검색"></td>
+				</tr>
+				<tr>
+				<td>주소</td>
+				<td>
+				<input type="text" id="address1" name="address1"  class="addr"  value="${smemberVo.address1 }">
+				</td>
+				</tr>
+				<tr>
+				<td>상세주소</td>
+				<td>
+				<input type="text" id="address2" name="address2"  class="valid addr" value="${smemberVo.address2 }">
+				</td>
+				</tr>
+
 				<tr>
 					<td>가입일</td>
-					<td>${memberVo.regdate }</td>
+					<td>${smemberVo.regdate }</td>
 				</tr>
 				<tr>
 					<td>탈퇴일</td>
-					<td>${memberVo.outdate }</td>
+					<td>${smemberVo.outdate }</td>
 				</tr>
-			</table><br>
+		</table><br>
 			<div style="text-align: center;">
 			<input type="submit" id="editSbm" class="btns" value="수정하기">
 			</div>
 		</form>
-	</div>
+
 	<div class="selectName">비밀번호 변경</div>
 	<div class="selectedPage">
-		<form method="post" id="changePwd" action="<c:url value='/admin/member/pwdEdit.do'/>">
+		<form method="post" id="changePwd" action="<c:url value='/admin/member/pwdSEdit.do'/>">
 			<div><input type="text" id="pwd" name="pwd" placeholder="새 비밀번호 (8~15자리)"></div>
-			<div><input type="hidden" name="memberId" value="${memberVo.memberId }"></div>
+			<div><input type="hidden" name="sMemberId" value="${smemberVo.sMemberId }"></div>
 			<div><input type="text" id="pwd2" placeholder="새 비밀번호 확인"></div>
 			<div><input type="submit" id="changeBtn" class="btns" value="변경하기"></div>
 		</form>
 	</div>
-<!-- 	<div class="outBtnDiv"><input type="button" id="outBtn" class="btns outBtn" value="탈퇴하기"></div> -->
-
+	<div class="outBtnDiv"><input type="button" id="outBtn" class="btns outBtn" value="탈퇴하기"></div>
+</div>
 <%@ include file="../../inc/bottom.jsp"%>

@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.smember.model.SMemberVO;
 
 @Repository
 public class ManagerDAOMybatis implements ManagerDAO {
 	private String namespace="com.sql.manager.";
 	@Autowired SqlSessionTemplate sqlSession;
-	@Override
 	public ManagerVO selectID(String adminId) {
 		return sqlSession.selectOne(namespace+"selectID", adminId);
 	}
@@ -59,5 +59,31 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	public int updateMember(MemberVO vo) {
 		return sqlSession.update(namespace+"updateMember", vo);
 	}
+
+	@Override
+	public List<SMemberVO> sMemberList() {
+		return sqlSession.selectList(namespace+"SMemberList");
+	}
+
+	@Override
+	public int updateSMember(SMemberVO vo) {
+		return sqlSession.update(namespace+"updateSMember", vo);
+	}
+
+	@Override
+	public List<SMemberVO> sMemberOutList() {
+		return sqlSession.selectList(namespace+"SMemberOutList");
+	}
+
+	@Override
+	public int smemberOut(SMemberVO vo) {
+		return sqlSession.update(namespace+"smemberOut", vo);
+	}
+
+	@Override
+	public int smemberBack(SMemberVO vo) {
+		return sqlSession.update(namespace+"smemberBack", vo);
+	}
+
 
 }

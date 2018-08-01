@@ -3,6 +3,7 @@ package com.ss.star.admin.model;
 import java.util.List;
 
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.smember.model.SMemberVO;
 
 public interface ManagerService {
 	public static final int LOGIN_OK=1;  //로그인 성공
@@ -26,6 +27,13 @@ public interface ManagerService {
 	public int adminUpdate(ManagerVO vo);
 	public int pwdUpdate(ManagerVO vo);
 	public List<MemberVO> memberList();
-	
 	public int updateMember(MemberVO vo);
+	
+	public List<SMemberVO> sMemberList();
+	public int updateSMember(SMemberVO vo);
+	
+	public List<SMemberVO> sMemberOutList();
+	
+	public int smemberOut (SMemberVO vo);
+	public int smemberBack (SMemberVO vo);
 }

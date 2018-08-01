@@ -18,6 +18,13 @@ public class SMemberVO {
 	private Timestamp membership;
 	private String authority;
 	private String tempPwd;
+	private int rownum;
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public String getsMemberId() {
 		return sMemberId;
 	}
