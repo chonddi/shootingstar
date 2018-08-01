@@ -31,9 +31,21 @@
 		frm.submit();
 	}
 	
+	//페이징처리
+	function pageFunc(curPage){
+		document.frmPage.currentPage.value=curPage;
+		frmPage.submit();
+	}
 </script>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
+<style type="text/css">
+.mypageBtn{
+    height: 30px;
+    font-size: 0.8em;
+}
+</style>
 
 		쪽지함
 	</div>
@@ -83,12 +95,14 @@
 		    	</c:forEach>
 			</c:if>    
 	    </table><br>
-	    <input type="submit" value="글 삭제" >
+	    <div style="margin-top: 25px;">
+		    <div style="float: left"><input type="submit" class="mypageBtn" value="글 삭제" ></div>
+			<div style="float:right"><input type="button" id="sendMsg" class="mypageBtn" value="쪽지보내기"></div>
+		</div>
     </form>
-		<div style="text-align: right"><input type="button" id="sendMsg" value="쪽지보내기"></div>
 		
 		<!-- 페이지처리 -->
-		<div class="divPage">
+		<div class="divPage" style="clear: both; margin-top:90px;">
 			<!-- 페이지 번호 추가 -->		
 			<!-- 이전 블럭으로 이동 -->
 			<c:if test="${pageVo.firstPage>1 }">

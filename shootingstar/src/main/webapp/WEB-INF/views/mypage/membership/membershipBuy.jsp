@@ -32,6 +32,11 @@
 	width:100%;
 	height: 100%;
 }
+#membership {
+    color: #1f1f1f;
+    font-weight: 700;
+    border-bottom: 3px solid #e46c0a;
+}
 </style>
 		멤버십 구매
 	</div>
@@ -44,4 +49,10 @@
 	</div>
 </div>
 
+<form name="paymentFrm" method="post" action="<c:url value='/mypage/membership/membershipPayment.do'/>">
+	<input type="hidden" id="pPrice" name="pPrice">
+	<input type="hidden" id="pContent" name="pContent">
+	<input type="hidden" id="pMethod" name="pMethod" value="card">
+	<input type="hidden" id="period" name="period">
+</form>
 <%@ include file="../../inc/bottom.jsp"%>

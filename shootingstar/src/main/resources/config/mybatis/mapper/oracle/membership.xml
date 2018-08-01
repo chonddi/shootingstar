@@ -3,20 +3,65 @@
 
 <mapper namespace="com.sql.membership">
 	
+	<sql id="mspaymentCol">
+		pNo, sMemberId, pMethod, pContent, pPrice, period, regdate
+	</sql>
+
+	<!-- 멤버십, sysdate조회 -->
+	<select id="nowMembership" parameterType="String" resultType="map">
+		select membership , sysdate from smember where smemberid=#{sMemberId}
+	</select>
+	
+	<!-- 멤버십 sysdate 비교해서 값 넣기 -->
 	<update id="updateMembership" parameterType="map">
-		update smember set 
-		<if test="">
-			membership=membership+#{period}
+		update smember set
+		 
+		<if test="membership gt sysdate">
+			membership=add_months(membership, #{period})
 		</if>
-		<if test="">
-			membership=sysdate+#{period}
+		<if test="membership lte sysdate">
+			membership=add_months(sysdate, #{period})
 		</if>
 		, authority='Y' where smemberId=#{sMemberId}
 	</update>
 	
+	<!-- 결제내역 insert -->
 	<insert id="insertMembership" parameterType="mSPaymentVo">
-		insert into mspayment values(mspayment_seq.nextval, #{sMemberId}, #{pMethod}, #{pContent}, #{price}, #{period}, sysdate, null)
+		insert into mspayment values(mspayment_seq.nextval, #{sMemberId}, #{pMethod}, #{pContent}, #{pPrice}, #{period}, sysdate, null)
 	</insert>
+	
+	<!-- List 조회 -->
+	<select id="selectAllPayment" parameterType="map" resultType="map">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select 
+		        <include refid="mspaymentCol"></include>	
+				 from mspayment
+				 where
+				 sMemberId=#{sMemberId}
+				order by pNo desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalRecord" parameterType="string" resultType="int">
+		select count(*) from mspayment
+		where sMemberId=#{sMemberId}		
+	</select>
+	
+	<select id="PaymentFinish" parameterType="string" resultType="mSPaymentVo">
+		select * from 
+		(select <include refid="mspaymentCol"></include> from mspayment where smemberid = #{sMemberId} 
+      	 order by pno desc)A
+		where rownum=1
+	</select>
 </mapper>
 
 

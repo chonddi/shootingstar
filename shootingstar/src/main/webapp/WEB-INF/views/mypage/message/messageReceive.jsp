@@ -45,6 +45,13 @@
 </script>
 <script  src="<c:url value='/js/message.js'/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/msg.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
+<style type="text/css">
+.mypageBtn{
+    height: 30px;
+    font-size: 0.8em;
+}
+</style>
 
 		쪽지함
 	</div>
@@ -103,7 +110,9 @@
 		    	</c:forEach>
 	    	</c:if>
 	    </table><br>
-	    <input type="submit" value="글 삭제" >
+	    <div style="margin-top: 25px;">
+	    	<input type="submit" class="mypageBtn" value="글 삭제" >
+	    </div>
     </form>
 	    
 	    <!-- 페이지처리 -->

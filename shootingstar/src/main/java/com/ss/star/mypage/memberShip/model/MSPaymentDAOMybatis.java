@@ -1,5 +1,6 @@
 package com.ss.star.mypage.memberShip.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,6 +14,11 @@ public class MSPaymentDAOMybatis implements MSPaymentDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public Map<String, Object> nowMembership(String sMemberId) {
+		return sqlSession.selectOne(namespace+"nowMembership", sMemberId);
+	}
+	
+	@Override
 	public int updateMembership(Map<String, Object> map) {
 		return sqlSession.update(namespace+"updateMembership", map);
 	}
@@ -20,6 +26,23 @@ public class MSPaymentDAOMybatis implements MSPaymentDAO{
 	public int insertMembership(MSPaymentVO mSPaymentVo) {
 		return sqlSession.insert(namespace+"insertMembership", mSPaymentVo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectAllPayment(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectAllPayment", map);
+	}
+
+	@Override
+	public MSPaymentVO PaymentFinish(String sMemberId) {
+		return sqlSession.selectOne(namespace+"PaymentFinish", sMemberId);
+	}
+
+	@Override
+	public int getTotalRecord(String sMemberId) {
+		return sqlSession.selectOne(namespace+"getTotalRecord", sMemberId);
+	}
+
+	
 	
 	
 }

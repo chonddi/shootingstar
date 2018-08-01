@@ -51,15 +51,6 @@
     border: 1px solid black;
     border-radius: 2px;
 }
-#sendMsg{
-	border:  none;
-    width: 100px;
-    height: 30px;
-    font-size: 0.8em;
-    background: #9b9b9b;
-    color: white;
-    border-radius: 5px 5px;
-}
 
 
 /* msgWrite */

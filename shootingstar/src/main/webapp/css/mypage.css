@@ -1,0 +1,12 @@
+.mypageBtn{
+	border: none;
+    width: 100px;
+    height: 40px;
+    background: #9b9b9b;
+    color: white;
+    border-radius: 5px 5px;
+}
+
+.mypageBtn:hover{
+	font-weight: bold;
+}

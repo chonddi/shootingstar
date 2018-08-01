@@ -8,10 +8,11 @@ public class MSPaymentVO {
 	private String sMemberId;
 	private String pMethod;
 	private String pContent;
-	private int price;
+	private int pPrice;
 	private int period;
 	private Timestamp regdate;
 	private Timestamp cancel;
+	
 	public int getpNo() {
 		return pNo;
 	}
@@ -36,11 +37,11 @@ public class MSPaymentVO {
 	public void setpContent(String pContent) {
 		this.pContent = pContent;
 	}
-	public int getPrice() {
-		return price;
+	public int getpPrice() {
+		return pPrice;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
 	public int getPeriod() {
 		return period;
@@ -63,10 +64,9 @@ public class MSPaymentVO {
 	@Override
 	public String toString() {
 		return "MSPaymentVO [pNo=" + pNo + ", sMemberId=" + sMemberId + ", pMethod=" + pMethod + ", pContent="
-				+ pContent + ", price=" + price + ", period=" + period + ", regdate=" + regdate + ", cancel=" + cancel
+				+ pContent + ", pPrice=" + pPrice + ", period=" + period + ", regdate=" + regdate + ", cancel=" + cancel
 				+ "]";
 	}
 	
-		
 	
 }
