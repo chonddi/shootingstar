@@ -104,11 +104,6 @@
 		where rqno=#{no}
 	</select>
 	
-	<select id="selectByPick" parameterType="int" resultType="PickAllVO">
-		select * from pickAll
-		where rqno=#{no}
-	</select>
-	
 
 	<select id="selectByNoImg" parameterType="int" resultType="RequestImgVO">
 		select * from requestimg where RQNo=#{RQNo}
@@ -133,6 +128,25 @@
 		where rqno=#{no}
 	</select>
 	
+	
+	<update id="updatePlevel" parameterType="int">
+		update pickall
+		set plevel = plevel+1
+		where pickno=#{no}
+	</update>
+	
+	
+	<select id="getPickNo" parameterType="int" resultType="int">
+		select pickno from pickall
+		where plevel>=1 and rqno=#{no}
+	</select>
+
+	<select id="getPkMem" parameterType="int" resultType="String">
+		select smemberid from pickall
+		where pickno=#{no}
+	</select>
+	
+
 	<select id="selectPayAll" parameterType="int" resultType="PayfinishVO">
 		select * from payfinish
 		where rqno=#{no}

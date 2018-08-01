@@ -86,11 +86,26 @@ public class RequestDAOMybatis implements RequestDAO {
 		return list;
 	}
 
+
 	@Override
-	public PickAllVO selectByPick(int no) {
-		PickAllVO vo = sqlSession.selectOne(namespace + "selectByPick", no);
-		return vo;
+	public int updatePlevel(int no) {
+		return sqlSession.update(namespace+"updatePlevel", no);
 	}
+
+
+	@Override
+	public int getPickNo(int no) {
+		return sqlSession.selectOne(namespace+"getPickNo", no);
+	}
+
+
+	@Override
+	public String getPkMem(int no) {
+		return sqlSession.selectOne(namespace+"getPkMem", no);
+	}
+
+	
+	
 
 	@Override
 	public PayfinishVO selectPayAll(int no) {

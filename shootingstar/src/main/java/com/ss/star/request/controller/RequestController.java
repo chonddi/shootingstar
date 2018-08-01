@@ -220,7 +220,7 @@ public class RequestController {
 	}
 
 	@RequestMapping("/detail.do")
-	public String detail(@RequestParam int no, HttpServletRequest request, Model model, HttpSession session) {
+	public String detail(@RequestParam(required=false) int no, HttpServletRequest request, Model model, HttpSession session) {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 
 		String memberid = (String) session.getAttribute("userid");
@@ -236,26 +236,80 @@ public class RequestController {
 
 		List<PickAllVO> pList = requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
-		
-		PickAllVO cvo = requestService.selectByPick(no);
-		logger.info("파라미터 PickAllVO cvo={}", cvo);
-		
-		PaymentVO pvo = requestService.selectByPay(cvo.getPickNo());
-		logger.info("paymentVO 파라미터 pvo={}", pvo);
 
+		model.addAttribute("no", no);
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
-		model.addAttribute("pList", pList);
-		model.addAttribute("pvo", pvo);
+		model.addAttribute("pList",pList);
 		model.addAttribute("vmemberid", vmemberid);
-		logger.info("현재 session 로그인 id, vmemberid={}", vmemberid);
-
-		if (usercode.equals("2")) {
+		logger.info("현재 session ID, vmemberid={}", vmemberid);
+		
+		
+		//전문가 회원일 경우 sdetail로 보낸다
+		if(usercode.equals("2")) {
 			return "request/sdetail";
 		}
-
+		
+		//pick레벨이 1 이상일 경우 detail2로 보낸다
+		if(pList.size()>=1) {
+			int trans=0; 
+			for(int i=0;i<pList.size();i++) {		
+				trans=pList.get(i).getpLevel();
+				
+				if(trans>=1) {
+					int pno = requestService.getPickNo(no);
+					model.addAttribute("pno", pno);
+					break; 
+				}
+			}
+			logger.info("pLevel레벨 1 이상인지 여부, trans={}", trans);
+			
+			if(trans>=1) {
+				return "redirect:detail2.do"; 
+			}
+			
+		}
+		
 		return "request/detail";
+		
+		
+	}
 
+	@RequestMapping("/detail2.do")
+	public String detail2(@RequestParam int no, @RequestParam(required=false,defaultValue="0") int pno,  
+			Model model, HttpSession session) {
+		
+		logger.info("request 글 번호, 파라미터 no={}", no);
+		
+		String memberid = (String)session.getAttribute("userid");
+		String usercode = (String)session.getAttribute("userCode");
+		
+	
+		logger.info("pLevel이 1이상인 pick번호, pickno={}", pno);
+		
+		if(pno!=0) {
+		//픽번호를 건네받은 경우 pLevel을 1 증가
+			int cnt= requestService.updatePlevel(pno);
+			model.addAttribute("pno",pno);
+		}
+		
+		RequestVO vo=requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
+		 
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+		
+		
+		List<PickAllVO> pList=requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		model.addAttribute("pList",pList);
+	
+		return "request/detail2";
+			
 	}
 
 	@RequestMapping("/detail3.do")
@@ -281,11 +335,11 @@ public class RequestController {
 
 		String vmemberid = vo.getMemberId();
 
-		PickAllVO pvo = requestService.selectByPick(no);
+		/*PickAllVO pvo = requestService.selectByPick(no);
 		logger.info("파라미터pvo, pvo={}", pvo);
-
+*/
 		model.addAttribute("vo", vo);
-		model.addAttribute("pvo", pvo);
+		/*model.addAttribute("pvo", pvo);*/
 		model.addAttribute("vmemberid", vmemberid);
 		logger.info("현재 session 로그인 id, vmemberid={}", vmemberid);
 
@@ -315,10 +369,11 @@ public class RequestController {
 
 		List<RequestPickVO> idList = requestService.pickByNo(no);
 		logger.info("sdetail 파라미터 idList, idList={}", idList);
-
+		
+		//현재 Session 아이디와 List에 있는 ID가 하나라도 일치하면 sdetail2로 보냄 
 		if (idList.size() >= 1) {
 			Boolean trans = false;
-			for (int i = 0; i <= idList.size(); i++) {
+			for (int i = 0; i < idList.size(); i++) {
 				trans = idList.get(i).getsMemberId().contains(memid);
 
 				if (trans == true) {
@@ -352,13 +407,64 @@ public class RequestController {
 		List<RequestImgVO> list = requestService.selectByNoImg(no);
 		logger.info("파라미터 list, list={}", list);
 
+		model.addAttribute("no", no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
+		
+		//전문가가 클릭한 글의 pick레벨이 1 이상일 경우 sdetail3으로 보낸다
+		if(pList.size()>=1) {
+			int trans=0; 
+			for(int i=0;i<pList.size();i++) {		
+				trans=pList.get(i).getpLevel();
+				
+				if(trans>=1) {
+					break; 
+				}
+			}
+			logger.info("?대떦 ?꾩씠??寃??寃곌낵, boolean={}", trans);
+			
+			if(trans>=1) {
+				return "redirect:sdetail3.do"; 
+			}
+	
+		}
+
 
 		return "request/sdetail2";
 
 	}
+	
+	@RequestMapping("/sdetail3.do")
+	public String sdetail3(@RequestParam int no, HttpSession session, Model model) {
+		logger.info("蹂몄씤??pick??request 湲 踰덊샇, ?뚮씪誘명꽣 no={}", no);
+		
+		String memberid = (String) session.getAttribute("userid");
+		logger.info("sdetail3 현재 session 아이디, userid={}", memberid);
+		
+		
+		int pno = requestService.getPickNo(no);
+		String pmem = requestService.getPkMem(pno);
+		logger.info("선택받은 pick에 해당하는 id, pno={}", pno);
+		
+		RequestVO vo = requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
+
+		List<PickAllVO> pList = requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
+
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("pmem", pmem);
+		model.addAttribute("pList", pList);
+		model.addAttribute("list", list);
+	
+		return "request/sdetail3";
+	
+	}
+
 
 	@RequestMapping(value = "/addpick.do")
 	public String addpick(@ModelAttribute RequestPickVO pvo, @RequestParam String price, @RequestParam int rqno,

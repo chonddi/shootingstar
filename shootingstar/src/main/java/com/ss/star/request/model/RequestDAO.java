@@ -19,7 +19,9 @@ public interface RequestDAO {
 	public int updatePick (int no);
 	public List<RequestPickVO> pickByNo(int no);
 	public List<PickAllVO> selectPList(int no);
-	public PickAllVO selectByPick(int no);
+	public int updatePlevel (int no);
+	public int getPickNo (int no);
+	public String getPkMem (int no);
 	public PayfinishVO selectPayAll(int no);
 	public int insertPayment(PayfinishVO vo);
 	public PaymentVO selectByPay(int no);

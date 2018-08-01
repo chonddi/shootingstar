@@ -87,9 +87,20 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public PickAllVO selectByPick(int no) {
-		return requestDao.selectByPick(no);
+	public int updatePlevel(int no) {
+		return requestDao.updatePlevel(no);
 	}
+
+	@Override
+	public int getPickNo(int no) {
+		return requestDao.getPickNo(no);
+	}
+
+	@Override
+	public String getPkMem(int no) {
+		return requestDao.getPkMem(no);
+	}
+
 
 	@Override
 	public PayfinishVO selectPayAll(int no) {
