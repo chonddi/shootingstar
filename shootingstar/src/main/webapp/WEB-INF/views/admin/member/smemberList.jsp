@@ -41,13 +41,22 @@ th, td{ padding:10px;
 					<td>${vo.sMemberId}</td>
 					<td>${vo.membership }</td>	
 					<td>${vo.authority }</td>
+					<td>
 <c:if test="${vo.authority=='N'}">
-					<td><a href="<c:url value='/admin/member/smemberOut.do?id=${vo.sMemberId}'/>">이용제한</a></td>
+					<a href="<c:url value='/admin/member/smemberAuOut.do?id=${vo.sMemberId}'/>">제한하기</a>
 </c:if>
 <c:if test="${vo.authority=='Y'}">
-					<td><a href="<c:url value='/admin/member/smemberBack.do?id=${vo.sMemberId}'/>">권한복구</a></td>
+					<a href="<c:url value='/admin/member/smemberAuBack.do?id=${vo.sMemberId}'/>">권한복구</a>
 </c:if>
-<td></td>
+					</td>
+					<td>
+<c:if test="${empty vo.outdate}">
+					<a href="<c:url value='/admin/member/smemberOut.do?id=${vo.sMemberId}'/>">탈퇴</a>
+</c:if>
+<c:if test="${!empty vo.outdate}">
+					<a href="<c:url value='/admin/member/smemberBack.do?id=${vo.sMemberId}'/>">계정복구</a>
+</c:if>
+					</td>
 					<td><a href="<c:url value='/admin/member/smemberEdit.do?id=${vo.sMemberId}'/>">정보수정</a></td>
 				</tr>
 			</c:forEach>

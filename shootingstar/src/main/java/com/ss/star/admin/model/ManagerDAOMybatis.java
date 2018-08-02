@@ -76,6 +76,16 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	}
 
 	@Override
+	public int smemberAuOut(SMemberVO vo) {
+		return sqlSession.update(namespace+"smemberAuOut", vo);
+	}
+
+	@Override
+	public int smemberAuBack(SMemberVO vo) {
+		return sqlSession.update(namespace+"smemberAuBack", vo);
+	}
+
+	@Override
 	public int smemberOut(SMemberVO vo) {
 		return sqlSession.update(namespace+"smemberOut", vo);
 	}
@@ -85,5 +95,14 @@ public class ManagerDAOMybatis implements ManagerDAO {
 		return sqlSession.update(namespace+"smemberBack", vo);
 	}
 
+	@Override
+	public int memberOut(MemberVO vo) {
+		return sqlSession.update(namespace+"memberOut", vo);
+	}
+
+	@Override
+	public int memberBack(MemberVO vo) {
+		return sqlSession.update(namespace+"memberBack", vo);
+	}
 
 }

@@ -50,23 +50,19 @@ public class AdminMemberController {
 		}
 
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.POST)
-	public String memberEdit_post(@ModelAttribute MemberVO memberVo, HttpSession session, Model model) {
+	public String memberEdit_post(@ModelAttribute MemberVO memberVo,  Model model) {
 	
-	String adminId=(String)session.getAttribute("adminId");
-			logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
+	
+			
 			String msg="", url="/admin/member/memberList.do";
-			if(adminId==null ||adminId.isEmpty()) {
-				model.addAttribute("msg", "로그인을 먼저 하세요");
-				model.addAttribute("url", "/admin/login/login.do");
-				return"common/message"	;
-			}else {
+			
 				int cnt = managerService.updateMember(memberVo);
 				if(cnt>0) {
 					msg="수정되었습니다.";
 				}else {
 					msg="수정이 실패했습니다.";
 				}
-			}
+
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 
@@ -75,15 +71,10 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping("/pwdEdit.do")
-	public String passwordEdit(HttpSession session, @RequestParam String pwd, String memberId, Model model) {
-		String adminId=(String)session.getAttribute("adminId");
-		logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
+	public String passwordEdit(@RequestParam String pwd, String memberId, Model model) {
+		
 		String msg="", url="/admin/member/memberList.do";
-		if(adminId==null ||adminId.isEmpty()) {
-			model.addAttribute("msg", "로그인을 먼저 하세요");
-			model.addAttribute("url", "/admin/login/login.do");
-			return"common/message"	;
-		}else {
+		
 
 				int cnt=memberService.updatePwd(pwd, memberId);
 				if(cnt>0) {
@@ -97,14 +88,14 @@ public class AdminMemberController {
 		
 		return "common/message";
 	}
-	}
+
 
 	@RequestMapping(value="/smemberList.do")
 	public String smemberList(Model model) {
 
 		List<SMemberVO> list = managerService.sMemberList();
 		model.addAttribute("list", list);
-		logger.info("allmember List list.size={} ",list.size());
+		logger.info("Smember List list.size={} ",list.size());
 
 		return "admin/member/smemberList";
 	}
@@ -117,23 +108,17 @@ public class AdminMemberController {
 		return "admin/member/smemberEdit";
 	}
 	@RequestMapping(value="/smemberEdit.do", method=RequestMethod.POST)
-	public String smemberEdit_post(@ModelAttribute SMemberVO smemberVo, HttpSession session, Model model) {
+	public String smemberEdit_post(@ModelAttribute SMemberVO smemberVo, Model model) {
 	
-	String adminId=(String)session.getAttribute("adminId");
-			logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
 			String msg="", url="/admin/member/smemberList.do";
-			if(adminId==null ||adminId.isEmpty()) {
-				model.addAttribute("msg", "로그인을 먼저 하세요");
-				model.addAttribute("url", "/admin/login/login.do");
-				return"common/message"	;
-			}else {
+			
 				int cnt = managerService.updateSMember(smemberVo);
 				if(cnt>0) {
 					msg="수정되었습니다.";
 				}else {
 					msg="수정이 실패했습니다.";
 				}
-			}
+	
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 
@@ -142,15 +127,10 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping("/pwdSEdit.do")
-	public String passwordSEdit(HttpSession session, @RequestParam String pwd, String sMemberId, Model model) {
-		String adminId=(String)session.getAttribute("adminId");
-		logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
+	public String passwordSEdit( @RequestParam String pwd, String sMemberId, Model model) {
+		
 		String msg="", url="/admin/member/smemberList.do";
-		if(adminId==null ||adminId.isEmpty()) {
-			model.addAttribute("msg", "로그인을 먼저 하세요");
-			model.addAttribute("url", "/admin/login/login.do");
-			return"common/message"	;
-		}else {
+		
 
 				int cnt=SmemberService.updatePwd(pwd, sMemberId);
 				if(cnt>0) {
@@ -164,27 +144,64 @@ public class AdminMemberController {
 		
 		return "common/message";
 	}
-	}
 
-	@RequestMapping(value="/smemberOut.do")
-	public String smemberOut(@RequestParam String id, @ModelAttribute SMemberVO vo, HttpSession session, Model model) {
+
+	@RequestMapping(value="/smemberAuOut.do")
+	public String smemberAuOut(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {
 	
-	String adminId=(String)session.getAttribute("adminId");
-			logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
+	
 			String msg="", url="/admin/member/smemberList.do";
-			if(adminId==null ||adminId.isEmpty()) {
-				model.addAttribute("msg", "로그인을 먼저 하세요");
-				model.addAttribute("url", "/admin/login/login.do");
-				return"common/message"	;
-			}else {
+			
 				SMemberVO Smembervo = SmemberService.selectID(id);
-				int cnt = managerService.smemberOut(Smembervo);
+				int cnt = managerService.smemberAuOut(Smembervo);
 				if(cnt>0) {
 					msg="권한을 뺏었습니다.";
 				}else {
 					msg="수정이 실패했습니다.";
 				}
-			}
+
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+		return "common/message";
+
+	}
+	
+	@RequestMapping(value="/smemberAuBack.do")
+	public String smemberAuBack(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {
+	
+
+			String msg="", url="/admin/member/smemberList.do";
+			
+				SMemberVO Smembervo = SmemberService.selectID(id);
+				int cnt = managerService.smemberAuBack(Smembervo);
+				if(cnt>0) {
+					msg="권한을 돌려주었습니다.";
+				}else {
+					msg="수정이 실패했습니다.";
+				}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+		return "common/message";
+
+	}
+
+	@RequestMapping(value="/smemberOut.do")
+	public String smemberOut(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {
+	
+	
+			String msg="", url="/admin/member/smemberList.do";
+			
+				SMemberVO Smembervo = SmemberService.selectID(id);
+				int cnt = managerService.smemberOut(Smembervo);
+				if(cnt>0) {
+					msg="탈퇴 처리 되었습니다.";
+				}else {
+					msg="수정이 실패했습니다.";
+				}
+			
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 
@@ -193,33 +210,69 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/smemberBack.do")
-	public String smemberBack(@RequestParam String id, @ModelAttribute SMemberVO vo, HttpSession session, Model model) {
+	public String smemberBack(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {
 	
-	String adminId=(String)session.getAttribute("adminId");
-			logger.info("회원정보 수정 화면, 파라미탸={}",adminId);
+	
 			String msg="", url="/admin/member/smemberList.do";
-			if(adminId==null ||adminId.isEmpty()) {
-				model.addAttribute("msg", "로그인을 먼저 하세요");
-				model.addAttribute("url", "/admin/login/login.do");
-				return"common/message"	;
-			}else {
+			
 				SMemberVO Smembervo = SmemberService.selectID(id);
 				int cnt = managerService.smemberBack(Smembervo);
 				if(cnt>0) {
-					msg="권한을 돌려주었습니다.";
+					msg="탈퇴 복구 되었습니다.";
 				}else {
 					msg="수정이 실패했습니다.";
 				}
-			}
+		
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+		return "common/message";
+
+	}	
+	
+	@RequestMapping(value="/memberOut.do")
+	public String memberOut(@RequestParam String id, @ModelAttribute MemberVO vo, Model model) {
+	
+	
+			String msg="", url="/admin/member/memberList.do";
+			
+				MemberVO membervo = memberService.selectID(id);
+				int cnt = managerService.memberOut(membervo);
+				if(cnt>0) {
+					msg="탈퇴 처리 되었습니다.";
+				}else {
+					msg="수정이 실패했습니다.";
+				}
+			
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 
 		return "common/message";
 
 	}
-
 	
-	@RequestMapping(value="/smemberOutList.do") //만료회원
+	@RequestMapping(value="/memberBack.do")
+	public String memberBack(@RequestParam String id, @ModelAttribute MemberVO vo, Model model) {
+	
+	
+			String msg="", url="/admin/member/memberList.do";
+		
+				MemberVO membervo = memberService.selectID(id);
+				int cnt = managerService.memberBack(membervo);
+				if(cnt>0) {
+					msg="탈퇴 복구 되었습니다.";
+				}else {
+					msg="수정이 실패했습니다.";
+				}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+		return "common/message";
+
+	}	
+	
+	@RequestMapping(value="/smemberOutList.do") //만료회원목록
 	public String smemberOutList(Model model) {
 
 		List<SMemberVO> list = managerService.sMemberOutList();

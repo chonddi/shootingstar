@@ -24,6 +24,7 @@ th, td{ padding:10px;
 		<th>이름</th>
 		<th>아이디</th>
 		<th>만료일자</th>
+		<th>탈퇴/복구</th>
 		<th>정보수정</th>
 	</tr>
 	</thead>
@@ -38,6 +39,14 @@ th, td{ padding:10px;
 					<td>${vo.sMemberId}</td>
 					
 					<td>${vo.membership }</td>
+<td>					
+					<c:if test="${empty vo.outdate}">
+					<a href="<c:url value='/admin/member/smemberOut.do?id=${vo.sMemberId}'/>">탈퇴</a>
+</c:if>
+					<c:if test="${!empty vo.outdate}">
+					<a href="<c:url value='/admin/member/smemberBack.do?id=${vo.sMemberId}'/>">계정복구</a>
+</c:if>
+</td>
 						
 					<td><a href="<c:url value='/admin/member/smemberEdit.do?id=${vo.sMemberId}'/>">정보수정</a></td>
 				</tr>

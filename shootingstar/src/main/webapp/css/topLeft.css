@@ -3,6 +3,7 @@
 #container	{
 	/*clear: both;*/
 	width:15%; 
+	height:80%;
 	/*margin: 40px;*/
 	float:left;
 	overflow: auto;

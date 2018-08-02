@@ -19,11 +19,11 @@ import com.ss.star.faq.model.FaqVO;
 import com.ss.star.notice.model.NoticeVO;
 
 @Controller
-@RequestMapping(value="/faq")
+
 public class FaqController {
 @Autowired FaqService faqService;
 public static final Logger logger = LoggerFactory.getLogger(FaqController.class);
-	@RequestMapping(value="/faqList.do")
+	@RequestMapping(value="/faq/faqList.do")
 	public String faqList(Model model, @RequestParam(defaultValue="일반") String category) {
 		/*List<FaqVO> list = faqService.selectAll(category);*/
 		List<FaqVO> list = faqService.selectAllUser(category);
@@ -33,89 +33,89 @@ public static final Logger logger = LoggerFactory.getLogger(FaqController.class)
 		return "faq/faqList";
 	}
 	
-	@RequestMapping(value="/faqAdmin.do")
+	@RequestMapping(value="/admin/faq/faqAdmin.do")
 	public String faqAdmin(Model model, @RequestParam(defaultValue="일반") String category) {
 		List<FaqVO> list = faqService.selectAll(category);
 		model.addAttribute("list", list);
 		logger.info("faq admin list.size={} , category={}",list.size(),category);
 
-		return "faq/faqAdmin";
+		return "admin/faq/faqAdmin";
 	}
 
-	@RequestMapping(value="/faqAll.do")
+	@RequestMapping(value="/admin/faq/faqAll.do")
 	public String faqList(Model model) {
 		List<FaqVO> list = faqService.selectList();
 		model.addAttribute("list", list);
 		logger.info("faq List list.size={}",list.size());
 
-		return "faq/faqAdmin";
+		return "admin/faq/faqAdmin";
 	}
 	
-	@RequestMapping(value="/faqWrite.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/faq/faqWrite.do", method=RequestMethod.GET)
 	public String faqWrite() {
 		logger.info("faq write");
-		return "faq/faqWrite";
+		return "admin/faq/faqWrite";
 	}
 	
-	@RequestMapping(value="/faqWrite.do", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/faq/faqWrite.do", method=RequestMethod.POST)
 	public String faqWrite_post(@ModelAttribute FaqVO faqVo) {
 		int cnt=faqService.insertFaq(faqVo);
 		logger.info("faq 작성! cnt={}",cnt);
-		return"redirect:/faq/faqAll.do";
+		return"redirect:/admin/faq/faqAll.do";
 	}
 	
-	@RequestMapping(value="/deleteFaq.do")
+	@RequestMapping(value="/admin/faq/deleteFaq.do")
 	public String noticeDelete(@RequestParam String[]chk) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("nos", chk);
 		int cnt=faqService.deleteMulti(map);
 		logger.info("글 삭제 결과, cnt={}", cnt);
-		return "redirect:/faq/faqAll.do";
+		return "redirect:/admin/faq/faqAll.do";
 	}
 	
-	@RequestMapping(value="/deleteOne.do" , method=RequestMethod.GET)
+	@RequestMapping(value="/admin/faq/deleteOne.do" , method=RequestMethod.GET)
 	public String deleteOne(@RequestParam int faqNo, Model model) {
 		FaqVO vo = faqService.selectByNo(faqNo);
 		model.addAttribute("vo", vo);
 		logger.info("삭제화면, faqNo={}",faqNo);
-		return"faq/deleteOne";
+		return"admin/faq/deleteOne";
 	}
 	
-	@RequestMapping(value="/deleteOne.do" , method=RequestMethod.POST)
+	@RequestMapping(value="/admin/faq/deleteOne.do" , method=RequestMethod.POST)
 	public String deleteOne_post(@ModelAttribute FaqVO vo) {
 		int cnt=faqService.deleteOne(vo);
 		logger.info("1개삭제성공, cnt={}",cnt);
-		return "redirect:/faq/faqAll.do";
+		return "redirect:/admin/faq/faqAll.do";
 	}
 	
-	@RequestMapping(value="/faqBack" , method=RequestMethod.GET)
+	@RequestMapping(value="/admin/faq/faqBack.do" , method=RequestMethod.GET)
 	public String faqBack(@RequestParam int faqNo, Model model) {
 		FaqVO vo = faqService.selectByNo(faqNo);
 		model.addAttribute("vo", vo);
 		logger.info("복구화면, faqNo={}",faqNo);
-		return"faq/faqBack";
+		return"admin/faq/faqBack";
 	}
 	
-	@RequestMapping(value="/faqBack" , method=RequestMethod.POST)
+	@RequestMapping(value="/admin/faq/faqBack.do" , method=RequestMethod.POST)
 	public String faqBack_post(@ModelAttribute FaqVO vo) {
 		int cnt=faqService.faqBack(vo);
 		logger.info("복구성공, cnt={}",cnt);
-		return "redirect:/faq/faqAll.do";
+		return "redirect:/admin/faq/faqAll.do";
 		
 	}
 	
-	@RequestMapping(value="faqEdit", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/faq/faqEdit.do", method=RequestMethod.GET)
 	public String faqEdit(@RequestParam int faqNo, Model model) {
 		FaqVO vo = faqService.selectByNo(faqNo);
 		model.addAttribute("vo", vo);
 		logger.info("수정화면, faqNo={}",faqNo);
-		return"faq/faqEdit";
+		return"admin/faq/faqEdit";
 	}
 	
-	@RequestMapping(value="faqEdit", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/faq/faqEdit.do", method=RequestMethod.POST)
 	public String faqEdit_post(@ModelAttribute FaqVO vo) {
 		int cnt=faqService.faqEdit(vo);
-		return"redirect:/faq/faqAll.do"	;
+		return"redirect:/admin/faq/faqAll.do"	;
 	}
 	
 	

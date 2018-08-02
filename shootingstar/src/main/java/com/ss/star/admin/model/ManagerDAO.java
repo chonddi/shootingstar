@@ -17,6 +17,8 @@ public interface ManagerDAO {
 	
 	public int adminUpdate(ManagerVO vo);
 	public int pwdUpdate(ManagerVO vo);
+	
+	//memberController
 	public List<MemberVO> memberList();
 	public int updateMember(MemberVO vo);
 	
@@ -25,6 +27,14 @@ public interface ManagerDAO {
 
 	public List<SMemberVO> sMemberOutList();
 	
+	public int smemberAuOut (SMemberVO vo);
+	public int smemberAuBack (SMemberVO vo);
+	
 	public int smemberOut (SMemberVO vo);
 	public int smemberBack (SMemberVO vo);
+	
+	public int memberOut (MemberVO vo);
+	public int memberBack (MemberVO vo);
+	
+	//boardController
 }

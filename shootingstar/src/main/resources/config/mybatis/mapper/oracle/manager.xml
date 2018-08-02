@@ -46,15 +46,15 @@
 		where memberId=#{memberId}
 	</update>
 	<update id="memberOut" parameterType="MemberVO">
-		update member set outdate='' where memberId=#{memberId}
+		update member set outdate=sysdate where memberId=#{memberId}
 	</update>
 	<update id="memberBack" parameterType="MemberVO">
-		update member set outdate=sysdate  where  memberId=#{memberId}
+		update member set outdate=''  where  memberId=#{memberId}
 	</update>
 	
 
 	<select id="SMemberList" parameterType="String" resultType="SMemberVO">
-		select rownum, sMemberId, sName, membership, authority
+		select rownum, sMemberId, sName, membership, authority, outdate
 		from smember 
 		where membership>sysdate
 		order by regdate desc
@@ -64,14 +64,25 @@
 		identification=#{identification}, accountCopy=#{accountCopy}
 		where sMemberId=#{sMemberId}
 	</update>
-	<update id="smemberOut" parameterType="SMemberVO">
+	
+	<update id="smemberAuOut" parameterType="SMemberVO"> 
 		update smember set authority='Y' where  sMemberId=#{sMemberId}
 	</update>
-	<update id="smemberBack" parameterType="SMemberVO">
+	
+	<update id="smemberAuBack" parameterType="SMemberVO">
 		update smember set authority='N'  where  sMemberId=#{sMemberId}
 	</update>
+	
+	<update id="smemberOut" parameterType="SMemberVO">
+		update smember set outdate=sysdate where sMemberId=#{sMemberId}
+	</update>
+	<update id="smemberBack" parameterType="SMemberVO">
+		update smember set outdate=''  where  sMemberId=#{sMemberId}
+	</update>
+	
+	
 	<select id="SMemberOutList" parameterType="String" resultType="SMemberVO">
-		select rownum, sMemberId, sName, membership
+		select rownum, sMemberId, sName, membership, outdate
 		from smember 
 		where sysdate>=membership
 		order by regdate desc

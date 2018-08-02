@@ -6,26 +6,15 @@
 <link rel="stylesheet" href="<c:url value='/css/loginstyle.css'/>">
 <script type="text/javascript">
 $(function(){
-/* 	$('form[name=frmLogin]').submit(function(){
-		var bool=true;
-		
-		$('.valid').each(function(idx, item){
-			if($(this).val().length<1){
-				alert($(this).prev().text()+"를 입력하세요");
-				$(this).focus();
-				bool=false;
-				return false;
-			}
-		});
-		
-		return bool;
-	});	
-	 */
+
 	if($('.ids').val()!=""){
 		 $('.labels').addClass('active highlight');
 	}
 });
 </script>
+<style type="text/css">
+
+</style>
 <article class="form">
 	<div class="content">
         <div id="login">   
@@ -41,17 +30,18 @@ $(function(){
 			<label for="saveId" style="padding-left:10px;font-size:0.9em;">아이디 저장하기</label>
 			</div><!-- field wrap -->
 			<div class="field-wrap">
-			<label class="labels"></label>
+			<!-- <label class="labels">
+			 Admin id<span class="req">*</span></label> -->
 			<div>
 				 <input type="text" required autocomplete="off" class="ids" name="adminId" 
-				 value="${cookie.saveId.value}" placeholder="아이디를 입력하세요"/>
+				 value="${cookie.saveId.value}" placeholder="Admin Id" />
          	 </div>
 			</div>	
 			<div class="field-wrap">
-            <label>
+           <!--  <label class="labels">
               Password<span class="req">*</span>
-            </label>
-            	<input type="password"required autocomplete="off" name="pwd"/>
+            </label> -->
+            	<input type="password"required autocomplete="off" name="pwd" placeholder="password"/>
           	</div>
 
 			<button type="submit" class="button button-block">로그인</button>

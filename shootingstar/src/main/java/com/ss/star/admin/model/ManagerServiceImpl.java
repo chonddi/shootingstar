@@ -88,12 +88,28 @@ public class ManagerServiceImpl implements ManagerService  {
 		return managerDao.sMemberOutList();
 	}
 	@Override
+	public int smemberAuOut(SMemberVO vo) {
+		return managerDao.smemberAuOut(vo);
+	}
+	@Override
+	public int smemberAuBack(SMemberVO vo) {
+		return managerDao.smemberAuBack(vo);
+	}
+	@Override
 	public int smemberOut(SMemberVO vo) {
 		return managerDao.smemberOut(vo);
 	}
 	@Override
 	public int smemberBack(SMemberVO vo) {
 		return managerDao.smemberBack(vo);
+	}
+	@Override
+	public int memberOut(MemberVO vo) {
+		return managerDao.memberOut(vo);
+	}
+	@Override
+	public int memberBack(MemberVO vo) {
+		return managerDao.memberBack(vo);
 	}
 
 }

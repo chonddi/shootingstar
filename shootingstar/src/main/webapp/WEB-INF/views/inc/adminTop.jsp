@@ -59,7 +59,7 @@ nav ul {
 						</c:if>
 						
 						<c:if test="${!empty sessionScope.userCode}">
-							<li><a href="<c:url value='/admin/mypage.do'/>">마이페이지</a></li>
+							<li><a href="<c:url value='/admin/adminEdit.do'/>">마이페이지</a></li>
 						</c:if>
 						<c:if test="${!empty sessionScope.userCode}">
 							<li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
@@ -92,15 +92,26 @@ nav ul {
 					</li>	
 					<li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">게시물관리<span class="caret"></span></a>
 						<ul class="dropdown-menu pull-right" style=width:300px>
-							<li><a href="<c:url value='#'/>">견적 요청 글 관리</a></li>
+							<li><a href="<c:url value='/admin/board/requestList.do'/>">견적 요청 글 관리</a></li>
 							<li><a href="<c:url value='#'/>">포트폴리오 글 관리</a></li>
 						</ul> 
 					</li>
 				
-					<li id="adminCtg"><a class="menuLink" href="#" >결제관리</a></li>
-					<li id="adminCtg"><a class="menuLink" href="#" >등록현황</a></li>
-					<li id="adminCtg"><a class="menuLink" href="#" >페이지관리</a></li>
-					<li id="adminCtg"><a class="menuLink" href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A관리</a></li>
+					<li id="adminCtg" ><a class="menuLink" href="#" >결제관리</a></li>
+					<li id="adminCtg" class="dropdown"><a class="menuLink" href="#" class="multi" >등록현황 통계<span class="caret"></span></a>
+						<ul class="dropdown-menu pull-right" style=width:300px>
+						<li><a href="<c:url value='#'/>">회원 등록 현황</a></li>
+						<li><a href="<c:url value='#'/>">견적 등록 현황</a></li>
+						<li><a href="<c:url value='#'/>">포트폴리오 등록 현황</a></li>
+						</ul>
+					</li>
+					<li id="adminCtg" class="dropdown"><a class="menuLink" href="#" class="multi" >페이지관리<span class="caret"></span></a>
+						<ul class="dropdown-menu pull-right" style=width:300px>
+							<li><a href="<c:url value='/admin/faq/faqAdmin.do'/>">FAQ 관리</a></li>
+							<li><a href="<c:url value='/admin/notice/noticeAdmin.do'/>">공지사항 관리</a></li>
+						</ul>
+					</li>
+					<li id="adminCtg"><a class="menuLink" href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A 관리</a></li>
 					<li id="adminCtg"><a class="menuLink" href="#" >쪽지함</a></li>
 				</ul>
 
