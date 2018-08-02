@@ -297,7 +297,7 @@
 <body>
 	<c:forEach var="map" items="${list }" end="0">
 		<div id="detailTitle"
-			style='background-image: url("<c:url value='/images/${map["FILENAME"] }'/>")'>
+			style='background-image: url("<c:url value='/portfolio_images/${map["FILENAME"] }'/>")'>
 			<div id="titleSentence">
 				<span id="pfTitle">${map["PFTITLE"] }</span>
 				<div id="pfTitle2">
@@ -316,7 +316,7 @@
 			<div id="mygallery">
 				<c:forEach var="map" items="${list }">
 					<a href="#"> <img alt='${map["FILENAME"] }'
-						src="<c:url value='/images/${map["FILENAME"] }'/>" /></a>
+						src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>" /></a>
 					<!-- other images... -->
 				</c:forEach>
 			</div>

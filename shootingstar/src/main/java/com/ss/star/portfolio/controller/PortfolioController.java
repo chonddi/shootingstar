@@ -89,7 +89,7 @@ public class PortfolioController {
 	@RequestMapping(value = "/portfolioWrite.do", method = RequestMethod.POST)
 	public String portfolioWrite_post(HttpSession session,@ModelAttribute PortfolioVO portfolioVo, MultipartHttpServletRequest request)
 			throws IOException {
-		logger.info("포트폴리오 등록 처리, 파라미터 vo={},protfolioVo");
+		logger.info("포트폴리오 등록 처리, 파라미터 vo={}",portfolioVo);
 		String smemberId = (String) session.getAttribute("userid");
 		portfolioVo.setSmemberId(smemberId);
 		
@@ -117,6 +117,7 @@ public class PortfolioController {
 		
 		logger.info("포트폴리오 디테일 화면 보여주기, pfNo={}", pfNo);
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
+		logger.info("포트폴리오 디테일 list.size(): {}", list.size());
 		model.addAttribute("list", list);
 		
 		List<reviewVO> list2 = pfService.selectReview(pfNo);
