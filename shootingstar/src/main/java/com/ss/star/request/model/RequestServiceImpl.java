@@ -123,6 +123,11 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.updatePrice(map);
 	}
 
+	@Override
+	public int updateMileage(PayfinishVO vo) {
+		return requestDao.updateMileage(vo);
+	}
+
 	
 
 }

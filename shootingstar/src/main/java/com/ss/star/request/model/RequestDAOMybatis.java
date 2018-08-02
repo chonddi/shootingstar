@@ -132,6 +132,12 @@ public class RequestDAOMybatis implements RequestDAO {
 		return sqlSession.update(namespace+"updatePrice", map);
 	}
 
+	@Override
+	public int updateMileage(PayfinishVO vo) {
+		int cnt = sqlSession.update(namespace + "updateMileage", vo);
+		return cnt;
+	}
+
 	
 
 }
