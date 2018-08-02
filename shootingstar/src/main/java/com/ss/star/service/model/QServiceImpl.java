@@ -73,4 +73,14 @@ public class QServiceImpl implements QService {
 		return qDao.QRreplyList();
 	}
 
+	@Override
+	public int updateQ(QVO QVo) {
+		return qDao.updateQ(QVo);
+	}
+
+	@Override
+	public int deleteQ(int qNo) {
+		return qDao.deleteQ(qNo);
+	}
+
 }

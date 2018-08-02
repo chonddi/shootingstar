@@ -87,4 +87,16 @@ public class QDAOMybatis implements QDAO {
 		return list;
 	}
 
+	@Override
+	public int updateQ(QVO QVo) {
+		int cnt = sqlSession.update(namespace + "updateQ", QVo);
+		return cnt;
+	}
+
+	@Override
+	public int deleteQ(int qNo) {
+		int cnt = sqlSession.delete(namespace + "deleteQ", qNo);
+		return cnt;
+	}
+
 }

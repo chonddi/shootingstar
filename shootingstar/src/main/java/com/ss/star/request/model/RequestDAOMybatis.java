@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
 
@@ -140,10 +141,10 @@ public class RequestDAOMybatis implements RequestDAO {
 		return sqlSession.selectOne(namespace + "getPLevel2", no);
 	}
 
-	/*@Override
+	@Override
 	public int updateMileage(MemberVO vo) {
 		int cnt = sqlSession.update(namespace + "updateMileage", vo);
 		return cnt;
-	}*/
+	}
 
 }

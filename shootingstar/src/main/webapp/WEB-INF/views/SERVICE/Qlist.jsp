@@ -14,7 +14,7 @@
 				alert("로그인이 필요한 서비스입니다.");
 				location.href="<c:url value='/login/login.do'/>";
 				return false;
-			}else if($("#userid").val() == 2){
+			}else if($("#userCode").val() == 2){
 				alert("고객 회원만 이용가능한 서비스입니다.");
 				return false;
 			}else{
@@ -34,13 +34,7 @@
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
-	
-	function detailFunc(qNo, memberid){
-		document.detail.qNo.value=qNo;
-		document.detail.memberid.value=memberid;
-		detail.submit();
-	}
-	
+
 </script>
 </head>	
 <body>
@@ -48,16 +42,16 @@
 <br><br>
 <span style="color:gray;">관리자에게 1:1로 문의하실 사항이 있으시면 글을 작성해주세요.</span>
 <!-- 세션 유저 코드 값 -->
-<%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
-<input type="hidden" id="userid" value="1">
+<input type="hidden" id="userid" value="${sessionScope.userid}">
+<input type="hidden" id="userCode" value="${sessionScope.userCode}">
 <!-- 페이징 처리를 위한 form -->
 <form name="frmPage" method="post" action="<c:url value='/SERVICE/Qlist.do'/>">
 <input type="hidden" name="currentPage" >	
 </form>
 <!-- 디테일 처리를 위한 form -->
 <form name="detail" method="post" action="<c:url value='/SERVICE/Qdetail.do'/>">
-<input type="hidden" name="qNo">
-<input type="hidden" name="memberid">
+	<input type="hidden" name="qNo">
+	<input type="hidden" name="memberid" value="">
 </form><br>
 
 <div class="divList">
@@ -91,7 +85,7 @@
 					<td>${vo.qNo}</td>
 					<td style="text-align:left">
 						<c:if test="${sessionScope.userid == vo.memberid}">
-							<a href="#" onclick="detailFunc(${vo.qNo}, '${vo.memberid}')">
+							<a href="<c:url value='/SERVICE/Qdetail.do?qNo=${vo.qNo}&memberid=${vo.memberid}'/>">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 								<c:if test="${fn:length(vo.qTitle)>50}">	
 									${fn:substring(vo.qTitle, 0, 50)}...
@@ -121,7 +115,7 @@
 						<c:if test="${sessionScope.userid != vo.memberid}">
 							<c:if test="${fn:length(vo.memberid)>3}">
 								<span style="color:gray;font-size:0.9em;">	
-									${fn:substring(vo.qTitle, 0, 3)}****
+									${fn:substring(vo.memberid, 0, 3)}****
 								</span>
 							</c:if>
 						</c:if>
@@ -181,3 +175,4 @@
 </html>
 
 <%@ include file="../inc/bottom.jsp" %>
+

@@ -102,10 +102,11 @@
 	</div>
 	
 <!-- 임시 memberid -->
-<input type="hidden" id="memberid" name="memberid" value="YBM"/>
+<input type="hidden" id="memberid" name="memberid" value="abc@naver.com"/>
+<!-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> -->
 <!-- 세션 유저 코드 값 -->
 <%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
-<input type="hidden" id="userid" value="1">
+<input type="hidden" id="userCode" value="1">
 
 </form>       
 </body>

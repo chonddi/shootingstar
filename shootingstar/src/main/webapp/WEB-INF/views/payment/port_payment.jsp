@@ -62,7 +62,7 @@ $(document).ready(function(){
 	<input type="hidden" id="name" name="name" value="${vo.name}"/>
 	<input type="hidden" id="tel" name="tel" value="${vo.tel}"/>
 	<input type="hidden" id="pMethod" name="pMethod" value="card"/>
-	<input type="hidden" id="mileage" name="mileage" value="${vo.sPrice}"/>
+	<input type="hidden" id="mileage" name="mileage" value="${vo.mileage}"/>
 	
 	<!-- 세션 유저 코드 값 -->
 	<input type="hidden" id="userCode" value="${sessionScope.userCode}">

@@ -11,6 +11,8 @@ public interface QService {
 	public List<QVO> selectAll(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
 	public QVO selectByNo(int qNo);
+	public int updateQ(QVO QVo);
+	public int deleteQ(int qNo);
 	
 	//Q&A 댓글
 	public int insertQR(QRVO QRVo);

@@ -11,6 +11,8 @@ public interface QDAO {
 	public List<QVO> selectAll(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
 	public QVO selectByNo(int qNo);
+	public int updateQ(QVO QVo);
+	public int deleteQ(int qNo);
 	
 	//Q&A 댓글
 	public int insertQR(QRVO QRVo);
@@ -20,7 +22,7 @@ public interface QDAO {
     public int QRDelete(int qrNo);
     public List<QRVO> QRselectByNo(int qrNo);
     public int QRreply(QRVO QRVo);
-    public List<QRVO> QRreplyList(); 
+    public List<QRVO> QRreplyList();
 	
 	/*public int getTotalRecord(SearchVO searchVo);
 	public int updateReadCount(int no);

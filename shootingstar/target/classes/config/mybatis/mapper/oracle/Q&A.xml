@@ -40,6 +40,16 @@
 		select * from qna where qno=#{qNo}
 	</select>
 	
+	<update id="updateQ" parameterType="QVO">
+		update qna
+		set qtitle=#{qTitle}, qcontent=#{qContent}
+		where qno=#{qNo}
+	</update>
+	
+	<delete id="deleteQ" parameterType="int">
+		delete from qna where qno=#{qNo}
+	</delete>
+	
 	<!-- 댓글 -->
 	<insert id="insertQR" parameterType="QRVO">
 		<selectKey keyProperty="qrNo" order="BEFORE" resultType="int">
@@ -82,22 +92,5 @@
     	from qnare
     	where levels=1 order by qrno
     </select>
-	
-<!-- 
-	
-	<update id="updateBoard" parameterType="BoardVO">
-		update board set name=#{name}, title=#{title}, email=#{email}, 
-			content=#{content} 
-		where no=#{no}
-	</update>
-	
-	
-	
-	<delete id="deleteBoard" parameterType="int">
-		delete from board where no=#{no}	
-	</delete>
-	
 
-	 -->
-	
 </mapper>
