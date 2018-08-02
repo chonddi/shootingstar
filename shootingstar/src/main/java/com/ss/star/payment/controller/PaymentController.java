@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.star.member.model.MemberService;
+import com.ss.star.member.model.MemberVO;
+import com.ss.star.payment.model.MileageVO;
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.PaymentVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
 
@@ -28,8 +31,9 @@ public class PaymentController {
 	MemberService memberService;
 
 	@RequestMapping("/port_payment.do")
-	public String port_payment(@RequestParam(defaultValue = "0") int no, HttpSession session, Model model) {
+	public String port_payment(@RequestParam(defaultValue = "0") int no, @ModelAttribute MileageVO mileageVo, HttpSession session, Model model) {
 		logger.info("port_payment 화면 파라미터 no={}", no);
+		logger.info("port_payment 화면 파라미터 mileageVo={}", mileageVo);
 
 		// 임시 세션아이디
 		session.setAttribute("userid", "abc@naver.com");
@@ -46,6 +50,11 @@ public class PaymentController {
 
 		PayfinishVO vo = requestService.selectPayAll(no);
 		logger.info("PayfinishVO 파라미터, vo={}", vo);
+		
+		//마일리지 사용한 최종 결제금액 셋팅
+		vo.setsPrice(mileageVo.getPrice());
+		//남은 마일리지 셋팅
+		vo.setMileage(mileageVo.getMileage());
 
 		model.addAttribute("vo", vo);
 
@@ -66,7 +75,7 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
-	public String port_payfinish_post(@RequestParam(defaultValue="0") int RQNo , @ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
+	public String port_payfinish_post(@RequestParam(defaultValue="0") int RQNo, @ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
 
 		// 임시 세션아이디
@@ -77,16 +86,20 @@ public class PaymentController {
 		String usercode = (String) session.getAttribute("userCode");
 		
 		//마일리지 적립
-		double mileage = Math.ceil(vo.getMileage() * 0.03);
-		vo.setMileage(mileage);
+		double addMileage = Math.ceil(vo.getsPrice() * 0.03);	/* 마일리지 3% 적립 */
+		int mg = (int) addMileage;
+		vo.setMileage(mg);	/* 적립된 마일리지 PayfinishVO에 셋팅(거래내역 출력용) */
+		MemberVO memberVo = new MemberVO();
+		memberVo = memberService.selectID(vo.getMemberId());
+		int mileage = memberVo.getMileage() + mg;	/* 기존의 마일리지에 새 마일리지 적립 */
+		memberVo.setMileage(mileage);	/* memberVo에 다시 셋팅 */
 
-		int cnt = requestService.insertPayment(vo);
-		int cnt2 = requestService.updateMileage(vo);
+		int cnt = requestService.insertPayment(vo);	/* RQPAYMENT 테이블(거래내역)에 DB 추가 */
+		int cnt2 = requestService.updateMileage(memberVo);	/* 새로 적립된 마일리지 적용 */
 		logger.info("PaymentVO insert 결과 cnt={},", cnt);
 		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);
 
 		return "payment/port_payfinish";
-		//return "redirect:/payment/port_payfinish.do?no=" + vo.getRQNo();
 
 	}
 
