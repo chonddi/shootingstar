@@ -3,12 +3,12 @@ package com.ss.star.request.model;
 import java.util.HashMap;
 import java.util.List;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
 
@@ -88,26 +88,20 @@ public class RequestDAOMybatis implements RequestDAO {
 		return list;
 	}
 
-
 	@Override
 	public int updatePlevel(int no) {
-		return sqlSession.update(namespace+"updatePlevel", no);
+		return sqlSession.update(namespace + "updatePlevel", no);
 	}
-
 
 	@Override
 	public int getPickNo(int no) {
-		return sqlSession.selectOne(namespace+"getPickNo", no);
+		return sqlSession.selectOne(namespace + "getPickNo", no);
 	}
-
 
 	@Override
 	public String getPkMem(int no) {
-		return sqlSession.selectOne(namespace+"getPkMem", no);
+		return sqlSession.selectOne(namespace + "getPkMem", no);
 	}
-
-	
-	
 
 	@Override
 	public PayfinishVO selectPayAll(int no) {
@@ -128,16 +122,29 @@ public class RequestDAOMybatis implements RequestDAO {
 	}
 
 	@Override
-	public int updatePrice(HashMap<String, Object> map) {
-		return sqlSession.update(namespace+"updatePrice", map);
+	public int updatePrice(HashMap<String, Integer> map) {
+		return sqlSession.update(namespace + "updatePrice", map);
 	}
 
 	@Override
-	public int updateMileage(PayfinishVO vo) {
+	public int getFinalP(int no) {
+		return sqlSession.selectOne(namespace + "getFinalP", no);
+	}
+
+	@Override
+	public int getPLevel(int no) {
+		return sqlSession.selectOne(namespace + "getPLevel", no);
+	}
+
+	@Override
+	public int getPLevel2(int no) {
+		return sqlSession.selectOne(namespace + "getPLevel2", no);
+	}
+
+	@Override
+	public int updateMileage(MemberVO vo) {
 		int cnt = sqlSession.update(namespace + "updateMileage", vo);
 		return cnt;
 	}
-
-	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
 
@@ -102,7 +103,6 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.getPkMem(no);
 	}
 
-
 	@Override
 	public PayfinishVO selectPayAll(int no) {
 		return requestDao.selectPayAll(no);
@@ -119,15 +119,28 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public int updatePrice(HashMap<String, Object> map) {
+	public int updatePrice(HashMap<String, Integer> map) {
 		return requestDao.updatePrice(map);
 	}
 
 	@Override
-	public int updateMileage(PayfinishVO vo) {
-		return requestDao.updateMileage(vo);
+	public int getFinalP(int no) {
+		return requestDao.getFinalP(no);
 	}
 
-	
+	@Override
+	public int getPLevel(int no) {
+		return requestDao.getPLevel(no);
+	}
+
+	@Override
+	public int getPLevel2(int no) {
+		return requestDao.getPLevel2(no);
+	}
+
+	@Override
+	public int updateMileage(MemberVO vo) {
+		return requestDao.updateMileage(vo);
+	}
 
 }

@@ -2,11 +2,9 @@ package com.ss.star.request.model;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
 
@@ -29,8 +27,11 @@ public interface RequestDAO {
 	public PayfinishVO selectPayAll(int no);
 	public int insertPayment(PayfinishVO vo);
 	public PaymentVO selectByPay(int no);
-	public int updatePrice (HashMap<String, Object> map);
-	public int updateMileage(PayfinishVO vo);
+	public int updatePrice (HashMap<String, Integer> map);
+	public int getFinalP (int no);
+	public int getPLevel (int no);
+	public int getPLevel2 (int no);
+	public int updateMileage(MemberVO vo);
 
 
 
