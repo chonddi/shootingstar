@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp"%>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>">
 
@@ -10,6 +12,24 @@ $(".hover").mouseleave(
 		    $(this).removeClass("hover");
 		  }
 		);
+		
+		
+function onClick(usercode) { 
+		if(usercode==1){ 
+			location.href="<c:url value='/request/write.do'/>"
+		
+		}else{
+		 
+		swal({
+			text: "고객회원으로 로그인해주세요.",
+			icon: "error",
+			button: "확인"
+			}); 
+			}
+		
+	}	 		
+		
+		
 		
 </script>
 
@@ -24,8 +44,11 @@ $(".hover").mouseleave(
 				원하는 항목, 보다 합리적인 가격에<br>
 				나에게 딱 맞는 포토그래퍼를 찾아보세요 !
 				<p id="mainBtn">
-					<a class="btn btn-info" href="<c:url value='/request/write.do'/>" role="button"
-						style="width: 150px; font-size: 0.35em;">견적신청</a>
+				
+				
+					<a class="btn btn-info" role="button"
+						style="width: 150px; font-size: 0.35em;" 
+						onclick='onClick("${sessionScope.userCode}")'>견적신청</a>
 				</p>
 				<div id="tableDiv">
 					<table id="mainTable">

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
 
@@ -119,7 +118,7 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public int updatePrice(HashMap<String, Integer> map) {
+	public int updatePrice(HashMap<String, Object> map) {
 		return requestDao.updatePrice(map);
 	}
 
@@ -138,9 +137,9 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.getPLevel2(no);
 	}
 
-	@Override
+	/*@Override
 	public int updateMileage(MemberVO vo) {
 		return requestDao.updateMileage(vo);
-	}
+	}*/
 
 }

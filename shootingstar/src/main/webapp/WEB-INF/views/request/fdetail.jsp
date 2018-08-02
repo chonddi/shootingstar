@@ -78,19 +78,15 @@ function setComma(inNum){
 
 }
 $( document ).ready(function() {
-	
 document.querySelector('#frm7').addEventListener('submit', function(e) {
 	  var form = this;
 	  var price = $(".price2").val();
-	  var price2 = price.replace(/[^\d]+/g, '');
-	  
-	  $('.sPrice').val(price2);
 	  
 	  e.preventDefault(); // <--- prevent form from submitting
 
 	  swal({
 	      title: "입력하신 가격:"+price+"원",
-	      text: "고객회원님이 결제하실 최종가격입니다.계속하시겠습니까?",
+	      text: "고객회원님이 결제하실 최종가격입니다.계속하시겠습니까??",
 	      icon: "warning",
 	      buttons: [
 		        '아니요!',
@@ -100,8 +96,8 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 	    }).then(function(isConfirm) {
 	      if (isConfirm) {
 	        swal({
-	          title: '가격등록이 완료되었습니다',
-	          text: '다음 단계로 이동합니다.',
+	          title: '완료되었습니다',
+	          text: 'pick등록이 완료되었습니다.',
 	          icon: 'success'
 	        }).then(function() {
 	          form.submit(); //submit
@@ -115,8 +111,6 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 	});
 });	
 	
-
-
 
 </script>
 </head>
@@ -163,60 +157,13 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 		<div id="pS7"> 
 			 <form name="frm1" id="frm7" method="post"  action="<c:url value='/request/detail3.do'/>"> 
 			 
-			 <c:forEach var="pvo" items="${pList}">
-			 	
-			 <!-- PICK을 선택받지 못한 전문가가 글을 클릭할 경우 -->	
-			 	<c:if test="${pvo.sMemberId==sessionScope.userid && pvo.pLevel!=1}">
-			 	
-				 	
-				 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님이 다른전문가의 PICK을 선택하였습니다.</div><br><br>
-			 	</c:if>
 			 
+			 	
+			 거래가 완료된 글 입니다.
 			
-			 <!-- PICK을 선택받은 전문가가 글을 클릭할 경우 -->
-			 	<c:if test="${pvo.sMemberId==sessionScope.userid && pvo.pLevel==1}">
-			 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님이 고객님의 PICK을 선택하였습니다!</div><br><br>
-			 	
-			 	<div class="title5" style="text-align:left;">세부조율단계입니다.</div><br>
-			 <div style="text-align:left;border-bottom:1px solid grey;padding-bottom:20px;">고객회원과 전문가회원이 2차 협의를 하는 단계입니다.<br> 서비스 세부사항과 금액에 대한 최종결정을 하게 되고, 전문가회원이 최종금액을 입력하는 단계입니다.</div><br><br>
-			 	
-			 	<div style="font-size:20px;"> 
-			 	<span style="color:#c9ccc7"> ${pvo.sName}</span>님이 고객회원님과 조율한 최종가격을 입력하면 마지막 결제단계로 넘어가게 됩니다.</div> <br>
-			 		
-			 	  <div style="width:1000px;padding-top:20px;padding-left:130px; ">		
-			 	  <div class="pP1">${sessionScope.userid}님이 제시하신 금액:
-			 			</div><div class="pP2">	<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
-			 		
-			 			 </div>	 	
-			 		</div>
-			 			<div class="mdiv1" style="text-align:left;">
-						 	<img src='../images/cinfo.png' style="vertical-align:middle;" />
-						 	${vo.memberId }님의 Contact Info<br>
-						 	<img src='../images/mcall.png' /> <br>
-						 	<img src='../images/mtxt.png' />[쪽지보내기]
-						 	
-						 </div>
-						 <div class="mdiv1" style="text-align:left;">
-						 	<span style="color: #F06659; font-size:1.3em;"> 최종결정 </span> <br><br>
-						 	마지막 단계인 결제단계로 넘어가시려면<br>
-						 	상호협의하신 최종가격을 입력하시고 버튼을 클릭하세요.<br><br>
-						 	<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required />
-		            		&nbsp; <span id="cg5">원</span>  <br><br>
-		            		
-		            		<input type="hidden" name="sName" value="${pvo.sName}" />
-		            		<input type="hidden" name="pickNo" value="${pvo.pickNo}" />
-		     				<input type="hidden" class="sPrice" name="sPrice" value="" />
-		  
-		            		<button class="oky1" id="oky1">최종결정</button>
-		            		
-		            		
-						 </div>
-			 		</c:if>
-			 	</c:forEach>
-			 		
-			 	
-		            <input type="hidden" name="no" value="${vo.RQNo}"/>
+			
+
+		  	<input type="hidden" name="RQNo" value="${vo.RQNo}"/>
 		            
 		   			
 		     </form>

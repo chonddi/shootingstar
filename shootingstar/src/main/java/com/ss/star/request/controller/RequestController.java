@@ -237,18 +237,16 @@ public class RequestController {
 		List<RequestImgVO> list = requestService.selectByNoImg(no);
 		logger.info("파라미터 list, list={}", list);
 
-		String vmemberid = vo.getMemberId();
-
 		List<PickAllVO> pList = requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
 
-		model.addAttribute("no", no);
 		
+		
+		model.addAttribute("no", no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("pList",pList);
-		model.addAttribute("vmemberid", vmemberid);
-		logger.info("현재 session ID, vmemberid={}", vmemberid);
+		logger.info("현재 session ID, vmemberid={}", memberid);
 		
 		
 		//전문가 회원일 경우 sdetail로 보낸다
@@ -256,6 +254,27 @@ public class RequestController {
 			return "request/sdetail";
 		}
 		
+		//pick레벨이 2 이상일 경우 detail3로 보낸다
+		if(pList.size()>=1) {
+			int trans=0; 
+			for(int i=0;i<pList.size();i++) {		
+				trans=pList.get(i).getpLevel();
+				
+				if(trans>=2) {
+				
+					break; 
+				}
+			}
+			
+			
+				if(trans>=2) {
+			
+					
+					return "redirect:detail3.do"; 
+				}
+				
+			}
+				
 		//pick레벨이 1 이상일 경우 detail2로 보낸다
 		if(pList.size()>=1) {
 			int trans=0; 
@@ -263,40 +282,41 @@ public class RequestController {
 				trans=pList.get(i).getpLevel();
 				
 				if(trans>=1) {
-					int pno = requestService.getPickNo(no);
-					model.addAttribute("pno", pno);
+					
 					break; 
 				}
 			}
 			logger.info("pLevel레벨 1 이상인지 여부, trans={}", trans);
-			
-			if(trans>=1) {
-				return "redirect:detail2.do"; 
-			}
-			
-		}
 		
+			if(trans==1) {
+			return "redirect:detail2.do"; 
+				}
+					
+		}		
+		//아무 해당사항이 없을 경우 글 상세보기로 이동
 		return "request/detail";
-		
-		
+	
 	}
+	
 
 	@RequestMapping("/detail2.do")
 	public String detail2(@RequestParam int no, @RequestParam(required=false,defaultValue="0") int pno,  
 			Model model, HttpSession session) {
 		
-		logger.info("request 글 번호, 파라미터 no={}", no);
+		logger.info("detail2 request 글 번호, 파라미터 no={}", no);
 		
 		String memberid = (String)session.getAttribute("userid");
 		String usercode = (String)session.getAttribute("userCode");
 		
 	
-		logger.info("pLevel이 1이상인 pick번호, pickno={}", pno);
+		logger.info("고객인 선택한 pick번호, pickno={}", pno);
 		
-		if(pno!=0) {
-		//픽번호를 건네받은 경우 pLevel을 1 증가
+		int pl=requestService.getPLevel(no);
+		logger.info("pLevel 1 이상 갯수, pl={}", pl);
+		
+		if(pno!=0&&pl==0) {
+		//pLevel이 1인 이상인 pick이 없고, 픽번호를 건네받은 경우 pLevel을 1 증가
 			int cnt= requestService.updatePlevel(pno);
-			model.addAttribute("pno",pno);
 		}
 		
 		RequestVO vo=requestService.selectByNo(no);
@@ -318,60 +338,70 @@ public class RequestController {
 	}
 
 	@RequestMapping("/detail3.do")
-	public String detail3(@RequestParam(defaultValue = "0") int no, @RequestParam int pno,
-			@RequestParam String price, @RequestParam String sname, @RequestParam String vname,
-			HttpServletRequest request, Model model,
-			HttpSession session) {
+	public String detail3(@ModelAttribute PickAllVO pvo, 
+			@RequestParam(defaultValue = "0") int no, Model model, HttpSession session) {
 		
 		logger.info("request 글 번호, 파라미터 no={}", no);
-		logger.info("해당글 pick의 번호, 파라미터 pno={}", pno);
-		logger.info("거래 중인 pick된 전문가명, 파라미터 sname={}", sname);
-		logger.info("마일리지 구할 고객명, 파라미터 vname={}", vname);
+		logger.info("전문가 최종 입력 정보를 담은 VO, 파라미터 pvo={}", pvo);
 		
+		RequestVO vo = requestService.selectByNo(no);
+		logger.info("상세보기 결과, vo={}", vo);
 		
-		//String으로 받아온 금액을 int로 변환
-		NumberFormat nf = new DecimalFormat("#,##0");
-		Number n;
+		List<RequestImgVO> list = requestService.selectByNoImg(no);
+		logger.info("파라미터 list, list={}", list);
 
-		int i = 0;
-		try {
-			n = nf.parse(price);
-			i = n.intValue();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		logger.info("전문가회원의  최종입력 가격, price={}", i);
+		List<PickAllVO> pList = requestService.selectPList(no);
+		logger.info("파라미터pList, pList={}", pList);
 		
-		//가격 갱신에 사용될 파라미터 map에 넣기
+		String vname = vo.getMemberId();
+		
+		MemberVO mvo = memberService.selectID(vname);
+		logger.info("파라미터mvo, mvo={}", mvo);
+		
+		
+		 
+		 
+		model.addAttribute("mvo",mvo);
+		model.addAttribute("no", no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		model.addAttribute("pList",pList);
+		
+		
+		//금액을 구한다
+		int rprice = pvo.getsPrice();
+		logger.info("전문가회원의  최종입력 가격, price={}", rprice);
+		
+		//pick번호 구하기
+		int pno = requestService.getPickNo(no);
+		logger.info("금액이 수정될 pick의 번호, pno={}", pno);
+		
+		//가격 갱신에 사용될 파라미터(금액, 픽번호) map에 넣기
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("price", "i");
-		map.put("no", "no");
+		map.put("price", rprice);
+		map.put("no", pno);
+		
+		System.out.println( map.get("price") );   
+		System.out.println( map.get("no") );   
+
 		
 		//결제가격 갱신
 		int result = requestService.updatePrice(map);
 		if(result>=1) {
 			logger.info("최종입력 처리결과 1이상이면 성공, result={}", result);
 		}
+		int pl=requestService.getPLevel2(no);
+		logger.info("pl2 갯수가 0이면 pLevel1에서 2로 증가실시, pl={}", pl);
 		
-		//픽번호를 건네받은 경우 pLevel을 1 증가
-		if(pno!=0) {
+		//pLevel 2 이상 pick이 없고, 픽번호를 받은 경우 pLevel을  1 증가
+		if(pno!=0&&pl==0) {
 			int cnt= requestService.updatePlevel(pno);
 			
 			}
 		
-		
 		//현재 세션 아이디, 유저코드 받아오기
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
-		
-		MemberVO mvo = memberService.selectID(vname);
-		logger.info("파라미터mvo, mvo={}", mvo);
-		
-		model.addAttribute(mvo);
-		model.addAttribute("pno",pno);
-		model.addAttribute("sname",sname);
-		model.addAttribute("price",i);
-		
 
 		if(usercode.equals("2")) {
 			return "request/sdetail4";
@@ -380,6 +410,7 @@ public class RequestController {
 		return "request/detail3";
 
 	}
+	
 
 	@RequestMapping("/sdetail.do")
 	public String sdetail(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
@@ -413,14 +444,37 @@ public class RequestController {
 			logger.info("해당 아이디 검색 결과, boolean={}", trans);
 
 			if (trans == true) {
+				
+				model.addAttribute("idList",idList);
 				return "redirect:sdetail2.do";
+				}
+
 			}
-
-		}
-
-		return "request/sdetail";
+		
+		//pLevel이 2인 이상인 pick이 있으면 fdetail로 보냄
+		int pl2=requestService.getPLevel2(no);
+		logger.info("pLevel 2 이상 갯수, pl2={}", pl2);
+		
+		
+		if(pl2!=0) {
+			return "request/fdetail";
+			
+			}
+		
+		//pLevel이 1인 이상인 pick이 있으면 sdetail3으로 보냄
+		int pl=requestService.getPLevel(no);
+		logger.info("pLevel 1 이상 갯수, pl={}", pl);
+		
+		
+		if(pl!=0) {
+			return "redirect:sdetail3.do";
+			
+			}
+		
+			return "request/sdetail";
 	}
 
+	
 	@RequestMapping("/sdetail2.do")
 	public String sdetail2(@RequestParam int no, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
@@ -441,27 +495,26 @@ public class RequestController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
-		
-		//전문가가 클릭한 글의 pick레벨이 1 이상일 경우 sdetail2으로 보낸다
-		if(pList.size()>=1) {
-			int trans=0; 
+			
+		//전문가가 클릭한 글의 pick레벨이 1 이상일 경우 sdetail3으로 보낸다
+		int trans=0;
+		if(pList.size()>=1) {	 
+			
 			for(int i=0;i<pList.size();i++) {		
 				trans=pList.get(i).getpLevel();
 				
 				if(trans>=1) {
 					break; 
+					}
+				}
+				logger.info("pLevel레벨 1 이상인지 여부, pLevel={}", trans);
+			
+				if(trans>=1) {
+				
+					return "redirect:sdetail3.do"; 
 				}
 			}
-			logger.info("pLevel레벨 1 이상인지 여부, trans={}", trans);
-			
-			if(trans>=1) {
-				return "redirect:sdetail3.do"; 
-			}
-	
-		}
-
-
-		return "request/sdetail2";
+			return "request/sdetail2";
 
 	}
 	
@@ -486,11 +539,27 @@ public class RequestController {
 		List<RequestImgVO> list = requestService.selectByNoImg(no);
 		logger.info("파라미터 list, list={}", list);
 		
+		model.addAttribute("no",no);
 		model.addAttribute("vo", vo);
-		model.addAttribute("pmem", pmem);
 		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
 	
+		//전문가가 클릭한 글의 pick레벨이 2 이상일 경우 sdetail4로 보낸다
+			int trans=0;
+			if(pList.size()>=1) {
+				for(int i=0;i<pList.size();i++) {		
+					trans=pList.get(i).getpLevel();
+					
+					if(trans>=1) {
+						break; 
+						}
+					}
+					logger.info("pLevel레벨 2 이상인지 여부, pLevel={}", trans);
+				
+					if(trans>=2) {
+					return "redirect:sdetail4.do"; 
+					}
+				}
 		return "request/sdetail3";
 	
 	}
@@ -500,7 +569,7 @@ public class RequestController {
 		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
 		
 		String memberid = (String) session.getAttribute("userid");
-		logger.info("sdetail3 현재 session 아이디, userid={}", memberid);
+		logger.info("sdetail4 현재 session 아이디, userid={}", memberid);
 		
 		
 		int pno = requestService.getPickNo(no);
@@ -521,6 +590,11 @@ public class RequestController {
 		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
 	
+		//pick된 전문가회원이 아닌 경우 거래완료화면으로 보낸다
+		if(memberid!=pmem) {
+			return "request/fdetail";
+		}
+		
 		return "request/sdetail4";
 	
 	}
@@ -565,5 +639,15 @@ public class RequestController {
 		return "redirect:/request/list.do";
 	}
 	 
+	
+	
+	@RequestMapping(value = "/fdetail.do")
+	public String fdetail(@ModelAttribute RequestPickVO pvo, @RequestParam String price, @RequestParam int rqno,
+			HttpSession session, Model model) {
+
+		
+
+		return "redirect:/request/fdetail.do";
+	}
 
 }

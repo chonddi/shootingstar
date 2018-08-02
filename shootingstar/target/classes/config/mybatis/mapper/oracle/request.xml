@@ -129,6 +129,7 @@
 	</select>
 	
 	
+	
 	<update id="updatePlevel" parameterType="int">
 		update pickall
 		set plevel = plevel+1
@@ -148,11 +149,25 @@
 	
 	<update id="updatePrice" parameterType="hashmap">
 		update pickall
-		set sprice = #{price}
-		where rqno=#{no}
+		set sprice=#{price}
+		where pickno=#{no}
 	</update>
 	
+	<select id="getFinalP" parameterType="int" resultType="int">
+		select sprice from pickall where rqno=#{no} and plevel>=1
+	</select>
 
+	<select id="getPLevel" parameterType="int" resultType="int">
+		select count (*) from pickall
+		where rqno=#{no} and plevel>=1
+	</select>
+	
+	<select id="getPLevel2" parameterType="int" resultType="int">
+		select count (*) from pickall
+		where rqno=#{no} and plevel>=2
+	</select>
+	
+	
 	<select id="selectPayAll" parameterType="int" resultType="PayfinishVO">
 		select * from payfinish
 		where rqno=#{no}
@@ -170,6 +185,8 @@
 		where pno=#{pNo}
 	</select>
 
+	
+	
 	
 </mapper>
 

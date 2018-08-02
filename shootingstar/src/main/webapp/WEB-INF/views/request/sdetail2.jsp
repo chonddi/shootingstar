@@ -127,6 +127,10 @@ function setComma(inNum){
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/'/>" onsubmit="return send(this)"> 
 			 
 			 <c:forEach var="pvo" items="${pList}">
+			 
+			 	
+			 
+			 	<!-- PICK을 선택받은 전문가가 글을 클릭할 경우 -->
 			 	<c:if test="${pvo.sMemberId == sessionScope.userid }">
 			 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님의 결정을 기다리는 중 입니다.</div><br><br>
 			 	<div style="font-size:20px;"> 해당 고객 회원님이 <span style="color:#c9ccc7"> ${pvo.sName}</span>님의 PICK을 선택하시면 세부조율단계로 넘어가고,<br>
@@ -140,6 +144,14 @@ function setComma(inNum){
 			 			 </div>
 			 	</div>
 			 		</c:if>
+			 		
+			 		
+			<%--  	<!-- PICK을 선택받지 못한 전문가가 글을 클릭할 경우 -->	
+			 	<c:if test="${pmem != sessionScope.userid && pvo.sMemberId==sessionScope.userid }">
+				 	
+				 <br><br><div class="title2">STATUS</div> <div class="title5">${vo.memberId}님이 다른전문가의 PICK을 선택하였습니다.</div><br><br>
+			 	</c:if> --%>
+			 	
 			 	</c:forEach>
 
 		            <input type="hidden" name="RQNo" value="${vo.RQNo}"/>

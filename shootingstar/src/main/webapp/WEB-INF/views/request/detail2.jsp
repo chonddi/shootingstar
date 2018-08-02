@@ -109,7 +109,7 @@ function payBtn(RQNo){
 			 <div id="pS5"> <div class="title2">STATUS</div><br>
 			 	
 			 <c:forEach var="pvo" items="${pList}">
-			 	<c:if test="${pvo.pickNo == pno}">	
+			 	<c:if test="${pvo.pLevel >= 1}">
 			 	
 			 <div class="title5" style="text-align:left;">세부조율단계입니다.</div><br>
 			 <div style="text-align:left;">고객회원과 전문가회원이 2차 협의를 하는 단계입니다.<br> 서비스 세부사항과 금액에 대한 최종결정을 하게 되고, 전문가회원이 최종금액을 입력하는 단계입니다.</div><br><hr><br>
@@ -118,7 +118,7 @@ function payBtn(RQNo){
 			
 			<p>* 전문가회원이 최종가격을 입력하면 마지막 결제단계 화면으로 이동합니다.</p> </div>
 		
-		  		</c:if>
+		  		</c:if> 
 			 </c:forEach>
 			 <br><br><br>
 			  <div style="width:1100px;padding-left:23px;">
