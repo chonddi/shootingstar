@@ -315,7 +315,7 @@
 		<div id="imgContainer">
 			<div id="mygallery">
 				<c:forEach var="map" items="${list }">
-					<a href="#"> <img alt='${map["FILENAME"] }'
+					<a href="#"> <img alt=''
 						src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>" /></a>
 					<!-- other images... -->
 				</c:forEach>
@@ -341,11 +341,13 @@
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 이
 				전문가에게 문의하기
 			</button>
-			<div id="likeBox">
-				<hr>
-				<span>♡ 좋아요</span>
-				<hr>
-			</div>
+			<c:if test="${sessionScope.userCode==1 }">
+				<div id="likeBox">
+					<hr>
+					<span>♡ 좋아요</span>
+					<hr>
+				</div>
+			</c:if>
 			<div id="map" style="width: 320px; height: 380px"></div>
 
 			<c:set var="result" />

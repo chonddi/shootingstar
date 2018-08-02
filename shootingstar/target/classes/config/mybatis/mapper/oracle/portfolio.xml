@@ -57,6 +57,10 @@
 		order by pfno desc
 	</select>
 	
+	<update id="updateReadCount" parameterType="int">
+		update portfolio set readcount=readcount+1 where pfNo=#{pfNo}
+	</update>
+	
 	<select id="selectPfDetail" parameterType="int" resultType="map">
 		select * from pfdetail where pfno=#{pfNo}
 	</select>
@@ -69,7 +73,45 @@
 		select * from saddress where pfno=#{pfNo}
 	</select> 
 	
+	<select id="selectMyPofol" parameterType="map" resultType="map">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select pfno, sMemberId, sname ,cgno, cgname, pftitle, filename, regdate
+				 from PFLISTVIEW
+				 where
+				<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+					cgno = #{searchVo.searchCondition} and
+				</if>
+				<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+					pftitle like '%' || #{searchVo.searchKeyword} || '%' and
+				</if>
+				sMemberId = #{sMemberId} and
+				ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+				order by pfno desc
+		    )list
+		)
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
+	</select>
 	
+	<select id="getTotalMyPofol" parameterType="map" resultType="int">
+		select count(*) from PFLISTVIEW
+		where 
+		<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+			cgno = #{searchVo.searchCondition} and
+		</if>
+		<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+			pftitle like '%' || #{searchVo.searchKeyword} || '%' and
+		</if>
+		sMemberId = #{sMemberId} and
+		ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+		order by pfno desc
+	</select>
 </mapper>
 
 

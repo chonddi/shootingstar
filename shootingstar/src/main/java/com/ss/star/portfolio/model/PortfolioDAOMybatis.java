@@ -11,6 +11,7 @@ import com.ss.star.common.SearchVO;
 
 @Repository
 public class PortfolioDAOMybatis implements PortfolioDAO {
+	
 	private String namespace = "config.mybatis.mapper.oracle.portfolio.";
 	private String namespace2 = "config.mybatis.mapper.oracle.review.";
 	@Autowired
@@ -41,6 +42,11 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 	public int getTotalRecord(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"getTotalRecord", searchVo);
 	}
+	
+	@Override
+	public int updateReadCount(int pfNo) {
+		return sqlSession.update(namespace+"updateReadCount", pfNo);
+	}
 
 	@Override
 	public List<Map<String, Object>> selectPfDetail(int pfNo) {
@@ -65,6 +71,16 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 	public String selectAdd(int pfNo) {
 		String address = sqlSession.selectOne(namespace+"selectAdd", pfNo);
 		return address;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMyPofol(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectMyPofol", map);
+	}
+
+	@Override
+	public int getTotalMyPofol(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"getTotalMyPofol", map);
 	}
 
 }

@@ -94,7 +94,6 @@ public class PortfolioController {
 		portfolioVo.setSmemberId(smemberId);
 		
 		//파일 업로드 처리
-		String fileName="", originalFileName="";
 		List<Map<String, Object>> fileList = null;
 		try {
 			fileList = fileUploadUtil.fileUpload(request, fileUploadUtil.PATH_FLAG_IMAGE);
@@ -106,16 +105,45 @@ public class PortfolioController {
 			e.printStackTrace();
 		}
 		int cnt=pfService.insertPf(portfolioVo, fileList);
+		logger.info("포트폴리오 insert 결과 cnt: {}", cnt);
 		
 		PortfolioVO vo = pfService.selectBySmemberId(smemberId);
 		int pfNo = vo.getPfNo();
 		return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
 	}
 	
-	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
-	public String portfolio_detail(@RequestParam int pfNo, Model model) {
+	@RequestMapping("/pofolReadCount.do")
+	public String pofolReadCount(@RequestParam(defaultValue="0") int pfNo, Model model ) {
+		logger.info("readcount pfNo: {}", pfNo);
+
+		if(pfNo==0) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/portfolio/portfolioList.do");
+			return "common/message";
+		}
 		
+		int cnt = pfService.updateReadCount(pfNo);
+		logger.info("readcount 처리 후 cnt: {}", cnt);
+		
+		if(cnt>0) {
+			return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
+		}else {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/portfolio/portfolioList.do");
+			return "common/message";
+		}
+	}
+	
+	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
+	public String portfolio_detail(@RequestParam(defaultValue="0") int pfNo, Model model) {
 		logger.info("포트폴리오 디테일 화면 보여주기, pfNo={}", pfNo);
+
+		if(pfNo==0) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/portfolio/portfolioList.do");
+			return "common/message";
+		}
+		
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
 		logger.info("포트폴리오 디테일 list.size(): {}", list.size());
 		model.addAttribute("list", list);

@@ -82,7 +82,7 @@ article{
 			<li id="myMileage"><a href="<c:url value='/mypage/'/>">내 마일리지</a></li>
 		</c:if>
 		<c:if test="${sessionScope.userCode==2}">
-			<li id="myPortFolio"><a href="<c:url value='/mypage/'/>">나의 포트폴리오</a></li>
+			<li id="myPofol"><a href="<c:url value='/mypage/myPofol.do'/>">나의 포트폴리오</a></li>
 			<li id="transaction"><a href="<c:url value='/mypage/transaction.do'/>">나의 거래 이력</a></li>
 			<li id="eMail"><a href="<c:url value='/mypage/'/>">E-Mail 문의</a></li>
 			<li id="membership"><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>

@@ -12,6 +12,7 @@
 	<script type="text/javascript">
 		console.log('msg=${msg}');
 		console.log('url=${url}');
+		
 		<c:if test="${!empty msg }">
 			alert("${msg}");
 		</c:if>

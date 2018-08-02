@@ -10,8 +10,11 @@ public interface PortfolioDAO {
 	public int insertPf(PortfolioVO vo) ;
 	public List<Map<String, Object>> selectAllList(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
+	public int updateReadCount(int pfNo);
 	public List<Map<String, Object>> selectPfDetail(int pfNo);
 	public List<reviewVO> selectReview(int pfNo);
 	public PortfolioVO selectBySmemberId(String smemberId);
 	public String selectAdd(int pfNo);
+	public List<Map<String, Object>> selectMyPofol(Map<String, Object> map);
+	public int getTotalMyPofol(Map<String, Object> map);
 }

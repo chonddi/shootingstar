@@ -11,7 +11,7 @@ inner join pick p on s.smemberid = p.smemberid;
 
 -- PFLISTVIEW ?�트?�리?�리?�트�??�트?�리?�테?�블�??�트?�리?�이미�??�이블�? ?�문가?�이블과 카테고리?�이블을 ?�침
 CREATE OR REPLACE VIEW PFLISTVIEW AS
-select  p.pfno, s.SNAME , p.cgno ,c.cgname, p.pftitle, i.filename	
+select  p.pfno, s.SNAME, s.SMEMBERID , p.cgno ,c.cgname, p.pftitle, i.filename, p.regdate	
 from portfolio p inner join pofolimg i
 on p.PFNO = i.PFNO
 inner join category c

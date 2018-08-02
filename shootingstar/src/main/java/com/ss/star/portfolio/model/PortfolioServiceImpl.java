@@ -1,5 +1,6 @@
 package com.ss.star.portfolio.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +50,11 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
+	public int updateReadCount(int pfNo) {
+		return Dao.updateReadCount(pfNo);
+	}
+	
+	@Override
 	public List<Map<String, Object>> selectPfDetail(int pfNo) {
 		// TODO Auto-generated method stub
 		List<Map<String, Object>> list = Dao.selectPfDetail(pfNo);
@@ -76,4 +82,23 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return address;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectMyPofol(String sMemberId, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sMemberId", sMemberId);
+		map.put("searchVo", searchVo);
+		
+		return Dao.selectMyPofol(map);
+	}
+
+	@Override
+	public int getTotalMyPofol(String sMemberId, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sMemberId", sMemberId);
+		map.put("searchVo", searchVo);
+		
+		return Dao.getTotalMyPofol(map);
+	}
+
+	
 }

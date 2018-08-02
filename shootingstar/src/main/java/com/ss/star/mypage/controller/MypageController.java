@@ -18,9 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ss.star.category.model.CategoryService;
+import com.ss.star.category.model.CategoryVO;
 import com.ss.star.common.FileUploadUtil2;
+import com.ss.star.common.PaginationInfo;
+import com.ss.star.common.SearchVO;
+import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.smember.model.SMemberService;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -32,7 +38,9 @@ public class MypageController {
 	@Autowired private MemberService memberService;
 	@Autowired private SMemberService sMemberService;
 	@Autowired FileUploadUtil2 fileUploadUtil;
-
+	@Autowired PortfolioService portfolioService;
+	@Autowired CategoryService cgService;
+	
 	//정보수정
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
 	public String memberEdit(HttpSession session, Model model) {
@@ -291,4 +299,36 @@ public class MypageController {
 
 	}
 	
+	@RequestMapping("/myPofol.do")
+	public void myPofol(@ModelAttribute SearchVO searchVo,HttpSession session, Model model) {
+		String userid= (String)session.getAttribute("userid");
+		logger.info("나의 포트폴리오 화면 userid: {}", userid);
+		
+		//[1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		//[2] SearchVO 에 값 셋팅
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);
+		
+		List<Map<String, Object>> pofolList = portfolioService.selectMyPofol(userid, searchVo);
+		logger.info("글 목록 조회 결과, pofolList.size: {}", pofolList.size());
+		
+		//전체 레코드 개수 조회
+		int totalRecord=portfolioService.getTotalMyPofol(userid, searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+		
+		//카테고리 가져오기
+		List<CategoryVO> cgList=cgService.selectCategoryAll();
+		logger.info("카테고리 조회 결과, cgList.size={}", cgList.size());
+		
+		model.addAttribute("pageVo", pagingInfo);
+		model.addAttribute("pofolList", pofolList);
+		model.addAttribute("cgList", cgList);
+	}
 }

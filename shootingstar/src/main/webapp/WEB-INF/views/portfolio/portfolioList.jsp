@@ -45,6 +45,12 @@
 	background-color: white;
 	cursor: pointer;
 }
+.searchConditionCg{
+	background-color: #eee;
+}
+a{
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -52,21 +58,35 @@
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
 		action="<c:url value='/portfolio/portfolioList.do'/>">
-		<input type="hidden" name="currentPage" value=""> <input
-			type="hidden" name="searchKeyword" value="${param.searchKeyword}">
-		<input type="hidden" name="searchCondition"
-			value="${param.searchCondition}">
+		<input type="hidden" name="currentPage" value=""> 
+		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
+		<input type="hidden" name="searchCondition" value="${param.searchCondition}">
 	</form>
 
 
 	<div id="portfolioListSideBar">
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a>카테고리</a></li>
-			<li role="presentation"><a
-				href='<c:url value="/portfolio/portfolioList.do?searchCondition=''&searchKeyword=''"/>'>전체보기</a></li>
-			<c:forEach var="vo" items="${list }">
+			<c:if test="${empty param.searchCondition}">
+				<li role="presentation" class="searchConditionCg"><a
+					href='<c:url value="/portfolio/portfolioList.do?searchCondition=''&searchKeyword=''"/>'>전체보기</a></li>
+			</c:if>
+			<c:if test="${!empty param.searchCondition}">
 				<li role="presentation"><a
-					href='<c:url value="/portfolio/portfolioList.do?searchCondition=${vo.cgNo }"/>'>${vo.cgName}</a></li>
+					href='<c:url value="/portfolio/portfolioList.do?searchCondition=''&searchKeyword=''"/>'>전체보기</a></li>
+			</c:if>
+			<c:forEach var="vo" items="${list }">
+				<c:if test="${param.searchCondition==vo.cgNo }">
+					<li role="presentation" class="searchConditionCg">
+						<a href='<c:url value="/portfolio/portfolioList.do?searchCondition=${vo.cgNo }"/>'>${vo.cgName}</a>
+					</li>
+				</c:if>
+				<c:if test="${param.searchCondition!=vo.cgNo }">
+					<li role="presentation">
+						<a href='<c:url value="/portfolio/portfolioList.do?searchCondition=${vo.cgNo }"/>'>${vo.cgName}</a>
+					</li>
+				</c:if>
+					
 			</c:forEach>
 		</ul>
 	</div>
@@ -98,9 +118,9 @@
 	</div>
 
 	<c:forEach var="map" items="${vList}">
-		<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">
+		<a href="<c:url value='/portfolio/pofolReadCount.do?pfNo=${map["PFNO"]}'/>">
 			<div id="portList">
-				<img alt="" src="<c:url value='/images/${map["FILENAME"]}'/>">
+				<img alt="" src="<c:url value='/portfolio_images/${map["FILENAME"]}'/>">
 				<div id="listInfo">
 					<div id="portName">
 						<c:if test='${fn:length(map["PFTITLE"])>22}'>	

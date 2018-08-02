@@ -49,7 +49,7 @@
 							</c:if>
 							<li><a href="<c:url value='/request/list.do'/>">견적목록</a></li>
 						</ul></li>
-					<li><a class="menuLink" href="#">PORTPOLIO</a>
+					<li><a class="menuLink" href="<c:url value='/portfolio/portfolioList.do'/>">PORTPOLIO</a>
 						<ul>
 							<li><a href="<c:url value='/portfolio/portfolioList.do'/>">포트폴리오 목록</a></li>
 							<c:if test="${sessionScope.userCode==2}">
@@ -82,12 +82,12 @@
 							<li><a href="<c:url value='/mypage/memberEdit.do'/>">내 정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.userCode==1}">	
-							<li><a href="#">나의 견적현황 조회</a></li>
+							<li><a href="#">나의 견적현황</a></li>
 							<li><a href="#">나의 거래이력</a></li>
 							<li><a href="#">내 마일리지</a></li>
 						</c:if>
 						<c:if test="${sessionScope.userCode==2}">
-							<li><a href="#">나의 포트폴리오</a></li>
+							<li><a href="<c:url value='/mypage/myPofol.do'/>">나의 포트폴리오</a></li>
 							<li><a href="#">나의 거래이력</a></li>
 							<li><a href="#">EMAIL문의</a></li>
 							<li><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>
