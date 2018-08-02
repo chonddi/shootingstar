@@ -185,7 +185,11 @@
 		where pno=#{pNo}
 	</select>
 
-	
+	<update id="updateMileage" parameterType="MemberVO">
+      update member
+      set mileage=#{mileage}
+      where memberid=#{memberId}
+   	</update> 
 	
 	
 </mapper>
