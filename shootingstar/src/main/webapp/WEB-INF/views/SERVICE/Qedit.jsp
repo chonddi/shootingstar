@@ -88,11 +88,11 @@ $(document).ready(function(){
 	</div>
 	<div class="firstDiv">
 		<!-- 제목 -->
-	    <input type="text" id="qTitle" name="qTitle" class="text" placeholder="제목을 입력하세요"/>
+	    <input type="text" id="qTitle" name="qTitle" class="text" value="${vo.qTitle}" placeholder="제목을 입력하세요"/>
 	</div>
 	<div class="secondDiv">
 		<!-- 내용 -->        
-		<textarea id="qContent" name="qContent" class="text" placeholder="내용을 입력하세요"></textarea>
+		<textarea id="qContent" name="qContent" class="text" placeholder="내용을 입력하세요">${vo.qContent}</textarea>
 	<span id="textleng"></span>
 	</div>
 	<div class="center">
@@ -103,10 +103,9 @@ $(document).ready(function(){
 	
 <!-- 임시 memberid -->
 <input type="hidden" id="memberid" name="memberid" value="abc@naver.com"/>
-<!-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> -->
-<!-- 세션 유저 코드 값 -->
-<%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
 <input type="hidden" id="userCode" value="1">
+<!-- <input type="hidden" id="userid" value="${sessionScope.userid}"> -->
+<%-- <input type="hidden" id="userCode" value="${sessionScope.userCode}"> --%>
 
 </form>       
 </body>

@@ -48,11 +48,7 @@
 <form name="frmPage" method="post" action="<c:url value='/SERVICE/Qlist.do'/>">
 <input type="hidden" name="currentPage" >	
 </form>
-<!-- 디테일 처리를 위한 form -->
-<form name="detail" method="post" action="<c:url value='/SERVICE/Qdetail.do'/>">
-	<input type="hidden" name="qNo">
-	<input type="hidden" name="memberid" value="">
-</form><br>
+<br>
 
 <div class="divList">
 <table class="box2" summary="Q&A에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
