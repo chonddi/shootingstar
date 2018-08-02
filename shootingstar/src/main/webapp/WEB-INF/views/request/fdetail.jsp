@@ -155,11 +155,11 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 			
 			 
 		<div id="pS7"> 
-			 <form name="frm1" id="frm8" method="post"  action="<c:url value='/request/detail3.do'/>"> 
+			 <form name="frm1" id="frm7" method="post"  action="<c:url value='/request/detail3.do'/>"> 
 			 
 			 
 			 	
-			 <img src="../images/smile.png"/>거래가 완료된 글 입니다.
+			 거래가 완료된 글 입니다.
 			
 			
 
