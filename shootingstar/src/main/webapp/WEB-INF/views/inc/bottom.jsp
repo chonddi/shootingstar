@@ -27,7 +27,7 @@
 		<p>
 			서울시 강남구 역삼동 123-4 SS타워 3층 101호&nbsp;&nbsp;&nbsp; 사업자등록번호:123-45-67890<br>
 			TEL : <span>1234-5678</span>&nbsp;&nbsp;fax :
-			02-1234-5678&nbsp;&nbsp;대표이사 : 누구야?
+			02-1234-5678&nbsp;&nbsp;대표이사 : 동길홍
 		</p>
 		<p>&nbsp;&nbsp;Copyright &copy; 2018 SHOOTING STAR. All Rights
 			Reserved.</p>

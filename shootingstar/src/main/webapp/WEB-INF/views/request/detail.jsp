@@ -160,9 +160,9 @@ function payBtn(RQNo, pickNo){
 			 </c:forEach>
 		  </tbody>
 		 </table>
-		  
+		   
 		  </div>
-
+		<button class="oky1" style="text-align:center;" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
 </div>
 
 </body>
