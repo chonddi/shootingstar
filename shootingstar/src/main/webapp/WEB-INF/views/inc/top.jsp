@@ -46,21 +46,17 @@
 						<ul>
 							<c:if test="${sessionScope.userCode==1}">
 								<li><a href="<c:url value='/request/write.do'/>">견적작성</a></li>
+								<li><a href="<c:url value='/request/list.do'/>">견적목록</a></li>
 							</c:if>
-							<li><a href="<c:url value='/request/list.do'/>">견적목록</a></li>
 						</ul></li>
 					<li><a class="menuLink" href="<c:url value='/portfolio/portfolioList.do'/>">PORTPOLIO</a>
 						<ul>
-							<li><a href="<c:url value='/portfolio/portfolioList.do'/>">포트폴리오 목록</a></li>
 							<c:if test="${sessionScope.userCode==2}">
+								<li><a href="<c:url value='/portfolio/portfolioList.do'/>">포트폴리오 목록</a></li>
 								<li><a href="<c:url value='/portfolio/portfolioWrite.do'/>">포트폴리오 등록</a></li>
 							</c:if>
 						</ul></li>
-					<li><a class="menuLink" href="#">ABOUT</a>
-						<ul>
-							<li><a href="#">회사소개</a></li>
-							<li><a href="#">인사말</a></li>
-						</ul></li>
+					<li><a class="menuLink" href="#">ABOUT</a></li>
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
 							<li><a href="#">이용방법</a></li>

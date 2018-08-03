@@ -14,14 +14,7 @@
 <link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="<c:url value='/css/bootstrap-rating.css'/>" rel="stylesheet">
-
-
-<style>
-#map_canvas {
-	width: 740px;
-	height: 400px;
-}
-</style>
+<link href="<c:url value='/css/portfolioDetail.css'/>" rel="stylesheet">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -47,248 +40,58 @@
 			e.preventDefault();
 			document.getElementById("avgStar1").scrollIntoView();
 		});
+		
 	});
+	function openImg(pfImgNo){
+		$('#pictureDiv div').removeClass("active");
+		$("."+pfImgNo).addClass("active");
+		
+	}
 </script>
 
 <style type="text/css">
-#detailArticle {
-	width: 1235px;
-	height: auto;
-}
-
-#detailTitle {
-	width: 1903px;
+#map_canvas {
+	width: 740px;
 	height: 400px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
 }
 
-#pfTitle {
-	color: white;
-	font-size: 45px;
+/* 모달 시작 */
+.modal-dialog.modal-80size {
+  width: 80%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
 }
 
-#pfTitle2 {
-	color: white;
-	font-size: 20px;
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 80%;
+}
+.modal.modal-center {
+  text-align: center;
 }
 
-#topCategory {
-	font-size: 0.8em;
-	color: #dedede;
+@media screen and (min-width: 768px) { 
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 50%;
+  }
 }
 
-#titleSentence {
-	padding-left: 330px;
-	padding-top: 250px;
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle; 
 }
-
-#pfTitle2 {
-	margin-top: 10px;
-	font-weight: bold;
-}
-
-.nav {
-	margin-left: 330px;
-}
-
-.nav-pills {
-	font-weight: bold;
-}
-
-#imgContainer {
-	width: 1903px;
-	height: auto;
-	background-color: rgba(50, 50, 50, 1);
-	padding: 30px 0 30px 0;
-}
-
-#mygallery {
-	margin: 0 auto;
-	width: 1245px;
-}
-
-#detailArticleBottom {
-	margin-top: 20px;
-	width: 1245px;
-	height: auto;
-	margin-left: 340px;
-}
-
-#detailArticle2 {
-	width: 900px;
-	height: auto;
-	float: left;
-	margin-bottom: 10px;
-	padding: 30px;
-	color: #515457;
-	font-weight: bold;
-}
-
-#da2Name {
-	line-height: 50px;
-	font-size: 1.4em;
-}
-
-#pr {
-	font-size: 0.9em;
-	line-height: 1.3;
-}
-
-#detailArticleSide {
-	width: 335px;
-	height: 100px;
-	float: right;
-	background-color: #f6f6f6;
-	margin-bottom: 10px;
-}
-
-#comment {
-	width: 900px;
-	height: auto;
-	clear: both;
-	border-bottom: 1px solid #e8e8e8;
-	border-top: 1px solid #e8e8e8;
-}
-
-#comment1 {
-	line-height: 60px;
-	margin-left: 35px;
-	font-weight: bold;
-}
-
-.btn-lg {
-	background-color: #337ab7;
-	color: white;
-	width: 335px;
-	margin-left: 10px;
-	border: 0;
-}
-
-.btn-lg:hover {
-	border: 0;
-}
-
-#das {
-	padding: 25px;
-	line-height: 30px;
-}
-
-#likeBox {
-	margin-top: 10px;
-	width: 335px;
-	height: 100px;
-	float: right;
-	text-align: center;
-	font-size: 1.2em;
-}
-
-#likeBox>span {
-	line-height: 40px;
-}
-
-#star {
-	margin-bottom: 25px;
-}
-
-#starTable td {
-	padding-left: 20px;
-	vertical-align: middle;
-	font-size: 0.9em;
-	font-weight: bold;
-}
-
-#starTable td:first-child {
-	border-right: 1px solid #e8e8e8;
-}
-
-#avgStar {
-	font-size: 3.0em;
-}
-
-#avgStar1 {
-	margin-bottom: 5px;
-}
-
-.symbol {
-	display: inline-block;
-	border-radius: 50%;
-	border: 5px double white;
-	width: 30px;
-	height: 30px;
-}
-
-.symbol-empty {
-	background-color: #ccc;
-}
-
-.symbol-filled {
-	background-color: black;
-}
-
-.custom-heart {
-	font-size: 2.5em;
-	color: red;
-}
-
-.label-default {
-	background-color: white;
-}
-
-.glyphicon-star:before {
-	content: "\e006";
-	color: #337ab7;
-}
-
-.glyphicon-star-empty:before {
-	content: "\e007";
-	color: #337ab7;
-}
-
-.comment2 {
-	border-bottom: 1px solid #e8e8e8;
-	clear: both;
-	height: 150px;
-}
-
-.comment2>img {
-	margin: 20px 10px 20px 10px;
-	float: left;
-}
-
-.memberCommentDiv {
-	padding-top: 25px;
-	margin-left: 30px;
-	line-height: 50px;
-}
-
-.memberComment {
-	font-size: 0.9em;
-	font-weight: bold;
-}
-
-.memberInfo {
-	font-size: 0.8em;
-	font-weight: bold;
-}
-
-.memberInfo1 {
-	font-size: 0.9em;
-	color: #a1a1a1;
-}
-
-#dasCg {
-	font-size: 1.4em;
-	font-weight: bold;
-}
-
-#dasExpert {
-	font-size: 0.8em;
-}
+/* 모달 끝 */
 
 #googleMap {
 	float: right;
+}
+#mygallery a{
+	cursor: pointer;
 }
 </style>
 
@@ -317,8 +120,8 @@
 		<div id="imgContainer">
 			<div id="mygallery">
 				<c:forEach var="map" items="${list }">
-					<a href="#"> <img alt=''
-						src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>" /></a>
+					<a href="#" data-toggle="modal" data-target="#myModal" onclick="openImg('ab${map['PFIMGNO']}')"> 
+						<img alt=''	src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>"/></a>
 					<!-- other images... -->
 				</c:forEach>
 			</div>
@@ -456,6 +259,65 @@
 			});
 		});
 	</script>
+	
+
+	<!--      모달예정                          -->
+	<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="myModal" class="modal modal-center fade" role="dialog">
+  <div class="modal-dialog modal-80size modal-center">
+
+    <!-- Modal content-->
+    <div class="modal-content modal-80size">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" style="margin-top: -8px;">&times;</button>
+      </div>
+      <div class="modal-body">
+   			<!-- 슬라이드 -->
+			<div class="container">
+		  <div id="myCarousel" class="carousel">
+		    <!-- Indicators -->
+		    <!-- <ol class="carousel-indicators">
+		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		      <li data-target="#myCarousel" data-slide-to="1"></li>
+		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		    </ol> -->
+		
+		    <!-- Wrapper for slides -->
+		    <div id="pictureDiv" class="carousel-inner">
+		      <!-- <div class="item active">
+		        <img src="la.jpg" alt="Los Angeles" style="width:100%;">
+		        <div class="carousel-caption">
+		        </div>
+		      </div>
+		       -->
+			<c:forEach items="${list }" var="map"> 
+			  <div class="item ab${map['PFIMGNO']}">
+		        <img src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>" style="width:100%;">
+		        <div class="carousel-caption">
+		        </div>
+		      </div>
+			</c:forEach>
+		  
+		    </div>
+		
+		    <!-- Left and right controls -->
+		    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		      <span class="glyphicon glyphicon-chevron-left"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		      <span class="glyphicon glyphicon-chevron-right"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		  </div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+	
 
 </body>
 <%@ include file="../inc/bottom.jsp"%>

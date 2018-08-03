@@ -169,4 +169,8 @@ public class PortfolioController {
 		
 	}
 
+	@RequestMapping("/pofolImg.do")
+	public void pofolImg( ) {
+		
+	}
 }

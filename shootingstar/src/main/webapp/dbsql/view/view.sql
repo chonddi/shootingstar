@@ -21,7 +21,7 @@ on s.SMEMBERID = p.SMEMBERID;
 
 -- PFDETAIL ?�트?�리?�리?�트�??�트?�리?�테?�블�??�트?�리?�이미�??�이블�? ?�문가?�이블과 카테고리?�이블을 ?�침
 CREATE OR REPLACE VIEW PFDETAIL AS
- select  p.pfno, p.pftitle, s.SNAME, s.pr , c.cgname,  i.filename	
+ select  p.pfno, p.pftitle, s.SNAME, s.pr , c.cgname,  i.filename, i.pfimgno	
 from portfolio p inner join pofolimg i
 on p.PFNO = i.PFNO
 inner join category c
