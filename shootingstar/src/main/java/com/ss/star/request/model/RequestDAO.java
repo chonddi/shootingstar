@@ -32,6 +32,7 @@ public interface RequestDAO {
 	public int getPLevel (int no);
 	public int getPLevel2 (int no);
 	public int updateMileage(MemberVO vo);
+	public PickAllVO selPvo (int no);
 
 
 

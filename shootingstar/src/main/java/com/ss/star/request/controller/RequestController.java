@@ -344,6 +344,24 @@ public class RequestController {
 		logger.info("request 글 번호, 파라미터 no={}", no);
 		logger.info("전문가 최종 입력 정보를 담은 VO, 파라미터 pvo={}", pvo);
 		
+		//현재 세션 아이디, 유저코드 받아오기
+		String userid = (String) session.getAttribute("userid");
+		String usercode = (String) session.getAttribute("userCode");
+		
+		//pick번호 구하기
+		int pno = requestService.getPickNo(no);
+		logger.info("금액이 수정될 pick의 번호, pno={}", pno);
+				
+		//고객회원이 detail3.do 요청하는 경우 pvo에 새로운 정보를 담아 보낸다
+		PickAllVO pvo2 = new PickAllVO();
+		
+		if(usercode.equals("1")) {
+			pvo2 = requestService.selPvo(pno);
+		
+		logger.info("고객회원으로 detail3.do 이동시 setting된 pvo, pvo={}", pvo2);
+		model.addAttribute("pvo", pvo2);
+		}
+		
 		RequestVO vo = requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
 		
@@ -353,60 +371,52 @@ public class RequestController {
 		List<PickAllVO> pList = requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
 		
+		//현재 request글 작성자 아이디를 담은 vo구하기
 		String vname = vo.getMemberId();
 		
 		MemberVO mvo = memberService.selectID(vname);
 		logger.info("파라미터mvo, mvo={}", mvo);
 		
-		
-		 
-		 
 		model.addAttribute("mvo",mvo);
 		model.addAttribute("no", no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("pList",pList);
 		
-		
 		//금액을 구한다
 		int rprice = pvo.getsPrice();
-		logger.info("전문가회원의  최종입력 가격, price={}", rprice);
 		
-		//pick번호 구하기
-		int pno = requestService.getPickNo(no);
-		logger.info("금액이 수정될 pick의 번호, pno={}", pno);
+		if(usercode.equals("1")) {
+				rprice = pvo2.getsPrice();
+		}
+		logger.info("전문가회원의  최종입력 가격, price={}", rprice);	
 		
 		//가격 갱신에 사용될 파라미터(금액, 픽번호) map에 넣기
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("price", rprice);
 		map.put("no", pno);
-		
-		System.out.println( map.get("price") );   
-		System.out.println( map.get("no") );   
 
-		
-		//결제가격 갱신
-		int result = requestService.updatePrice(map);
-		if(result>=1) {
-			logger.info("최종입력 처리결과 1이상이면 성공, result={}", result);
+		if(rprice!=0) {
+			//결제가격 갱신
+			int result = requestService.updatePrice(map);
+			if(result>=1) {
+				logger.info("최종입력 처리결과 1이상이면 성공, result={}", result);
+			}
 		}
+		
 		int pl=requestService.getPLevel2(no);
 		logger.info("pl2 갯수가 0이면 pLevel1에서 2로 증가실시, pl={}", pl);
+		
 		
 		//pLevel 2 이상 pick이 없고, 픽번호를 받은 경우 pLevel을  1 증가
 		if(pno!=0&&pl==0) {
 			int cnt= requestService.updatePlevel(pno);
-			
 			}
 		
-		//현재 세션 아이디, 유저코드 받아오기
-		String userid = (String) session.getAttribute("userid");
-		String usercode = (String) session.getAttribute("userCode");
-
 		if(usercode.equals("2")) {
 			return "request/sdetail4";
 		}
-		
+			
 		return "request/detail3";
 
 	}
@@ -569,13 +579,15 @@ public class RequestController {
 		logger.info("본인이 pick한 request 글 번호, 파라미터 no={}", no);
 		
 		String memberid = (String) session.getAttribute("userid");
-		logger.info("sdetail4 현재 session 아이디, userid={}", memberid);
+		logger.info("sdetail4 현재 session 아이디, memberid={}", memberid);
 		
 		
 		int pno = requestService.getPickNo(no);
 		String pmem = requestService.getPkMem(pno);
-		logger.info("선택받은 pick에 해당하는 id, pno={}", pno);
+		logger.info("선택받은 pick에 해당하는 id, pmem={}", pmem);
 		
+	
+				
 		RequestVO vo = requestService.selectByNo(no);
 		logger.info("상세보기 결과, vo={}", vo);
 
@@ -591,7 +603,7 @@ public class RequestController {
 		model.addAttribute("list", list);
 	
 		//pick된 전문가회원이 아닌 경우 거래완료화면으로 보낸다
-		if(memberid!=pmem) {
+		if(!memberid.equals(pmem)) {
 			return "request/fdetail";
 		}
 		

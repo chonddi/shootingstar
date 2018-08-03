@@ -105,6 +105,13 @@ body{
 	font-size:30px;
 	color:#c9ccc7;
 }
+.title6{
+	font-family: 'Do Hyeon', sans-serif;
+	 color: #033E5B;
+ 	 text-align: left;
+ 	 font-size:55px;
+ 	 padding-bottom:20px;
+}
 .mint{
 	color:#69A7C2;
 }
@@ -361,6 +368,19 @@ figure.snip1384.hover i {
 	margin-bottom:15px;
 	
 }
+#pS8{
+	float:left;
+	font-family: 'Do Hyeon', sans-serif;
+	width:1235px;
+	height:200px;
+	color:black;
+	margin:0 auto;
+	text-align:center;
+	padding-left:30px;
+	padding-right:100px;
+	margin-bottom:15px;
+	
+}
 
 #frm1{
 	width:1235px;
@@ -372,7 +392,15 @@ figure.snip1384.hover i {
 	border: 1px solid #F06659;
 	padding-left:20px;
 	padding-right:20px;
+	
 	height:350px;
+}
+#frm6{
+	border: 1px solid #F06659;
+	margin-bottom:100px;
+	padding-left:20px;
+	padding-right:20px;
+	height:500px;
 }
 #frm7{
 	border: 1px solid #F06659;
@@ -493,6 +521,10 @@ figure.snip1384.hover i {
 	font-size:22px;
 	color:#345f93;
 }
+.pdt2{
+	font-size:45px;
+	color:#345f93;
+}
 .pP1{
 	font-size:25px;
 	text-align:right; 
@@ -516,4 +548,12 @@ figure.snip1384.hover i {
 	height:200px;
 	margin-left:60px;
 	margin-top:40px;
+}
+.payDiv{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:22px;
+	text-align:center;
+	padding-top:30px;
+	padding-left:30px;
+	padding-right:30px;
 }

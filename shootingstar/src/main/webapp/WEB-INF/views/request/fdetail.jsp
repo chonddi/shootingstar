@@ -126,7 +126,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 					${vo.memberId}님의 Request 입니다.</div>
 	 			<div class="pS">   
 		 			<div class="title3"> <span class="mint">등록일</span> : <fmt:formatDate value="${vo.regDate}" pattern="yyyy년 MM월 dd일" />  
-						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> :  <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> : &#8361; <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
 						</div><br>
 					
 					   <span class="mint">촬영을 원하시는 지역</span>&nbsp;&nbsp;   ${vo.RQRegion}<br><br>
@@ -154,12 +154,12 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 					 
 			
 			 
-		<div id="pS7"> 
-			 <form name="frm1" id="frm7" method="post"  action="<c:url value='/request/detail3.do'/>"> 
+		<div id="pS8"> 
+			 <form name="frm1" class="title6" method="post"  action="<c:url value='/request/detail3.do'/>"> 
 			 
 			 
 			 	
-			 거래가 완료된 글 입니다.
+			<div style="text-align:center;"><img src="../images/smile.png"/ style="vertical-align:middle; margin-right:25px;">거래가 완료된 글 입니다.</div> 
 			
 			
 

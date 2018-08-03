@@ -84,7 +84,7 @@ function setComma(inNum){
 		            <span id="cg1">선택하신 카테고리는  <span id="cg2">${cg1}</span> 입니다.</span> <br><br>
 		            				<span id="cg3">원하시는 가격을 입력하세요.</span><br><br><br>
 		            <input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            style="text-align:right;" class="price" name="price" autocomplete=off required />
+		            style="text-align:right;" class="price" name="price" autocomplete=off required maxlength="9" />
 		            &nbsp;<span id="cg4">원</span>
 		            <input type="hidden" id="cg1" name="cg1" value="${cg1 }"> 
 		       

@@ -95,7 +95,7 @@ function setComma(inNum){
 					${vo.memberId}님의 Request 입니다.</div>
 	 			<div class="pS">   
 		 			<div class="title3"> <span class="mint">등록일</span> : <fmt:formatDate value="${vo.regDate}" pattern="yyyy년 MM월 dd일" />  
-						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> :  <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> : &#8361; <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
 						</div><br>
 					
 					   <span class="mint">촬영을 원하시는 지역</span>&nbsp;&nbsp;   ${vo.RQRegion}<br><br>
@@ -139,7 +139,7 @@ function setComma(inNum){
 			 		
 			 	  <div style="width:1000px;padding-top:20px;padding-left:130px; ">		
 			 	  <div class="pP1">${sessionScope.userid}님이 제시하신 금액:
-			 			</div><div class="pP2">	<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
+			 			</div><div class="pP2">	&#8361;<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
 			 		
 			 			 </div>
 			 	</div>

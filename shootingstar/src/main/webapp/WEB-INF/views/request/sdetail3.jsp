@@ -132,7 +132,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 					${vo.memberId}님의 Request 입니다.</div>
 	 			<div class="pS">   
 		 			<div class="title3"> <span class="mint">등록일</span> : <fmt:formatDate value="${vo.regDate}" pattern="yyyy년 MM월 dd일" />  
-						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> :  <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> : &#8361; <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
 						</div><br>
 					
 					   <span class="mint">촬영을 원하시는 지역</span>&nbsp;&nbsp;   ${vo.RQRegion}<br><br>
@@ -185,7 +185,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 			 		
 			 	  <div style="width:1000px;padding-top:20px;padding-left:130px; ">		
 			 	  <div class="pP1">${sessionScope.userid}님이 제시하신 금액:
-			 			</div><div class="pP2">	<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
+			 			</div><div class="pP2">&#8361;	<fmt:formatNumber value="${pvo.sPrice}" pattern="#,###" />원
 			 		
 			 			 </div>	 	
 			 		</div>
@@ -201,7 +201,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 						 	마지막 단계인 결제단계로 넘어가시려면<br>
 						 	상호협의하신 최종가격을 입력하시고 버튼을 클릭하세요.<br><br>
 						 	<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required />
+		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required maxlength="9" />
 		            		&nbsp; <span id="cg5">원</span>  <br><br>
 		            		
 		            		<input type="hidden" name="sName" value="${pvo.sName}" />

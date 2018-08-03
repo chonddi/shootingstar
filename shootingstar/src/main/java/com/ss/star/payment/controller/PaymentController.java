@@ -35,9 +35,9 @@ public class PaymentController {
 		logger.info("port_payment 화면 파라미터 no={}", no);
 		logger.info("port_payment 화면 파라미터 mileageVo={}", mileageVo);
 
-		// 임시 세션아이디
+/*		// 임시 세션아이디
 		session.setAttribute("userid", "abc@naver.com");
-		session.setAttribute("userCode", "1");
+		session.setAttribute("userCode", "1");*/
 
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");

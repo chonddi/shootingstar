@@ -147,4 +147,9 @@ public class RequestDAOMybatis implements RequestDAO {
 		return cnt;
 	}
 
+	@Override
+	public PickAllVO selPvo(int no) {
+		return sqlSession.selectOne(namespace + "selPvo", no);
+	}
+
 }

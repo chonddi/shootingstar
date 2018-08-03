@@ -134,7 +134,7 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 					${vo.memberId}님의 Request 입니다.</div>
 	 			<div class="pS">   
 		 			<div class="title3"> <span class="mint">등록일</span> : <fmt:formatDate value="${vo.regDate}" pattern="yyyy년 MM월 dd일" />  
-						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> :  <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="mint">요청금액</span> : &#8361; <fmt:formatNumber value="${vo.RQPrice}" pattern="#,###" />원
 						</div><br>
 					
 					   <span class="mint">촬영을 원하시는 지역</span>&nbsp;&nbsp;   ${vo.RQRegion}<br><br>
@@ -164,10 +164,10 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 			 <form name="frm1" id="frm5" method="post"  action="<c:url value='/request/addpick.do'/>"> 
 			 
 			 <br><br><div class="title2">PICK하기</div><div class="title5">${vo.memberId}님과 매칭하길 원하는 금액을 입력해주세요.</div><br>
-			 <div>(매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다.) </div><br><br>
+			 <!-- <div>(매칭금액 미입력시 request의 요청 금액과 동일하게 입력됩니다.) </div> --><br><br>
 			 				
 			 		<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            style="text-align:right;" class="price1" name="price" autocomplete=off />
+		            style="text-align:right;" class="price1" name="price" autocomplete=off  required maxlength="9" />
 		            &nbsp; <span id="cg5">원</span>  <br><br>
 		            
 		            <input type="hidden" name="rqno" value="${vo.RQNo}"/>

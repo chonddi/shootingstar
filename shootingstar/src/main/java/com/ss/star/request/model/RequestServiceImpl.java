@@ -143,4 +143,9 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.updateMileage(vo);
 	}
 
+	@Override
+	public PickAllVO selPvo(int no) {
+		return requestDao.selPvo(no);
+	}
+
 }
