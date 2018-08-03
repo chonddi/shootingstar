@@ -87,7 +87,7 @@ public class PortfolioController {
 	}
 
 	@RequestMapping(value = "/portfolioWrite.do", method = RequestMethod.POST)
-	public String portfolioWrite_post(HttpSession session,@ModelAttribute PortfolioVO portfolioVo, MultipartHttpServletRequest request)
+	public String portfolioWrite_post(HttpSession session,@ModelAttribute PortfolioVO portfolioVo, MultipartHttpServletRequest request, Model model)
 			throws IOException {
 		logger.info("포트폴리오 등록 처리, 파라미터 vo={}",portfolioVo);
 		String smemberId = (String) session.getAttribute("userid");
@@ -107,9 +107,16 @@ public class PortfolioController {
 		int cnt=pfService.insertPf(portfolioVo, fileList);
 		logger.info("포트폴리오 insert 결과 cnt: {}", cnt);
 		
-		PortfolioVO vo = pfService.selectBySmemberId(smemberId);
-		int pfNo = vo.getPfNo();
-		return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
+		if(cnt>0) {
+			PortfolioVO vo = pfService.selectBySmemberId(smemberId);
+			int pfNo = vo.getPfNo();
+			return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
+		}else {
+			model.addAttribute("msg", "등록을 실패했습니다.");
+			model.addAttribute("url", "redirect:/portfolio/portfolioWrite.do");
+			
+			return "common/message";
+		}
 	}
 	
 	@RequestMapping("/pofolReadCount.do")

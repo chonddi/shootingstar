@@ -123,15 +123,17 @@
 	margin-bottom: 10px;
 	padding: 30px;
 	color: #515457;
+	font-weight: bold;
 }
 
 #da2Name {
 	line-height: 50px;
-	font-size: 1.2em;
+	font-size: 1.4em;
 }
 
 #pr {
 	font-size: 0.9em;
+	line-height: 1.3;
 }
 
 #detailArticleSide {

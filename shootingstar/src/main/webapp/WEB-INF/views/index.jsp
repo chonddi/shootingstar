@@ -92,7 +92,7 @@ by category
 	      <h4>인물/프로필</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=1'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/food.jpg" alt="sample21" />
@@ -102,7 +102,7 @@ by category
 	      <h4>음식</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=2'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/fashion.jpg" alt="sample51" />
@@ -112,15 +112,17 @@ by category
 	      <h4>패션</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
-	</figure><figure class="snip1445"><img src="images/wedding.jpg" alt="sample51" />
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=3'/>"></a>
+	</figure>
+	
+	<figure class="snip1445"><img src="images/wedding.jpg" alt="sample51" />
 	  <figcaption>
 	    <div>
 	      <h2>Wedding</h2>
 	      <h4>웨딩</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=4'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/party.jpg" alt="sample51" />
@@ -130,7 +132,7 @@ by category
 	      <h4>행사/컨퍼런스</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=5'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/interior.jpg" alt="sample51" />
@@ -140,7 +142,7 @@ by category
 	      <h4>건축/인테리어</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=6'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/concert.jpg" alt="sample51" />
@@ -150,7 +152,7 @@ by category
 	      <h4>공연</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=7'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/advertisment.jpg" alt="sample51" />
@@ -160,7 +162,7 @@ by category
 	      <h4>광고</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=8'/>"></a>
 	</figure>
 	
 	<figure class="snip1445"><img src="images/snap.jpg" alt="sample51" />
@@ -170,7 +172,7 @@ by category
 	      <h4>스냅사진</h4>
 	    </div>
 	  </figcaption>
-	  <a href="#"></a>
+	  <a href="<c:url value='/portfolio/portfolioList.do?searchCondition=9'/>"></a>
 	</figure>
 	
 </div>

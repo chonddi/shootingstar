@@ -42,9 +42,9 @@
 	</div>
 	<div class="selectedPage">
 		<div class="partDiv">
-			<div><a href="#" onclick="payment('1m')"></a></div>
-			<div><a href="#" onclick="payment('3m')"></a></div>
-			<div><a href="#" onclick="payment('6m')"></a></div>
+			<div><a href="#" onclick="payment('1m')">1개월(이미지)</a></div>
+			<div><a href="#" onclick="payment('3m')">3개월(이미지)</a></div>
+			<div><a href="#" onclick="payment('6m')">6개월(이미지)</a></div>
 		</div>
 	</div>
 </div>

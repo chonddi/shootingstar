@@ -66,7 +66,13 @@
 	</select>
 	
 	<select id="selectBySmemberId" parameterType="String" resultType="portfolioVO">
-		select * from portfolio where smemberid = #{smemberId} and rownum=1 order by pfno desc
+		select pfno 
+		from( select pfno
+		    from portfolio 
+		    where smemberid = #{sMemberId} 
+		    order by pfno desc
+		    )
+		where rownum=1
 	</select>
 	
 	<select id="selectAdd" parameterType="int" resultType="String">

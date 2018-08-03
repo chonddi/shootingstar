@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="mypageTop.jsp"%>
 <link href="<c:url value='/css/portfolioList.css'/>" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
 <style type="text/css">
 #portSearch:after{
 	clear:both;
@@ -20,6 +21,17 @@
     font-size: 13px;
     font-weight: bold;
 }
+.divPage{
+	margin-top:30px;
+}
+a:hover{
+	cursor: pointer;
+}
+.mypageBtn{
+	width: 150px;
+    height: 40px;
+    font-size: 0.9em;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -28,6 +40,10 @@
 			$('input[name=searchCondition]').val(cgNo);
 			$('input[name=searchKeyword]').val('');
 			$('form[name=frmSearch]').submit();
+		});
+		
+		$('#pofolWrite').click(function(){
+			location.href="<c:url value='/portfolio/portfolioWrite.do'/>"
 		});
 	});
 </script>
@@ -104,6 +120,8 @@
 					</div>
 				</a>
 			</c:forEach>
+			<div style="text-align: right"><input type="button" id="pofolWrite" class="mypageBtn" value="포트폴리오 등록하기"></div>
+			
 			<div class="divPage">
 				<!-- 페이지 번호 추가 -->
 				<!-- 이전 블럭으로 이동 -->

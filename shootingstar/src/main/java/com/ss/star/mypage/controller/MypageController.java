@@ -307,11 +307,11 @@ public class MypageController {
 		//[1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_MYPOFOL);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
 		//[2] SearchVO 에 값 셋팅
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_MYPOFOL);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("setting 후 searchVo={}", searchVo);
 		
