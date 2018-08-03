@@ -31,8 +31,8 @@
 			}else if($("#userCode").val() == 2){
 				alert("고객 회원만 이용가능한 서비스입니다.");
 				return false;
-			}elst if(confirm("삭제하시겠습니까?")){
-				location.href="<c:url value='/SERVICE/Qdelete.do?qNo=${param.qNo}&memberid={param.memberid}'/>";
+			}else if(confirm("삭제하시겠습니까?")){
+				location.href="<c:url value='/SERVICE/Qdelete.do?qNo=${param.qNo}&memberid=${param.memberid}'/>";
 			}
 		});
 		
@@ -47,7 +47,7 @@
 </script>
 </head>
 <body>
-<input type="hidden" id="userid" value="${sessionScope.userid}">
+<%-- <input type="hidden" id="userid" value="${sessionScope.userid}"> --%>
 <br>
 <% pageContext.setAttribute("newLine", "\r\n"); %>
 <c:set var="qContent" value="${fn:replace(vo.qContent, newLine, '<br>') }" />
@@ -70,8 +70,6 @@
 	<div class="center">
 		<a href="#" id="edit">수정</a>
 		<a href="#" id="delete">삭제</a>
-		<%-- <a href='<c:url value="/SERVICE/Qedit.do?qNo=${param.qNo}&memberid=${param.memberid}"/>'>수정</a> --%>
-       	<%-- <a href='<c:url value="/SERIVCE/Qdelete.do?qNo=${param.qNo}&memberid=${param.memberid}"/>'>삭제</a> --%>
        	<a href='<c:url value="/SERVICE/Qlist.do"/>'>목록</a>
 	</div>
 	<br><br>

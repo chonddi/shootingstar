@@ -21,38 +21,57 @@
 		$("#btn2").click(function(){
 			history.back();
 		});
+		
+		$("#apply").click(function(){
+			var str = $("input[name=price]").val();
+			var price = str.trim(",");
+			var mileage = $("#mileage").text();
+			
+			if(mileage > price){
+				str = mileage;
+			}
+		});
+		
 	});
 	
 	function payOpen(){
 		x = (screen.availWidth - 840) / 2;
 		y = (screen.availHeight - 605) / 2;
-		window.open("<c:url value='/payment/port_payment.do?no=${param.no}'/>","결제창","left=" + x + ", top=" + y + ", width=840, height=600, location=yes, resizable=no");
+		var gsWin = window.open("about:blank","payviewer","left=" + x + ", top=" + y + ", width=840, height=600, location=yes, resizable=no");
+		var frm = document.frm2;
+		frm.action = "<c:url value='/payment/port_payment.do?no=${param.no}'/>";
+		frm.target ="payviewer";
+		frm.method ="post";
+		frm.submit();
 	}
 	
-	//[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
-	//[0-9] => \d , [^0-9] => \D
-	var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
-	var rgx2 = /(\d+)(\d{3})/; 
+	   //[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
+	   //[0-9] => \d , [^0-9] => \D
+	   var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+	   var rgx2 = /(\d+)(\d{3})/; 
 
-	function getNumber(obj){
-		
-	  var num01;
-	  var num02;
-	  num01 = obj.value;
-	  num02 = num01.replace(rgx1,"");
-	  num01 = setComma(num02);
-	  obj.value =  num01;
+	   function getNumber(obj){
+	      
+	       var num01;
+	       var num02;
+	       num01 = obj.value;
+	       num02 = num01.replace(rgx1,"");
+	       num01 = setComma(num02);
+	       obj.value =  num01;
 
-	}
-
-	function setComma(inNum){
-	  
-	  var outNum;
-	  outNum = inNum; 
-	  while (rgx2.test(outNum)) {
-	       outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
 	   }
-	}
+
+	   function setComma(inNum){
+	       
+	       var outNum;
+	       outNum = inNum; 
+	       while (rgx2.test(outNum)) {
+	            outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+	        }
+	       return outNum;
+
+	   }
+
 </script>
 </head>
 <body>
@@ -110,8 +129,9 @@
 						<button class="oky1" id="btn1">예</button>&nbsp;<input type="button" class="oky1" id="btn2" value="아니오">
 						
 						<div style="margin:40px 0;">
-						<p>사용가능한 마일리지 : <span>${mvo.mileage}</span></p>
+						<p>사용가능한 마일리지 : <span id="mileage">${mvo.mileage}</span>&nbsp;<button id="all">전액사용</button></p>
 						<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);" style="text-align:right;" class="price2" name="price" autocomplete=off required />
+						<button id="apply">적용</button>
 						</div>
 					
 					

@@ -13,6 +13,7 @@ public interface QService {
 	public QVO selectByNo(int qNo);
 	public int updateQ(QVO QVo);
 	public int deleteQ(int qNo);
+	public int deleteQR(int qNo);
 	
 	//Q&A 댓글
 	public int insertQR(QRVO QRVo);

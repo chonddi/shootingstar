@@ -99,4 +99,10 @@ public class QDAOMybatis implements QDAO {
 		return cnt;
 	}
 
+	@Override
+	public int deleteQR(int qNo) {
+		int cnt = sqlSession.delete(namespace + "deleteQR", qNo);
+		return cnt;
+	}
+
 }

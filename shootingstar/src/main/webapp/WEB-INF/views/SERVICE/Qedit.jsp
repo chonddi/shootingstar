@@ -20,9 +20,10 @@ $(document).ready(function(){
 			alert("내용을 입력하세요.");
 			$('#qContent').focus();
 			return false;
-		}else if(confirm("등록하시겠습니까?")){
-			$('form[name=frmWrite]').submit();
+		}else if(confirm("수정하시겠습니까?")){
+			$('form[name=frmEdit]').submit();
 			setTimeout(function() {opener.parent.location.reload()}, 10);
+			alert("수정 완료!");
 			setTimeout(function() {self.close()}, 10);
 		}else if($("#userid").val() == ""){
 			alert("로그아웃 되었습니다.");
@@ -82,7 +83,8 @@ $(document).ready(function(){
 
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-<form name="frmWrite" method="post" action="<c:url value='/SERVICE/Qedit.do'/>">
+<form name="frmEdit" method="post" action="<c:url value='/SERVICE/Qedit.do'/>">
+<input type="hidden" id="qNo" name="qNo" value="${vo.qNo}"/>
 	<div class="h1">
 		<h1>Q&A 수정하기</h1>
 	</div>

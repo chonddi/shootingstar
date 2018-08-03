@@ -11,17 +11,23 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#regit").click(function(){			
-			if($('#qTitle').val().length < 1){
+		$("#regit").click(function(){
+			var str = $("#qTitle").val();
+			var str2 = $("#qContent").val();
+			var qTitle = str.trim();
+			var qContent = str2.trim();
+			
+			if(qTitle.length < 1){
 				alert("제목을 입력하세요.");
 				$('#qTitle').focus();
 				return false;
-			}else if($('#qContent').val() == ""){
+			}else if(qContent == ""){
 				alert("내용을 입력하세요.");
 				$('#qContent').focus();
 				return false;
 			}else if(confirm("등록하시겠습니까?")){
 				$('form[name=frmWrite]').submit();
+				alert("등록 완료");
 				setTimeout(function() {opener.parent.location.reload()}, 10);
 				setTimeout(function() {self.close()}, 10);
 			}else if($("#userid").val() == ""){

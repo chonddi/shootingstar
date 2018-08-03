@@ -80,10 +80,17 @@ public class QController {
 	}
 
 	@RequestMapping("/Qdetail.do")
-	public String detail(@RequestParam(defaultValue="0") int qNo, @RequestParam String memberid, Model model, HttpSession Session) {
+	public String detail(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model,
+			HttpSession Session) {
 		logger.info("상세보기, 파라미터 qNo={}, memberid={}", qNo, memberid);
 
-		if(Session.getAttribute("userid") != memberid) {
+		// 임시 id 지정
+		Session.setAttribute("userid", "abc@naver.com");
+		Session.setAttribute("userCode", "1");
+
+		String userid = (String) Session.getAttribute("userid");
+
+		if (!(userid.equals(memberid))) {
 			model.addAttribute("msg", "비공개 글입니다.");
 			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";
@@ -100,13 +107,19 @@ public class QController {
 
 		return "SERVICE/Qdetail";
 	}
-	
-	
-	@RequestMapping(value = "/Qedit.do", method = RequestMethod.GET)
-	public String edit_get(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model, HttpSession Session) {
-		logger.info("수정화면 파라미터 qNo={}", qNo);
 
-		if(Session.getAttribute("userid") != memberid) {
+	@RequestMapping(value = "/Qedit.do", method = RequestMethod.GET)
+	public String edit_get(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model,
+			HttpSession Session) {
+		logger.info("수정화면 파라미터 qNo={}, memberid={}", qNo, memberid);
+
+		// 임시 id 지정
+		Session.setAttribute("userid", "abc@naver.com");
+		Session.setAttribute("userCode", "1");
+
+		String userid = (String) Session.getAttribute("userid");
+
+		if (!(userid.equals(memberid))) {
 			model.addAttribute("msg", "비공개 글입니다.");
 			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";
@@ -123,7 +136,7 @@ public class QController {
 
 		return "SERVICE/Qedit";
 	}
-	
+
 	@RequestMapping(value = "/Qedit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute QVO QVo, Model model) {
 		logger.info("글수정 처리, 파라미터 QVo={}", QVo);
@@ -144,52 +157,46 @@ public class QController {
 
 		return "common/message";
 	}
-	
-/*	@RequestMapping(value="/delete.do", method=RequestMethod.GET)
-	public String delete(@RequestParam(defaultValue="0") int no,
-			Model model) {
-		logger.info("글삭제 화면, 파라미터 no={}", no);
-		
-		if(no==0) {
-			model.addAttribute("msg","잘못된 URL 입니다.");
-			model.addAttribute("url","/reBoard/list.do");
+
+	@RequestMapping("/Qdelete.do")
+	public String delete(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model, HttpSession Session) {
+		logger.info("글삭제 화면, 파라미터 no={}, memberid={}", qNo, memberid);
+
+		// 임시 id 지정
+		Session.setAttribute("userid", "abc@naver.com");
+		Session.setAttribute("userCode", "1");
+
+		String userid = (String) Session.getAttribute("userid");
+
+		if (!(userid.equals(memberid))) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "/SERVICE/Qlist.do");
+			return "common/message";
+		} else if (qNo == 0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/SERVICE/Qlist.do");
 			return "common/message";
 		}
-		
-		return "reBoard/delete";
-	}
-	
-	@RequestMapping(value="/delete.do", method=RequestMethod.POST)
-	public String delete_post(@ModelAttribute ReBoardVO reBoardVo, 
-			HttpServletRequest request, Model model) {
-		logger.info("글삭제 처리, 파라미터 vo={}", reBoardVo);
-		
-		String msg="", url="/reBoard/delete.do?no="+reBoardVo.getNo()
-			+"&fileName="+reBoardVo.getFileName();
-		if(reBoardService.checkPwd(reBoardVo.getNo(), reBoardVo.getPwd())) {
-			Map<String, String> map = new HashMap<>();
-			map.put("no", reBoardVo.getNo()+"");
-			
-			reBoardService.deleteReBoard(map);			
-			msg="글 삭제 성공";
-			url="/reBoard/list.do";	
-			
-			//파일이 첨부된 경우에는 파일도 삭제처리
-			if(reBoardVo.getFileName()!=null && !reBoardVo.getFileName().isEmpty()) {
-				File file 
-	= new File(fileUploadUtil.getUploadPath(request,fileUploadUtil.PATH_FLAG_PDS), reBoardVo.getFileName());
-				if(file.exists()) {
-					boolean bool =file.delete();
-					logger.info("파일 삭제 여부 : {}", bool);
-				}
+
+		int cnt2 = qService.deleteQR(qNo);
+		int cnt = qService.deleteQ(qNo);
+		logger.info("글 삭제 처리 결과 cnt2={}", cnt2);
+		logger.info("글 삭제 처리 결과 cnt={}", cnt);
+
+		String msg = "", url = "/SERVICE/Qlist.do";
+		if (cnt > 0) {
+			msg = "글 삭제 성공";
+			if(cnt2 > 0) {
+				msg = "글 삭제 성공";
 			}
-		}else {
-			msg="비밀번호가 일치하지 않습니다.";
+		} else {
+			msg = "글 삭제 실패";
 		}
-		
+
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
+
 		return "common/message";
 	}
-*/
+
 }

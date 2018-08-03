@@ -92,5 +92,9 @@
     	from qnare
     	where levels=1 order by qrno
     </select>
+    
+   <delete id="deleteQR" parameterType="int">
+   		delete from qnare where qno=#{qNo}
+   </delete>
 
 </mapper>
