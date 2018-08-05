@@ -113,7 +113,7 @@ public class PortfolioController {
 			return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
 		}else {
 			model.addAttribute("msg", "등록을 실패했습니다.");
-			model.addAttribute("url", "redirect:/portfolio/portfolioWrite.do");
+			model.addAttribute("url", "/portfolio/portfolioWrite.do");
 			
 			return "common/message";
 		}

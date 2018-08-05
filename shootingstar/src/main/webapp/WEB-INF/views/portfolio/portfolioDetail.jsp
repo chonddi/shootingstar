@@ -41,6 +41,8 @@
 			document.getElementById("avgStar1").scrollIntoView();
 		});
 		
+		//회전목마 자동넘기기 방지
+		$(".carousel").carousel({ interval:false });
 	});
 	function openImg(pfImgNo){
 		$('#pictureDiv div').removeClass("active");
@@ -275,7 +277,7 @@
       </div>
       <div class="modal-body">
    			<!-- 슬라이드 -->
-			<div class="container">
+			<div class="container" style="width:100%;">
 		  <div id="myCarousel" class="carousel">
 		    <!-- Indicators -->
 		    <!-- <ol class="carousel-indicators">
