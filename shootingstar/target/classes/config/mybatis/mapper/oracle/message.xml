@@ -109,6 +109,23 @@
 			#{rMsgNo}
 		</foreach>
 	</delete>
+	
+	<delete id="deleteMultiAdmin" parameterType="map">
+		delete from receivemsg 
+		where rMsgNo in 
+		<foreach item="rMsgNo" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{sMsgNo}
+		</foreach>		
+	</delete>
+	<delete id="rDeleteMultiAdmin" parameterType="map">
+		delete from sendmsg 
+		where sMsgNo in 
+		<foreach item="sMsgNo" collection="nos" open="(" close=")" separator=","
+			index="index">
+			#{sMsgNo}
+		</foreach>		
+	</delete>
 </mapper>
 
 

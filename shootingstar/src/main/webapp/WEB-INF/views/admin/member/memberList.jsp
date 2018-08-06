@@ -53,3 +53,4 @@ th, td{ padding:10px;
 </div>	
 </body>
 </html>
+<%@ include file="../../inc/adminBottom.jsp"%>

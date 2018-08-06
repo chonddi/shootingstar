@@ -51,7 +51,7 @@ public class MessageController {
 		
 		String userCode = (String) session.getAttribute("userCode");
 		String userId = (String) session.getAttribute("userid");
-		
+
 		logger.info("보낸 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
 
@@ -85,7 +85,7 @@ public class MessageController {
 		
 		String userCode = (String) session.getAttribute("userCode");
 		String userId = (String) session.getAttribute("userid");
-		
+
 		logger.info("받은 쪽지목록, userId:{}, userCode:{}",userId, userCode);
 
 
@@ -119,6 +119,12 @@ public class MessageController {
 			result = sMemberService.selectCountSMemberId(receiver);
 		}else if("2".equals(userCode)) {
 			result = memberService.selectCountMemberId(receiver);
+		}//0806ysh
+		else if("3".equals(userCode)) {
+			result=memberService.selectCountMemberId(receiver);
+			if(result==0) {
+				result = sMemberService.selectCountSMemberId(receiver);
+			}
 		}
 		logger.info("쪽지 키다운 userCode: {}, result: {}", userCode, result);
 		return result;
@@ -130,6 +136,10 @@ public class MessageController {
 		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
 
 		String userId=(String) session.getAttribute("userid");
+		//0806ysh
+				if(userId==null) {
+					userId = (String) session.getAttribute("adminId");
+				}
 		logger.info("userid: {}", userId);
 		
 		sendMsgVo.setSender(userId);
@@ -158,6 +168,10 @@ public class MessageController {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("보낸쪽지 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
+		//0806ysh
+		if(userid==null) {
+			userid = (String) session.getAttribute("adminId");
+		}
 		logger.info("userid: {}",userid);
 		
 		if(sMsgNo==0) {
@@ -190,6 +204,10 @@ public class MessageController {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("받은쪽지 안읽은 상태 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
+		//0806ysh
+		if(userid==null) {
+			userid = (String) session.getAttribute("adminId");
+		}
 		logger.info("userid: {}",userid);
 		
 		
@@ -227,6 +245,10 @@ public class MessageController {
 		String userCode = (String)session.getAttribute("userCode");
 		logger.info("받은쪽지 안읽은 상태 디테일 입력된 값 sMsgNo: {}, userCode: {}", sMsgNo, userCode);
 		String userid = (String) session.getAttribute("userid");
+		//0806ysh
+		if(userid==null) {
+			userid = (String) session.getAttribute("adminId");
+		}
 		logger.info("userid: {}",userid);
 		
 		if(sMsgNo==0) {
@@ -256,7 +278,7 @@ public class MessageController {
 	@RequestMapping("/deleteMulti.do")
 	public String deleteMulti(@RequestParam String[] chk, Model model) {
 		logger.info("여러 글 삭제 chk.length: {}", chk.length);
-		
+
 		if(chk!=null) {
 			int i=0;
 			for(String no : chk) {
@@ -266,10 +288,14 @@ public class MessageController {
 		
 		Map<String, String[]> map = new HashMap<>();
 		map.put("nos", chk);
-		int cnt=sendMsgService.deleteMulti(map);
+		int cnt=0;
+		String msg="", url="";
+		
+			cnt=sendMsgService.deleteMulti(map);
+			url="/mypage/message/message.do";
+		
 		logger.info("여러 글 삭제 결과, cnt={}", cnt);
 		
-		String msg="", url="/mypage/message/message.do";
 		if(cnt>0) {
 			msg="삭제되었습니다.";
 		}else {

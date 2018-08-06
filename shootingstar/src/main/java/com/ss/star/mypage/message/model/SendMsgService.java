@@ -25,4 +25,6 @@ public interface SendMsgService {
 	public int updateRead(int sMsgNo);
 	public int deleteMulti(Map<String, String[]> map);
 	public int rDeleteMulti(Map<String, String[]> map);
+	public int deleteMultiAdmin(Map<String, String[]> map);
+	public int rDeleteMultiAdmin(Map<String, String[]> map);
 }

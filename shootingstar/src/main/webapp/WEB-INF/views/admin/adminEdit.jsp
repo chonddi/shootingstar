@@ -56,7 +56,7 @@ color:gray;
     <br>
     <div>
         <label for="newPwd">수정 비밀번호</label>
-        <input type="Password" name="newPwd" id="newPwd"><span> 8~15자리</span>
+        <input type="Password" name="newPwd" id="newPwd" placeholder="8~15자리">
     </div>
     <div>
         <label for="newPwd2">수정 비밀번호 확인 </label>

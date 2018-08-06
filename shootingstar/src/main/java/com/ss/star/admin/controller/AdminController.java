@@ -1,6 +1,7 @@
 package com.ss.star.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ss.star.admin.model.ManagerService;
 import com.ss.star.admin.model.ManagerVO;
-import com.ss.star.member.model.MemberVO;
+
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-@Autowired ManagerService managerService;
+@Autowired private ManagerService managerService;
+
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@RequestMapping("/adminMain.do")
@@ -112,6 +114,5 @@ public class AdminController {
 			return"common/message";
 		 	
 	 }
-	 
 
 }

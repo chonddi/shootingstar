@@ -57,7 +57,7 @@
 		select rownum, sMemberId, sName, membership, authority, outdate
 		from smember 
 		where membership>sysdate
-		order by regdate desc
+		order by membership
 	</select>
 	<update id="updateSMember" parameterType="SMemberVo">
 		update smember set sName=#{sName},sTel=#{sTel}, pr=#{pr}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2},
@@ -85,7 +85,7 @@
 		select rownum, sMemberId, sName, membership, outdate
 		from smember 
 		where sysdate>=membership
-		order by regdate desc
+		order by outdate desc
 	</select>
 </mapper>
 

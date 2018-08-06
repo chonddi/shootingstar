@@ -92,7 +92,7 @@ nav ul {
 					</li>	
 					<li id="adminCtg"  class="dropdown"><a class="menuLink" href="#" class="multi">게시물관리<span class="caret"></span></a>
 						<ul class="dropdown-menu pull-right" style=width:300px>
-							<li><a href="<c:url value='/admin/board/requestList.do'/>">견적 요청 글 관리</a></li>
+							<li><a href="<c:url value='/admin/request/list.do'/>">견적 요청 글 관리</a></li>
 							<li><a href="<c:url value='#'/>">포트폴리오 글 관리</a></li>
 						</ul> 
 					</li>
@@ -112,7 +112,7 @@ nav ul {
 						</ul>
 					</li>
 					<li id="adminCtg"><a class="menuLink" href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A 관리</a></li>
-					<li id="adminCtg"><a class="menuLink" href="#" >쪽지함</a></li>
+					<li id="adminCtg"><a class="menuLink" href="<c:url value='/admin/message/message.do'/>" >쪽지함</a></li>
 				</ul>
 
 			</nav>

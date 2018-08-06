@@ -93,6 +93,10 @@ public class SendMsgServiceImpl implements SendMsgService{
 		String sender =(String)map.get("sender");
 		String code = (String)map.get("code");
 		String userid =(String)session.getAttribute("userid");
+		//0806ysh
+				if(userid==null) {
+					userid = (String) session.getAttribute("adminId");
+				}
 		String userCode= (String)session.getAttribute("userCode");
 		System.out.println("sender: "+sender+", code: "+code+", userid: "+userid+", userCode: "+userCode);
 		int result = 0;
@@ -112,6 +116,10 @@ public class SendMsgServiceImpl implements SendMsgService{
 		String recipient =(String)map.get("recipient");
 		String code = (String)map.get("code");
 		String userid =(String)session.getAttribute("userid");
+		//0806ysh
+				if(userid==null) {
+					userid = (String) session.getAttribute("adminId");
+				}
 		String userCode= (String)session.getAttribute("userCode");
 		System.out.println("recipient: "+recipient+", code: "+code+", userid: "+userid+", userCode: "+userCode);
 		int result = 0;
@@ -139,6 +147,16 @@ public class SendMsgServiceImpl implements SendMsgService{
 	@Override
 	public int rDeleteMulti(Map<String, String[]> map) {
 		return sendMsgDao.rDeleteMulti(map);
+	}
+
+	@Override
+	public int deleteMultiAdmin(Map<String, String[]> map) {
+		return sendMsgDao.deleteMultiAdmin(map);
+	}
+
+	@Override
+	public int rDeleteMultiAdmin(Map<String, String[]> map) {
+		return sendMsgDao.rDeleteMultiAdmin(map); 
 	}
 
 
