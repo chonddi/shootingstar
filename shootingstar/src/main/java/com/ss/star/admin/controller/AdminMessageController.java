@@ -113,7 +113,8 @@ public class AdminMessageController {
 			Map<String, String[]> map = new HashMap<>();
 			map.put("nos", chk);
 			int cnt=0;
-		
+			cnt=sendMsgService.rDeleteMultiAdmin(map); 
+			//receive 의 child 삭제 이후 send의 parent 삭제할것
 			cnt=sendMsgService.deleteMultiAdmin(map);
 
 			logger.info("여러 글 삭제 결과, cnt={}", cnt);

@@ -3,6 +3,20 @@
 
 <mapper namespace="com.sql.message">
 
+<!-- <resultMap type="map" id="selectMap" >
+
+		<id column="sMsgNo" jdbcType="BIGINT" property="sMsgNo"/>
+		<result column="rMsgNo" jdbcType="BIGINT" property="rMsgNo"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		<result column="regdate" jdbcType="TIMESTAMP" property="regdate"/>	
+		<result column="recipient" jdbcType="VARCHAR" property="recipient"/>
+		<result column="sender" jdbcType="VARCHAR" property="sender"/>
+		<result column="code" jdbcType="VARCHAR" property="code"/>
+
+</resultMap> -->
+
+
 	<sql id="messageViewCol">
 		sMsgNo, sender, title, content, sDelFlag, regdate, code, rMsgNo, recipient, rDelFlag, readFlag
 	</sql>
@@ -85,7 +99,7 @@
 	</select>
 	
 	<select id="selectDetail" parameterType="int" resultType="map">
-		select sMsgNo, rMsgNo, title, content, regdate, recipient, sender, code from message where sMsgno=#{sMsgNo}	
+		select sMsgNo, rMsgNo, title, dbms_lob.substr(content, 2000, 1) as content, regdate, recipient, sender, code from message where sMsgno=#{sMsgNo}	
 	</select>
 	
 	<update id="updateRead" parameterType="int">
@@ -106,19 +120,19 @@
 		where rMsgNo in 
 		<foreach item="rMsgNo" collection="nos" open="(" close=")" separator=","
 			index="index">
-			#{rMsgNo}
+			#{sMsgNo}
 		</foreach>
 	</delete>
 	
-	<delete id="deleteMultiAdmin" parameterType="map">
+	<delete id="rDeleteMultiAdmin" parameterType="map">
 		delete from receivemsg 
 		where rMsgNo in 
-		<foreach item="rMsgNo" collection="nos" open="(" close=")" separator=","
+		<foreach item="sMsgNo" collection="nos" open="(" close=")" separator=","
 			index="index">
 			#{sMsgNo}
 		</foreach>		
 	</delete>
-	<delete id="rDeleteMultiAdmin" parameterType="map">
+	<delete id="deleteMultiAdmin" parameterType="map">
 		delete from sendmsg 
 		where sMsgNo in 
 		<foreach item="sMsgNo" collection="nos" open="(" close=")" separator=","

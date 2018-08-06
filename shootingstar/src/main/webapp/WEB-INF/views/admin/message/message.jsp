@@ -50,7 +50,7 @@
 		쪽지함
 	</div>
 	<form id="detailFrm" name="detailFrm">
-		<input type="text" name="sMsgNo">
+		<input type="hidden" name="sMsgNo">
 	</form>
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post"
@@ -66,8 +66,8 @@
 			<colgroup>
 				<col style="width:31px" />
 				<col style="width:211px">
-				<col style="width:665px;">
-				<col style="width:*">
+				<col style="width:665px">
+				<col style="width:150px">
 			</colgroup>
 			<tr>
 			 	<th scope="col"><input type="checkbox" name="chkAll" 

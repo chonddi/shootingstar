@@ -72,8 +72,8 @@
 			<colgroup>
 				<col style="width:31px" />
 				<col style="width:211px">
-				<col style="width:665px;">
-				<col style="width:*">
+				<col style="width:665px">
+				<col style="width:150px">
 			</colgroup>
 			<tr>
 				<th scope="col"><input type="checkbox" name="chkAll" 
