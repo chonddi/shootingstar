@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Gugi&subset=korean');
@@ -556,4 +556,26 @@ figure.snip1384.hover i {
 	padding-top:30px;
 	padding-left:30px;
 	padding-right:30px;
+}
+#itlt{
+	font-family:'Gugi', cursive;
+	color:#033e5b;
+	font-size:45px;
+	clear:both;
+}
+#icnt{
+	width:650px;
+	float:left;
+	font-family:'Nanum Gothic', sans-serif;
+	font-weight:700;
+	font-size:17px;
+
+}
+#icnt1{
+	width800px;
+	font-family:'Nanum Gothic', sans-serif;
+	font-weight:700;
+	font-size:17px;
+	line-height:1.5em;
+	margin-top:30px;
 }

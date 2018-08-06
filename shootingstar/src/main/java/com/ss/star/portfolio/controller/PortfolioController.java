@@ -113,7 +113,7 @@ public class PortfolioController {
 			return "redirect:/portfolio/portfolioDetail.do?pfNo="+pfNo;
 		}else {
 			model.addAttribute("msg", "등록을 실패했습니다.");
-			model.addAttribute("url", "/portfolio/portfolioWrite.do");
+			model.addAttribute("url", "redirect:/portfolio/portfolioWrite.do");
 			
 			return "common/message";
 		}
@@ -162,15 +162,11 @@ public class PortfolioController {
 		int reviewSize = list2.size();
 		model.addAttribute("reviewSize",reviewSize);
 		
-		/*String address = pfService.selectAdd(pfNo);
-		model.addAttribute("address",address);*/
+		String address = pfService.selectAdd(pfNo);
+		model.addAttribute("address",address);
 		
 		return "portfolio/portfolioDetail";
 		
 	}
 
-	@RequestMapping("/pofolImg.do")
-	public void pofolImg( ) {
-		
-	}
 }

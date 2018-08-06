@@ -12,32 +12,36 @@ public class EtcController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EtcController.class);
 	
+
 	
-	@RequestMapping(value = "/greetings.do")
-	public String greetings() {
-		
-		return "etc/greetings";
-	}
 	
-	@RequestMapping(value = "/information.do")
+	@RequestMapping(value="/information.do", method = RequestMethod.GET)
 	public String information() {
 		
 		return "etc/information";
 	}
 	
-	@RequestMapping(value = "/intro.do")
+	
+	
+	@RequestMapping(value="/intro.do", method = RequestMethod.GET)
 	public String intro() {
 		
 		return "etc/intro";
 	}
 	
-	@RequestMapping(value = "/policy.do")
+	
+	
+	
+	@RequestMapping(value="/policy.do", method = RequestMethod.GET)
 	public String policy() {
 		
 		return "etc/policy";
 	}
 	
-	@RequestMapping(value = "/privatei.do")
+	
+	
+	
+	@RequestMapping(value="/privatei.do", method = RequestMethod.GET)
 	public String privatei() {
 		
 		return "etc/privatei";

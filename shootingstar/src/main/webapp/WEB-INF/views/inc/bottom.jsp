@@ -25,7 +25,7 @@
 				src="<c:url value='/images/logoBottom.png'/>" width="210" /></a>
 		</div>
 		<p>
-			서울시 강남구 역삼동 123-4 SS타워 3층 101호&nbsp;&nbsp;&nbsp; 사업자등록번호:123-45-67890<br>
+			서울특별시 강남구 봉은사로2길 5(역삼동) SS타워 3층 101호&nbsp;&nbsp;&nbsp; 사업자등록번호:123-45-67890<br>
 			TEL : <span>1234-5678</span>&nbsp;&nbsp;fax :
 			02-1234-5678&nbsp;&nbsp;대표이사 : 동길홍
 		</p>
