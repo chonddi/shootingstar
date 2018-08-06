@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div style="width:1230px; height:350px;margin-bottom:50px;">
+<div style="width:1230px; height:550px;margin-bottom:50px;">
 	<div style="width:1230px; height:100px;float:left;margin-bottom:35px;">
 		<div id="itlt" style="margin-bottom:25px;">회사소개</div>
 		<div style="font-family:'Nanum Gothic', sans-serif;font-weight:800;font-size:22px;margin-bottom:20px;">
@@ -37,7 +37,7 @@
 
 
 <div id="itlt">핵심가치</div><br>
-<div style="width:1230px; height:600px;float:left;">
+<div style="width:1230px; height:700px;float:left;">
 
 	<div id="icnt1" style="text-align:center;">
 	<img src='../images/acs.png' style="width:80px; height:80px;vertical-align:middle;"> 
