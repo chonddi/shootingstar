@@ -14,7 +14,8 @@ public class PayfinishVO {
 	private String name; /* 고객 이름 */
 	private String tel; /* 고객 전화번호 */
 	private String pMethod; /* 결제 방법 */
-	private double mileage; /* 마일리지 */
+	private double mileage; /* 잔여 마일리지 */
+	private int useMile; /* 사용한 마일리지 */
 
 	public int getRQNo() {
 		return RQNo;
@@ -120,12 +121,20 @@ public class PayfinishVO {
 		this.mileage = mileage;
 	}
 
+	public int getUseMile() {
+		return useMile;
+	}
+
+	public void setUseMile(int useMile) {
+		this.useMile = useMile;
+	}
+
 	@Override
 	public String toString() {
 		return "PayfinishVO [RQNo=" + RQNo + ", CGNo=" + CGNo + ", rqRegion=" + rqRegion + ", rqDetail=" + rqDetail
 				+ ", memberId=" + memberId + ", pickNo=" + pickNo + ", sMemberid=" + sMemberid + ", sPrice=" + sPrice
 				+ ", sName=" + sName + ", name=" + name + ", tel=" + tel + ", pMethod=" + pMethod + ", mileage="
-				+ mileage + "]";
+				+ mileage + ", useMile=" + useMile + "]";
 	}
 
 }

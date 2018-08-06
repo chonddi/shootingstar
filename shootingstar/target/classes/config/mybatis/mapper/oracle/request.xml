@@ -179,8 +179,8 @@
 	
 	
 	<insert id="insertPayment" parameterType="PayfinishVO">
-		insert into rqpayment(pno, memberid, pmethod, pprice, mileage, pickno)
-		values(rqpayment_seq.nextval, #{memberId}, #{pMethod}, #{sPrice}, #{mileage}, #{pickNo})
+		insert into rqpayment(pno, memberid, pmethod, pprice, mileage, pickno, usemile)
+		values(rqpayment_seq.nextval, #{memberId}, #{pMethod}, #{sPrice}, #{mileage}, #{pickNo}, #{useMile})
 	</insert>
 	
 	

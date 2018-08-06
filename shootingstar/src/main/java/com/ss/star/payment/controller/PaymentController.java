@@ -35,9 +35,9 @@ public class PaymentController {
 		logger.info("port_payment 화면 파라미터 no={}", no);
 		logger.info("port_payment 화면 파라미터 mileageVo={}", mileageVo);
 
-/*		// 임시 세션아이디
+		// 임시 세션아이디
 		session.setAttribute("userid", "abc@naver.com");
-		session.setAttribute("userCode", "1");*/
+		session.setAttribute("userCode", "1");
 
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
@@ -48,15 +48,17 @@ public class PaymentController {
 			return "common/message";
 		}
 
-		PayfinishVO vo = requestService.selectPayAll(no);
-		logger.info("PayfinishVO 파라미터, vo={}", vo);
+		PayfinishVO payfinishVo = requestService.selectPayAll(no);
+		logger.info("PayfinishVO 파라미터, payfinishVo={}", payfinishVo);
 
 		// 마일리지 사용한 최종 결제금액 셋팅
-		vo.setsPrice(mileageVo.getPrice());
+		payfinishVo.setsPrice(mileageVo.getPrice());
 		// 남은 마일리지 셋팅
-		vo.setMileage(mileageVo.getMileage());
+		payfinishVo.setMileage(mileageVo.getMileage());
+		// 사용한 마일리지 셋팅
+		payfinishVo.setUseMile(mileageVo.getUseMile());
 
-		model.addAttribute("vo", vo);
+		model.addAttribute("payfinishVo", payfinishVo);
 
 		if (usercode.equals("2")) {
 			model.addAttribute("msg", "고객 회원만 이용가능합니다.");
@@ -94,7 +96,7 @@ public class PaymentController {
 		int mileage = memberVo.getMileage() + mg;	/* 기존의 마일리지에 새 마일리지 적립 */
 		memberVo.setMileage(mileage);	/* memberVo에 다시 셋팅 */
 
-		int cnt = requestService.insertPayment(vo);	/* RQPAYMENT 테이블(거래내역)에 DB 추가 */
+		int cnt = requestService.insertPayment(vo);	/* RQPAYMENT(거래내역) 테이블에 DB 추가 */
 		int cnt2 = requestService.updateMileage(memberVo);	/* 새로 적립된 마일리지 적용 */
 		logger.info("PaymentVO insert 결과 cnt={},", cnt);
 		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);

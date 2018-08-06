@@ -4,6 +4,15 @@ public class MileageVO {
 
 	private int price;
 	private int mileage;
+	private int useMile;
+
+	public int getUseMile() {
+		return useMile;
+	}
+
+	public void setUseMile(int useMile) {
+		this.useMile = useMile;
+	}
 
 	public int getPrice() {
 		return price;
@@ -23,7 +32,7 @@ public class MileageVO {
 
 	@Override
 	public String toString() {
-		return "MileageVO [price=" + price + ", mileage=" + mileage + "]";
+		return "MileageVO [price=" + price + ", mileage=" + mileage + ", useMile=" + useMile + "]";
 	}
 
 }

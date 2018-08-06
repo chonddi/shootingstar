@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제 단계</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
-<%-- <link rel="stylesheet" type="text/css" href="<c:url value='../css/request2.css'/>"> --%>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
 
 <script type="text/javascript">
@@ -22,14 +21,70 @@
 			history.back();
 		});
 		
-		$("#apply").click(function(){
-			var str = $("input[name=price]").val();
-			var price = str.trim(",");
-			var mileage = $("#mileage").text();
-			
-			if(mileage > price){
-				str = mileage;
+		$("input[name=price2]").click(function(){
+			$(this).val("");
+		});
+		
+		$("#apply").click(function(event){
+			if(confirm("적용하시겠습니까?")){
+				var str = $("input[name=price2]").val();
+				var price = str.replace(/,/g, '');
+				
+				if(price > ${mvo.mileage}){
+					$("input[name=price2]").val($("#mileage").text());
+				}else if(str == ""){
+					$("input[name=price2]").val(0);
+				}
+				
+				var str2 = $(".price2").val();
+				var price2 = str.replace(/,/g, '');
+				var FnPrc = ${pvo.sPrice} - price2;
+				var usePrc = "";
+				
+				if(FnPrc < 0){
+					FnPrc = 0;
+				}
+				
+				var outNum = setComma(FnPrc);
+				$(".pdt2").html("&#8361;" + outNum);
+				
+				if(${pvo.sPrice} <= price2){
+					usePrc = ${pvo.sPrice};
+				}else if(${pvo.sPrice} > price2){
+					usePrc = price2;
+				}
+				
+				var FnRemn = ${mvo.mileage} - usePrc;
+
+				$("#usePrc").html(setComma(usePrc));
+				$("#FnRemn").html(FnRemn);
+				
+				$("input[name=price]").val(FnPrc);
+				$("input[name=mileage]").val(FnRemn);
+				$("input[name=useMile]").val(usePrc);
+				
 			}
+			
+			event.preventDefault();
+		});
+		
+		$("#cancel").click(function(){
+			var outNum = setComma(${pvo.sPrice});
+			$(".pdt2").html("&#8361;" + outNum);
+			$(".price2").val(0);
+			$("#usePrc").html(0);
+			$("#FnRemn").html(0);
+			
+			$("input[name=price]").val(${pvo.sPrice});
+			$("input[name=mileage]").val(0);
+			$("input[name=useMile]").val(0);
+			
+			event.preventDefault();
+		});
+		
+		$("#all").click(function(event){
+			$("input[name=price2]").val($("#mileage").text());
+			event.preventDefault();
 		});
 		
 	});
@@ -129,13 +184,18 @@
 						<button class="oky1" id="btn1">예</button>&nbsp;<input type="button" class="oky1" id="btn2" value="아니오">
 						
 						<div style="margin:40px 0;">
-						<p>사용가능한 마일리지 : <span id="mileage">${mvo.mileage}</span>&nbsp;<button id="all">전액사용</button></p>
-						<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);" style="text-align:right;" class="price2" name="price" autocomplete=off required />
+						<p>사용가능한 마일리지 : <span id="mileage"><fmt:formatNumber value="${mvo.mileage}" type="number"/></span>&nbsp;<button id="all">전액사용</button></p><br>
+						<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);" style="text-align:right;" class="price2" name="price2" value="0" autocomplete=off required />
 						<button id="apply">적용</button>
-						</div>
-					
-					
+						<button id="cancel">취소</button>
+						<p class="brp">마일리지 사용 : <span id="usePrc">0</span></p>
+						<p>잔여 마일리지 : <span id="FnRemn">0</span></p>
+						</div>					
 					</div>
+						
+						<input type="hidden" name="price" value="${pvo.sPrice}">
+						<input type="hidden" name="mileage" value="${mvo.mileage}">
+						<input type="hidden" name="useMile" value="0">
 				
 			</form>
 		    		

@@ -9,6 +9,7 @@ public class PaymentVO {
 	private String pMethod; /* 결제방법 */
 	private int pPrice; /* 결제금액 */
 	private int mileage; /* 마일리지사용금액 */
+	private int useMile; /* 잔여마일리지 */
 	private Timestamp regdate; /* 결제일 */
 	private int pickNo; /* 픽번호 */
 
@@ -68,10 +69,18 @@ public class PaymentVO {
 		this.pickNo = pickNo;
 	}
 
+	public int getUseMile() {
+		return useMile;
+	}
+
+	public void setUseMile(int useMile) {
+		this.useMile = useMile;
+	}
+
 	@Override
 	public String toString() {
 		return "PaymentVO [pNo=" + pNo + ", memberId=" + memberId + ", pMethod=" + pMethod + ", pPrice=" + pPrice
-				+ ", mileage=" + mileage + ", regdate=" + regdate + ", pickNo=" + pickNo + "]";
+				+ ", mileage=" + mileage + ", useMile=" + useMile + ", regdate=" + regdate + ", pickNo=" + pickNo + "]";
 	}
 
 }
