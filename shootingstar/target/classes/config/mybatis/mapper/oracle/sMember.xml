@@ -67,4 +67,12 @@
 	<update id="deleteTempPwd" parameterType="String">
 		update smember set temppwd='' where smemberid=#{sMemberId}
 	</update>
+	
+	<update id="autoAuthority">
+		update smember set authority='N' 
+		where authority='Y' and
+		<![CDATA[
+		 membership<sysdate
+		]]>
+	</update>
 </mapper>

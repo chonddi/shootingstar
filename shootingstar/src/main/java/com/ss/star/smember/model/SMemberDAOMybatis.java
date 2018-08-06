@@ -58,4 +58,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int deleteTempPwd(String sMemberId) {
 		return sqlSession.update(namespace+"deleteTempPwd", sMemberId);
 	}
+	@Override
+	public int autoAuthority() {
+		return sqlSession.update(namespace+"autoAuthority");
+	}
 }

@@ -16,4 +16,6 @@ public interface SMemberDAO {
 	public String selectTempPwd(String tempPwd);
 	public int changeNewPwd(SMemberVO sMemberVo);
 	public int deleteTempPwd(String sMemberId);
+	
+	public int autoAuthority();//스케쥴러
 }
