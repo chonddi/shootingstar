@@ -5,8 +5,8 @@
 	<hr>
 	<div id="footerMenu">
 		<ul>
-			<li><a href="#">이용약관</a>
-			<li><a href="#">개인정보취급방침</a>
+			<li><a href="<c:url value='/etc/policy.do'/>">이용약관</a>
+			<li><a href="<c:url value='/etc/privatei.do'/>">개인정보취급방침</a>
 			<li><a href="#">FAQ</a>
 		</ul>
 		<ul>

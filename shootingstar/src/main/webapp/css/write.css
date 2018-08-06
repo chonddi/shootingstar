@@ -1,474 +1,493 @@
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Gugi&subset=korean');
-@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import
+	url('https://fonts.googleapis.com/css?family=Nanum+Gothic&subset=korean');
 
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Sunflower:300,500&subset=korean');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Gugi&subset=korean');
+
+@import
+	url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 
 .hover {
-		max-width:400px; 
-		height:30px; 
-		line-height:20px; 
-		margin:0 auto; 
-		background-color:#f4fbff;  
-		text-align:center; transition:all 0.8s, color 0.3s 0.3s;  
-		color:#504f4f; cursor: pointer;  
-		font-weight:lighter;
-	}
-	.hover:hover{
-		color:#fff;
-	}
-	
-	.effect8:hover{
-		box-shadow:
-			0 80px 0 0  rgba(0,0,0,0.25) inset, 
-			0 -80px 0 0  rgba(0,0,0,0.25) inset;
-	}
+	max-width: 400px;
+	height: 30px;
+	line-height: 20px;
+	margin: 0 auto;
+	background-color: #f4fbff;
+	text-align: center;
+	transition: all 0.8s, color 0.3s 0.3s;
+	color: #504f4f;
+	cursor: pointer;
+	font-weight: lighter;
+}
 
+.hover:hover {
+	color: #fff;
+}
 
-body{
+.effect8:hover {
+	box-shadow: 0 80px 0 0 rgba(0, 0, 0, 0.25) inset, 0 -80px 0 0
+		rgba(0, 0, 0, 0.25) inset;
+}
+
+body {
 	width: 1903px;
-	positon:relative;
-	
+	positon: relative;
 }
 
 .main {
 	width: 1500px;
-	position:relative;
+	position: relative;
 	left: 10%;
 	top: 50%;
- 	
- 	padding-bottom: 10%;
+	padding-bottom: 10%;
+}
 
-
-	}
-	
 .main2 {
 	width: 1400px;
-	position:relative;
+	position: relative;
 	left: 10%;
-	 top: 50%;
- 	
- 	padding-bottom: 10%;
+	top: 50%;
+	padding-bottom: 10%;
+}
 
+.rbody {
+	margin-left: 70px;
+}
 
-	}
-	
-.rbody{
-	margin-left:70px;
-}
-	
-	
-.title{
-	 font-family: 'Do Hyeon', sans-serif;
-	 color: #F06659;
- 	 text-align: center; 
- 	 line-height: 1.1em;
-	 line-height: 1.1em;
-	 font-weight: 500;
-	 font-size:2.7em;
-	 text-transform: uppercase;
-	 margin: 0 auto;
-	 margin-bottom:30px;
-	 
-}
-.title1{
-	 font-family: 'Do Hyeon', sans-serif;
-	 color: #F06659;
- 	 text-align: left; line-height: 1.1em;
-	 line-height: 1.1em;
-	 font-weight: 500;
-	 font-size:2.7em;
-	 text-transform: uppercase;
-	 margin: 0 auto;
-	 padding-left:50px;
-}
-.title2{
+.title {
 	font-family: 'Do Hyeon', sans-serif;
-	 color: #F06659;
- 	 text-align: left;
- 	 font-size:40px;
- 	 padding-bottom:20px;
+	color: #F06659;
+	text-align: center;
+	line-height: 1.1em;
+	line-height: 1.1em;
+	font-weight: 500;
+	font-size: 2.7em;
+	text-transform: uppercase;
+	margin: 0 auto;
+	margin-bottom: 30px;
 }
-.title3{
+
+.title1 {
 	font-family: 'Do Hyeon', sans-serif;
-	font-size:1.0em;
+	color: #F06659;
+	text-align: left;
+	line-height: 1.1em;
+	line-height: 1.1em;
+	font-weight: 500;
+	font-size: 2.7em;
+	text-transform: uppercase;
+	margin: 0 auto;
+	padding-left: 50px;
 }
-.title4{
+
+.title2 {
 	font-family: 'Do Hyeon', sans-serif;
-	font-size:1.5em;
-	color:#345f93;
-	vertical-align:top;
+	color: #F06659;
+	text-align: left;
+	font-size: 40px;
+	padding-bottom: 20px;
 }
-.title5{
+
+.title3 {
 	font-family: 'Do Hyeon', sans-serif;
-	font-size:30px;
-	color:#c9ccc7;
+	font-size: 1.0em;
 }
-.title6{
+
+.title4 {
 	font-family: 'Do Hyeon', sans-serif;
-	 color: #033E5B;
- 	 text-align: left;
- 	 font-size:55px;
- 	 padding-bottom:20px;
+	font-size: 1.5em;
+	color: #345f93;
+	vertical-align: top;
 }
-.mint{
-	color:#69A7C2;
+
+.title5 {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	color: #c9ccc7;
 }
-.frmfrm{
-	width:1500px;
-	float:left;	
+
+.title6 {
+	font-family: 'Do Hyeon', sans-serif;
+	color: #033E5B;
+	text-align: left;
+	font-size: 55px;
+	padding-bottom: 20px;
+}
+
+.mint {
+	color: #69A7C2;
+}
+
+.frmfrm {
+	width: 1500px;
+	float: left;
 }
 
 figure.snip1384 {
-  /* font-family: 'Sunflower', sans-serif; */
-  font-family: 'Gugi', cursive;
-  font-weight:lighter;
-  position: relative;
-  float:left;
-  overflow: hidden;
-  margin: 10px 1%;
-  min-width: 230px;
-  max-width: 315px;
-  width: 100%;
-  color: #ffffff;
-  text-align: center;
-  font-size: 14px;
-  background-color: #000000;
+	/* font-family: 'Sunflower', sans-serif; */
+	font-family: 'Gugi', cursive;
+	font-weight: lighter;
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin: 10px 1%;
+	min-width: 230px;
+	max-width: 315px;
+	width: 100%;
+	color: #ffffff;
+	text-align: center;
+	font-size: 14px;
+	background-color: #000000;
 }
-
 
 figure.snip1384 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.35s ease;
+	transition: all 0.35s ease;
 }
+
 figure.snip1384 img {
-  max-width: 100%;
-  backface-visibility: hidden;
-  vertical-align: top;
+	max-width: 100%;
+	backface-visibility: hidden;
+	vertical-align: top;
 }
-figure.snip1384:after,
-figure.snip1384 figcaption {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
+figure.snip1384:after, figure.snip1384 figcaption {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
+
 figure.snip1384:after {
-  content: '';
-  background-color: rgba(0, 0, 0, 0.65);
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-  opacity: 0;
+	content: '';
+	background-color: rgba(0, 0, 0, 0.65);
+	-webkit-transition: all 0.35s ease;
+	transition: all 0.35s ease;
+	opacity: 0;
 }
+
 figure.snip1384 figcaption {
-  z-index: 1;
-  padding: 20px;
+	z-index: 1;
+	padding: 20px;
 }
-figure.snip1384 h3,
-figure.snip1384 .links {
-  width: 100%;
-  margin: 5px 0;
-  padding: 0;
+
+figure.snip1384 h3, figure.snip1384 .links {
+	width: 100%;
+	margin: 5px 0;
+	padding: 0;
 }
+
 figure.snip1384 h3 {
-  line-height: 1.1em;
-  font-weight: 400;
-  font-size: 1.4em;
-  text-transform: uppercase;
-  opacity: 0; 
+	line-height: 1.1em;
+	font-weight: 400;
+	font-size: 1.4em;
+	text-transform: uppercase;
+	opacity: 0;
 }
+
 figure.snip1384 p {
-  font-size: 1.0em;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 100;
-  line-height:1.4em;
-  color: #ffffff;
-  letter-spacing: 0.7px;
-  opacity: 0;
-  top: 50%;
-  -webkit-transform: translateY(40px);
-  transform: translateY(40px);
+	font-size: 1.0em;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: 100;
+	line-height: 1.4em;
+	color: #ffffff;
+	letter-spacing: 0.7px;
+	opacity: 0;
+	top: 50%;
+	-webkit-transform: translateY(40px);
+	transform: translateY(40px);
 }
+
 figure.snip1384 i {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 20px 25px;
-  font-size: 34px;
-  opacity: 0;
-  -webkit-transform: translateX(-10px);
-  transform: translateX(-10px);
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	padding: 20px 25px;
+	font-size: 34px;
+	opacity: 0;
+	-webkit-transform: translateX(-10px);
+	transform: translateX(-10px);
 }
+
 figure.snip1384 a {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-figure.snip1384:hover img,
-figure.snip1384.hover img {
-  zoom: 1;
-  filter: alpha(opacity=50);
-  -webkit-opacity: 0.5;
-  opacity: 0.5;
-}
-figure.snip1384:hover:after,
-figure.snip1384.hover:after {
-  opacity: 1;
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-}
-figure.snip1384:hover h3,
-figure.snip1384.hover h3,
-figure.snip1384:hover p,
-figure.snip1384.hover p,
-figure.snip1384:hover i,
-figure.snip1384.hover i {
-  -webkit-transform: translate(0px, 0px);
-  transform: translate(0px, 0px);
-  opacity: 1;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
 }
 
-.pDiv{
-	padding-top:10px;
+figure.snip1384:hover img, figure.snip1384.hover img {
+	zoom: 1;
+	filter: alpha(opacity = 50);
+	-webkit-opacity: 0.5;
+	opacity: 0.5;
+}
+
+figure.snip1384:hover:after, figure.snip1384.hover:after {
+	opacity: 1;
+	position: absolute;
+	top: 10px;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+}
+
+figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
+	figure.snip1384.hover p, figure.snip1384:hover i, figure.snip1384.hover i
+	{
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+	opacity: 1;
+}
+
+.pDiv {
+	padding-top: 10px;
 	border: 1px solid blue;
-	
 }
 
-
-.pS{
-	float:left;
-	width:600px;
-	
+.pS {
+	float: left;
+	width: 600px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 1.5em;
-	font-weight:100;
-	color:black;
-	text-align:left;
-	height:200px;
-	margin-bottom:40px;
-	padding-left:70px;
-	
+	font-weight: 100;
+	color: black;
+	text-align: left;
+	height: 200px;
+	margin-bottom: 40px;
+	padding-left: 70px;
 }
-.pS1{
-	float:left;
-	width:550px;
+
+.pS1 {
+	float: left;
+	width: 550px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 1.0em;
-	font-weight:300;
-	color:black;
-	text-align:left;
-	height:200px;
-	padding-left:30px;
-	margin-bottom:40px;
-	
+	font-weight: 300;
+	color: black;
+	text-align: left;
+	height: 200px;
+	padding-left: 30px;
+	margin-bottom: 40px;
 }
-#pS1{
+
+#pS1 {
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 1.0em;
-	float:left;
+	float: left;
 }
-.pS2{
-	float:left;
-	width:600px;
+
+.pS2 {
+	float: left;
+	width: 600px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 1.8em;
-	font-weight:400;
-	color:black;
-	height:300px;
-	padding-left:40px;
-	overflow:auto;
-	
-	
-}
-#pS2{
-	font-family: 'Do Hyeon', sans-serif;
-	font-size: 0.8em;
-	font-weight:200;
-}
-.pS3{
-	float:left;
-	width:550px;
-	font-family: 'Do Hyeon', sans-serif;
-	font-size: 1.5em;
-	font-weight:100;
-	color:black;
-	height:300px;
-	
+	font-weight: 400;
+	color: black;
+	height: 300px;
+	padding-left: 40px;
+	overflow: auto;
 }
 
-#pS3{
+#pS2 {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 0.8em;
+	font-weight: 200;
+}
+
+.pS3 {
+	float: left;
+	width: 550px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 1.5em;
+	font-weight: 100;
+	color: black;
+	height: 300px;
+}
+
+#pS3 {
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 30px;
 	color: #345f93;
 }
 
-#pS4{
-	float:left;
+#pS4 {
+	float: left;
 	font-family: 'Do Hyeon', sans-serif;
-	width:1200px;
-	height:100px;
-	color:black;
-	margin:0 auto;
-	
-	padding-right:100px;
-
-}
-#pS4a{
-	float:left;
-	font-family: 'Do Hyeon', sans-serif;
-	width:1200px;
-	height:130px;
-	color:black;
-	margin:0 auto;
-	text-align:left;
-	padding-top:10px;
-	padding-right:100px;
-	padding-left:40px;
-
-
-}
-#pS5{
-	float:left;
-	font-family: 'Do Hyeon', sans-serif;
-	width:1235px;
-	height:500px;
-	color:black;
-	margin:0 auto;
-	text-align:center;
-	padding-left:30px;
-	padding-right:100px;
-	margin-top:50px;
-	margin-bottom:15px;
-}
-#pS6{
-	text-align:center;
-	padding-right:80px;
-}
-#pS7{
-	float:left;
-	font-family: 'Do Hyeon', sans-serif;
-	width:1235px;
-	height:800px;
-	color:black;
-	margin:0 auto;
-	text-align:center;
-	padding-left:30px;
-	padding-right:100px;
-	margin-top:50px;
-	margin-bottom:15px;
-	
-}
-#pS8{
-	float:left;
-	font-family: 'Do Hyeon', sans-serif;
-	width:1235px;
-	height:200px;
-	color:black;
-	margin:0 auto;
-	text-align:center;
-	padding-left:30px;
-	padding-right:100px;
-	margin-bottom:15px;
-	
+	width: 1200px;
+	height: 100px;
+	color: black;
+	margin: 0 auto;
+	padding-right: 100px;
 }
 
-#frm1{
-	width:1235px;
-	height:600px;
-	padding-left:50px;
-	
+#pS4a {
+	float: left;
+	font-family: 'Do Hyeon', sans-serif;
+	width: 1200px;
+	height: 130px;
+	color: black;
+	margin: 0 auto;
+	text-align: left;
+	padding-top: 10px;
+	padding-right: 100px;
+	padding-left: 40px;
 }
-#frm5{
+
+#pS5 {
+	float: left;
+	font-family: 'Do Hyeon', sans-serif;
+	width: 1235px;
+	height: 650px;
+	color: black;
+	margin: 0 auto;
+	text-align: center;
+	padding-left: 30px;
+	padding-right: 100px;
+	margin-top: 50px;
+	margin-bottom: 15px;
+}
+
+#pS6 {
+	text-align: center;
+	padding-right: 80px;
+}
+
+#pS7 {
+	float: left;
+	font-family: 'Do Hyeon', sans-serif;
+	width: 1235px;
+	height: 800px;
+	color: black;
+	margin: 0 auto;
+	text-align: center;
+	padding-left: 30px;
+	padding-right: 100px;
+	margin-top: 50px;
+	margin-bottom: 15px;
+}
+
+#pS8 {
+	float: left;
+	font-family: 'Do Hyeon', sans-serif;
+	width: 1235px;
+	height: 200px;
+	color: black;
+	margin: 0 auto;
+	text-align: center;
+	padding-left: 30px;
+	padding-right: 100px;
+	margin-bottom: 15px;
+}
+
+#frm1 {
+	width: 1235px;
+	height: 600px;
+	padding-left: 50px;
+}
+
+#frm5 {
 	border: 1px solid #F06659;
-	padding-left:20px;
-	padding-right:20px;
-	
-	height:350px;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 350px;
 }
-#frm6{
+
+#frm6 {
 	border: 1px solid #F06659;
-	margin-bottom:100px;
-	padding-left:20px;
-	padding-right:20px;
-	height:500px;
+	margin-bottom: 100px;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 635px;
 }
-#frm7{
+
+#frm7 {
 	border: 1px solid #F06659;
-	padding-left:20px;
-	padding-right:20px;
-	height:650px;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 650px;
 }
-.oky2{
+
+.oky2 {
 	font-family: 'Do Hyeon', sans-serif;
-	font-size:15px;
+	font-size: 15px;
 }
-.imgup{
-	width:140px;
-	height:70px;
+
+.imgup {
+	width: 140px;
+	height: 70px;
 }
-.rqdetail{
-	width:500px;
-	height:200px;
-	font-size:14px;
-	overflow:auto;
+
+.rqdetail {
+	width: 500px;
+	height: 200px;
+	font-size: 14px;
+	overflow: auto;
 }
-#ttlt{
-	text-align:center;
-	font-size:20px;
-	padding-top:15px;
-	padding-bottom:20px;
+
+#ttlt {
+	text-align: center;
+	font-size: 20px;
+	padding-top: 15px;
+	padding-bottom: 20px;
 	font-family: 'Do Hyeon', sans-serif;
-	font-weight:lighter;
+	font-weight: lighter;
 	border-bottom: 2px double grey;
 }
-#ttlt2{
+
+#ttlt2 {
 	border-bottom: 1px dashed grey;
-	height:100px;
-	vertical-align:middle;
-}
-#ttl{
-	text-align:center;
-	font-size:18px;
-	font-weight:300;
-	font-family: 'Do Hyeon', sans-serif;
-}
-.box2{
-	width:1235px;
-	margin-top:30px;
-}
-.divA{
-	width:1235px;
-	height:35px;
-	font-family: 'Do Hyeon', sans-serif;
-}
-.divLeft{
-	width:300px;
-	float:left;
-	height:35px;
-	font-size:18px;
-	padding-left:30px;
-}
-.divSearch{
-	float:right;
-	height:35px;
-	font-size:18px;
-	
+	height: 100px;
+	vertical-align: middle;
 }
 
-.divPage{
-	text-align:center;
-	margin-top:50px;
-	margin-bottom:100px;
+#ttl {
+	text-align: center;
+	font-size: 18px;
+	font-weight: 300;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.box2 {
+	width: 1235px;
+	margin-top: 30px;
+}
+
+.divA {
+	width: 1235px;
+	height: 35px;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.divLeft {
+	width: 300px;
+	float: left;
+	height: 35px;
+	font-size: 18px;
+	padding-left: 30px;
+}
+
+.divSearch {
+	float: right;
+	height: 35px;
+	font-size: 18px;
+}
+
+.divPage {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 100px;
 }
 
 .pageNum1 {
@@ -490,92 +509,120 @@ figure.snip1384.hover i {
 	background-color: white;
 	cursor: pointer;
 }
-.left{
-	float:left;
+
+.left {
+	float: left;
 }
 
-#sTime{
-	font-size:18px;
-	margin-left:10px;
-	padding:2px;
+#sTime {
+	font-size: 18px;
+	margin-left: 10px;
+	padding: 2px;
 }
-.chkS{
-	clear:both;
-	font-size:20px;
-	padding-top:23px;
-}
-.chkT{
-	padding-top:18px;
-}
-#selOne{
-	font-size:18px;
-	padding:2px;
-	vertical-align:center;
-}
-#selTwo{
-	font-size:18px;
-	padding:1px;
-	vertical-align:center;
-}
-.pdt{
-	font-size:22px;
-	color:#345f93;
-}
-.pdt2{
-	font-size:45px;
-	color:#345f93;
-}
-.pP1{
-	font-size:25px;
-	text-align:right; 
-	color:#69A7C2;
-	width:500px;
-	float:left;
-	
-}
-.pP2{
-	font-size:28px; 
-	color:black;
-	width:200px;
-	float:left;
-	text-align:left;
-	padding-left:15px;
-}
-.mdiv1{
-	float:left;
-	font-family: 'Do Hyeon', sans-serif;
-	width:450px;
-	height:200px;
-	margin-left:60px;
-	margin-top:40px;
-}
-.payDiv{
-	font-family: 'Do Hyeon', sans-serif;
-	font-size:22px;
-	text-align:center;
-	padding-top:30px;
-	padding-left:30px;
-	padding-right:30px;
-}
-#itlt{
-	font-family:'Gugi', cursive;
-	color:#033e5b;
-	font-size:45px;
-	clear:both;
-}
-#icnt{
-	width:650px;
-	float:left;
-	font-family:'Nanum Gothic', sans-serif;
-	font-weight:700;
-	font-size:17px;
 
+.chkS {
+	clear: both;
+	font-size: 20px;
+	padding-top: 23px;
 }
-#icnt1{
-	width800px;
-	font-family:'Nanum Gothic', sans-serif;
-	font-weight:700;
-	font-size:17px;
-	line-height:1.5em;
-	margin-top:30px;
+
+.chkT {
+	padding-top: 18px;
+}
+
+#selOne {
+	font-size: 18px;
+	padding: 2px;
+	vertical-align: center;
+}
+
+#selTwo {
+	font-size: 18px;
+	padding: 1px;
+	vertical-align: center;
+}
+
+.pdt {
+	font-size: 22px;
+	color: #345f93;
+}
+
+.pdt2 {
+	font-size: 45px;
+	color: #345f93;
+}
+
+.pP1 {
+	font-size: 25px;
+	text-align: right;
+	color: #69A7C2;
+	width: 500px;
+	float: left;
+}
+
+.pP2 {
+	font-size: 28px;
+	color: black;
+	width: 200px;
+	float: left;
+	text-align: left;
+	padding-left: 15px;
+}
+
+.mdiv1 {
+	float: left;
+	font-family: 'Do Hyeon', sans-serif;
+	width: 450px;
+	height: 200px;
+	margin-left: 60px;
+	margin-top: 40px;
+}
+
+.payDiv {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 22px;
+	text-align: center;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	line-height: 30px;
+}
+
+#itlt {
+	font-family: 'Jua', sans-serif;
+	/* font-family:'Gugi', cursive; */
+	color: #033e5b;
+	font-size: 45px;
+	clear: both;
+}
+
+#icnt {
+	width: 650px;
+	float: left;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: 700;
+	font-size: 17px;
+}
+
+#icnt1 {
+	width: 1230px;
+	height: 130px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: 700;
+	font-size: 17px;
+	line-height: 1.5em;
+	margin-top: 30px;
+}
+
+#pbody {
+	line-height: 1.3em;
+}
+
+#ptlt {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.brp {
+	margin-top: 25px;
 }

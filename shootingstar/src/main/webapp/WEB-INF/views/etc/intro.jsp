@@ -26,7 +26,7 @@
 		<div id="icnt" style="line-height:50px;font-size:14px;margin-bottom:60px;">
 		슈팅스타는 ‘사진을 원하는 모두의 니즈를 충족시킴’이라는 미션으로 시작되었습니다. <br>
 		
-		현재는 사진촬영서비스 시장에서 구매자와 판매자 양측의 니즈를 이어주는 
+		현재 2018년 8월부터 시작된 사진촬영서비스 시장에서 구매자와 판매자 양측의 니즈를 이어주는 
 		매칭 플랫폼 <br>'슈팅스타'를 서비스 중 입니다.
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 
 
 <div id="itlt">핵심가치</div><br>
-<div style="width:1230px; height:550px;float:left;">
+<div style="width:1230px; height:600px;float:left;">
 
 	<div id="icnt1" style="text-align:center;">
 	<img src='../images/acs.png' style="width:80px; height:80px;vertical-align:middle;"> 
@@ -64,7 +64,7 @@
 
 <div id="itlt">오시는 길</div><br>
 
- <div style="width:1230px;height:350px;padding-left:415px;margin-bottom:50px;">
+ <div style="width:1230px;height:350px;padding-left:415px;text-align:center;">
  <div id="map" style="width:400px;height:300px;"></div>
     <script>
       var map = new naver.maps.Map('map',{
@@ -106,12 +106,13 @@
           
       });
       </script> 
- 
- 
- 
+
  </div>
 
-
+<div style="width:1230px;text-align:center;font-family:'Nanum Gothic', sans-serif;margin-bottom:100px;">
+본사: 서울특별시 강남구 봉은사로2길 5(역삼동) SS타워 3층 101호<br>
+ 지하철 - 9호선 신논현역 4번출구에서 도보 2분
+ </div>
 
 
 
