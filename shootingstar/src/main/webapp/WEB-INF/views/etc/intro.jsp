@@ -67,7 +67,10 @@
  <div style="width:1230px;height:350px;padding-left:415px;margin-bottom:50px;">
  <div id="map" style="width:400px;height:300px;"></div>
     <script>
-      var map = new naver.maps.Map('map');
+      var map = new naver.maps.Map('map',{
+    	  logoControl:false,
+    	  mapDataControl: false	  
+      });
       var myaddress = '서울특별시 강남구 봉은사로2길 5';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
       naver.maps.Service.geocode({address: myaddress}, function(status, response) {
           if (status !== naver.maps.Service.Status.OK) {

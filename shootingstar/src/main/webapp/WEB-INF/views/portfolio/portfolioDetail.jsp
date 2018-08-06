@@ -55,14 +55,6 @@
 	
 		});
 	
-	
-//네이버지도
-
-	
-	
-
-
-	
 </script>
 
 <style type="text/css">
@@ -376,7 +368,10 @@
 			<div id="map" style="width:300px;height:200px;"></div>
     <script>
       var addd = '${address}';
-      var map = new naver.maps.Map('map');
+      var map = new naver.maps.Map('map',{
+    	  logoControl:false,
+    	  mapDataControl: false	  
+      });
       var myaddress = addd;// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
       naver.maps.Service.geocode({address: myaddress}, function(status, response) {
           if (status !== naver.maps.Service.Status.OK) {

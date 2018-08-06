@@ -56,7 +56,7 @@
 								<li><a href="<c:url value='/portfolio/portfolioWrite.do'/>">포트폴리오 등록</a></li>
 							</c:if>
 						</ul></li>
-					<li><a class="menuLink" href="#">ABOUT</a></li>
+					<li><a class="menuLink" href="<c:url value='/etc/intro.do'/>">ABOUT</a></li>
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
 							<li><a href="#">이용방법</a></li>
