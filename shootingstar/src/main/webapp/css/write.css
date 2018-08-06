@@ -37,7 +37,7 @@
 
 body {
 	width: 1903px;
-	positon: relative;
+	/* positon: relative; */
 }
 
 .main {
@@ -592,7 +592,7 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 	font-family: 'Do Hyeon', sans-serif;
 	/* font-family:'Gugi', cursive; */
 	color: #033e5b;
-	font-size: 55px;
+	font-size: 50px;
 
 	clear: both;
 }

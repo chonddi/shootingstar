@@ -23,11 +23,11 @@
 		<img src='../images/mainTopLogo.png' style="width:350px; height:150px; margin-left:160px; margin-bottom:30px;"/>
 		</div>
 	
-		<div id="icnt" style="line-height:50px;font-size:14px;margin-bottom:60px;">
+		<div id="icnt" style="line-height:50px;font-size:16px;margin-bottom:60px;">
 		슈팅스타는 ‘사진을 원하는 모두의 니즈를 충족시킴’이라는 미션으로 시작되었습니다. <br>
 		
 		현재 2018년 8월부터 시작된 사진촬영서비스 시장에서 구매자와 판매자 양측의 니즈를 이어주는 
-		매칭 플랫폼 <br>'슈팅스타'를 서비스 중 입니다.
+		매칭 플랫폼 '슈팅스타'를 서비스 중 입니다.
 		</div>
 	</div>
 
