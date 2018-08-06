@@ -177,7 +177,7 @@
 						class="valid"> <span>(-없이)</span>
 				</div>
 
-				<input type="text" id="idChk" name="idChk" value="N">
+				<input type="hidden" id="idChk" name="idChk" value="N">
 			</fieldset>
 			<br> 
 			<div id="agreement">
@@ -191,7 +191,6 @@
 						<tr>
 							<td><input type="checkbox" id="chk1" class="chk" value="chk" style="margin-top: 0px;"></td>
 							<td class="second"><label for="chk1"> 만 14세 이상입니다.(필수)</label></td>
-							<td class="third"><a href="#">상세보기</a></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" id="chk2" class="chk" value="chk" style="margin-top: 0px;"></td>

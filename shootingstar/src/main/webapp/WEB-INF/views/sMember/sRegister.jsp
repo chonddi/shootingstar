@@ -193,9 +193,10 @@
 					<input type="text" placeholder="휴대폰 번호" id="sTel" name="sTel"
 						class="valid"> <span>(-없이)</span>
 				</div>
-				<input type="text" id="idChk" name="idChk" value="N">
+				<input type="hidden" id="idChk" name="idChk" value="N">
 				
-				<div><textarea name="pr" rows="10" cols="45" placeholder="회원님의 소개를 간략하게 입력해주세요" class="valid"></textarea></div>
+				<div><textarea name="pr" rows="10" cols="45" placeholder="회원님의 소개를 간략하게 입력해주세요		  (포트폴리오의 전문가소개로 활용됩니다.)" class="valid"></textarea></div>
+				
 				<div><input type="text" placeholder="우편번호" id="zipcode" name="zipcode" size="7" class="valid addr" readonly="readonly">  
 				<input type="button" id="btnZipcode" value="우편번호 검색"></div>
 				<div><input type="text" placeholder="주소" id="address1" name="address1" size="60" readonly="readonly" class="addr"> </div>
@@ -223,7 +224,6 @@
 						<tr>
 							<td><input type="checkbox" id="chk1" class="chk" value="chk" style="margin-top: 0px;"></td>
 							<td class="second"><label for="chk1"> 만 14세 이상입니다.(필수)</label></td>
-							<td class="third"><a href="#">상세보기</a></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" id="chk2" class="chk" value="chk" style="margin-top: 0px;"></td>
