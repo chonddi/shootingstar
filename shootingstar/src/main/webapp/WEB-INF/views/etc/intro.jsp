@@ -18,18 +18,18 @@
 		(주)슈팅스타를 소개합니다.</div>
 	</div>
 
-	
-		<div style="width:400px;float:left;">
-		<img src='../images/mainTopLogo.png' style="width:350px; height:150px"/>
+	<div style="width:1230px;text-align:center;padding-left:320px;">
+		<div style="width:400px;">
+		<img src='../images/mainTopLogo.png' style="width:350px; height:150px; margin-left:160px; margin-bottom:30px;"/>
 		</div>
 	
-		<div id="icnt" style="line-height:50px;margin-left:12px;font-size:14px;">
+		<div id="icnt" style="line-height:50px;font-size:14px;margin-bottom:60px;">
 		슈팅스타는 ‘사진을 원하는 모두의 니즈를 충족시킴’이라는 미션으로 시작되었습니다. <br>
 		
 		현재는 사진촬영서비스 시장에서 구매자와 판매자 양측의 니즈를 이어주는 
 		매칭 플랫폼 <br>'슈팅스타'를 서비스 중 입니다.
 		</div>
-	
+	</div>
 
 </div>
 
@@ -40,8 +40,6 @@
 <div style="width:1230px; height:550px;float:left;">
 
 	<div id="icnt1" style="text-align:center;">
-	
-	
 	<img src='../images/acs.png' style="width:80px; height:80px;vertical-align:middle;"> 
 		<div style="margin-left:9px;margin-top:10px;">
 		<span style="font-size:27px;font-weight:800">접근성</span> - 서비스를 요하는 고객이 쉽게 이용할 수 있어야 한다</div>
@@ -66,8 +64,8 @@
 
 <div id="itlt">오시는 길</div><br>
 
- <div>
- <div id="map" style="width:300px;height:200px;"></div>
+ <div style="width:1230px;height:350px;padding-left:415px;margin-bottom:50px;">
+ <div id="map" style="width:400px;height:300px;"></div>
     <script>
       var map = new naver.maps.Map('map');
       var myaddress = '서울특별시 강남구 봉은사로2길 5';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
@@ -96,9 +94,7 @@
           });
           
           var contentString = [
-              '<div class="iw_inner">',
-              '   <h3>'+addd+'</h3>',
-              '</div>'
+              '서울특별시 강남구 봉은사로2길 5'
           ].join('');
           
           var infowindow = new naver.maps.InfoWindow({
