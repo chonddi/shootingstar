@@ -61,7 +61,7 @@ $(document).ready(function(){
 	<input type="hidden" id="sName" name="sName" value="${payfinishVo.sName}"/>
 	<input type="hidden" id="name" name="name" value="${payfinishVo.name}"/>
 	<input type="hidden" id="tel" name="tel" value="${payfinishVo.tel}"/>
-	<input type="hidden" id="pMethod" name="pMethod" value="card"/>
+	<input type="hidden" id="pMethod" name="pMethod" value="신용카드"/>
 	<input type="hidden" id="mileage" name="mileage" value="${payfinishVo.mileage}"/>
 	<input type="hidden" id="useMile" name="useMile" value="${payfinishVo.useMile}"/>
 	
