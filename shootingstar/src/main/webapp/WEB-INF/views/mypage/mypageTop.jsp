@@ -78,7 +78,7 @@ article{
 		<c:if test="${sessionScope.userCode==1}">
 			<li id="myRequest"><a href="<c:url value='/mypage/myRequest.do'/>">나의 견적상황</a></li>
 			<li id="transaction"><a href="<c:url value='/mypage/'/>">나의 거래 이력</a></li>
-			<li id="likey"><a href="<c:url value='/mypage/'/>">나의 관심목록</a></li>
+			<li id="likey"><a href="<c:url value='/mypage/myLikey.do'/>">나의 관심목록</a></li>
 			<li id="myMileage"><a href="<c:url value='/mypage/'/>">내 마일리지</a></li>
 		</c:if>
 		<c:if test="${sessionScope.userCode==2}">

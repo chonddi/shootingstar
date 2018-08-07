@@ -299,6 +299,7 @@ public class MypageController {
 
 	}
 	
+	//나의 포트폴리오
 	@RequestMapping("/myPofol.do")
 	public void myPofol(@ModelAttribute SearchVO searchVo,HttpSession session, Model model) {
 		String userid= (String)session.getAttribute("userid");
@@ -331,4 +332,10 @@ public class MypageController {
 		model.addAttribute("pofolList", pofolList);
 		model.addAttribute("cgList", cgList);
 	}
+	
+	@RequestMapping("/myLikey")
+	public void myLikey(HttpSession session) {
+		
+	}
+	
 }

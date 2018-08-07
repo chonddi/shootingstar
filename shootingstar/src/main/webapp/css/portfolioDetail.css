@@ -112,6 +112,7 @@
 	width: 335px;
 	margin-left: 10px;
 	border: 0;
+    font-weight: bold;
 }
 
 .btn-lg:hover {

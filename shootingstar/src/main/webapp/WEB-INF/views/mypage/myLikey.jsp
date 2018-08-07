@@ -9,7 +9,7 @@
 	content:'';
 	display: block;
 }
-#myPofol {
+#likey {
     color: #1f1f1f;
     font-weight: 700;
     border-bottom: 3px solid #e46c0a;
@@ -27,11 +27,7 @@
 a:hover{
 	cursor: pointer;
 }
-.mypageBtn{
-	width: 150px;
-    height: 40px;
-    font-size: 0.9em;
-}
+
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -42,17 +38,14 @@ a:hover{
 			$('form[name=frmSearch]').submit();
 		});
 		
-		$('#pofolWrite').click(function(){
-			location.href="<c:url value='/portfolio/portfolioWrite.do'/>"
-		});
 	});
 </script>
-		나의 포트폴리오
+		나의 관심목록
 	</div>
 	<!-- 페이징 처리를 위한 form -->
 	<div class="selectedPage">
 		<form name="frmPage" method="post"
-			action="<c:url value='/mypage/myPofol.do'/>">
+			action="<c:url value='/mypage/myLikey.do'/>">
 			<input type="hidden" name="currentPage" value=""> 
 			<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
 			<input type="hidden" name="searchCondition" value="${param.searchCondition}">
@@ -70,8 +63,7 @@ a:hover{
 				</div>
 				
 				<div style="clear:both;">
-					
-					<form name="frmSearch" method="post" action='<c:url value="/mypage/myPofol.do"/>'>
+					<form name="frmSearch" method="post" action='<c:url value="/mypage/myLikey.do"/>'>
 						<select class="pofolSelect">
 							<option value="">전체보기</option>
 							<c:forEach var="vo" items="${cgList }">
@@ -86,7 +78,7 @@ a:hover{
 						</select>
 						<div class="col-lg-6" style="float: right;">
 							<div class="input-group">
-								<input type="text" class="form-control" name="searchKeyword" placeholder="나의 포트폴리오 타이틀로 검색" value="${param.searchKeyword }"> 
+								<input type="text" class="form-control" name="searchKeyword" placeholder="관심등록한 포트폴리오 검색" value="${param.searchKeyword }"> 
 								<span class="input-group-btn">
 									<button type="submit" class="btn btn-primary">검색</button>
 								</span>
@@ -97,31 +89,34 @@ a:hover{
 					</form>
 				</div>
 			</div>
-		
-		
-			<c:forEach var="map" items="${pofolList}">
-				<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">
-					<div id="portList" style="float: none;margin: 0 auto;">
-						<img alt="" src="<c:url value='/portfolio_images/${map["FILENAME"]}'/>">
-						<div id="listInfo">
-							<div id="portName">
-								<c:if test='${fn:length(map["PFTITLE"])>22}'>	
-												${fn:substring(map["PFTITLE"], 0, 22)}...
-											</c:if>
-								<c:if test='${fn:length(map["PFTITLE"])<=22}'>
-												${map["PFTITLE"]}
-											</c:if>
-							</div>
-							<div id="photoInfo">
-								<span class="phothgrahper">${map["CGNAME"]}</span>
-								<span class="phothgrahper"><fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd" /></span>
+			
+			<c:if test="${empty myLikeyList}">
+					<div>관심등록한 포트폴리오가 없습니다.</div>
+				</c:if>
+			<c:if test="${!empty myLikeyList}">
+				<c:forEach var="map" items="${myLikeyList}">
+					<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">
+						<div id="portList" style="float: none;margin: 0 auto;">
+							<img alt="" src="<c:url value='/portfolio_images/${map["FILENAME"]}'/>">
+							<div id="listInfo">
+								<div id="portName">
+									<c:if test='${fn:length(map["PFTITLE"])>22}'>	
+													${fn:substring(map["PFTITLE"], 0, 22)}...
+												</c:if>
+									<c:if test='${fn:length(map["PFTITLE"])<=22}'>
+													${map["PFTITLE"]}
+												</c:if>
+								</div>
+								<div id="photoInfo">
+									<span class="phothgrahper" style="font-size: 1.0em;color: black;font-weight: bold;">${map["SNAME"]}</span>
+									<span class="phothgrahper">${map["CGNAME"]}</span>
+									<span class="phothgrahper"><fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd" /></span>
+								</div>
 							</div>
 						</div>
-					</div>
-				</a>
-			</c:forEach>
-			<div style="text-align: right"><input type="button" id="pofolWrite" class="mypageBtn" value="포트폴리오 등록하기"></div>
-			
+					</a>
+				</c:forEach>
+			</c:if>
 			<div class="divPage">
 				<!-- 페이지 번호 추가 -->
 				<!-- 이전 블럭으로 이동 -->
@@ -152,7 +147,6 @@ a:hover{
 				</c:if>
 				<!--  페이지 번호 끝 -->
 			</div>
-		
 		</div>
 	</div>
 </div>

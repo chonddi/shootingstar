@@ -38,7 +38,8 @@
 				 from PFLISTVIEW
 				 where
 				<include refid="searchWhere"></include> 
-				<include refid="searchWhere2"></include> 
+				<include refid="searchWhere2"></include>
+				authority='Y' and
 				ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
 				order by pfno desc
 		    )list
@@ -53,6 +54,7 @@
 		select count(*) from PFLISTVIEW
 		where <include refid="searchWhere"></include>
 		<include refid="searchWhere2"></include>
+		authority='Y' and
 		ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
 		order by pfno desc
 	</select>
@@ -79,6 +81,7 @@
 		select * from saddress where pfno=#{pfNo}
 	</select> 
 	
+	<!-- 나의 포트폴리오 -->
 	<select id="selectMyPofol" parameterType="map" resultType="map">
 		select *
 		from
@@ -118,6 +121,7 @@
 		ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
 		order by pfno desc
 	</select>
+	
 </mapper>
 
 

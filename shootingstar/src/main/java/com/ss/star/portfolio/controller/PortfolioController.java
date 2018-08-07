@@ -23,6 +23,7 @@ import com.ss.star.common.FileUploadUtil;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
+import com.ss.star.mypage.likey.model.LikeyService;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.portfolio.model.PortfolioVO;
 import com.ss.star.portfolio.model.reviewVO;
@@ -37,7 +38,8 @@ public class PortfolioController {
 	@Autowired
 	private PortfolioService pfService;
 	@Autowired private FileUploadUtil fileUploadUtil;
-
+	@Autowired LikeyService likeyService;
+	
 	@RequestMapping(value = "/portfolioList.do")
 	public String portfolio_list(@ModelAttribute SearchVO searchVo ,Model model) {
 		//[1] PaginationInfo 생성
@@ -142,7 +144,7 @@ public class PortfolioController {
 	}
 	
 	@RequestMapping(value = "/portfolioDetail.do", method = RequestMethod.GET)
-	public String portfolio_detail(@RequestParam(defaultValue="0") int pfNo, Model model) {
+	public String portfolio_detail(@RequestParam(defaultValue="0") int pfNo, Model model, HttpSession session) {
 		logger.info("포트폴리오 디테일 화면 보여주기, pfNo={}", pfNo);
 
 		if(pfNo==0) {
@@ -165,8 +167,16 @@ public class PortfolioController {
 		String address = pfService.selectAdd(pfNo);
 		model.addAttribute("address",address);
 		
+		if("1".equals((String)session.getAttribute("userCode"))) {
+			String memberId=(String)session.getAttribute("userid");
+			int cnt = likeyService.countLikey(memberId, pfNo);
+			
+			model.addAttribute("heart", cnt);
+		}
+		
 		return "portfolio/portfolioDetail";
 		
 	}
 
+	
 }

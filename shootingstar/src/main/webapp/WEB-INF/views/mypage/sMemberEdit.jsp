@@ -109,7 +109,7 @@
 			<table id="editTable">
 				<tr>
 					<td>아이디</td>
-					<td style="padding-top: 20px;">${sessionScope.sMemberId }</td>
+					<td style="padding-top: 20px;">${sessionScope.userid }</td>
 				</tr>
 				<tr>
 					<td>이름</td>

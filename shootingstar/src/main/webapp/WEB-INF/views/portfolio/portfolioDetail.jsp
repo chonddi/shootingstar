@@ -20,14 +20,6 @@
 <link href="<c:url value='/css/portfolioDetail.css'/>" rel="stylesheet">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=IA4cSQ_imngW0f0TUP9c&submodules=geocoder"></script>
 
-
-<style>
-#map_canvas {
-	width: 740px;
-	height: 400px;
-}
-</style>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#mygallery').justifiedGallery({
@@ -55,6 +47,43 @@
 		
 		//회전목마 자동넘기기 방지
 		$(".carousel").carousel({ interval:false });
+		
+		//관심등록여부 onload시
+		if(${heart==1}){
+			$('#heartEmpty').css('display','none');
+			$('#heartFull').css('display','');
+		}else{
+			$('#heartFull').css('display','none');
+			$('#heartEmpty').css('display','');
+		}
+		
+		//관심등록
+		$(".heart").click(function(){
+			$.ajax({
+				url:"<c:url value='/likey/heart.do'/>",
+				type:"GET",
+				data:"pfNo=${param.pfNo}",	//파라미터
+				success:function(res){
+					if(res==1){
+						alert("잘못된 접근입니다.");
+					}else if(res==2){
+						alert("고객회원으로 로그인해주십시오.");
+					}else if(res==3){
+						$('#heartFull').css('display','none');
+						$('#heartEmpty').css('display','');
+					}else if(res==4){
+						$('#heartEmpty').css('display','none');
+						$('#heartFull').css('display','');
+					}else{
+						alert("잘못된 접근입니다.");
+					}
+				},
+				error:function(xhr, status, error){
+					alert('error:'+error+", status: "+status)
+				}
+				
+			});
+		});
 	});
 	
 	function openImg(pfImgNo){
@@ -95,23 +124,19 @@
   vertical-align: middle; 
 }
 /* 모달 끝 */
- #googleMap {
-	float: right;
-}
+
 #mygallery a{
 	cursor: pointer;
 }
-
-#googleMap {
-	float: right;
+.heart{
+    width: 26px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 </style>
-
-
-
 </head>
 
-<body onload="initialize()">
+<body>
 	<c:forEach var="map" items="${list }" end="0">
 		<div id="detailTitle"
 			style='background-image: url("<c:url value='/portfolio_images/${map["FILENAME"] }'/>")'>
@@ -134,7 +159,6 @@
 				<c:forEach var="map" items="${list }">
 					<a href="#" data-toggle="modal" data-target="#myModal" onclick="openImg('ab${map['PFIMGNO']}')"> 
 						<img alt=''	src="<c:url value='/portfolio_images/${map["FILENAME"] }'/>"/></a>
-					<!-- other images... -->
 				</c:forEach>
 			</div>
 		</div>
@@ -160,17 +184,16 @@
 				전문가에게 문의하기
 			</button>
 			
-		
-			
-			<c:if test="${sessionScope.userCode==1 }">
-				<div id="likeBox">
-					<hr>
-					<span>♡ 좋아요</span>
-					<hr>
-				</div>
-			</c:if>
+			<div id="likeBox">
+				<hr>
+					<img src="<c:url value='/images/heartEmpty.png'/>" class="heart" id='heartEmpty' style="display: none;"/>
+					<img src="<c:url value='/images/heartFull.png'/>" class="heart" id='heartFull' style="display: none;"/>
+					<span style="font-size: 0.9em;">관심</span>
+				<hr>
+			</div>
 			<div id="map1" style="width: 320px; height: 380px; text-align:right; float:right; padding-top:20px;">
-<!-- 네이버지도 -->			
+		
+		<!-- 네이버지도 -->			
 			<div id="map" style="width:300px;height:200px;"></div>
     <script>
       var addd = '${address}';

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sql.likey">
+	
+	<!-- 포트폴리오에서 하트 클릭 -->
+	<insert id="insertLikey" parameterType="map">
+		insert into likey values(likey_seq.nextval, #{memberId}, #{pfNo})
+	</insert>
+
+	<select id="countLikey" parameterType="map" resultType="int">
+		select count(*) from likey where memberid=#{memberId} and pfno=#{pfNo}
+	</select>	
+	
+	<delete id="deleteLikey" parameterType="map">
+		delete from likey where memberid=#{memberId} and pfno=#{pfNo}
+	</delete>
+	
+	<!-- 관심목록 -->
+	<select id="myLikey" parameterType="string" resultType="int">
+		select pfno from likey where memberid=#{memberId}
+	</select>
+
+	<select id="myLikeyList" parameterType="map" resultType="map">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select pfno, sMemberId, sname ,cgno, cgname, pftitle, filename, regdate
+				 from PFLISTVIEW
+				 where
+				<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+					cgno = #{searchVo.searchCondition} and
+				</if>
+				<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+					pftitle like '%' || #{searchVo.searchKeyword} || '%' and
+				</if>
+				pfNo in 
+				<foreach item="pfNo" collection="pfNos" open="(" close=")" separator=","
+					index="index">
+					#{pfNo}
+				</foreach> and
+				ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+				order by pfno desc
+		    )list
+		)
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
+				
+	</select>
+	
+	<select id="getTotalMyLikey" parameterType="map" resultType="int">
+		select count(*) from PFLISTVIEW
+		where
+		<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+			cgno = #{searchVo.searchCondition} and
+		</if>
+		<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+			pftitle like '%' || #{searchVo.searchKeyword} || '%' and
+		</if>
+		pfNo in 
+		<foreach item="pfNo" collection="pfNos" open="(" close=")" separator=","
+			index="index">
+			#{pfNo}
+		</foreach> and
+		ROWID IN (SELECT MAX(ROWID) FROM pflistview GROUP BY pfno)
+		order by pfno desc
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
