@@ -194,7 +194,17 @@
       set mileage=#{mileage}
       where memberid=#{memberId}
    	</update> 
+   	
+   	
+   	<update id="deleteReq" parameterType="int">
+   		update request
+		set delflag='Y'
+		where rqno=#{no}
+  	</update>
 	
+	<select id="selImgName" parameterType="int" resultType="RequestImgVO">
+		select filename from requestimg where RQNo=#{no}
+	</select>
 	
 </mapper>
 

@@ -152,4 +152,17 @@ public class RequestDAOMybatis implements RequestDAO {
 		return sqlSession.selectOne(namespace + "selPvo", no);
 	}
 
+	@Override
+	public int deleteReq(int no) {
+		int cnt = sqlSession.update(namespace + "deleteReq", no);
+		return cnt;
+	}
+
+	@Override
+	public List<RequestImgVO> selImgName(int no) {
+		List<RequestImgVO> list = sqlSession.selectList(namespace + "selImgName", no);
+		
+		return list;
+	}
+
 }

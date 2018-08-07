@@ -59,7 +59,7 @@
 					<li><a class="menuLink" href="<c:url value='/etc/intro.do'/>">ABOUT</a></li>
 					<li><a class="menuLink" href="#">SERVICE</a>
 						<ul>
-							<li><a href="#">이용방법</a></li>
+							<li><a href="<c:url value='/etc/information.do'/>">이용방법</a></li>
 							<li><a href="<c:url value='/notice/noticeList.do'/>">공지사항</a></li>
 							<c:if test="${sessionScope.userCode==1}">
 								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>

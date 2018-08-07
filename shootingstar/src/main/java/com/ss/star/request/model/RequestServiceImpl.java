@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
@@ -146,6 +147,29 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public PickAllVO selPvo(int no) {
 		return requestDao.selPvo(no);
+	}
+
+	@Override
+	public int deleteMulti(List<RequestVO> list) {
+		int cnt=0;
+		try {
+			for(RequestVO vo : list) {
+				int productNo=vo.getRQNo();
+				if(productNo>0) {  //선택한 상품만 삭제
+					cnt=requestDao.deleteReq(productNo);
+				}
+			}//for
+		}catch(RuntimeException e) {
+			cnt=-1;
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+
+	@Override
+	public List<RequestImgVO> selImgName(int no) {
+		return requestDao.selImgName(no);
 	}
 
 }
