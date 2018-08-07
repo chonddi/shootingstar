@@ -111,7 +111,7 @@
 	    	</c:if>
 	    </table><br>
 	    <div style="margin-top: 25px;">
-	    	<input type="submit" class="mypageBtn" value="글 삭제" >
+	    	<input type="submit" class="mypageBtn" value="쪽지 삭제" >
 	    </div>
     </form>
 	    

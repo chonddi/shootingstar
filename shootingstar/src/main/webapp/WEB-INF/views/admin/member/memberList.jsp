@@ -5,12 +5,11 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+
 	function pageFunc(curPage){
 		document.frmPage.currentPage.value=curPage;
 		frmPage.submit();
 	}
-});
 
 </script>
 <style type="text/css">
@@ -27,7 +26,7 @@ th, td{ padding:10px;
 	<p>검색어: ${param.searchKeyword}(으)로  ${fn:length(list)}건 검색되었습니다. </p> 
 </c:if>
 <c:if test="${empty param.searchKeyword}">
-	<p>총 ${pageVo.totalRecord}건의 REQUEST가 조회되었습니다. </p> 
+	<p>총 ${pageVo.totalRecord}명의 고객회원이 조회되었습니다. </p> 
 </c:if>
 <form name="frmPage" method="post" action="<c:url value='/admin/member/memberList.do'/>">
 <input type="hidden" name="currentPage" >	
@@ -113,11 +112,6 @@ th, td{ padding:10px;
 	            		selected="selected"
 	            	</c:if>
 	            >이름</option>
-	           <option value="rownum"
-	            	<c:if test="${param.searchCondition=='rownum'}">
-	            		selected="selected"
-	            	</c:if>
-	            >회원</option>
 	        </select>   
 	        <input type="text" name="searchKeyword" title="검색어 입력"
 	        	value="${param.searchKeyword}">   

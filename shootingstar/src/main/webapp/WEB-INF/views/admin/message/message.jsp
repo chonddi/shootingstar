@@ -96,8 +96,8 @@
 			</c:if>    
 	    </table><br>
 	    <div style="margin-top: 25px;">
-		    <div style="float: left"><input type="submit" class="mypageBtn" value="글 삭제" ></div>
-			<div style="float:right"><input type="button" id="sendMsg" class="mypageBtn" value="쪽지보내기"></div>
+		    <div style="float: left"><input type="submit" class="mypageBtn" value="쪽지 삭제" ></div>
+			<div style="float:right"><input type="button" id="sendMsg" class="mypageBtn" value="쪽지 보내기"></div>
 		</div>
     </form>
 		

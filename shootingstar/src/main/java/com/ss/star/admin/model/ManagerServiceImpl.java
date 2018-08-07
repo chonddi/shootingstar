@@ -77,16 +77,16 @@ public class ManagerServiceImpl implements ManagerService  {
 		return managerDao.updateMember(vo);
 	}
 	@Override
-	public List<SMemberVO> sMemberList() {
-		return managerDao.sMemberList();
+	public List<SMemberVO> sMemberList(SearchVO searchVo) {
+		return managerDao.sMemberList(searchVo);
 	}
 	@Override
 	public int updateSMember(SMemberVO vo) {
 		return managerDao.updateSMember(vo);
 	}
 	@Override
-	public List<SMemberVO> sMemberOutList() {
-		return managerDao.sMemberOutList();
+	public List<SMemberVO> sMemberOutList(SearchVO searchVo) {
+		return managerDao.sMemberOutList(searchVo);
 	}
 /*	@Override
 	public int smemberAuOut(SMemberVO vo) {
@@ -115,6 +115,14 @@ public class ManagerServiceImpl implements ManagerService  {
 	@Override
 	public int getTotalRecord(SearchVO vo) {
 		return managerDao.getTotalRecord(vo);
+	}
+	@Override
+	public int getSTotalRecord(SearchVO vo) {
+		return managerDao.getSTotalRecord(vo);
+	}
+	@Override
+	public int getSOTotalRecord(SearchVO vo) {
+		return managerDao.getSOTotalRecord(vo);
 	}
 
 }

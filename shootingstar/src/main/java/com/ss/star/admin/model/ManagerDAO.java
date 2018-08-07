@@ -23,10 +23,10 @@ public interface ManagerDAO {
 	public List<MemberVO> memberList(SearchVO searchVo);
 	public int updateMember(MemberVO vo);
 	
-	public List<SMemberVO> sMemberList();
+	public List<SMemberVO> sMemberList(SearchVO searchVo);
 	public int updateSMember(SMemberVO vo);
 
-	public List<SMemberVO> sMemberOutList();
+	public List<SMemberVO> sMemberOutList(SearchVO searchVo);
 	
 	/*public int smemberAuOut (SMemberVO vo);
 	public int smemberAuBack (SMemberVO vo);*/
@@ -38,4 +38,6 @@ public interface ManagerDAO {
 	public int memberBack (MemberVO vo);
 	
 	public int getTotalRecord(SearchVO vo);
+	public int getSTotalRecord(SearchVO vo);
+	public int getSOTotalRecord(SearchVO vo);
 }

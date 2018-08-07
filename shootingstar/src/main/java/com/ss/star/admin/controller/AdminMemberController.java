@@ -36,15 +36,16 @@ public class AdminMemberController {
 	@RequestMapping(value="/memberList.do")
 	public String memberList(Model model, @ModelAttribute SearchVO searchVo) {
 		// [1] PaginationInfo 생성
-				PaginationInfo pagingInfo = new PaginationInfo();
-				pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-				pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
-				pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-				// [2] SearchVO 에 값 셋팅
-				searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
-				searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-				logger.info("setting 후 searchVo={}", searchVo);	
+		// [2] SearchVO 에 값 셋팅
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);	
 				
 		List<MemberVO> list = managerService.memberList(searchVo);
 		logger.info("List list.size={} ",list.size());
@@ -109,12 +110,28 @@ public class AdminMemberController {
 
 
 	@RequestMapping(value="/smemberList.do")
-	public String smemberList(Model model) {
+	public String smemberList(Model model, @ModelAttribute SearchVO searchVo) {
+		// [1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		List<SMemberVO> list = managerService.sMemberList();
-		model.addAttribute("list", list);
+		// [2] SearchVO 에 값 셋팅
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);	
+
+		List<SMemberVO> list = managerService.sMemberList(searchVo);
 		logger.info("Smember List list.size={} ",list.size());
+		
+		int totalRecord =managerService.getSTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
 
+		model.addAttribute("list", list);
+		model.addAttribute("pageVo", pagingInfo);
 		return "admin/member/smemberList";
 	}
 	@RequestMapping(value="/smemberEdit.do" , method=RequestMethod.GET)
@@ -291,11 +308,28 @@ public class AdminMemberController {
 	}	
 	
 	@RequestMapping(value="/smemberOutList.do") //만료회원목록
-	public String smemberOutList(Model model) {
+	public String smemberOutList(Model model, @ModelAttribute SearchVO searchVo) {
+		// [1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		List<SMemberVO> list = managerService.sMemberOutList();
-		model.addAttribute("list", list);
+		// [2] SearchVO 에 값 셋팅
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);	
+
+		List<SMemberVO> list = managerService.sMemberOutList(searchVo);
 		logger.info("List list.size={} ",list.size());
+		
+		int totalRecord =managerService.getSOTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageVo", pagingInfo);
 
 		return "admin/member/smemberOutList";
 	}

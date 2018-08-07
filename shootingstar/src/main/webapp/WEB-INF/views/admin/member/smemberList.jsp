@@ -16,8 +16,17 @@ th, td{ padding:10px;
 </head>
 <body>
 <h1>멤버십이 만료되지 않은 전문가회원 목록</h1>
+<c:if test="${!empty param.searchKeyword}">
+	<p>검색어: ${param.searchKeyword}(으)로  ${fn:length(list)}건 검색되었습니다. </p> 
+</c:if>
+<c:if test="${empty param.searchKeyword}">
+	<p>총 ${pageVo.totalRecord}명의 전문가회원이 조회되었습니다. </p> 
+</c:if>
+<form name="frmPage" method="post" action="<c:url value='/admin/member/smemberList.do'/>">
+<input type="hidden" name="currentPage" >	
+</form>
 <div>
-	<table id="member">
+	<table id="smember">
 	<thead>
 	<tr>
 		<th>회원번호</th>
@@ -64,5 +73,62 @@ th, td{ padding:10px;
 	</tbody>
 	</table>
 </div>	
+<br>
+<div class="divPage">
+	<!-- 페이지 번호 추가 -->		
+	<!-- 이전 블럭으로 이동 -->
+	<c:if test="${pageVo.firstPage>1 }">
+		<a href="#" onclick="pageFunc(${pageVo.firstPage-1})">
+			<img alt="이전 블럭으로 이동" src="../images/first.JPG">
+		</a>		
+	</c:if>
+	
+	<!-- [1][2][3][4][5][6][7][8][9][10] -->
+	<c:forEach var="i" begin="${pageVo.firstPage }" end="${pageVo.lastPage}">
+		<c:if test="${i==pageVo.currentPage }">
+			<span style="color: blue;font-weight: bold;font-size:1.0em">
+				${i}</span>
+		</c:if>
+		<c:if test="${i!=pageVo.currentPage }">
+			<a href="#" onclick="pageFunc(${i})">
+			[${i }]</a>
+		</c:if>
+	</c:forEach>
+		
+	<!-- 다음 블럭으로 이동 -->
+	<c:if test="${pageVo.lastPage<pageVo.totalPage }">
+		<a href="#" onclick="pageFunc(${pageVo.lastPage+1})">
+			<img alt="다음 블럭으로 이동" src="../images/last.JPG">
+		</a>	
+	</c:if>
+	<!--  페이지 번호 끝 -->
+</div>
+<br>
+
+	<div class="divSearch">
+	   	<form name="frmSearch" method="post" 
+	   		action='<c:url value="/admin/member/smemberList.do"/>'>
+	        <select name="searchCondition">        	
+	          <option value="sMemberId"
+	            	<c:if test="${param.searchCondition=='sMemberId'}">
+	            		selected="selected"
+	            	</c:if>
+	            >아이디</option>
+	            <option value="sName"
+	            	<c:if test="${param.searchCondition=='sName'}">
+	            		selected="selected"
+	            	</c:if>
+	            >이름</option>
+	        </select>   
+	        <input type="text" name="searchKeyword" title="검색어 입력"
+	        	value="${param.searchKeyword}">   
+			<input type ="image" src="<c:url value='../../images/black18s.png'/>" 
+			align="absmiddle" >	 
+			
+			
+				
+	    </form>
+	</div>
+<br>
 </body>
 </html>

@@ -62,8 +62,8 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	}
 
 	@Override
-	public List<SMemberVO> sMemberList() {
-		return sqlSession.selectList(namespace+"SMemberList");
+	public List<SMemberVO> sMemberList(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"SMemberList", searchVo);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	}
 
 	@Override
-	public List<SMemberVO> sMemberOutList() {
-		return sqlSession.selectList(namespace+"SMemberOutList");
+	public List<SMemberVO> sMemberOutList(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"SMemberOutList",searchVo);
 	}
 /*
 	@Override
@@ -109,6 +109,16 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	@Override
 	public int getTotalRecord(SearchVO vo) {
 		return sqlSession.selectOne(namespace+"getTotalRecord", vo);
+	}
+
+	@Override
+	public int getSTotalRecord(SearchVO vo) {
+		return sqlSession.selectOne(namespace+"getSTotalRecord",vo);
+	}
+
+	@Override
+	public int getSOTotalRecord(SearchVO vo) {
+		return sqlSession.selectOne(namespace+"getSOTotalRecord",vo);
 	}
 
 }

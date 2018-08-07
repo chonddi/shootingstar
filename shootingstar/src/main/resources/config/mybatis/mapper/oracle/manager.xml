@@ -2,6 +2,31 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sql.manager">
+<sql id="searchSWhere">
+			<where>
+			membership>sysdate 
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			and	${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+			</where>
+	</sql>
+<sql id="searchSOWhere">
+			<where>
+			sysdate>membership
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			and	${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+			</where>
+	</sql>	
+<sql id="searchWhere">
+		
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			<where>
+			${searchCondition} like '%' || #{searchKeyword} || '%'
+			</where>
+		</if>
+	</sql>
+
 <!-- 관리자페이지  -->
 	<select id="selectID" parameterType="string" resultType="managerVo">
 		select * from admin where adminId=#{adminId}
@@ -36,10 +61,27 @@
 	</update>
 	
 <!-- 회원관리 -->
-	<select id="memberList" parameterType="String" resultType="memberVO">
+	<select id="memberList" parameterType="SearchVO" resultType="memberVO">
+<!-- 
 		select rownum, memberId, name, pwd, tel, mileage, regdate, outdate 
-		from member 
-		order by regdate desc
+		from member order by regdate desc -->
+		
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select 
+				rownum, memberId, name, pwd, tel, mileage, regdate, outdate 		
+				 from member
+				<include refid="searchWhere"></include>
+				order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
 	</select>
 	<update id="updateMember" parameterType="memberVo">
 		update member set name=#{name}, tel=#{tel}, mileage=#{mileage}
@@ -53,25 +95,41 @@
 	</update>
 	
 
-	<select id="SMemberList" parameterType="String" resultType="SMemberVO">
-		select rownum, sMemberId, sName, membership, authority, outdate
+	<select id="SMemberList" parameterType="SearchVO" resultType="SMemberVO">
+		<!-- select rownum, sMemberId, sName, membership, authority, outdate
 		from smember 
 		where membership>sysdate
-		order by membership
+		order by membership -->
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select 
+				rownum, sMemberId, sName, membership, authority, outdate 		
+				 from smember
+				<include refid="searchSWhere"></include>			
+				order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
 	</select>
 	<update id="updateSMember" parameterType="SMemberVo">
 		update smember set sName=#{sName},sTel=#{sTel}, pr=#{pr}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2},
 		identification=#{identification}, accountCopy=#{accountCopy}
 		where sMemberId=#{sMemberId}
 	</update>
-	
+<!-- 	
 	<update id="smemberAuOut" parameterType="SMemberVO"> 
 		update smember set authority='Y' where  sMemberId=#{sMemberId}
 	</update>
 	
 	<update id="smemberAuBack" parameterType="SMemberVO">
 		update smember set authority='N'  where  sMemberId=#{sMemberId}
-	</update>
+	</update> -->
 	
 	<update id="smemberOut" parameterType="SMemberVO">
 		update smember set outdate=sysdate where sMemberId=#{sMemberId}
@@ -81,19 +139,35 @@
 	</update>
 	
 	
-	<select id="SMemberOutList" parameterType="String" resultType="SMemberVO">
-		select rownum, sMemberId, sName, membership, outdate
-		from smember 
-		where sysdate>=membership
-		order by outdate desc
+	<select id="SMemberOutList" parameterType="SearchVo" resultType="SMemberVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select 
+				rownum, sMemberId, sName, membership, authority, outdate 		
+				 from smember
+				<include refid="searchSOWhere"></include>			
+				order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+		
+	<select id="getTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from member
+		<include refid="searchWhere"></include>		
+	</select>
+	<select id="getSTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from smember
+		<include refid="searchSWhere"></include>		
+	</select>
+	<select id="getSOTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from smember
+		<include refid="searchSOWhere"></include>		
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
