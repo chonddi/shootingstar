@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ss.star.common.SearchVO;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -68,8 +69,8 @@ public class ManagerServiceImpl implements ManagerService  {
 		return managerDao.pwdUpdate(vo);
 	}
 	@Override
-	public List<MemberVO> memberList() {
-		return managerDao.memberList();
+	public List<MemberVO> memberList(SearchVO searchVo) {
+		return managerDao.memberList(searchVo);
 	}
 	@Override
 	public int updateMember(MemberVO vo) {
@@ -87,14 +88,14 @@ public class ManagerServiceImpl implements ManagerService  {
 	public List<SMemberVO> sMemberOutList() {
 		return managerDao.sMemberOutList();
 	}
-	@Override
+/*	@Override
 	public int smemberAuOut(SMemberVO vo) {
 		return managerDao.smemberAuOut(vo);
 	}
 	@Override
 	public int smemberAuBack(SMemberVO vo) {
 		return managerDao.smemberAuBack(vo);
-	}
+	}*/
 	@Override
 	public int smemberOut(SMemberVO vo) {
 		return managerDao.smemberOut(vo);
@@ -110,6 +111,10 @@ public class ManagerServiceImpl implements ManagerService  {
 	@Override
 	public int memberBack(MemberVO vo) {
 		return managerDao.memberBack(vo);
+	}
+	@Override
+	public int getTotalRecord(SearchVO vo) {
+		return managerDao.getTotalRecord(vo);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.ss.star.admin.model;
 
 import java.util.List;
 
+import com.ss.star.common.SearchVO;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -19,7 +20,7 @@ public interface ManagerDAO {
 	public int pwdUpdate(ManagerVO vo);
 	
 	//memberController
-	public List<MemberVO> memberList();
+	public List<MemberVO> memberList(SearchVO searchVo);
 	public int updateMember(MemberVO vo);
 	
 	public List<SMemberVO> sMemberList();
@@ -27,8 +28,8 @@ public interface ManagerDAO {
 
 	public List<SMemberVO> sMemberOutList();
 	
-	public int smemberAuOut (SMemberVO vo);
-	public int smemberAuBack (SMemberVO vo);
+	/*public int smemberAuOut (SMemberVO vo);
+	public int smemberAuBack (SMemberVO vo);*/
 	
 	public int smemberOut (SMemberVO vo);
 	public int smemberBack (SMemberVO vo);
@@ -36,5 +37,5 @@ public interface ManagerDAO {
 	public int memberOut (MemberVO vo);
 	public int memberBack (MemberVO vo);
 	
-	//boardController
+	public int getTotalRecord(SearchVO vo);
 }

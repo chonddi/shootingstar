@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ss.star.common.SearchVO;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -51,8 +52,8 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	}
 
 	@Override
-	public List<MemberVO> memberList() {
-		return sqlSession.selectList(namespace+"memberList");
+	public List<MemberVO> memberList(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"memberList", searchVo);
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	public List<SMemberVO> sMemberOutList() {
 		return sqlSession.selectList(namespace+"SMemberOutList");
 	}
-
+/*
 	@Override
 	public int smemberAuOut(SMemberVO vo) {
 		return sqlSession.update(namespace+"smemberAuOut", vo);
@@ -83,7 +84,7 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	@Override
 	public int smemberAuBack(SMemberVO vo) {
 		return sqlSession.update(namespace+"smemberAuBack", vo);
-	}
+	}*/
 
 	@Override
 	public int smemberOut(SMemberVO vo) {
@@ -103,6 +104,11 @@ public class ManagerDAOMybatis implements ManagerDAO {
 	@Override
 	public int memberBack(MemberVO vo) {
 		return sqlSession.update(namespace+"memberBack", vo);
+	}
+
+	@Override
+	public int getTotalRecord(SearchVO vo) {
+		return sqlSession.selectOne(namespace+"getTotalRecord", vo);
 	}
 
 }

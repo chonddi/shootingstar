@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.star.admin.model.ManagerService;
+import com.ss.star.common.PaginationInfo;
+import com.ss.star.common.SearchVO;
+import com.ss.star.common.Utility;
 import com.ss.star.faq.model.FaqVO;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
@@ -31,12 +34,27 @@ public class AdminMemberController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@RequestMapping(value="/memberList.do")
-	public String memberList(Model model) {
+	public String memberList(Model model, @ModelAttribute SearchVO searchVo) {
+		// [1] PaginationInfo 생성
+				PaginationInfo pagingInfo = new PaginationInfo();
+				pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+				pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+				pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		List<MemberVO> list = managerService.memberList();
+				// [2] SearchVO 에 값 셋팅
+				searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+				searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				logger.info("setting 후 searchVo={}", searchVo);	
+				
+		List<MemberVO> list = managerService.memberList(searchVo);
+		logger.info("List list.size={} ",list.size());
+		
+		int totalRecord =managerService.getTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+		
 		model.addAttribute("list", list);
-		logger.info("allmember List list.size={} ",list.size());
-
+		model.addAttribute("pageVo", pagingInfo);
 		return "admin/member/memberList";
 	}
 
@@ -144,7 +162,7 @@ public class AdminMemberController {
 		
 		return "common/message";
 	}
-
+/*
 
 	@RequestMapping(value="/smemberAuOut.do")
 	public String smemberAuOut(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {
@@ -186,7 +204,7 @@ public class AdminMemberController {
 
 		return "common/message";
 
-	}
+	}*/
 
 	@RequestMapping(value="/smemberOut.do")
 	public String smemberOut(@RequestParam String id, @ModelAttribute SMemberVO vo, Model model) {

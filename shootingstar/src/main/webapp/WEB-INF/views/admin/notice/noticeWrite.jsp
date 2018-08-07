@@ -36,7 +36,7 @@ $(document).ready(function(){
 	</div>
  	<div>
 	<label for="adminId">아이디(필수)</label>
-	<input type="text" id="adminId" name="adminId">
+	<input type="text" id="adminId" name="adminId" value='${adminId }'>
 	</div> 
 	<div>
 		<label for="nContent">내용</label>

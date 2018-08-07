@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.smember.model.SMemberVO;
+import com.ss.star.common.SearchVO;
 
 public interface ManagerService {
 	public static final int LOGIN_OK=1;  //로그인 성공
@@ -28,7 +29,7 @@ public interface ManagerService {
 	public int pwdUpdate(ManagerVO vo);
 	
 	//memberController
-	public List<MemberVO> memberList();
+	public List<MemberVO> memberList(SearchVO searchVo);
 	public int updateMember(MemberVO vo);
 	
 	public List<SMemberVO> sMemberList();
@@ -36,8 +37,8 @@ public interface ManagerService {
 	
 	public List<SMemberVO> sMemberOutList();
 	
-	public int smemberAuOut (SMemberVO vo);
-	public int smemberAuBack (SMemberVO vo);
+/*	public int smemberAuOut (SMemberVO vo);
+	public int smemberAuBack (SMemberVO vo);*/
 	
 	public int smemberOut (SMemberVO vo);
 	public int smemberBack (SMemberVO vo);
@@ -45,5 +46,5 @@ public interface ManagerService {
 	public int memberOut (MemberVO vo);
 	public int memberBack (MemberVO vo);
 	
-	//boardController
+	public int getTotalRecord(SearchVO vo);
 }

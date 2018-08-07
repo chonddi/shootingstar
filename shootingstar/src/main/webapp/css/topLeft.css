@@ -13,7 +13,7 @@
 		float: center; /*background:#FFCCCC;*/
 		width: auto;
 		padding: 100px 0 0 0;
-		height: auto;
+		height: 1000px;
 		}
 /* 		#container #leftNavi dt	{
 			padding: 7px 5px 25px 20px;
@@ -22,7 +22,7 @@
 			 */
 		#container #adminCtg	{
 			display: block;
-			 padding: 20px; 
+			padding: 5px; 
 			font-weight: bold;
 			}
 			#container #leftNavi li a	{ 

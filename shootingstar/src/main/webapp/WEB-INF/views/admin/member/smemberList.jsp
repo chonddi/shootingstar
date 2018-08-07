@@ -24,8 +24,8 @@ th, td{ padding:10px;
 		<th>이름</th>
 		<th>아이디</th>
 		<th>만료일자</th>
-		<th>권한</th>
-		<th>이용제한</th>
+<!-- 		<th>권한</th>
+		<th>이용제한</th> -->
 		<th>탈퇴/복구</th>
 		<th>정보수정</th>
 	</tr>
@@ -40,7 +40,7 @@ th, td{ padding:10px;
 
 					<td>${vo.sMemberId}</td>
 					<td>${vo.membership }</td>	
-					<td>${vo.authority }</td>
+<%-- 					<td>${vo.authority }</td>
 					<td>
 <c:if test="${vo.authority=='N'}">
 					<a href="<c:url value='/admin/member/smemberAuOut.do?id=${vo.sMemberId}'/>">제한하기</a>
@@ -48,7 +48,7 @@ th, td{ padding:10px;
 <c:if test="${vo.authority=='Y'}">
 					<a href="<c:url value='/admin/member/smemberAuBack.do?id=${vo.sMemberId}'/>">권한복구</a>
 </c:if>
-					</td>
+					</td> --%>
 					<td>
 <c:if test="${empty vo.outdate}">
 					<a href="<c:url value='/admin/member/smemberOut.do?id=${vo.sMemberId}'/>">탈퇴</a>
