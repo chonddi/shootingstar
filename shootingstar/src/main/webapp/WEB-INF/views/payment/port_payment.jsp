@@ -30,9 +30,8 @@ $(document).ready(function(){
 		var msg = '결제가 완료되었습니다.';
 		
 		alert(msg);
-		$("form[name=payfrm]").submit();
-		opener.parent.location.href="<c:url value='/payment/port_payfinish.do?no=${param.no}'/>";
-          
+		goParent();
+		
        } else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
@@ -46,6 +45,14 @@ $(document).ready(function(){
    });
 	
 });
+
+	// 부모창으로 submit
+	function goParent() {
+	    window.opener.name = "port_payfinish"; // 부모창의 이름 설정
+	    document.payfrm.target = "port_payfinish"; // 타켓을 부모창으로 설정
+	    document.payfrm.action = "<c:url value='/payment/port_payfinish.do'/>";
+	    document.payfrm.submit();
+	}
 
 </script>
 <body>

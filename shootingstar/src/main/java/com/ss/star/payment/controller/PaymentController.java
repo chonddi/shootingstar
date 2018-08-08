@@ -70,21 +70,22 @@ public class PaymentController {
 		return "payment/port_payment";
 	}
 
-/*	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.GET)
-	public String port_payfinish_get(@RequestParam(defaultValue = "0") int no, HttpSession session) {
-		logger.info("결제완료 페이지로 이동, 파라미터 no={}", no);
+	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.GET)
+	public String port_payfinish_get(HttpSession session, Model model) {
+		logger.info("결제완료 컨트롤러 get 방식으로 접근 감지");
 		
 		String msg = "잘못된 접근입니다.";
 		String url = "/index.do";
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
-		//return "common/message";
-		return "payment/port_payfinish";
-	}*/
+		return "common/message";
+	}
 
-	//@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
-	@RequestMapping("/port_payfinish.do")
-	public String port_payfinish_post(@RequestParam(defaultValue = "0") int RQNo, @ModelAttribute PayfinishVO vo,
-			HttpSession session, Model model) {
+	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
+	public String port_payfinish_post(@RequestParam(defaultValue = "0") int RQNo, @ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
+		logger.info("결제 처리 PayfinishVO 파라미터 RQNo={}", RQNo);
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
 
 		// 임시 세션아이디

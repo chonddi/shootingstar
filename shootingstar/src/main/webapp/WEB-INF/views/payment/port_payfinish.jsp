@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<th>구매 일시</th>
-				<th>${vo.regdate}</th>
+				<th><fmt:formatDate value="${vo.regdate}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/></th>
 			</tr>
 			<tr>
 				<th>카테고리</th>
@@ -60,7 +60,7 @@
 			</tr>
 			<tr>
 				<th>결제 금액</th>
-				<th>${vo.pPrice}</th>
+				<th><fmt:formatNumber value="${vo.pPrice}" pattern="number"/> 원</th>
 			</tr>
 		</table>
 	</section>
