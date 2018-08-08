@@ -57,6 +57,16 @@
 			$('#heartEmpty').css('display','');
 		}
 		
+		$('#askPro').click(function(){
+			if(${sessionScope.userCode!=1}){
+				alert('고객회원으로 로그인해 주십시오.');
+			}else{
+				x = (screen.availWidth - 460) / 2;
+				y = (screen.availHeight - 550) / 2;
+				window.open("<c:url value='/mypage/message/messageWrite.do'/>","쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+			}
+		});
+		
 		//관심등록
 		$(".heart").click(function(){
 			$.ajax({
@@ -67,7 +77,7 @@
 					if(res==1){
 						alert("잘못된 접근입니다.");
 					}else if(res==2){
-						alert("고객회원으로 로그인해주십시오.");
+						alert("고객회원으로 로그인 해주십시오.");
 					}else if(res==3){
 						$('#heartFull').css('display','none');
 						$('#heartEmpty').css('display','');
@@ -86,6 +96,7 @@
 		});
 	});
 	
+	//이미지 클릭하면 부트스트랩 회전목마의 첫번째 active를 설정
 	function openImg(pfImgNo){
 		$('#pictureDiv div').removeClass("active");
 		$("."+pfImgNo).addClass("active");
@@ -94,46 +105,6 @@
 	
 </script>
 
-<style type="text/css">
-/* 모달 시작 */
-.modal-dialog.modal-80size {
-  width: 80%;
-  height: 80%;
-  margin: 0;
-  padding: 0;
-}
-.modal-content.modal-80size {
-  height: auto;
-  min-height: 80%;
-}
-.modal.modal-center {
-  text-align: center;
-}
-
-@media screen and (min-width: 768px) { 
-  .modal.modal-center:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 50%;
-}
-
-.modal-dialog.modal-center {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle; 
-}
-/* 모달 끝 */
-
-#mygallery a{
-	cursor: pointer;
-}
-.heart{
-    width: 26px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-</style>
 </head>
 
 <body>
@@ -179,7 +150,7 @@
 					
 				</div>
 			</c:forEach>
-			<button type="button" class="btn btn-default btn-lg">
+			<button type="button" id="askPro" class="btn btn-default btn-lg">
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 이
 				전문가에게 문의하기
 			</button>
@@ -191,7 +162,7 @@
 					<span style="font-size: 0.9em;">관심</span>
 				<hr>
 			</div>
-			<div id="map1" style="width: 320px; height: 380px; text-align:right; float:right; padding-top:20px;">
+			<div id="map1" style="width: 320px; height: 380px; text-align:right; position: absolute; padding-top: 20px; right: 0;top: 204px;">
 		
 		<!-- 네이버지도 -->			
 			<div id="map" style="width:300px;height:200px;"></div>

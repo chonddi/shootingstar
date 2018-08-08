@@ -51,6 +51,7 @@
 a{
 	cursor: pointer;
 }
+
 </style>
 
 </head>
@@ -125,10 +126,10 @@ a{
 					<div id="portName">
 						<c:if test='${fn:length(map["PFTITLE"])>22}'>	
 										${fn:substring(map["PFTITLE"], 0, 22)}...
-									</c:if>
+						</c:if>
 						<c:if test='${fn:length(map["PFTITLE"])<=22}'>
 										${map["PFTITLE"]}
-									</c:if>
+						</c:if>
 					</div>
 					<div id="photoInfo">
 						<span class="phothgrahper">photograhper</span> <span>${map["SNAME"]}</span>

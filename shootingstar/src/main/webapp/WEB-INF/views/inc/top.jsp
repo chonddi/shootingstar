@@ -64,6 +64,9 @@
 							<c:if test="${sessionScope.userCode==1}">
 								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>
 							</c:if>
+							<c:if test="${sessionScope.userCode==2}">
+								<li><a href="#">EMAIL문의</a></li>
+							</c:if>
 						</ul></li>
 				</ul>
 				<ul >
@@ -86,7 +89,6 @@
 						<c:if test="${sessionScope.userCode==2}">
 							<li><a href="<c:url value='/mypage/myPofol.do'/>">나의 포트폴리오</a></li>
 							<li><a href="#">나의 거래이력</a></li>
-							<li><a href="#">EMAIL문의</a></li>
 							<li><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>
 						</c:if>	
 						<c:if test="${!empty sessionScope.userCode}">

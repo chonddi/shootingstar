@@ -91,8 +91,8 @@ a:hover{
 			</div>
 			
 			<c:if test="${empty myLikeyList}">
-					<div>관심등록한 포트폴리오가 없습니다.</div>
-				</c:if>
+				<div style="text-align: center;margin-top: 50px;">관심등록한 포트폴리오가 없습니다.</div>
+			</c:if>
 			<c:if test="${!empty myLikeyList}">
 				<c:forEach var="map" items="${myLikeyList}">
 					<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">

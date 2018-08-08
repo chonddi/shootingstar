@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+
 #detailArticle {
 	width: 1235px;
 	height: auto;
@@ -62,6 +64,8 @@
 	width: 1245px;
 	height: auto;
 	margin-left: 340px;
+	position: relative;
+    margin-bottom: 60px;
 }
 
 #detailArticle2 {
@@ -234,4 +238,44 @@
 
 #dasExpert {
 	font-size: 0.8em;
+}
+
+/* 모달 시작 */
+.modal-dialog.modal-80size {
+  width: 80%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+}
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 80%;
+}
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 50%;
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle; 
+}
+/* 모달 끝 */
+
+#mygallery a{
+	cursor: pointer;
+}
+.heart{
+    width: 26px;
+    vertical-align: middle;
+    margin-right: 5px;
+    cursor: pointer;
 }
