@@ -34,5 +34,5 @@ public interface RequestService {
 	public int deleteMulti (List<RequestVO> list);
 	public List<RequestImgVO> selImgName (int no);
 	public TransacInfoVO ByNoPayment(int no);
-	 
+	public int ReqCount(); 
 }

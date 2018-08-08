@@ -170,5 +170,11 @@ public class RequestDAOMybatis implements RequestDAO {
 	public TransacInfoVO ByNoPayment(int no) {
 		return sqlSession.selectOne(namespace + "ByNoPayment", no);
 	}
+	
+	@Override
+	public int ReqCount() {
+		return sqlSession.selectOne(namespace + "ReqCount");
+	}
+
 
 }

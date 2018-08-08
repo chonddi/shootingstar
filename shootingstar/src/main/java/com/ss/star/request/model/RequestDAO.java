@@ -37,7 +37,7 @@ public interface RequestDAO {
 	public int deleteReq (int no);
 	public List<RequestImgVO> selImgName (int no);
 	public TransacInfoVO ByNoPayment(int no);
-
+	public int ReqCount();//index화면 견적요청 수 표시
 
 
 

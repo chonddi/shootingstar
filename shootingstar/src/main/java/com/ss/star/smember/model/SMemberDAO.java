@@ -16,6 +16,6 @@ public interface SMemberDAO {
 	public String selectTempPwd(String tempPwd);
 	public int changeNewPwd(SMemberVO sMemberVo);
 	public int deleteTempPwd(String sMemberId);
-	
+	public int selCount();//index화면 등록자 수 표시
 	public int autoAuthority();//스케쥴러
 }

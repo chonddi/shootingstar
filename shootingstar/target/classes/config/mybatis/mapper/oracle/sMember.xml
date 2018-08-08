@@ -75,4 +75,9 @@
 		 membership<sysdate
 		]]>
 	</update>
+	
+	
+	<select id="selCount" resultType="int">
+		select count(*) from smember
+	</select>
 </mapper>

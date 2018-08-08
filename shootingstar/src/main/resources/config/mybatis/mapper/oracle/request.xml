@@ -211,6 +211,12 @@
 		where pickno=#{pickNo}
 	</select>
 	
+	<select id="ReqCount" resultType="int">
+	select count(*) from request
+	where delflag='N'
+	</select>
+	
+	
 </mapper>
 
 

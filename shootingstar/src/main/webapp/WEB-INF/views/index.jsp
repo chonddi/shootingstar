@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>">
@@ -52,20 +52,20 @@ function onClick(usercode) {
 				</p>
 				<div id="tableDiv">
 					<table id="mainTable">
-						<col width="150" align="center">
-						<col width="150" align="center">
-						<col width="150" align="center">
-						<col width="150" align="center">
+						<col width="220" align="center">
+						<col width="220" align="center">
+						<col width="220" align="center">
+						
 						<tr id="mainTr">
 							<td class="border1">등록 전문가 수&nbsp;</td>
 							<td class="border2">&nbsp;견적 요청 수&nbsp;</td>
-							<td class="border3">&nbsp;요청별 견적서&nbsp;</td>
+							<td class="border3">&nbsp;카테고리별 견적서&nbsp;</td>
 							
 						</tr>
 						<tr> 
-							<td class="border1">1업체&nbsp;</td>
-							<td class="border2">&nbsp;2개&nbsp;</td>
-							<td class="border3">&nbsp;3.2개&nbsp;</td>
+							<td class="border1">${tmem}업체&nbsp;</td>
+							<td class="border2">&nbsp;${total}개&nbsp;</td>
+							<td class="border3">&nbsp;<fmt:formatNumber value="${total/9}" pattern=".0"/>개&nbsp;</td>
 							
 						</tr>
 					</table>

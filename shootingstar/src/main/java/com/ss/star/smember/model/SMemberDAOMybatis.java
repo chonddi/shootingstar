@@ -62,4 +62,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int autoAuthority() {
 		return sqlSession.update(namespace+"autoAuthority");
 	}
+	@Override
+	public int selCount() {
+		return sqlSession.selectOne(namespace+"selCount");
+	}
 }

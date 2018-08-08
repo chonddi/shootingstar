@@ -142,7 +142,7 @@ function payBtn(RQNo, pickNo){
 			<td id="ttlt2"><img src="../images/rchecks.png" style="vertical-align:middle; width:30px; height:30px;"> </td>
 			 
 			 <td id="ttlt2">
-			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${pvo.sName}</div> 전문가님 </td>
+			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${pvo.sName}</div> 전문가 </td>
 			
 			 <td id="ttlt2">
 			  <div class="pdt">
@@ -160,9 +160,14 @@ function payBtn(RQNo, pickNo){
 			 </c:forEach>
 		  </tbody>
 		 </table>
-		   
+		 
+			  <div style="margin-top:50px;"> 
+			  	<button class="oky1" style="text-align:center;" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
+			  </div>
+			  
 		  </div>
-		<button class="oky1" style="text-align:center;" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
+		 
+		
 </div>
 
 </body>

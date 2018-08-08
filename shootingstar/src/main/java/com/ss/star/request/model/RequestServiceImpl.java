@@ -177,5 +177,11 @@ public class RequestServiceImpl implements RequestService {
 	public TransacInfoVO ByNoPayment(int no) {
 		return requestDao.ByNoPayment(no);
 	}
+	
+	@Override
+	public int ReqCount() {
+		return requestDao.ReqCount();
+	}
+
 
 }

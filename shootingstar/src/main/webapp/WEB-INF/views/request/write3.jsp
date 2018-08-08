@@ -319,8 +319,6 @@ function removeAll(e){
 
   
 $( document ).ready(function() { 
-	
-	
 	//파일업로드 갯수 5개로 제한
 	$("input[type=file]").change(function(){
 		
@@ -340,6 +338,7 @@ $( document ).ready(function() {
 	
 	//sweetalert으로 coonfirm창 띄우기
 	document.querySelector('#frm1').addEventListener('submit', function(e) {
+		  
 		  var form = this;
 		  e.preventDefault(); 
 	
@@ -360,7 +359,7 @@ $( document ).ready(function() {
 		          text: 'pick등록이 완료되었습니다.',
 		          icon: 'success'
 		        }).then(function() {
-		          form.submit(); // <--- submit form programmatically
+		          form.submit(); // <--- Click시 sumbit
 		        });
 		      } else {
 		        swal("Cancelled", "취소되었습니다:)", "error");

@@ -18,4 +18,5 @@ public interface SMemberService {
 	public int updateTempPwd(String tempPwd,String sMemberId);
 	public String selectTempPwd(String tempPwd);
 	public int changeNewPwd(String pwd, String userid);
+	public int selCount();
 }

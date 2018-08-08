@@ -101,5 +101,10 @@ public class SMemberServiceImpl implements SMemberService{
 		}
 		return cnt;
 	}
+
+	@Override
+	public int selCount() {
+		return sMemberDao.selCount();
+	}
 	
 }
