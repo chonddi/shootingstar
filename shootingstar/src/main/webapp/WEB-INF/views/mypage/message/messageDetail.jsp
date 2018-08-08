@@ -21,12 +21,25 @@ pageContext.setAttribute("cn", "\n");
 		});
 	});
 </script>
+<style type="text/css">
+#detailTbl td{
+	padding-top: 10px;
+	padding-right: 10px;
+	}
+#detailTbl tr:last-child td{
+	padding-top: 20px;
+	vertical-align: top;
+}
+</style>
 </head>
 <body>
+<div class="h1">
+		<h1>보낸쪽지</h1>
+	</div><br>
 	<table id="detailTbl">
 		<tr class="detailTr">
 			<td>받는사람</td>
-			<td>${map['RECIPIENT']}</td>
+			<td>${map['RECIPIENT']}</td>	
 		</tr>
 		<tr class="detailTr">
 			<td>제목</td>
@@ -41,7 +54,7 @@ pageContext.setAttribute("cn", "\n");
 		</tr>
 	</table>
 	<div style="text-align: center;">
-		<input type="button" class="closeBtn" value="닫기">
+		<input type="button" class="closeBtn" id="cancel" value="닫기">
 	</div>
 </body>
 </html>

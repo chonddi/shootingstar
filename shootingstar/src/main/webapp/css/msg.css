@@ -121,6 +121,8 @@ h1{
 /* msgDetail */
 #detailTbl tr:last-child td{
 	height: 400px;
+	vertical-align: top;
+	padding-top: 20px;
 }
 
 .detailTr{
@@ -129,3 +131,7 @@ h1{
 .detailTr td:first-child {
 	font-weight: bold;
 }
+#detailTbl td{
+	padding-top: 10px;
+	padding-right: 10px;
+	}
