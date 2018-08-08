@@ -1,14 +1,15 @@
 @charset "UTF-8";
  @font-face{
-	font-family:"Nanum Gothic";
-	src: url('fonts/NanumGothic.ttf') format('truetype');
+	font-family: 'Do Hyeon', sans-serif;
 
 }  
-@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
-* { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; } 
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+
+
 body{
 
-font-family:"Nanum Gothic";
+font-family: 'Do Hyeon', sans-serif;
    }
 table{
 	 margin:0 auto; 

@@ -63,14 +63,6 @@ $('.notice .tbody .title').find('#title').click(function(){
 	<!--for 돌려서 db 출력  -->
 		<c:forEach var="vo" items="${list}">
 		<tr class="title">
-		<%-- 
-			<!-- 삭제된 원본글에 '삭제된 글' 처리 -->
- 					<c:choose>
-						<c:when test="${vo.delflag=='Y' }">
-						<td colspan=5>
-							<span style="color:gray ; font-size:1.0em">삭제된 글입니다</span>
-						</c:when>
-					<c:otherwise>  --%>
 			<td id="titleNo">${vo.nNo}.</td>
 			<td id="title">
 			
@@ -86,8 +78,6 @@ $('.notice .tbody .title').find('#title').click(function(){
 			<td id="icon" class="off" width="50px">
 				
 			</td>
-<%-- 			</c:otherwise>
-				</c:choose> --%>
 		</tr>
 		<tr class="content">
 			<td colspan=4>
@@ -99,8 +89,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 	</c:if> 
 	</tbody>
 </table>   
- 
-<!-- 검색없음!!! 페이징!!! -->
+
 </body>
 </html>
 <%@ include file="../inc/bottom.jsp"%>
