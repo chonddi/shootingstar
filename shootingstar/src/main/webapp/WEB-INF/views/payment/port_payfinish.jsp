@@ -7,6 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제 완료</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/payfinish.css'/>" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#rqpay").click(function(){
+			location.href="<c:url value=''/>";
+		});
+		
+		$("#main").click(function(){
+			location.href="<c:url value='/index.do'/>";
+		});
+	});
+</script>
 </head>
 <body>
 <form name="fnFrm">
@@ -25,33 +36,37 @@
 			</tr>
 			<tr>
 				<th>주문번호</th>
-				<th></th>
+				<th>${vo.pNo}</th>
 			</tr>
 			<tr>
 				<th>결제수단</th>
-				<th></th>
+				<th>${vo.pMethod}</th>
 			</tr>
 			<tr>
 				<th>구매 일시</th>
-				<th></th>
+				<th>${vo.regdate}</th>
 			</tr>
 			<tr>
 				<th>카테고리</th>
-				<th></th>
+				<th>${vo.cgName}</th>
 			</tr>
 			<tr>
-				<th>판매자 이름</th>
-				<th></th>
+				<th>전문가 이름</th>
+				<th>${vo.sName}</th>
 			</tr>
 			<tr>
-				<th>판매자 아이디</th>
-				<th></th>
+				<th>전문가 아이디</th>
+				<th>${vo.sMemberid}</th>
 			</tr>
 			<tr>
 				<th>결제 금액</th>
-				<th></th>
+				<th>${vo.pPrice}</th>
 			</tr>
 		</table>
+	</section>
+	<section class="sec3">
+		<button id="rqpay">나의 거래 내역</button>
+		<button id="main">메인 페이지</button>
 	</section>
 </form>
 </body>

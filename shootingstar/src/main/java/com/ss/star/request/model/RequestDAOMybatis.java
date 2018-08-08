@@ -11,6 +11,7 @@ import com.ss.star.common.SearchVO;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
+import com.ss.star.payment.model.TransacInfoVO;
 
 @Repository
 public class RequestDAOMybatis implements RequestDAO {
@@ -161,8 +162,13 @@ public class RequestDAOMybatis implements RequestDAO {
 	@Override
 	public List<RequestImgVO> selImgName(int no) {
 		List<RequestImgVO> list = sqlSession.selectList(namespace + "selImgName", no);
-		
+
 		return list;
+	}
+
+	@Override
+	public TransacInfoVO ByNoPayment(int no) {
+		return sqlSession.selectOne(namespace + "ByNoPayment", no);
 	}
 
 }

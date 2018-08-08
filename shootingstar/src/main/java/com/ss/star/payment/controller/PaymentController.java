@@ -16,6 +16,7 @@ import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.MileageVO;
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.TransacInfoVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
 
@@ -69,14 +70,19 @@ public class PaymentController {
 		return "payment/port_payment";
 	}
 
-	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.GET)
 	public String port_payfinish_get(@RequestParam(defaultValue = "0") int no, HttpSession session) {
-		logger.info("detail 화면 이동, 파라미터 no={}", no);
+		logger.info("결제완료 페이지로 이동, 파라미터 no={}", no);
+		
+		String msg = "잘못된 접근입니다.";
+		String url = "/index.do";
 
+		//return "common/message";
 		return "payment/port_payfinish";
-	}
+	}*/
 
-	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
+	//@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
+	@RequestMapping("/port_payfinish.do")
 	public String port_payfinish_post(@RequestParam(defaultValue = "0") int RQNo, @ModelAttribute PayfinishVO vo,
 			HttpSession session, Model model) {
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
@@ -87,6 +93,16 @@ public class PaymentController {
 
 		String userid = (String) session.getAttribute("userid");
 		String usercode = (String) session.getAttribute("userCode");
+		
+		if(RQNo == 0) {
+			String msg = "잘못된 접근입니다.";
+			String url = "/index.do";
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+		}
 		
 		//마일리지 적립
 		double addMileage = Math.ceil(vo.getsPrice() * 0.03);	 /* 마일리지 3% 적립 */
@@ -100,6 +116,11 @@ public class PaymentController {
 		int cnt2 = requestService.updateMileage(memberVo);	/* 새로 적립된 마일리지 적용 */
 		logger.info("PaymentVO insert 결과 cnt={},", cnt);
 		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);
+
+		TransacInfoVO transVo = requestService.ByNoPayment(vo.getPickNo());
+		logger.info("거래내역 list 불러오기 파라미터 transVo={}", transVo);
+		
+		model.addAttribute("vo", transVo);
 
 		return "payment/port_payfinish";
 

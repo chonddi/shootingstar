@@ -7,7 +7,7 @@ public class PayfinishVO {
 	private String rqRegion; /* 견적요청 주소 */
 	private String rqDetail; /* 견적 상세 요청 */
 	private String memberId; /* 고객 아이디 */
-	private String pickNo; /* pick 번호 */
+	private int pickNo; /* pick 번호 */
 	private String sMemberid; /* 전문가 아이디 */
 	private int sPrice; /* 결제 요금 */
 	private String sName; /* 전문가 이름 */
@@ -57,11 +57,11 @@ public class PayfinishVO {
 		this.memberId = memberId;
 	}
 
-	public String getPickNo() {
+	public int getPickNo() {
 		return pickNo;
 	}
 
-	public void setPickNo(String pickNo) {
+	public void setPickNo(int pickNo) {
 		this.pickNo = pickNo;
 	}
 
@@ -134,7 +134,7 @@ public class PayfinishVO {
 		return "PayfinishVO [RQNo=" + RQNo + ", CGNo=" + CGNo + ", rqRegion=" + rqRegion + ", rqDetail=" + rqDetail
 				+ ", memberId=" + memberId + ", pickNo=" + pickNo + ", sMemberid=" + sMemberid + ", sPrice=" + sPrice
 				+ ", sName=" + sName + ", name=" + name + ", tel=" + tel + ", pMethod=" + pMethod + ", mileage="
-				+ mileage + ", useMile=" + useMile + "]";
+				+ mileage + ", useMile=" + useMile;
 	}
 
 }

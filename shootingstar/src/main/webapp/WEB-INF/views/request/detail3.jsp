@@ -26,7 +26,9 @@
 		});
 		
 		$("#apply").click(function(event){
-			if(confirm("적용하시겠습니까?")){
+			if($(".price2").val() == 0){
+				event.preventDefault();
+			}else if(confirm("적용하시겠습니까?")){
 				var str = $("input[name=price2]").val();
 				var price = str.replace(/,/g, '');
 				

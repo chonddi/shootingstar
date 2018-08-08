@@ -7,6 +7,7 @@ import com.ss.star.common.SearchVO;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
+import com.ss.star.payment.model.TransacInfoVO;
 
 public interface RequestDAO {
 	
@@ -35,6 +36,7 @@ public interface RequestDAO {
 	public PickAllVO selPvo (int no);
 	public int deleteReq (int no);
 	public List<RequestImgVO> selImgName (int no);
+	public TransacInfoVO ByNoPayment(int no);
 
 
 

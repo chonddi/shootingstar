@@ -206,6 +206,11 @@
 		select filename from requestimg where RQNo=#{no}
 	</select>
 	
+	<select id="ByNoPayment" parameterType="int" resultType="TransacInfoVO">
+		select * from TRANSACINFO
+		where pickno=#{pickNo}
+	</select>
+	
 </mapper>
 
 

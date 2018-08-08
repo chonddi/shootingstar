@@ -7,6 +7,7 @@ import java.util.Map;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
+import com.ss.star.payment.model.TransacInfoVO;
 
 public interface RequestService {
 
@@ -32,5 +33,6 @@ public interface RequestService {
 	public PickAllVO selPvo (int no);
 	public int deleteMulti (List<RequestVO> list);
 	public List<RequestImgVO> selImgName (int no);
+	public TransacInfoVO ByNoPayment(int no);
 	 
 }

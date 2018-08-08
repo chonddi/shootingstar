@@ -2,7 +2,7 @@
 
 .table1 {
 	width: 100%;
-	font-size: 50px;
+	font-size: 60px;
 	height: 140px;
 }
 
@@ -20,28 +20,49 @@
 }
 
 section.sec1 {
-    margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 
 .table2 {
 	width: 100%;
 }
 
-.table2 tr:first-child th {
-	border-bottom: 3px solid;
-    width: 100%;
-    font-size: 25px;
-}
-
-.table2 tr:not(:first-child) th:first-child {
-    width: 23%;
-}
-
 .table2 tr th {
-	width: 100%;
 	height: 80px;
 	border-bottom: 1px solid rgba(200, 200, 200, 1);
 	vertical-align: middle;
 	padding-left: 20px;
 	font-size: 20px;
+}
+
+.table2 tr:first-child th {
+	border-bottom: 3px solid;
+	width: 100%;
+	font-size: 25px;
+}
+
+.table2 tr:not(:first-child ) th:first-child {
+	width: 23%;
+}
+
+.table2 tr:not(:first-child ) th:last-child {
+	color: #999;
+}
+
+.table2 tr:last-child th:last-child {
+    color: red;
+}
+
+section.sec3 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.sec3 button{
+    height: 55px;
+    width: 220px;
+    font-size: 1.3em;
+    border: 1px solid gray;
+    background-color: white;
+    font-weight: bold;
 }

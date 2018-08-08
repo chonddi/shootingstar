@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
+import com.ss.star.payment.model.TransacInfoVO;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -170,6 +171,11 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public List<RequestImgVO> selImgName(int no) {
 		return requestDao.selImgName(no);
+	}
+	
+	@Override
+	public TransacInfoVO ByNoPayment(int no) {
+		return requestDao.ByNoPayment(no);
 	}
 
 }
