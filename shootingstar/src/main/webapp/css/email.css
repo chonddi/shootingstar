@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+#sec1{
+	margin-bottom: 30px;
+}
+
+#sec2{
+	margin-bottom: 10px;
+}
+
+#sec3{
+	margin-bottom: 40px;
+}
+
+#sec4{
+	text-align: center;
+}
+
+ol li{
+	list-style-type: decimal;
+}
+
+#table1 {
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 100px;
+}
+
+#table1 tr th {
+	vertical-align: middle;
+    padding-left: 20px;
+}
+
+textarea#content {
+    width: 100%;
+    height: 300px;
+    padding: 25px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+button#send {
+    width: 300px;
+    height: 60px;
+    border: 1px solid #00c853;
+    background-color: #00c853;
+    color: white;
+    font-size: 1.5em;
+}
+
+
+
+::-webkit-input-placeholder { /* 크롬 4–56 */
+    color: #9d9d9dad;
+}
+:-moz-placeholder { /* 파이어폭스 4–18 */
+   color: #9d9d9dad;
+   opacity:  1;
+}
+::-moz-placeholder { /* 파이어폭스 19–50 */
+   color: #9d9d9dad;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* 인터넷 익스플로러 10+ */
+   color:  #9d9d9dad;
+}
+::placeholder { /* 파이어폭스 51+, 크롬 57+ */
+   color: #9d9d9dad;
+   opacity:  1;
+}

@@ -3,14 +3,14 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.Q">
 	<sql id="QCol">
-		QNO, QTITLE, QCONTENT, MEMBERID, regdate, (sysdate-regdate)*24 as newImgTerm 
+		QNO, QTITLE, QCONTENT, MEMBERID, regdate, (sysdate-regdate)*24 as newImgTerm, replyCnt
 	</sql>
 	
 	<insert id="insertQ" parameterType="QVO">
 		<selectKey keyProperty="qNo" order="BEFORE" resultType="int">
 			select qna_seq.nextval from dual
 		</selectKey>
-		insert into qna(qno, qtitle, qcontent, memberid)
+			insert into qna(qno, qtitle, qcontent, memberid)
 			values(#{qNo}, #{qTitle}, #{qContent}, #{memberid})
 	</insert>
 	
@@ -22,7 +22,7 @@
 		    from (
 		        select 
 				<include refid="QCol"></include>
-				from QNA
+				from QNAlist
 				order by qno desc
 		    )list
 		)    
@@ -96,5 +96,10 @@
    <delete id="deleteQR" parameterType="int">
    		delete from qnare where qno=#{qNo}
    </delete>
+   
+   <select id="replyRecord" parameterType="int" resultType="int">
+		select count(*) from qnare
+		where qno=#{qNo}
+   </select>
 
 </mapper>

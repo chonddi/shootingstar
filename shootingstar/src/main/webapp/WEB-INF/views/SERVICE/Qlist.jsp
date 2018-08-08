@@ -83,10 +83,10 @@
 						<c:if test="${sessionScope.userid == vo.memberid}">
 							<a href="<c:url value='/SERVICE/Qdetail.do?qNo=${vo.qNo}&memberid=${vo.memberid}'/>">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
-								<c:if test="${fn:length(vo.qTitle)>50}">	
+								<c:if test="${fn:length(vo.qTitle)>40}">	
 									${fn:substring(vo.qTitle, 0, 50)}...
 								</c:if>
-								<c:if test="${fn:length(vo.qTitle)<=50}">
+								<c:if test="${fn:length(vo.qTitle)<=40}">
 									${vo.qTitle}
 								</c:if>
 							</a>
@@ -96,9 +96,11 @@
 							<img src="<c:url value='/images/lock.PNG'/>" alt="lock 이미지" style="vertical-align:middle;">
 						</c:if>
 						<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
-<%-- 						<c:if test="${!empty rlist.size}">
-							(${fn:length(rlist})
-						</c:if> --%>
+ 						<c:if test="${vo.replyCnt != 0}">
+							<span style="color:red;">
+								&nbsp;[${vo.replyCnt}]
+							</span>
+						</c:if>
 						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
 						<c:if test="${vo.newImgTerm<24 }">
 							&nbsp;&nbsp;&nbsp;<img src="<c:url value='/images/new.png'/>" alt="new 이미지">
@@ -106,7 +108,7 @@
 					</td>
 					<td>
 						<c:if test="${sessionScope.userid == vo.memberid}">
-							${vo.memberid}
+							${fn:substring(vo.memberid, 0, 3)}****
 						</c:if>
 						<c:if test="${sessionScope.userid != vo.memberid}">
 							<c:if test="${fn:length(vo.memberid)>3}">

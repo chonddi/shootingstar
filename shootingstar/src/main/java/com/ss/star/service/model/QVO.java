@@ -10,6 +10,7 @@ public class QVO {
 	private String memberid;
 	private Timestamp regdate;
 	private int newImgTerm; // 24시간 이내의 글인지 체크
+	private int replyCnt; // 댓글 갯수
 
 	public int getqNo() {
 		return qNo;
@@ -59,10 +60,18 @@ public class QVO {
 		this.newImgTerm = newImgTerm;
 	}
 
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+
 	@Override
 	public String toString() {
 		return "QVO [qNo=" + qNo + ", qTitle=" + qTitle + ", qContent=" + qContent + ", memberid=" + memberid
-				+ ", regdate=" + regdate + ", newImgTerm=" + newImgTerm + "]";
+				+ ", regdate=" + regdate + ", newImgTerm=" + newImgTerm + ", replyCnt=" + replyCnt + "]";
 	}
 
 }

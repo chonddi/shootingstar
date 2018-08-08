@@ -60,3 +60,13 @@ on r.pickno=p.pickno
 left join category c
 on p.cgno=c.cgno;
 
+
+--View for Qlist.jsp
+create or replace view QNAlist
+as
+select q.*, (select count(*) from qnare r where r.qno=q.qno) as REPLYCNT
+from qna q;
+
+
+
+
