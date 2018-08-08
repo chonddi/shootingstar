@@ -67,6 +67,14 @@
 		select * from pfdetail where pfno=#{pfNo}
 	</select>
 	
+	<select id="detailSmemberId" parameterType="int" resultType="String">
+		select smemberid from portfolio where pfNo=#{pfNo}
+	</select>
+	
+	<select id="authorityById" parameterType="String" resultType="String">
+		select authority from smember where smemberid=#{sMemberId}
+	</select>
+	
 	<select id="selectBySmemberId" parameterType="String" resultType="portfolioVO">
 		select pfno 
 		from( select pfno

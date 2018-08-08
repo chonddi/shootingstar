@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../mypageTop.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/payfinish.css'/>" />
 <style type="text/css">
 .selectedPage{
 	width:50%;
-    height: 430px;
+    height: auto;
 	text-align: center;
 }
 .selectName{
@@ -16,35 +17,15 @@
     font-weight: 700;
     border-bottom: 3px solid #e46c0a;
 }
-span{
-	font-weight: bold;
-}
-.h1{
-	font-weight: bold;
-	font-size: 1.5em;
-	margin-top:60px;
-	margin-bottom: 40px;
-}
-#finishTable{
-	width:40%;
-	margin:0 auto;
-}
-#finishTable tr td:nth-child(odd){
-	font-weight: bold;
-	padding:  8px;
-}
-.tblDiv{
-    margin-bottom: 65px;
-}
-.mypageBtn{
-    width: 164px;
-}
-
 </style>
 <script type="text/javascript">
 	$(function(){
-		$('#mlBtn').click(function(){
+		$("#membershipList").click(function(){
 			location.href='<c:url value="/mypage/membership/membershipList.do"/>';
+		});
+		
+		$("#mainPage").click(function(){
+			location.href="<c:url value='/index.do'/>";
 		});
 	});
 </script>
@@ -52,32 +33,34 @@ span{
 		멤버십 결제완료
 	</div>
 	<div class="selectedPage">
-		<div class="h1">결제가 완료되었습니다.</div>
-		<div class="tblDiv">
-			<table id="finishTable">
-				<tr>
-					<td>결제번호</td>
-					<td>${mSPaymentVo.pNo }</td>
-					<td>결제수단</td>
-					<td>${mSPaymentVo.pMethod }  </td>
-				</tr>
-				<tr>
-					<td>멤버십 이용권</td>
-					<td>${mSPaymentVo.pContent }</td>
-					<td>결제금액</td>
-					<td><fmt:formatNumber value="${mSPaymentVo.pPrice }" pattern="#,###"/>원</td>
-				</tr>
-				<tr>
-					<td>결제 일시</td>
-					<td colspan="3" style="padding-right: 55px;"><fmt:formatDate value="${mSPaymentVo.regdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-				</tr>
-			</table>
-		
-			
-		</div>
-		<div style="text-align: center;">
-			<input type="button" id="mlBtn" class="mypageBtn" value="결제 내역 보기">
-		</div> 
-
+		<form name="fnFrm">
+			<section class="sec2">
+				<table class="table2">
+					<tr>
+						<th colspan="2">결제정보</th>
+					</tr>
+					<tr>
+						<th>결제번호</th>
+						<th>${vo.pNo}</th>
+					</tr>
+					<tr>
+						<th>결제수단</th>
+						<th>${vo.pMethod}</th>
+					</tr>
+					<tr>
+						<th>구매 일시</th>
+						<th><fmt:formatDate value="${vo.regdate}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/></th>
+					</tr>
+					<tr>
+						<th>결제 금액</th>
+						<th><fmt:formatNumber value="${vo.pPrice}" pattern="#,###"/> 원</th>
+					</tr>
+				</table>
+			</section>
+			<section class="sec3">
+				<input type="button" id="membershipList" class="btns" value="멤버십 관리">
+				<input type="button" id="mainPage" class="btns" value="메인페이지">
+			</section>
+		</form>
 	</div>
 </div>

@@ -130,6 +130,6 @@ public class MembershipController {
 		MSPaymentVO mSPaymentVo = mSPaymentService.PaymentFinish(userid);
 		logger.info("결제 완료 페이지 mSPaymentVo: {}", mSPaymentVo);
 		
-		model.addAttribute("mSPaymentVo", mSPaymentVo);
+		model.addAttribute("vo", mSPaymentVo);
 	}
 }

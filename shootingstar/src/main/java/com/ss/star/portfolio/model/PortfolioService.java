@@ -16,4 +16,6 @@ public interface PortfolioService {
 	public String selectAdd(int pfNo);
 	public List<Map<String, Object>> selectMyPofol(String sMemberId, SearchVO searchVo);
 	public int getTotalMyPofol(String sMemberId, SearchVO searchVo);
+	public String detailSmemberId(int pfNo);
+	public String authorityById(String sMemberId);
 }

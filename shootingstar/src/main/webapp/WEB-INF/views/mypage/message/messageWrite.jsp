@@ -21,6 +21,9 @@
 					return false; //each() 탈출
 				}
 			});
+			if(${!empty param.sMemberId}){
+				$('#idCount').val('Y');
+			}
 			if(bool){
 				if($('#idCount').val()!='Y'){
 					alert('아이디가 없습니다.');
@@ -119,7 +122,7 @@
 		<h1>쪽지보내기</h1>
 	</div>
 	<div class="msgDiv" style="margin-bottom: 3px;">
-		<input type="text" id="receiver" name="recipient" class="text" placeholder="받는사람 아이디를 입력하세요"><br>
+		<input type="text" id="receiver" name="recipient" class="text" placeholder="받는사람 아이디를 입력하세요" value="${param.sMemberId}"><br>
 	</div>
 	<span id="noId" style="display: none">아이디가 없습니다.</span>
 	<div class="msgDiv">

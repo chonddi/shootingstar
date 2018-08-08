@@ -152,6 +152,19 @@ public class PortfolioController {
 			model.addAttribute("url", "/portfolio/portfolioList.do");
 			return "common/message";
 		}
+		String sMemberId= pfService.detailSmemberId(pfNo);
+		logger.info("포폴디테일 sMemberId: {}", sMemberId);
+		String authority=pfService.authorityById(sMemberId);
+		String userCode = (String) session.getAttribute("userCode");
+		String userid = (String) session.getAttribute("userid");
+		logger.info("포폴디테일 권한: {}, userCode: {}", authority, userCode);
+		
+		if("N".equals(authority) && !(sMemberId.equals(userid) && "2".equals(userCode))) {
+			model.addAttribute("msg", "해당 포트폴리오 전문가의 멤버십이 만료되어 정보를 열람하실 수 없습니다.");
+			model.addAttribute("url", "/mypage/myLikey.do");
+			
+			return "common/message";
+		}
 		
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
 		logger.info("포트폴리오 디테일 list.size(): {}", list.size());
@@ -166,6 +179,8 @@ public class PortfolioController {
 		
 		String address = pfService.selectAdd(pfNo);
 		model.addAttribute("address",address);
+		
+		model.addAttribute("sMemberId", sMemberId);
 		
 		if("1".equals((String)session.getAttribute("userCode"))) {
 			String memberId=(String)session.getAttribute("userid");

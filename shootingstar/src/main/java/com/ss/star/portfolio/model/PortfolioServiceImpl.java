@@ -100,5 +100,15 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return Dao.getTotalMyPofol(map);
 	}
 
+	@Override
+	public String detailSmemberId(int pfNo) {
+		return Dao.detailSmemberId(pfNo);
+	}
+
+	@Override
+	public String authorityById(String sMemberId) {
+		return Dao.authorityById(sMemberId);
+	}
+
 	
 }

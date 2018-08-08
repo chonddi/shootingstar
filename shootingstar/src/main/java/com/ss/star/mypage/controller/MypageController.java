@@ -333,9 +333,4 @@ public class MypageController {
 		model.addAttribute("cgList", cgList);
 	}
 	
-	@RequestMapping("/myLikey")
-	public void myLikey(HttpSession session) {
-		
-	}
-	
 }

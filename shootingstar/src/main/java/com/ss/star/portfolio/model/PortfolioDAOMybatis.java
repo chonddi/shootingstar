@@ -83,4 +83,14 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 		return sqlSession.selectOne(namespace+"getTotalMyPofol", map);
 	}
 
+	@Override
+	public String detailSmemberId(int pfNo) {
+		return sqlSession.selectOne(namespace+"detailSmemberId", pfNo);
+	}
+
+	@Override
+	public String authorityById(String sMemberId) {
+		return sqlSession.selectOne(namespace+"authorityById", sMemberId);
+	}
+
 }

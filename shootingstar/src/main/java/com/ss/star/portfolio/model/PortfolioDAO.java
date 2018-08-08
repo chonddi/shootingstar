@@ -14,7 +14,9 @@ public interface PortfolioDAO {
 	public List<Map<String, Object>> selectPfDetail(int pfNo);
 	public List<reviewVO> selectReview(int pfNo);
 	public PortfolioVO selectBySmemberId(String smemberId);
-	public String selectAdd(int pfNo);
-	public List<Map<String, Object>> selectMyPofol(Map<String, Object> map);
-	public int getTotalMyPofol(Map<String, Object> map);
+	public String selectAdd(int pfNo);	
+	public List<Map<String, Object>> selectMyPofol(Map<String, Object> map);	//마이포폴
+	public int getTotalMyPofol(Map<String, Object> map);	
+	public String detailSmemberId(int pfNo);	//디테일에 넣을 sMemberId
+	public String authorityById(String sMemberId);   //권한 N일때 막기
 }
