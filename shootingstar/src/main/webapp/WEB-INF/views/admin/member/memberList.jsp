@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ include file="../../inc/adminTop.jsp"%>
-<script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
+	$(function(){
+		$('#btnExcel').click(function(){
+			location.href="<c:url value='/admin/excelMember.do'/>";
+		});
+	});
+
 
 	function pageFunc(curPage){
 		document.frmPage.currentPage.value=curPage;
@@ -117,6 +121,7 @@ th, td{ padding:10px;
 	        	value="${param.searchKeyword}">   
 			<input type ="image" src="<c:url value='../../images/black18s.png'/>" 
 			align="absmiddle" >	
+			<input type="button" id="btnExcel" value="엑셀로 전체 다운받기">
 			
 			
 				

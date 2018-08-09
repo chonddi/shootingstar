@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sql.member">
+	
 	<select id="selectID" parameterType="string" resultType="memberVo">
 		select * from member where memberid=#{memberId}
 	</select>
@@ -51,6 +52,10 @@
 		update member set temppwd='' where memberid=#{memberId}
 	</update>
 	
+	<!-- 관리자 엑셀 -->
+	<select id="excelMember" resultType="memberVo">
+		select memberid, name, tel, regdate, outdate from member
+	</select>
 </mapper>
 
 

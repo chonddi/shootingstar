@@ -1,5 +1,6 @@
 package com.ss.star.member.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -69,5 +70,10 @@ public class MemberDAOMybatis implements MemberDAO{
 	@Override
 	public int deleteTempPwd(String memberId) {
 		return sqlSession.update(namespace+"deleteTempPwd", memberId);
+	}
+
+	@Override
+	public List<MemberVO> excelMember() {
+		return sqlSession.selectList(namespace+"excelMember");
 	}
 }

@@ -1,5 +1,6 @@
 package com.ss.star.member.model;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MemberDAO {
@@ -16,4 +17,5 @@ public interface MemberDAO {
 	public String selectTempPwd(String tempPwd);
 	public int changeNewPwd(MemberVO memberVo);
 	public int deleteTempPwd(String memberId);
+	public List<MemberVO>excelMember();	//엑셀
 }

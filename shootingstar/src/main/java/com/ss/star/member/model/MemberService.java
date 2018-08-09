@@ -1,5 +1,7 @@
 package com.ss.star.member.model;
 
+import java.util.List;
+
 public interface MemberService {
 	//로그인 처리에서 사용
 	public static final int LOGIN_OK=1;  //로그인 성공
@@ -17,4 +19,5 @@ public interface MemberService {
 	public int updateTempPwd(String tempPwd, String memberId);
 	public String selectTempPwd(String tempPwd);
 	public int changeNewPwd(String pwd, String userid);
+	public List<MemberVO> excelMember();
 }

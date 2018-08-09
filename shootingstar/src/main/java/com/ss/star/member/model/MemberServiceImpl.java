@@ -1,6 +1,7 @@
 package com.ss.star.member.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,11 @@ public class MemberServiceImpl implements MemberService{
 			e.printStackTrace();
 		}
 		return cnt;
+	}
+
+	@Override
+	public List<MemberVO> excelMember() {
+		return memberDao.excelMember();
 	}
 	
 	
