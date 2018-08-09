@@ -115,8 +115,10 @@ public class PaymentController {
 
 		int cnt = requestService.insertPayment(vo);	/* RQPAYMENT(거래내역) 테이블에 DB 추가 */
 		int cnt2 = requestService.updateMileage(memberVo);	/* 새로 적립된 마일리지 적용 */
+		int cnt3 = requestService.pLevel3(vo.getPickNo());	/* pLevel을 3으로 업데이트 */
 		logger.info("PaymentVO insert 결과 cnt={},", cnt);
 		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);
+		logger.info("pLevel3 업데이트 결과 cnt3={}", cnt3);
 
 		TransacInfoVO transVo = requestService.ByNoPayment(vo.getPickNo());
 		logger.info("거래내역 list 불러오기 파라미터 transVo={}", transVo);

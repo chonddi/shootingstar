@@ -183,5 +183,10 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.ReqCount();
 	}
 
+	@Override
+	public int pLevel3(int no) {
+		return requestDao.pLevel3(no);
+	}
+
 
 }

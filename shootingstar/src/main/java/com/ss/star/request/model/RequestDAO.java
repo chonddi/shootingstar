@@ -38,6 +38,7 @@ public interface RequestDAO {
 	public List<RequestImgVO> selImgName (int no);
 	public TransacInfoVO ByNoPayment(int no);
 	public int ReqCount();//index화면 견적요청 수 표시
+	public int pLevel3(int no);
 
 
 

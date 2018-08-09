@@ -176,5 +176,10 @@ public class RequestDAOMybatis implements RequestDAO {
 		return sqlSession.selectOne(namespace + "ReqCount");
 	}
 
+	@Override
+	public int pLevel3(int no) {
+		return sqlSession.update(namespace + "pLevel3", no);
+	}
+
 
 }

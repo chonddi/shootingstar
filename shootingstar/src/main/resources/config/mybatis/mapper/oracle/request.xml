@@ -216,6 +216,12 @@
 	where delflag='N'
 	</select>
 	
+	<update id="pLevel3" parameterType="int">
+		update pick
+		set plevel=plevel+1
+		where plevel=2 and pickno=#{pickno}
+	</update>
+	
 	
 </mapper>
 

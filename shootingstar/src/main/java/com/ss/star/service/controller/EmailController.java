@@ -32,7 +32,7 @@ public class EmailController {
 		logger.info("이메일 발송 처리 파라미터 emailVo={}", emailVo);
 
 		String subject = emailVo.getsName() + " 전문가 님의 문의가 도착했습니다.";
-		String content = "연락처 : " + emailVo.getTel() + "\n\n" + emailVo.getContent();
+		String content = "연락처 : " + emailVo.getTel() + "\n\n메일 주소 : " + emailVo.getEmail() + "\n\n" + emailVo.getContent();
 		String to = "hkedushootingstar@gmail.com";
 		String from = emailVo.getEmail();
 

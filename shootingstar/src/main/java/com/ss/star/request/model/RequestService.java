@@ -35,4 +35,5 @@ public interface RequestService {
 	public List<RequestImgVO> selImgName (int no);
 	public TransacInfoVO ByNoPayment(int no);
 	public int ReqCount(); 
+	public int pLevel3(int no);
 }
