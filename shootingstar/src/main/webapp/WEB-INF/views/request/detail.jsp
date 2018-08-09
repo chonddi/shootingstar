@@ -54,7 +54,7 @@ function viewImage(img){
 
 
 
-function payBtn(RQNo, pickNo){
+function selBtn(RQNo, pickNo){
 	 swal({
 	      title: "선택하시겠습니까?",
 	      text: "PICK은 1개만 선택가능합니다.계속하시겠습니까?",
@@ -115,7 +115,14 @@ function payBtn(RQNo, pickNo){
 					 
 			 <div id="pS5"> <div class="title2">STATUS</div><br>
 			 	
-			 	
+		<%-- 	<c:if test="${empty param.pList}">
+			
+			<div class="title6" style="font-size: 45px;text-align:center;"><img src="../images/smile.png"/ style="vertical-align:middle; margin-right:25px;">
+			아직 전문가가 Pick을 선택하지 않았습니다.</div>
+			
+			</c:if> --%>
+			
+		<%-- 	 <c:if test="${!empty param.pList}">	 --%>
 			 <table class="box2">
 			 <colgroup>
 				<col style="width:8%;" />
@@ -151,7 +158,7 @@ function payBtn(RQNo, pickNo){
 			 
 			 <td id="ttlt2">
 			 
-			  <button class="hover effect8" id="btn5" onclick="payBtn(${pvo.RQNo}, ${pvo.pickNo})">선택하기</button>
+			  <button class="hover effect8" id="btn5" onclick="selBtn(${pvo.RQNo}, ${pvo.pickNo})">선택하기</button>
 			
 			 </td>
 			 
@@ -160,7 +167,7 @@ function payBtn(RQNo, pickNo){
 			 </c:forEach>
 		  </tbody>
 		 </table>
-		 
+	<%-- 	 </c:if> --%>
 			  <div style="margin-top:50px;"> 
 			  	<button class="oky1" style="text-align:center;" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
 			  </div>

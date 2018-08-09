@@ -117,9 +117,7 @@ public class FileUploadUtil3 {
 			//map을 list에 저장
 			list.add(map);
 			}	
-			
-		
-		
+				
 		}
 		return list;
 	}

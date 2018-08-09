@@ -67,7 +67,8 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/write3.do")
-	public String RequestWrite3(@RequestParam String price, @RequestParam String cg1, Model model) {
+	public String RequestWrite3(@RequestParam String price, 
+						@RequestParam String cg1, Model model) {
 
 		logger.info("글쓰기 화면 3");
 
@@ -100,14 +101,24 @@ public class RequestController {
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequestVO={}", vo);
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequetImgVO={}", ivo);
 
-		String region = selOne + " " + selTwo;
-
-		String stime = "";
-		if (sTime == null) {
-			stime = dtSel;
-		} else {
-			stime = dtSel + ", " + sTime;
+		String region="";
+		if(selOne==null && selTwo==null) {
+			region="미선택";
 		}
+		region = selOne + " " + selTwo;
+				
+		
+		String stime = "";
+		if (dtSel==null&&sTime == null) {
+			stime = "미선택";
+		}else if(dtSel==null&&sTime!=null) {
+			stime = "날짜 미정, 선호 시간대-"+sTime;
+		}else if(dtSel!=null) {
+			stime = dtSel;
+		}else if(dtSel==null) {
+			stime="미선택";
+		}
+		
 
 		String rtype = "";
 
@@ -120,10 +131,9 @@ public class RequestController {
 		} else if (ck2 == null) {
 			rtype = ck1;
 		}
-
-		if (vo.getRQDate() == null || vo.getRQDate().isEmpty() || vo.getRQDate().equals(" ")) {
-			vo.setRQDate("추후협의");
-		}
+		
+		
+		
 
 		if (cg1.equals("인물/프로필")) {
 			vo.setCgNo(1);
@@ -211,11 +221,9 @@ public class RequestController {
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("전체 레코드 개수={}", totalRecord);
 
-		String vmemberid = memberid;
-
 		model.addAttribute("list", list);
 		model.addAttribute("pageVo", pagingInfo);
-		model.addAttribute("vmemberid", vmemberid);
+		model.addAttribute("vmemberid", memberid);
 		model.addAttribute("ucode", usercode);
 		logger.info("현재 session의 id={}", memberid);
 		logger.info("현재 session의 usercode={}", usercode);
@@ -240,8 +248,6 @@ public class RequestController {
 		List<PickAllVO> pList = requestService.selectPList(no);
 		logger.info("파라미터pList, pList={}", pList);
 
-		
-		
 		model.addAttribute("no", no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
@@ -259,22 +265,15 @@ public class RequestController {
 			int trans=0; 
 			for(int i=0;i<pList.size();i++) {		
 				trans=pList.get(i).getpLevel();
-				
 				if(trans>=2) {
-				
-					break; 
+				break; 
 				}
 			}
-			
-			
 				if(trans>=2) {
-			
-					
 					return "redirect:detail3.do"; 
 				}
 				
 			}
-				
 		//pick레벨이 1 이상일 경우 detail2로 보낸다
 		if(pList.size()>=1) {
 			int trans=0; 
@@ -549,6 +548,13 @@ public class RequestController {
 		List<RequestImgVO> list = requestService.selectByNoImg(no);
 		logger.info("파라미터 list, list={}", list);
 		
+		//현재 request글 작성자 아이디를 담은 vo구하기
+		String vname = vo.getMemberId();
+		
+		MemberVO mvo = memberService.selectID(vname);
+		logger.info("파라미터mvo, mvo={}", mvo);
+		
+		model.addAttribute("mvo",mvo);
 		model.addAttribute("no",no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("pList", pList);

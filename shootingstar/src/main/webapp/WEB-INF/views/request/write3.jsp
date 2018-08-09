@@ -340,11 +340,15 @@ $( document ).ready(function() {
 	document.querySelector('#frm1').addEventListener('submit', function(e) {
 		  
 		  var form = this;
+		  var price = $("#RQPrice").val();
+		 
+		 
+
 		  e.preventDefault(); 
 	
 		  swal({
-		      title: "글을 등록 하시겠습니까?",
-		      text: "pick된 글은 금액수정이 불가합니다. 계속하시겠습니까?",
+		      title: "입력하신 가격은 "+price+"원입니다.",
+		      text: "pick된 글은 수정이 불가합니다. 계속하시겠습니까?",
 		      html: true,
 		      icon: "warning",
 		      buttons: [
@@ -424,7 +428,7 @@ $( document ).ready(function() {
 					<div class="chkT">
 					<img src="../images/cal1.png" style="vertical-align:middle; float:left;"/>
 					 <input type="text" id="pS1" name="dtSel" class="datepicker-here" data-language='kr' 
-					 	data-position="left top"  style="vertical-align:middle;" autocomplete=off>
+					 	data-position="left top"  style="vertical-align:middle;" autocomplete=off required>
 				 
 					
 					
@@ -440,18 +444,12 @@ $( document ).ready(function() {
 						   	<input type="checkbox" name="ck1" value="웹용"> 웹용 &nbsp;&nbsp;
 							<input type="checkbox" name="ck2" value="인쇄용"> 인쇄용
 							<div style="font-size:16px;">(0개 선택 시 "미선택"으로 입력됩니다.)</div>
-							<input type="hidden" name="RQPrice" value=${price }>
-							<input type="hidden" name="cg1" value=${cg1 }>
+							<input type="hidden" id= "RQPrice" name="RQPrice" value=${price }>
+							<input type="hidden" id="cg1" name="cg1" value=${cg1 }>
 						</div>
 					</div>
 					<br><br>
-				
-					
-
-
-			
-			
-		   
+				   
 		   
 			 <div class="pS2">
 				    <span id="pS3"> 촬영에 대한 세부요청사항을 작성해주세요</span> <br>

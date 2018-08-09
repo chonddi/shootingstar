@@ -28,7 +28,8 @@ public class ctgRequestVO extends SearchVO{
 	
 	@Override
 	public String toString() {
-		return "ctgRequestVO [cgNo=" + cgNo + ", cgName=" + cgName + ", cgOrder=" + cgOrder + ", toString()="
+		return "ctgRequestVO [cgNo=" + cgNo + ", "
+				+ "cgName=" + cgName + ", cgOrder=" + cgOrder + ", toString()="
 				+ super.toString() + "]";
 	}
 	

@@ -36,7 +36,7 @@
 					$("input[name=price2]").val($("#mileage").text());
 				}else if(str == ""){
 					$("input[name=price2]").val(0);
-				}
+				
 				
 				var str2 = $(".price2").val();
 				var price2 = str.replace(/,/g, '');
@@ -88,6 +88,8 @@
 			$("input[name=price2]").val($("#mileage").text());
 			event.preventDefault();
 		});
+		
+	
 		
 	});
 	

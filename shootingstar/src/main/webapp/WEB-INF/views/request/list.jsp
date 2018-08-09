@@ -48,8 +48,6 @@ $(document).ready(function(){
 			
 		}	 
  	 
- 	 
- 	 
  	function onClick2(rqno) { 
  		
  		location.href="<c:url value='/request/sdetail.do?no="+rqno+"'/>"
@@ -61,14 +59,12 @@ $(document).ready(function(){
  		location.href="<c:url value='/request/detail.do'/>"
  		
 			}	
-					
-
+				
 	function onLoad() {
 		
 	}
 
 	
-
 </script>
 	
 </head>	

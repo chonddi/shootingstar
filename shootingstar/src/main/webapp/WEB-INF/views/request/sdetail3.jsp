@@ -12,6 +12,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/request.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='../css/write.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='../css/button.css'/>">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <link rel="stylesheet" href="/css/jquery-ui.min.css">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -113,6 +114,16 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 	    
 	    
 	});
+	
+	
+	$('#sendMsg').click(function(memberId){
+	x = (screen.availWidth - 460) / 2;
+    y = (screen.availHeight - 550) / 2;
+    window.open("<c:url value='/mypage/message/messageWrite.do?memberId=${vo.memberId}'/>",
+		"쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+
+	});
+
 });	
 	
 
@@ -191,24 +202,25 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 			 		</div>
 			 			<div class="mdiv1" style="text-align:left;">
 						 	<img src='../images/cinfo.png' style="vertical-align:middle;" />
-						 	${vo.memberId }님의 Contact Info<br>
-						 	<img src='../images/mcall.png' /> <br>
-						 	<img src='../images/mtxt.png' />[쪽지보내기]
-						 	
+						 	<span style="font-size:1.5em;text-decoration: underline;">${vo.memberId }님의 Contact Info</span><br><br>
+						 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../images/mcall.png' style="vertical-align:middle;" />&nbsp; ${mvo.tel} <br><br>
+						 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../images/mtxt.png' style="vertical-align:middle;"/>
+						 	<a href="#" title="button" id="sendMsg" value="${vo.memberId}">&nbsp;[쪽지보내기]</a>
+	
 						 </div>
 						 <div class="mdiv1" style="text-align:left;">
-						 	<span style="color: #F06659; font-size:1.3em;"> 최종결정 </span> <br><br>
+						 	<span style="color: #F06659; font-size:1.7em;"> !최종결정 </span> <br><br>
 						 	마지막 단계인 결제단계로 넘어가시려면<br>
 						 	상호협의하신 최종가격을 입력하시고 버튼을 클릭하세요.<br><br>
 						 	<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required maxlength="9" />
+		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required maxlength="10" />
 		            		&nbsp; <span id="cg5">원</span>  <br><br>
 		            		
 		            		<input type="hidden" name="sName" value="${pvo.sName}" />
 		            		<input type="hidden" name="pickNo" value="${pvo.pickNo}" />
 		     				<input type="hidden" class="sPrice" name="sPrice" value="" />
 		  
-		            		<button class="oky1" id="oky1">최종결정</button>
+		            		<button class="oky1" id="oky1" style="margin-left:70px;">최종결정</button>
 		            		
 		            		
 						 </div>
@@ -222,7 +234,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 		     </form>
 		            
 		            <br><br>
-		            <button class="oky1" onclick="location.href='<c:url value='/request/list.do'/>'">List로</button>
+		            <button class="oky1" onclick="location.href='<c:url value='/request/list.do'/>'" style="margin-right:50px;">List로</button>
 		    		
 			 </div> 
   
