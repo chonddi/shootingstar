@@ -1,0 +1,9 @@
+﻿insert into category values(category_seq.nextval, '인물/프로필', 1);
+insert into category values(category_seq.nextval, '푸드', 2);
+insert into category values(category_seq.nextval, '패션', 3);
+insert into category values(category_seq.nextval, '웨딩', 4);
+insert into category values(category_seq.nextval, '행사/컨퍼런스', 5);
+insert into category values(category_seq.nextval, '건축/인테리어', 6);
+insert into category values(category_seq.nextval, '공연', 7);
+insert into category values(category_seq.nextval, '광고', 8);
+insert into category values(category_seq.nextval, '스냅사진', 9);
