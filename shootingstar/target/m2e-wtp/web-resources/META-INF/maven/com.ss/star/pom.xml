@@ -269,6 +269,13 @@
 			<version>2.8.5</version>
 		</dependency>
 		
+		<!-- POI 엑셀 xlsx -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		
 	</dependencies>
 
 	<repositories>		
