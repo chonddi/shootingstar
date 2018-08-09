@@ -65,7 +65,7 @@
 								<li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A</a></li>
 							</c:if>
 							<c:if test="${sessionScope.userCode==2}">
-								<li><a href="#">EMAIL문의</a></li>
+								<li><a href="<c:url value='/SERVICE/email.do'/>">EMAIL문의</a></li>
 							</c:if>
 						</ul></li>
 				</ul>
