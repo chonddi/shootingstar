@@ -158,7 +158,9 @@
 	font-size:0.9em;
 	padding-top: 20px;
 }
-
+#codeBtn{
+	width:70px;
+}
 </style>
 <div class="regiAll">
 

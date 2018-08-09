@@ -10,7 +10,7 @@
 	border-radius: 10px;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
 	height: 35px;
 	border: none;
 	border-bottom: 1px solid #d9d9d9;
@@ -36,7 +36,7 @@ span{
 	cursor: pointer;
 }
 
-#idChkBtn, #btnZipcode{	
+#idChkBtn, #btnZipcode, #codeBtn{	
     border:  none;
     width: 100px;
     height: 30px;

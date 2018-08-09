@@ -23,7 +23,10 @@
 			});
 			if(${!empty param.sMemberId}){
 				$('#idCount').val('Y');
+			}else if(${!empty param.memberId}){
+				$('#idCount').val('Y');
 			}
+			
 			if(bool){
 				if($('#idCount').val()!='Y'){
 					alert('아이디가 없습니다.');
@@ -122,7 +125,10 @@
 		<h1>쪽지보내기</h1>
 	</div>
 	<div class="msgDiv" style="margin-bottom: 3px;">
-		<input type="text" id="receiver" name="recipient" class="text" placeholder="받는사람 아이디를 입력하세요" value="${param.sMemberId}"><br>
+		<input type="text" id="receiver" name="recipient" class="text" placeholder="받는사람 아이디를 입력하세요" 
+			<c:if test="${sessionScope.userCode==1 }">value="${param.sMemberId}"</c:if>
+			<c:if test="${sessionScope.userCode==2 }">value="${param.memberId}"</c:if>				
+		><br>
 	</div>
 	<span id="noId" style="display: none">아이디가 없습니다.</span>
 	<div class="msgDiv">

@@ -104,7 +104,7 @@ public class MessageController {
 
 	//쪽지쓰기
 	@RequestMapping(value="/messageWrite.do", method=RequestMethod.GET)
-	public void messageWrite(@RequestParam(required=false) String sMemberId) {
+	public void messageWrite(@RequestParam(required=false) String sMemberId, @RequestParam(required=false) String memberId ) {
 		logger.info("쪽지쓰기");
 	}
 

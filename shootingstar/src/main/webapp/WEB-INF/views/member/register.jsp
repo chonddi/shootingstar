@@ -142,6 +142,9 @@
 	width: 350px;
 	background: #0e4699;
 }
+#codeBtn{
+	width:70px;
+}
 </style>
 <div class="regiAll">
 
