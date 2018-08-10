@@ -189,27 +189,24 @@ $(document).ready(function(){
 	        url : "<c:url value='/SERVICE/QRreplyList.do'/>",
 	        type : 'get',
 	        success : function(data){
-	        	var reply = "";
 	        	
 	            if(data.length > 0){
  	                for(i=0; i<data.length; i++){
- 	                	//if(($("#id_" + data[i].parent).val() == data[i].parent)){
- 	                	if(($("#id_" + data[i].parent).val() == data[i].parent) && $(".hidden").val()){
- 	                		reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
-	 	               		reply += "<div class='ajxDiv3'>";
-	 	               		reply += "<div><table id='tbr_" + data[i].qrNo + "'><h6><b>" + data[i].id;
-	 	               		reply += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
-	 	               		reply += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
-	 	               		reply += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
-	 	               		reply += "</span></b></h6>";
-	 	               		reply += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
-	 	               		reply += "<tr><td></td></tr>";
-	 	               		reply += "<tr><td></td></tr>";
-	 	               		reply += "</table></div>";
-	 	               		reply += "</div>";
-	 	               		
-	          				$("#tb_" + data[i].parent + " tr:first").find("td").html(reply);
- 	                	} 	                
+	        			var reply = "";
+                		reply += "<img id='subline2' src='<c:url value='/images/subline.png'/>'>";
+ 	               		reply += "<div class='ajxDiv3'>";
+ 	               		reply += "<div><table id='tbr_" + data[i].qrNo + "'><h6><b>" + data[i].id;
+ 	               		reply += "&nbsp;&nbsp;<span class='ajxSpn'>" + data[i].regdate + "&nbsp;&nbsp;";
+ 	               		reply += "<a class='ajxBtn2' onclick=\"qrUpdate(" + data[i].qrNo + ", " + data[i].qNo + ", \'" + data[i].content + "\')\">수정</a>&nbsp;&nbsp;";
+ 	               		reply += "<a class='ajxBtn3' onclick=\"qrDelete(" + data[i].qrNo + ", " + data[i].qNo + ")\">삭제</a>&nbsp;&nbsp;";
+ 	               		reply += "</span></b></h6>";
+ 	               		reply += "<div class='qrContent" + data[i].qrNo + data[i].qNo + "'>" + data[i].content + "</div>";
+ 	               		reply += "<tr><td></td></tr>";
+ 	               		reply += "<tr><td></td></tr>";
+ 	               		reply += "</table></div>";
+ 	               		reply += "</div>";
+ 	               		
+          				$("#tb_" + data[i].parent + " tr:first").find("td").append(reply);
  	                }//for    
  	            }//if
 			}
