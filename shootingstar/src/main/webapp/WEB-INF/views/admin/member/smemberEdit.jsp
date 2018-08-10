@@ -41,20 +41,9 @@
 	color:white;
 	border-radius:2px;
 }
-.outBtnDiv{
-	/* text-align:center; */
-	margin-top:20px;
-}
-.outBtn{
-	border:1px solid #d81d1a;
-	background: white;
-	color:#d81d1a;
-	border-radius:2px;
-}
-.outBtn:hover{
-	background: #d81d1a;
-	color:white;
-	font-weight: bold;
+.smemberList{
+width:1200px;
+margin: 50px auto;
 }
 </style>
 <script type="text/javascript">
@@ -88,14 +77,10 @@
 			}
 			return bool;
 		});
-	/*	
-		$('#outBtn').click(function(){
-			if(confirm('탈퇴하시겠습니까?')){
-				location.href="<c:url value='/mypage/del.do'/>";
-			}
-		}); */
+
 	});
 </script>
+<div class="smemberList">
 		<h1>전문가회원 정보 수정</h1>
 
 	<div class="selectedPage">
@@ -164,6 +149,6 @@
 			<div><input type="submit" id="changeBtn" class="btns" value="변경하기"></div>
 		</form>
 	</div>
-	<div class="outBtnDiv"><input type="button" id="outBtn" class="btns outBtn" value="탈퇴하기"></div>
+</div>
 </div>
 <%@ include file="../../inc/bottom.jsp"%>

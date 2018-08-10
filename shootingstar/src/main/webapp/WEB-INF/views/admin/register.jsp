@@ -81,7 +81,7 @@
 
 .regiAll {
 	width: 430px;
-	margin: 0 auto;
+	margin: 50px auto;
 	border:1px solid #d9d9d9;
 	padding:30px;
 }
@@ -132,7 +132,6 @@ span{
 }
 </style>
 <div class="regiAll">
-
 	<div id="frmAll">
 		<form name="frm" method="post"
 			action="<c:url value='/admin/register.do'/>">

@@ -30,6 +30,7 @@ margin: 50px auto;
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
@@ -71,7 +72,7 @@ function allChecked(bool){
 
 	<h1>FAQ</h1>
 	<p class="button">
-	<input type="button" style=margin:10px; value="FAQ작성" id="button" 
+	<input type="button" style=margin:10px; value="FAQ작성" class="mypageBtn"
  	onclick="location.href='<c:url value="/admin/faq/faqWrite.do"/>'"/>
  	</p>
 <form name="deleteFaq" method="post"
@@ -183,7 +184,7 @@ action="<c:url value='/admin/faq/deleteFaq.do'/>">
 		</tbody>
 	</table>   
 <p class="button">
-<input type="submit" value="삭제" id="button"/>
+<input type="submit" value="삭제" class="mypageBtn"/>
 </p>
 </form>
 </div>

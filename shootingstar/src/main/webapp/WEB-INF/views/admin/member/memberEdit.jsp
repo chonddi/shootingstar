@@ -56,6 +56,10 @@
 	color:white;
 	font-weight: bold;
 }
+.memberList{
+width:1200px;
+margin: 50px auto;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -95,8 +99,8 @@
 		});  */
 	});
 </script>
+<div class="memberList">
 		<h1>고객회원 정보 수정</h1>
-
 	<div class="selectedPage">
 		<form name="frm" id="editFrm" method="post"
 				action="<c:url value='/admin/member/memberEdit.do'/>">
@@ -145,6 +149,6 @@
 			<div><input type="submit" id="changeBtn" class="btns" value="변경하기"></div>
 		</form>
 	</div>
-<!-- 	<div class="outBtnDiv"><input type="button" id="outBtn" class="btns outBtn" value="탈퇴하기"></div> -->
+</div>
 
 <%@ include file="../../inc/bottom.jsp"%>

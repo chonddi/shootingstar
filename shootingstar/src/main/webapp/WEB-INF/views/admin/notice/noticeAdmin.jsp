@@ -21,6 +21,7 @@ cn부터 먼저 해줘야함
 
 <title>슈팅스타 관리자 공지사항</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>" />
 <style type="text/css">
 /* .on{
 	background-image:url(<c:url value='/images/noticeup.png'/>);
@@ -49,6 +50,10 @@ vertical-align: middle;}
 #button{
 width:100px;
 height:60px;
+}
+.noticediv{
+width:1300px;
+margin: 50px auto;
 }
 </style>
 
@@ -107,7 +112,7 @@ $(document).ready(function(){
 <div class="noticediv">
 <h1>공지사항</h1>
 <p class="button">
-<input type="button" value="공지사항작성" id="button"
+<input type="button" value="공지사항작성" class="mypageBtn"
  onclick="location.href='<c:url value="/admin/notice/noticeWrite.do"/>'"/>
 </p>
 <form name="deleteNotice" method="post"
@@ -198,7 +203,7 @@ action="<c:url value='/admin/notice/noticeDelete.do'/>">
 	</tbody>
 </table>
 <p class="button">
-<input type="submit" value="삭제" id="button"/>
+<input type="submit" value="삭제" class="mypageBtn"/>
  </p>
 </form>
 </div>

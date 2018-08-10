@@ -2,6 +2,60 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ include file="../inc/adminTop.jsp"%>
+<style type="text/css">
+#title{
+	font-size:1.5em;
+	margin-bottom: 40px;
+}
+#edit{
+	color:#1f1f1f;
+	font-weight:700;
+	border-bottom:3px solid #e46c0a;
+}
+.selectedPage{
+	width:40%;
+}
+.selectName{
+	width:40%;
+}
+#editTable{
+	margin: 0 auto;
+}
+#editTable tr>td:first-child{
+	font-weight: bold;
+}
+#editTable tr>td:last-child{
+	padding-bottom: 20px;
+	padding-left: 30px;
+}
+#changePwd div{
+	text-align: center;
+	margin-top:15px;
+}
+.btns{
+	border: none;
+	height: 32px;
+	width: 85px;
+	background: #345f93;
+	color:white;
+	border-radius:2px;
+}
+.outBtnDiv{
+	text-align:center;
+	margin-top:20px;
+}
+.outBtn{
+	border:1px solid #d81d1a;
+	background: white;
+	color:#d81d1a;
+	border-radius:2px;
+}
+.outBtn:hover{
+	background: #d81d1a;
+	color:white;
+	font-weight: bold;
+}
+</style>
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
@@ -42,7 +96,6 @@ color:gray;
 	action="<c:url value='/admin/adminEdit.do'/>">
 <fieldset>
 	<legend>관리자 정보 수정</legend>
-    <div>
         <label for="adminId">관리자ID</label>
         <span>${vo.adminId }</span>
         <input type="hidden" name="adminId" id="adminId" value=${vo.adminId }>

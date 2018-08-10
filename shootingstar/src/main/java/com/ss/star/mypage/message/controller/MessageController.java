@@ -114,6 +114,10 @@ public class MessageController {
 	@ResponseBody
 	public int messageWrite_receiver(HttpSession session,@RequestParam String receiver) {
 		String userCode=(String)session.getAttribute("userCode");
+		//0806ysh
+		if(userCode==null) {
+			userCode= (String) session.getAttribute("adminCode");
+		}
 		logger.info("receiver: {}", receiver);
 
 		int result=0;
@@ -121,12 +125,6 @@ public class MessageController {
 			result = sMemberService.selectCountSMemberId(receiver);
 		}else if("2".equals(userCode)) {
 			result = memberService.selectCountMemberId(receiver);
-		}//0806ysh
-		else if("3".equals(userCode)) {
-			result=memberService.selectCountMemberId(receiver);
-			if(result==0) {
-				result = sMemberService.selectCountSMemberId(receiver);
-			}
 		}
 		logger.info("쪽지 키다운 userCode: {}, result: {}", userCode, result);
 		return result;
@@ -135,6 +133,10 @@ public class MessageController {
 	@RequestMapping(value="/messageWrite.do", method=RequestMethod.POST)
 	public String messageWrite_post(@ModelAttribute SendMsgVO sendMsgVo, HttpSession session, @RequestParam String recipient, Model model) {
 		String userCode = (String) session.getAttribute("userCode");
+		//0806ysh
+				if(userCode==null) {
+					userCode= (String) session.getAttribute("adminCode");
+				}
 		logger.info("쪽지보내기 userCode: {}, receiver: {}", userCode, recipient);
 
 		String userId=(String) session.getAttribute("userid");
@@ -322,7 +324,7 @@ public class MessageController {
 		
 		Map<String, String[]> map = new HashMap<>();
 		map.put("nos", chk);
-		int cnt=sendMsgService.rDeleteMulti(map);
+		int cnt=sendMsgService.rDeleteMulti(map); 
 		logger.info("여러 글 삭제 결과, cnt={}", cnt);
 		
 		String msg="", url="/mypage/message/messageReceive.do";
