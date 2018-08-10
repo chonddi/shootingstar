@@ -22,19 +22,19 @@ $(function(){
 
 	<form name="frmLogin" method="post" action="<c:url value='/admin/login/login.do'/>" style="position:relative;">
 		 <div class="field-wrap" style="padding-bottom: 20px; margin-bottom: 20px;">
-		<input type="checkbox" name="saveId" id="saveId" 
+		<input type="checkbox" name="adminSaveId" id="adminSaveId" 
 		 style="height:15px;width:20px;position:absolute;top:6px;"
-					<c:if test="${!empty cookie.saveId}">
+					<c:if test="${!empty cookie.adminSaveId}">
 						checked="checked"
 					</c:if>	>
-			<label for="saveId" style="padding-left:10px;font-size:0.9em;">아이디 저장하기</label>
+			<label for="adminSaveId" style="padding-left:10px;font-size:0.9em;">아이디 저장하기</label>
 			</div><!-- field wrap -->
 			<div class="field-wrap">
 			<!-- <label class="labels">
 			 Admin id<span class="req">*</span></label> -->
 			<div>
 				 <input type="text" required autocomplete="off" class="ids" name="adminId" 
-				 value="${cookie.saveId.value}" placeholder="Admin Id" />
+				 value="${cookie.adminSaveId.value}" placeholder="Admin Id" />
          	 </div>
 			</div>	
 			<div class="field-wrap">

@@ -51,10 +51,14 @@
     height: 30px;
     font-size: 0.8em;
 }
+.message{
+width:1300px;
+margin: 50px auto;
+}
 </style>
-
-		쪽지함
-	</div>
+<div class=message>
+		<h1>쪽지함</h1>
+<br>
 	<form id="detailFrm" name="detailFrm" method="post"> 
 		<input type="hidden" name="sMsgNo">
 	</form>
@@ -67,7 +71,7 @@
 	</form>
 	<div class="selectedPage">
 		<div class="msgBtn"><span class="btnMsgType"><input type="button" class="anotherBtn" value="보낸쪽지"></span> <span class="nowMsgType">받은쪽지</span></div>
-		<form name="frmDel" method="post" action="<c:url value='/mypage/message/rDeleteMulti.do'/>">
+		<form name="frmDel" method="post" action="<c:url value='/admin/message/deleteMultiAdmin.do'/>">
 		<table id="msgTbl">
 			<colgroup>
 				<col style="width:31px" />

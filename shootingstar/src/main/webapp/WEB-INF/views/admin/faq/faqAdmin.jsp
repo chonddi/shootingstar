@@ -23,7 +23,10 @@ vertical-align: middle;}
 width:100px;
 height:60px;
 }
-
+.faqdiv{
+width:1500px;
+margin: 50px auto;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
@@ -64,6 +67,8 @@ function allChecked(bool){
 	</SCRIPT>
 	</head>
 	<body>
+<div class="faqdiv">
+
 	<h1>FAQ</h1>
 	<p class="button">
 	<input type="button" style=margin:10px; value="FAQ작성" id="button" 
@@ -181,7 +186,7 @@ action="<c:url value='/admin/faq/deleteFaq.do'/>">
 <input type="submit" value="삭제" id="button"/>
 </p>
 </form>
-	<!-- 검색없음!!! 페이징!!! -->
+</div>
 	</body>
 	</html>
 <%@ include file="../../inc/adminBottom.jsp"%>

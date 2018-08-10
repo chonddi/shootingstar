@@ -24,6 +24,10 @@ th{
 vertical-align: middle;}
 td{
 vertical-align: middle;}
+.noticediv{
+width:1300px;
+margin: 50px auto;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -39,6 +43,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 </SCRIPT>
 </head>
 <body>
+<div class="noticediv">
 <h1>공지사항</h1>
 
  <table class="notice">
@@ -89,7 +94,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 	</c:if> 
 	</tbody>
 </table>   
-
+</div>
 </body>
 </html>
 <%@ include file="../inc/bottom.jsp"%>

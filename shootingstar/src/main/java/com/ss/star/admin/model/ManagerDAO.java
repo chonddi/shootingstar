@@ -40,4 +40,5 @@ public interface ManagerDAO {
 	public int getTotalRecord(SearchVO vo);
 	public int getSTotalRecord(SearchVO vo);
 	public int getSOTotalRecord(SearchVO vo);
+
 }

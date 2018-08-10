@@ -46,6 +46,7 @@ public class AdminMessageController {
 			//0806ysh
 			if(userId==null) {
 				userId = (String) session.getAttribute("adminId");
+				userCode= (String) session.getAttribute("adminCode");
 			}
 			
 			logger.info("보낸 쪽지목록, userId:{}, userCode:{}",userId, userCode);
@@ -79,10 +80,11 @@ public class AdminMessageController {
 			logger.info("setting 후 searchVo={}", searchVo);
 			
 			String userCode = (String) session.getAttribute("userCode");
-			String userId = (String) session.getAttribute("userid");
+			String userId = (String) session.getAttribute("userId");
 			//0806ysh
 					if(userId==null) {
 						userId = (String) session.getAttribute("adminId");
+						userCode= (String) session.getAttribute("adminCode");
 					}
 					
 			logger.info("받은 쪽지목록, userId:{}, userCode:{}",userId, userCode);

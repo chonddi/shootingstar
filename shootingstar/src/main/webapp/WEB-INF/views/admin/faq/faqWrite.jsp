@@ -23,6 +23,9 @@
 			<input type="text" id="faqTitle" name="faqTitle"/>
 		</div>
 		<div>
+	<input type="hidden" id="adminId" name="adminId" value='${adminId }'>
+	</div> 
+		<div>
 			<label for="category">카테고리</label><br>
 			<select id="category" name="category">
 				<option value="일반">일반</option>

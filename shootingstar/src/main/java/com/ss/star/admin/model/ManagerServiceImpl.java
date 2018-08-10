@@ -124,5 +124,4 @@ public class ManagerServiceImpl implements ManagerService  {
 	public int getSOTotalRecord(SearchVO vo) {
 		return managerDao.getSOTotalRecord(vo);
 	}
-
 }

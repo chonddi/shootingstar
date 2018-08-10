@@ -60,6 +60,7 @@
 		where adminId=#{adminId}
 	</update>
 	
+	
 <!-- 회원관리 -->
 	<select id="memberList" parameterType="SearchVO" resultType="memberVO">
 <!-- 

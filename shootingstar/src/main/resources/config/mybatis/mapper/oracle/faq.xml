@@ -26,8 +26,8 @@
 	<selectKey keyProperty="faqNo" order="BEFORE" resultType="int">
 			select faq_seq.nextval from dual
 		</selectKey>
-		insert into faq(faqNo, category, faqTitle, faqContent ) 
-			values(#{faqNo}, #{category}, #{faqTitle}, #{faqContent})
+		insert into faq(faqNo, adminId, category, faqTitle, faqContent ) 
+			values(#{faqNo}, #{adminId}, #{category}, #{faqTitle}, #{faqContent})
 </insert>
 
 <update id="deleteMulti" parameterType="map">

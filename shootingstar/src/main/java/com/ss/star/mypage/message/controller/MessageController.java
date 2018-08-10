@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ss.star.admin.model.ManagerService;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
@@ -33,6 +34,7 @@ public class MessageController {
 	@Autowired private SendMsgService sendMsgService;
 	@Autowired private MemberService memberService;
 	@Autowired private SMemberService sMemberService;
+	@Autowired private ManagerService managerService;
 		
 	//보낸쪽지
 	@RequestMapping("/message.do")

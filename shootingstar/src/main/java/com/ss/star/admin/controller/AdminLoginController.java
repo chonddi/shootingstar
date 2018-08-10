@@ -30,10 +30,10 @@ public class AdminLoginController {
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login_admin(@RequestParam String adminId, @RequestParam String pwd, @RequestParam(required=false) String saveId,
+	public String login_admin(@RequestParam String adminId, @RequestParam String pwd, @RequestParam(required=false) String adminSaveId,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
 		logger.info("관리자 로그인 adminId: {}, pwd: {}", adminId, pwd);
-		logger.info("saveId:{}", saveId);
+		logger.info("saveId:{}", adminSaveId);
 		//
 		int result = managerService.checkPwd(adminId, pwd);
 		logger.info("로그인 처리 결과 result: {}", result);
@@ -46,16 +46,16 @@ public class AdminLoginController {
 			 String adminName= managerService.selectNameById(adminId);
 			logger.info("adminName: {}",adminName);
 			//[1] 세션
-			//userid
+			//adminid
 			request.getSession().setAttribute("adminId", adminId);
-			request.getSession().setAttribute("userCode", "3");
+			request.getSession().setAttribute("adminCode", "0");
 			//userName
 			request.getSession().setAttribute("adminName", adminName);
 			request.getSession().setMaxInactiveInterval(60*60);
 			//[2] 쿠키
-			Cookie cookie= new Cookie("saveId", adminId);
+			Cookie cookie= new Cookie("adminSaveId", adminId);
 			cookie.setPath("/");
-			if(saveId!=null) {
+			if(adminSaveId!=null) {
 				cookie.setMaxAge(60*24*60*60);
 				response.addCookie(cookie);
 			}else {

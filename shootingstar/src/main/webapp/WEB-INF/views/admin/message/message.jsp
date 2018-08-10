@@ -45,10 +45,14 @@
     height: 30px;
     font-size: 0.8em;
 }
+.message{
+width:1300px;
+margin: 50px auto;
+}
 </style>
-
-		쪽지함
-	</div>
+<div class=message>
+		<h1>쪽지함</h1>
+	<br>
 	<form id="detailFrm" name="detailFrm">
 		<input type="hidden" name="sMsgNo">
 	</form>

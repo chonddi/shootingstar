@@ -104,6 +104,7 @@ $(document).ready(function(){
 </SCRIPT>
 </head>
 <body>
+<div class="noticediv">
 <h1>공지사항</h1>
 <p class="button">
 <input type="button" value="공지사항작성" id="button"
@@ -200,9 +201,7 @@ action="<c:url value='/admin/notice/noticeDelete.do'/>">
 <input type="submit" value="삭제" id="button"/>
  </p>
 </form>
-
- 
-<!-- 검색없음!!! 페이징!!! -->
+</div>
 </body>
 </html>
 <%@ include file="../../inc/adminBottom.jsp"%>

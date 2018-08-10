@@ -62,6 +62,7 @@ $(document).ready(function(){
 	</SCRIPT>
 	</head>
 	<body>
+<div class="faqdiv">
 	<h1>FAQ</h1>
 	 <table class="faq">
 
@@ -132,8 +133,7 @@ $(document).ready(function(){
 		</c:if> 
 		</tbody>
 	</table>   
- 
-	<!-- 검색없음!!! 페이징!!! -->
+</div>
 	</body>
 	</html>
 <%@ include file="../inc/bottom.jsp"%>	

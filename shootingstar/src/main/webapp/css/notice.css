@@ -9,6 +9,10 @@
 body{
 
 font-family:"Nanum Gothic";}
+.noticediv{
+width:1300px;
+margin: 50px auto;
+}
 table{
 	margin:0 auto;
 /*     font-size:15px; */

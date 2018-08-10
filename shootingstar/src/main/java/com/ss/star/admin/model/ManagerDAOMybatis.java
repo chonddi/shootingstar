@@ -121,4 +121,5 @@ public class ManagerDAOMybatis implements ManagerDAO {
 		return sqlSession.selectOne(namespace+"getSOTotalRecord",vo);
 	}
 
+
 }
