@@ -8,6 +8,10 @@
 </script>
 <style type="text/css">
 th, td{ padding:10px;
+}
+.smemberList{
+width:1200px;
+margin: 50px auto;
 }</style>
 <html>
 <head>
@@ -15,6 +19,7 @@ th, td{ padding:10px;
 <title>전문가회원 조회</title>
 </head>
 <body>
+<div class="smemberList">
 <h1>멤버십이 만료된 전문가회원 목록</h1>
 <c:if test="${!empty param.searchKeyword}">
 	<p>검색어: ${param.searchKeyword}(으)로  ${fn:length(list)}건 검색되었습니다. </p> 
@@ -119,6 +124,7 @@ th, td{ padding:10px;
 			
 				
 	    </form>
+	</div>
 	</div>
 <br>
 </body>

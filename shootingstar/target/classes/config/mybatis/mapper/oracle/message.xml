@@ -118,7 +118,7 @@
 	<delete id="rDeleteMulti" parameterType="map">
 		update receivemsg set rdelflag='Y'
 		where rMsgNo in 
-		<foreach item="rMsgNo" collection="nos" open="(" close=")" separator=","
+		<foreach item="sMsgNo" collection="nos" open="(" close=")" separator=","
 			index="index">
 			#{sMsgNo}
 		</foreach>

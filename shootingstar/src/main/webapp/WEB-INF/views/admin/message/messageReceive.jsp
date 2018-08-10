@@ -20,7 +20,7 @@
 		frm = document.getElementById("detailFrm");
 		x = (screen.availWidth - 460) / 2;
 		y = (screen.availHeight - 550) / 2;
-		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=700, location=yes, resizable=no");
 		frm.action = "<c:url value='/mypage/message/messageDetailRead.do'/>";
 		frm.target = "viewer";
 		frm.method = "post";
@@ -35,7 +35,7 @@
 		frm = document.getElementById("detailFrm");
 		x = (screen.availWidth - 460) / 2;
 		y = (screen.availHeight - 550) / 2;
-		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+		window.open("","viewer","left=" + x + ", top=" + y + ", width=460, height=700, location=yes, resizable=no");
 		frm.action = "<c:url value='/mypage/message/messageDetail2.do'/>";
 		frm.target = "viewer";
 		frm.method = "post";
