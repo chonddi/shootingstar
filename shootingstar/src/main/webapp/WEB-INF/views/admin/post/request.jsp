@@ -97,14 +97,14 @@ function detailViewSubmit(){
 <body>
 
 
-<div style="width:1903px;margin:50px auto;padding-left:300px;padding-right:70px;">
+<div style="width:1903px;margin:50px auto;padding-left:200px;padding-right:70px;">
 <form id="detailFrm" name="detailFrm" style="width:1400px;">
 		<input type="hidden" name="detailNo">
 </form>
 
 
-
-<div class="title">REQUEST 리스트 관리 Page</div>
+<div style="width:1400px;">
+<div class="title" style="width:1400px;">REQUEST 리스트 관리 Page</div>
 
 
 <c:if test="${!empty param.searchKeyword}">
@@ -207,7 +207,7 @@ function detailViewSubmit(){
 	    </form>
 	</div>
 </div>
-
+</div>
 <!-- 페이징 처리를 위한 form -->
 <form name="frmPage" method="post"
 	action="<c:url value='/admin/post/request.do'/>">
@@ -218,7 +218,7 @@ function detailViewSubmit(){
 <br><br>
 <div class="divList" style="width:1400px;">
 <form name="frmList" method="post" style="width:1400px;">
-<table class="box2">
+<table class="box2" style="width:1400px;margin-left:30px;">
 	<colgroup>
 		<col style="width:4%;" />
 		<col style="width:5%;" />
@@ -365,7 +365,7 @@ function detailViewSubmit(){
 </form>	   
 </div>
 </div>
-<div class="divPage" style="text-align:center; height:30px;font-size:16px;">
+<div class="divPage" style="text-align:center; height:60px;font-size:16px;margin-top:10px;margin-right:150px;">
 	<!-- 페이지 번호 추가 -->		
 	<!-- 이전 블럭으로 이동 -->
 	<c:if test="${pageVo.firstPage>1 }">
@@ -396,7 +396,7 @@ function detailViewSubmit(){
 	<!--  페이지 번호 끝 -->
 </div>
 <div style="float:right;">
-<input type="button" value="글 삭제하기" id="delMulti"></div>
+<input type="button" value="글 삭제하기" id="delMulti" style="margin-right:250px;"></div>
 
 </div>
 </body>
