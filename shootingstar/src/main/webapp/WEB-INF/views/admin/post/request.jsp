@@ -97,8 +97,8 @@ function detailViewSubmit(){
 <body>
 
 
-<div style="width:1800px;margin:50px auto;">
-<form id="detailFrm" name="detailFrm">
+<div style="width:1903px;margin:50px auto;padding-left:300px;padding-right:70px;">
+<form id="detailFrm" name="detailFrm" style="width:1400px;">
 		<input type="hidden" name="detailNo">
 </form>
 
@@ -119,7 +119,7 @@ function detailViewSubmit(){
 	<p>${ctgProductVO.cgName } 상품 : ${pagingInfo.totalRecord } 건 입니다.</p>
 </c:if> --%>
 
-<div style="width:1700px;margin:0 auto;">		<!-- 리스트 가운데 정렬 -->
+<div style="width:1400px;margin:0 auto;">		<!-- 리스트 가운데 정렬 -->
 <div class="divA">
 	<div class="divLeft">
 	<form name="frmPage1" method="post"
@@ -216,8 +216,8 @@ function detailViewSubmit(){
 	<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 </form>
 <br><br>
-<div class="divList" style="width:1300px; margin:0 auto;">
-<form name="frmList" method="post">
+<div class="divList" style="width:1400px;">
+<form name="frmList" method="post" style="width:1400px;">
 <table class="box2">
 	<colgroup>
 		<col style="width:4%;" />
