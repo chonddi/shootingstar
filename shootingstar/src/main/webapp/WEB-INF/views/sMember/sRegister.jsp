@@ -230,12 +230,12 @@
 						<tr>
 							<td><input type="checkbox" id="chk2" class="chk" value="chk" style="margin-top: 0px;"></td>
 							<td class="second"><label for="chk2"> 서비스 약관동의(필수)</label></td>
-							<td class="third"><a href="#">상세보기</a></td>
+							<td class="third"><a href="<c:url value='/etc/policy.do'/>" target="_blank">상세보기</a></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" id="chk3" class="chk" value="chk" style="margin-top: 0px;"></td>
 							<td class="second"><label for="chk3"> 개인정보 수집 ·이용에 대한 동의(필수)</label></td>
-							<td class="third"><a href="#">상세보기</a></td>
+							<td class="third"><a href="<c:url value='/etc/privatei.do'/>" target="_blank">상세보기</a></td>
 						</tr>
 					</table>
 				</fieldset>

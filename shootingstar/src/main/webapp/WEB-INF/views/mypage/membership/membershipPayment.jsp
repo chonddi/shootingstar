@@ -14,8 +14,8 @@
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '멤버십 결제: ${mSPaymentVo.pContent}',
-	    //amount : ${mSPaymentVo.pPrice},
-	    amount : 100,
+	    amount : ${mSPaymentVo.pPrice},
+	    //amount : 100,
 	    buyer_name : '${sessionScope.name}',
 	    buyer_email : '${sessionScope.userid}'
 	}, function(rsp) {
