@@ -35,8 +35,8 @@ nav ul {
 <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 <%--  <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/resetCss.css'/>"> --%> 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/adminTop.css'/>">
+ <link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/adminTop.css'/>"> 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/bottom.css'/>">
 <link rel="stylesheet" type="text/css"
@@ -81,52 +81,50 @@ nav ul {
 		
 	</nav>
 	
-	<!-- container -->
-		<div id="container" style="margin-left:100px;font-size:20px;font-family: 'Nanum Gothic', sans-serif;">
-			<nav>
-				<ul id="leftNavi" >
- 					<li id="adminCtg"  class="dropdown" style="height:50px;"><a class="menuLink" href="#" class="multi">관리자페이지<span class="caret"></span></a>
-						<ul class="dropdown-menu pull-right" style="font-size:18px; font-family: 'Nanum Gothic', sans-serif; font-weight:bold;" >
-							<li><a href="<c:url value='/admin/register.do'/>">관리자 신규등록</a></li>
-							<li><a href="<c:url value='/admin/adminEdit.do'/>">관리자 정보수정</a></li>
-						</ul> 
-					</li>
-					<li id="adminCtg"  class="dropdown" style="height:50px;"><a class="menuLink" href="#" class="multi">회원관리<span class="caret"></span></a>
-						<ul class="dropdown-menu pull-right" style="width:200px;font-size:18px; font-family: 'Nanum Gothic', sans-serif; font-weight:bold;" >
-							<li style="height:50px;"><a href="<c:url value='/admin/member/memberList.do'/>">고객 회원 정보 관리</a>
-							<li style="height:50px;"><a href="<c:url value='/admin/member/smemberList.do'/>">전문가 회원 정보 관리</a>	
-							<li style="height:50px;"><a href="<c:url value='/admin/member/smemberOutList.do'/>">멤버십 만료 회원 조회</a></li>
-							
-						</ul> 
-					</li>	
-					<li id="adminCtg"  class="dropdown" style="height:50px;"><a class="menuLink" href="#" class="multi">게시물관리<span class="caret"></span></a>
-						<ul class="dropdown-menu pull-right" style="font-size:18px; font-family: 'Nanum Gothic', sans-serif; font-weight:bold;" >
-							<li><a href="<c:url value='/admin/post/request.do'/>">견적 요청 글 관리</a></li>
-							<li><a href="<c:url value='#'/>">포트폴리오 글 관리</a></li>
-						</ul> 
-					</li>
+	
+<div class="menubar">
+<ul>
+ <li id="fc"><a href="#">관리자페이지</a>
+ 	<ul>
+     <li><a href="<c:url value='/admin/register.do'/>">관리자 신규등록</a></li>
+     <li><a href="<c:url value='/admin/adminEdit.do'/>">관리자 정보수정</a></li>
+ 	</ul>
+ </li>
+ <li><a href="#" >회원관리</a>
+	<ul>
+     <li><a href="<c:url value='/admin/member/memberList.do'/>">고객 회원 정보 관리</a></li>
+     <li><a href="<c:url value='/admin/member/smemberList.do'/>">전문가 회원 정보 관리</a></li>
+     <li><a href="<c:url value='/admin/member/smemberOutList.do'/>">멤버십 만료 회원 조회</a></li>
+    </ul>
+ </li>
+  <li><a href="#">게시물관리</a>
+ 	<ul>
+     <li><a href="<c:url value='/admin/post/request.do'/>">견적 요청 글 관리</a></li>
+     <li><a href="#">포트폴리오 글 관리</a></li>
+ 	</ul>
+ </li>
+ <li><a href="#" >등록현황 통계</a>
+	<ul>
+     <li><a href="#">회원 등록 현황</a></li>
+     <li><a href="#">견적 등록 현황</a></li>
+     <li><a href="#">포트폴리오 등록 현황</a></li>
+    </ul>
+ </li>
+ <li><a href="#" >페이지 관리</a>
+	<ul>
+     <li><a href="<c:url value='/admin/faq/faqAdmin.do'/>">FAQ 관리</a></li>
+     <li><a href="<c:url value='/admin/notice/noticeAdmin.do'/>">공지사항 관리</a></li>
+     <li><a href="<c:url value='/SERVICE/Qlist.do'/>">Q&A 관리</a></li>
+    </ul>
+ </li>
+  <li><a href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A 관리</a></li>
+ <li><a href="#" >결제 관리</a></li>
+ <li><a href="c:url value='/admin/message/message.do'/" >쪽지함</a></li>
+</ul>
+</div>	
 
-					<li id="adminCtg" class="dropdown" style="height:50px;"><a class="menuLink" href="#" class="multi" >등록현황 통계<span class="caret"></span></a>
-						<ul class="dropdown-menu pull-right" style="font-size:18px; font-family: 'Nanum Gothic', sans-serif; font-weight:bold;" >
-						<li><a href="<c:url value='#'/>">회원 등록 현황</a></li>
-						<li><a href="<c:url value='#'/>">견적 등록 현황</a></li>
-						<li><a href="<c:url value='#'/>">포트폴리오 등록 현황</a></li>
-						</ul>
-					</li>
-					<li id="adminCtg" class="dropdown" style="height:50px;"><a class="menuLink" href="#" class="multi" >페이지관리<span class="caret"></span></a>
-						<ul class="dropdown-menu pull-right" style="font-size:18px; font-family: 'Nanum Gothic', sans-serif; font-weight:bold;" >
-							<li><a href="<c:url value='/admin/faq/faqAdmin.do'/>">FAQ 관리</a></li>
-							<li><a href="<c:url value='/admin/notice/noticeAdmin.do'/>">공지사항 관리</a></li>
-							<li><a href="<c:url value='/SERVICE/Qlist.do'/>" target="_blank">Q&A 관리</a></li>
-						</ul>
-					</li>
-					<%-- <li id="adminCtg"><a class="menuLink" href="<c:url value='/SERVICE/Qlist.do'/>" >Q&A 관리</a></li> --%>
-									
-					<li id="adminCtg"  style="height:50px;"><a class="menuLink" href="#" >결제관리</a></li>
-					<li id="adminCtg" style="height:50px;"><a class="menuLink" href="<c:url value='/admin/message/message.do'/>" >쪽지함</a></li>
-				</ul>
 
-			</nav>
+
 			
-		</div>
-	<article>
+		
+	

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ include file="../../inc/adminTop.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html style="width:1903px;">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -96,6 +96,8 @@ function detailViewSubmit(){
 </head>
 <body>
 
+
+<div style="width:1800px;margin:50px auto;">
 <form id="detailFrm" name="detailFrm">
 		<input type="hidden" name="detailNo">
 </form>
@@ -117,6 +119,7 @@ function detailViewSubmit(){
 	<p>${ctgProductVO.cgName } 상품 : ${pagingInfo.totalRecord } 건 입니다.</p>
 </c:if> --%>
 
+<div style="width:1700px;margin:0 auto;">		<!-- 리스트 가운데 정렬 -->
 <div class="divA">
 	<div class="divLeft">
 	<form name="frmPage1" method="post"
@@ -174,7 +177,7 @@ function detailViewSubmit(){
 	</form>
 	</div>
 
-	<div class="divSearch">
+	<div class="divSearch" style="width:1300px; margin:0 auto;">
 	   	<form name="frmSearch" method="post" 
 	   		action='<c:url value="/admin/post/request.do"/>'>
 	        <select name="searchCondition">        	
@@ -213,7 +216,7 @@ function detailViewSubmit(){
 	<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 </form>
 <br><br>
-<div class="divList">
+<div class="divList" style="width:1300px; margin:0 auto;">
 <form name="frmList" method="post">
 <table class="box2">
 	<colgroup>
@@ -361,7 +364,7 @@ function detailViewSubmit(){
 <br>
 </form>	   
 </div>
-
+</div>
 <div class="divPage" style="text-align:center; height:30px;font-size:16px;">
 	<!-- 페이지 번호 추가 -->		
 	<!-- 이전 블럭으로 이동 -->
@@ -394,5 +397,7 @@ function detailViewSubmit(){
 </div>
 <div style="float:right;">
 <input type="button" value="글 삭제하기" id="delMulti"></div>
+
+</div>
 </body>
 </html>
