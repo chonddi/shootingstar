@@ -41,9 +41,6 @@
 <h1>Q&A</h1>
 <br><br>
 <span style="color:gray;">관리자에게 1:1로 문의하실 사항이 있으시면 글을 작성해주세요.</span>
-<!-- 세션 유저 코드 값 -->
-<input type="hidden" id="userid" value="${sessionScope.userid}">
-<input type="hidden" id="userCode" value="${sessionScope.userCode}">
 <!-- 페이징 처리를 위한 form -->
 <form name="frmPage" method="post" action="<c:url value='/SERVICE/Qlist.do'/>">
 <input type="hidden" name="currentPage" >	

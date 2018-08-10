@@ -16,8 +16,6 @@ public class Scheduler {
     /*매월 1일 0시 30분 명예의전당 입력*/
     @Scheduled(cron="5 * * * * *")
     public void HofScheduler() {
-    	logger.info("스케쥴러 메서드");
-    	
     	int cnt = sMemberDao.autoAuthority();
     	if(cnt>0) {
     		System.out.println("멤버십 권한 변경 cnt: "+cnt);

@@ -37,9 +37,11 @@ public class QController {
 	}
 
 	@RequestMapping(value = "/Qwrite.do", method = RequestMethod.POST)
-	public String Qwrite_post(@ModelAttribute QVO QVo) {
-		logger.info("글쓰기 처리, 파라미터 vo={}", QVo);
-
+	public String Qwrite_post(@ModelAttribute QVO QVo, HttpSession session) {
+		String memberid= (String)session.getAttribute("userid");
+		QVo.setMemberid(memberid);
+		logger.info("글쓰기 처리, 파라미터 vo={}, memberid={}", QVo, memberid);
+		
 		int cnt = qService.insertQ(QVo);
 		logger.info("글쓰기 결과, cnt={}", cnt);
 
@@ -49,10 +51,6 @@ public class QController {
 	@RequestMapping("/Qlist.do")
 	public String Qlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
-
-		// 임시 id 지정
-		Session.setAttribute("userid", "abc@naver.com");
-		Session.setAttribute("userCode", "1");
 
 		// [1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -84,10 +82,6 @@ public class QController {
 			HttpSession Session) {
 		logger.info("상세보기, 파라미터 qNo={}, memberid={}", qNo, memberid);
 
-		// 임시 id 지정
-		Session.setAttribute("userid", "abc@naver.com");
-		Session.setAttribute("userCode", "1");
-
 		String userid = (String) Session.getAttribute("userid");
 
 		if (!(userid.equals(memberid))) {
@@ -112,10 +106,6 @@ public class QController {
 	public String edit_get(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model,
 			HttpSession Session) {
 		logger.info("수정화면 파라미터 qNo={}, memberid={}", qNo, memberid);
-
-		// 임시 id 지정
-		Session.setAttribute("userid", "abc@naver.com");
-		Session.setAttribute("userCode", "1");
 
 		String userid = (String) Session.getAttribute("userid");
 
@@ -161,10 +151,6 @@ public class QController {
 	@RequestMapping("/Qdelete.do")
 	public String delete(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model, HttpSession Session) {
 		logger.info("글삭제 화면, 파라미터 no={}, memberid={}", qNo, memberid);
-
-		// 임시 id 지정
-		Session.setAttribute("userid", "abc@naver.com");
-		Session.setAttribute("userCode", "1");
 
 		String userid = (String) Session.getAttribute("userid");
 

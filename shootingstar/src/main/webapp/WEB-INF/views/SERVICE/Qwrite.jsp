@@ -107,13 +107,6 @@
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>
 	
-<!-- 임시 memberid -->
-<input type="hidden" id="memberid" name="memberid" value="abc@naver.com"/>
-<!-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> -->
-<!-- 세션 유저 코드 값 -->
-<%-- <input type="hidden" id="userid" value="${sessionScope.userCode}"> --%>
-<input type="hidden" id="userCode" value="1">
-
 </form>       
 </body>
 </html>
