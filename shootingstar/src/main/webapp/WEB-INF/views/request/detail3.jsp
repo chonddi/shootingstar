@@ -28,15 +28,16 @@
 		$("#apply").click(function(event){
 			if($(".price2").val() == 0){
 				event.preventDefault();
-			}else if(confirm("적용하시겠습니까?")){
-				var str = $("input[name=price2]").val();
-				var price = str.replace(/,/g, '');
+			}else {//if(confirm("적용하시겠습니까?")){
+				var str = $("input[name=price2]").val();	//마일리지 입력 값
+				var price = str.replace(/,/g, '');	//마일리지 입력 값 콤마 제거
 				
-				if(price > ${mvo.mileage}){
-					$("input[name=price2]").val($("#mileage").text());
-				}else if(str == ""){
-					$("input[name=price2]").val(0);
-				
+				if(price > ${mvo.mileage}){	//입력한 마일리지가 가지고 있는 마일리지보다 큰 경우
+					$("input[name=price2]").val($("#mileage").text());	//보유 마일리지 전체 삽입 
+				}else if(str == 0){	//마일리지 입력 값이 공백인 경우
+					alert("성공");
+					$("input[name=price2]").val(0);	//0을 삽입
+				}
 				
 				var str2 = $(".price2").val();
 				var price2 = str.replace(/,/g, '');
@@ -57,7 +58,6 @@
 				}
 				
 				var FnRemn = ${mvo.mileage} - usePrc;
-
 				$("#usePrc").html(setComma(usePrc));
 				$("#FnRemn").html(FnRemn);
 				
@@ -89,8 +89,6 @@
 			event.preventDefault();
 		});
 		
-	
-		
 	});
 	
 	function payOpen(){
@@ -106,31 +104,26 @@
 	
 	   //[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
 	   //[0-9] => \d , [^0-9] => \D
-	   var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
-	   var rgx2 = /(\d+)(\d{3})/; 
-
-	   function getNumber(obj){
-	      
-	       var num01;
-	       var num02;
-	       num01 = obj.value;
-	       num02 = num01.replace(rgx1,"");
-	       num01 = setComma(num02);
-	       obj.value =  num01;
-
+		var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+		var rgx2 = /(\d+)(\d{3})/;
+	   
+		function getNumber(obj){
+			var num01;
+			var num02;
+			num01 = obj.value;
+			num02 = num01.replace(rgx1,"");
+			num01 = setComma(num02);
+			obj.value =  num01;
 	   }
-
-	   function setComma(inNum){
-	       
-	       var outNum;
-	       outNum = inNum; 
-	       while (rgx2.test(outNum)) {
-	            outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
-	        }
-	       return outNum;
-
-	   }
-
+	   
+		function setComma(inNum){
+			var outNum;
+			outNum = inNum; 
+			while (rgx2.test(outNum)) {
+				outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+			}
+			return outNum;
+		}
 </script>
 </head>
 <body>
@@ -190,8 +183,8 @@
 						<div style="margin:40px 0;">
 						<p>사용가능한 마일리지 : <span id="mileage"><fmt:formatNumber value="${mvo.mileage}" type="number"/></span>&nbsp;<button id="all">전액사용</button></p><br>
 						<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);" style="text-align:right;" class="price2" name="price2" value="0" autocomplete=off required />
-						<button id="apply">적용</button>
-						<button id="cancel">취소</button>
+						<input type="button" id="apply" value="적용">
+						<input type="button" id="cancel" value="취소">
 						<p class="brp">마일리지 사용 : <span id="usePrc">0</span></p>
 						<p>잔여 마일리지 : <span id="FnRemn">0</span></p>
 						</div>					
