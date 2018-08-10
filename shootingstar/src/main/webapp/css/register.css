@@ -54,3 +54,6 @@ span{
 	padding-left: 20px;
 	font-size: 0.8em;
 }
+.third a {
+	cursor: pointer;
+}
