@@ -126,10 +126,10 @@
 		<table class="box2">
 	<colgroup>
 		<col style="width:5%;" />
-		<col style="width:4%;" />
-		<col style="width:10%;" />
-		<col style="width:35%;" />
-		<col style="width:10%;" />
+		<col style="width:5%;" />
+		<col style="width:15%;" />
+		<col style="width:27%;" />
+		<col style="width:12%;" />
 		<col style="width:15%;" />
 		<col style="width:*;" />		
 	</colgroup>
@@ -163,7 +163,7 @@
 		  	<c:set var="delf" value="${map['DELFLAG']}"/>
 	  			<tr>
 	  				<td id="ttl">
-	  				<c:if test="${plevel==null&&delf!='Y'}">
+	  				<c:if test="${plevel==0&&delf!='Y'}">
 		  				<input type="checkbox" name="pdItems[${idx}].RQNo" 
 		  				value="${map['RQNO']}" style="width:15px;height:15px;"> 
 					</c:if>
