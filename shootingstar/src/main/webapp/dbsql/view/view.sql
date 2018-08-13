@@ -1,6 +1,16 @@
 --view.sql
 
---PICK???�문가?�원???�보�?조회?�기 ?�한 VIEW
+**caution - YOU should insert sMemberID-"미정"(Mi Jung (uncertain)) into smember table before you run the test
+
+-- VIEW for request inquiry
+
+CREATE OR REPLACE VIEW RQLIST AS		
+select  r.rqno, r.memberid, r.cgno, r.rqprice, r.rqregion, r.rqdate,
+		r.rqtype, r.pickcount, r.rqdetail, r.regdate, r.delflag, p.plevel, p.pickno		
+from request r inner join pick p
+on r.rqno = p.rqno;
+
+-- VIEW for selecting smembers regards to PICK
 
 create or replace view pickAll
 as
@@ -11,7 +21,7 @@ inner join pick p on s.smemberid = p.smemberid;
 
 -- PFLISTVIEW ?�트?�리?�리?�트�??�트?�리?�테?�블�??�트?�리?�이미�??�이블�? ?�문가?�이블과 카테고리?�이블을 ?�침
 CREATE OR REPLACE VIEW PFLISTVIEW AS
-select  p.pfno, s.SNAME, s.SMEMBERID , p.cgno ,c.cgname, p.pftitle, i.filename, p.regdate, s.authority	
+select  p.pfno, s.SNAME, s.SMEMBERID , p.cgno ,c.cgname, p.pftitle, i.filename, p.regdate, s.authority, p.delflag		
 from portfolio p inner join pofolimg i
 on p.PFNO = i.PFNO
 inner join category c

@@ -2,12 +2,14 @@ package com.ss.star.request.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.common.SearchVO2;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.PaymentVO;
@@ -32,15 +34,20 @@ public class RequestDAOMybatis implements RequestDAO {
 		return cnt;
 	}
 
-	public List<RequestVO> selectAll(ctgRequestVO searchVo) {
+	public List<Map<String, Object>> selectAll(SearchVO searchVo) {
 		// 글 전체 조회-글 목록
-		List<RequestVO> list = sqlSession.selectList(namespace + "selectAll", searchVo);
+		List<Map<String, Object>> list = sqlSession.selectList(namespace + "selectAll", searchVo);
 		return list;
 
 	}
 
 	@Override
 	public int getTotalRecord(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace + "getTotalRecord", searchVo);
+	}
+	
+	@Override
+	public int getTotalRecord2(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace + "getTotalRecord", searchVo);
 	}
 
@@ -58,8 +65,8 @@ public class RequestDAOMybatis implements RequestDAO {
 	}
 
 	@Override
-	public int insertPick(RequestPickVO pvo) {
-		int cnt = sqlSession.insert(namespace + "insertPick", pvo);
+	public int insertPick(int no) {
+		int cnt = sqlSession.insert(namespace + "insertPick", no);
 		return cnt;
 	}
 
@@ -181,5 +188,35 @@ public class RequestDAOMybatis implements RequestDAO {
 		return sqlSession.update(namespace + "pLevel3", no);
 	}
 
+	@Override
+	public int resReq(int no) {
+		int cnt = sqlSession.update(namespace + "resReq", no);
+		return cnt;
+	}
+
+	@Override
+	public int getMaxP(int no) {
+		return sqlSession.selectOne(namespace + "getMaxP", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMyAll(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectMyAll", map);
+	}
+
+	@Override
+	public int getMyTotalRecord(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"getMyTotalRecord", map);
+	}
+
+	@Override
+	public int smemPick(RequestPickVO pvo) {
+		return sqlSession.update(namespace + "smemPick", pvo);
+	}
+	
+	@Override
+	public int adminUpPrice (HashMap<String, Object> map) {
+		return sqlSession.update(namespace + "adminUpPrice", map);
+	}
 
 }

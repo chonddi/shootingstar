@@ -14,15 +14,19 @@
 	</resultMap>
 	
 	<sql id="requestCol">
-		rqno, memberid, cgno, rqprice, rqregion, rqdate,
-		rqtype, pickcount, rqdetail, regdate, delflag
+		distinct rqno, memberid, cgno, rqprice, rqregion, rqdate,
+		rqtype, pickcount, rqdetail, regdate, delflag, plevel
 	</sql>
 	
 	<sql id="searchWhere">
+		<if test="searchCondition !=null and searchCondition !=''">
+				cgno = #{searchCondition} and
+		</if>
+	</sql>
+	<sql id="searchWhere2">
 		<if test="searchKeyword !=null and searchKeyword !=''">
-			<where>
-				${searchCondition} like '%' || #{searchKeyword} || '%'
-			</where>
+				(rqdetail like '%' || #{searchKeyword} || '%' 
+				or memberid like '%' || #{searchKeyword} || '%') and
 		</if>
 	</sql>
 	
@@ -40,31 +44,21 @@
 	</insert>
 
 
-	<select id="selectAll" parameterType="ctgRequestVO" resultType="RequestVO">
+	<select id="selectAll" parameterType="SearchVO" resultType="map">
 		select *
 		from
 		(
 		    select rownum as RNUM, list.*
 		    from (
-		    	<choose>
-			        <when test="cgNo==null or cgNo=='' or cgNo==0">
-		        select 
-				<include refid="requestCol"></include>		
-				 from request
-				<include refid="searchWhere"></include>
-				
-				</when>
-					<otherwise>		
-						select 
-						<include refid="requestCol"></include>		
-						 from request
-						where cgNo=#{cgNo}
-					</otherwise>			
-				</choose>
-				order by rqno desc	
-				
+		        select <include refid="requestCol"></include>	
+				from rqlist
+				where
+				<include refid="searchWhere"></include> 
+				<include refid="searchWhere2"></include>
+				ROWID IN (SELECT MAX(ROWID) FROM rqlist GROUP BY rqno)
+				order by rqno desc
 		    )list
-		)    
+		)
 		<![CDATA[
 		where RNUM>#{firstRecordIndex} 
 		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
@@ -72,21 +66,14 @@
 	</select>
 	
 	
-	
-	<select id="getTotalRecord" parameterType="ctgRequestVO" resultType="int">
-		<choose>
-	         <when test="cgNo==null or cgNo==''">
-		        select count(*)	
-				 from request
-				<include refid="searchWhere"></include>			
-			</when>
-			<otherwise>				
-				select count(*)		
-				 from request
-				where cgNo=#{cgNo}
-			</otherwise>			
-		</choose>
-			
+	<select id="getTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*)	
+		from rqlist 
+		where
+		<include refid="searchWhere"></include> 
+		<include refid="searchWhere2"></include>
+		ROWID IN (SELECT MAX(ROWID) FROM rqlist GROUP BY rqno)
+		order by rqno desc			
 	</select>
 	
 	
@@ -95,17 +82,17 @@
 	</select>
 	
 	<select id="pickByNo" parameterType="int" resultType="RequestPickVO">
-		select * from pick where RQNo=#{RQNo}
+		select * from pick where RQNo=#{RQNo} and smemberId!='미정'
 	</select>
 	
 	
 	<select id="selectPList" parameterType="int" resultMap="pickAll">
 		select * from pickAll
-		where rqno=#{no}
+		where rqno=#{no} and smemberId!='미정'
 	</select>
 	
 	<select id="selPvo" parameterType="int" resultMap="pickAll">
-		select * from pickall where pickno=#{no}
+		select * from pickall where pickno=#{no} and smemberId!='미정'
 	</select>
 	
 
@@ -114,9 +101,14 @@
 	</select>
 	
 
-	<insert id="insertPick" parameterType="RequestPickVO">
+	<insert id="insertPick" parameterType="int">
 		insert into pick (pickno, rqno, smemberid, sprice)
-		values(pick_seq.nextval, #{RQNo}, #{sMemberId}, #{sPrice})
+		values(pick_seq.nextval, #{RQNo}, '미정', 0)
+	</insert>
+	
+	<insert id="smemPick" parameterType="RequestPickVO">
+		insert into pick (pickno, rqno, smemberid, sprice)
+		values(pick_seq.nextval, #{RQNo}, #{sMemberId}, ${sPrice})
 	</insert>
 	
 	
@@ -156,6 +148,10 @@
 		set sprice=#{price}
 		where pickno=#{no}
 	</update>
+	
+	<select id="getMaxP" parameterType="int" resultType="int">
+		select max(plevel) from pickall where rqno=#{no}
+	</select>
 	
 	<select id="getFinalP" parameterType="int" resultType="int">
 		select sprice from pickall where rqno=#{no} and plevel>=1
@@ -201,6 +197,12 @@
 		set delflag='Y'
 		where rqno=#{no}
   	</update>
+  	
+  	<update id="resReq" parameterType="int">
+   		update request
+		set delflag='N'
+		where rqno=#{no}
+  	</update>
 	
 	<select id="selImgName" parameterType="int" resultType="RequestImgVO">
 		select filename from requestimg where RQNo=#{no}
@@ -220,6 +222,51 @@
 		update pick
 		set plevel=plevel+1
 		where plevel=2 and pickno=#{pickno}
+	</update>
+	
+	<select id="selectMyAll" parameterType="map" resultType="map">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select <include refid="requestCol"></include>	
+				from rqlist
+				where
+				<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+					cgno = #{searchVo.searchCondition} and
+				</if>
+				<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+					rqdetail like '%' || #{searchVo.searchKeyword} || '%' and
+				</if>
+				memberId=#{memberId}
+				order by rqno desc
+		    )list
+		)
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getMyTotalRecord" parameterType="map" resultType="int">
+		select count(*)	
+		from rqlist 
+		where
+		<if test="searchVo.searchCondition !=null and searchVo.searchCondition !=''">
+					cgno = #{searchVo.searchCondition} and
+				</if>
+				<if test="searchVo.searchKeyword !=null and searchVo.searchKeyword !=''">
+					rqdetail like '%' || #{searchVo.searchKeyword} || '%' and
+				</if>
+		memberId=#{memberId}		
+		order by rqno desc			
+	</select>
+	
+	<update id="adminUpPrice" parameterType="int">
+		update pickall
+		set sprice=#{sprice}
+		where rqno=#{no} and plevel in (select max(plevel) from pickall where rqno=#{no})
 	</update>
 	
 	

@@ -9,6 +9,7 @@ public class PortfolioVO {
 	private String pfTitle;
 	private int readCount;
 	private Timestamp regdate;
+	
 	public int getPfNo() {
 		return pfNo;
 	}

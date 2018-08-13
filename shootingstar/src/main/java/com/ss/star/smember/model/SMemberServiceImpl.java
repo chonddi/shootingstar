@@ -106,5 +106,10 @@ public class SMemberServiceImpl implements SMemberService{
 	public int selCount() {
 		return sMemberDao.selCount();
 	}
+
+	@Override
+	public String selectIdByName(String sName) {
+		return sMemberDao.selectIdByName(sName);
+	}
 	
 }

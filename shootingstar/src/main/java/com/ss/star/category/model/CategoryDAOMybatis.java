@@ -17,6 +17,16 @@ public class CategoryDAOMybatis implements CategoryDAO{
 	public List<CategoryVO> selectCategoryAll() {
 		return sqlSession.selectList(namespace+"selectCategoryAll");
 	}
+
+	@Override
+	public String getCtgName(int no) {
+		return sqlSession.selectOne(namespace+"getCtgName",no);
+	}
+
+	@Override
+	public int getCtgNum(String name) {
+		return sqlSession.selectOne(namespace+"getCtgNum",name);
+	}
 	
 	
 }

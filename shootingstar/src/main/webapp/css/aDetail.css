@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@import
+	url('https://fonts.googleapis.com/css?family=Nanum+Gothic&subset=korean');
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+
+.mint{
+	font-weight:bolder;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:18px;
+}
+.mint2{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:16px;
+	color:#9d9d9d;
+}
+#ttlt{
+	border-bottom: 1px grey dashed;
+	height:30px;
+}
+#ttlt2{
+	text-align:center;
+	padding-left:10px;
+}
+
+.mBtn{
+	border: none;
+    width: 100px;
+    height: 40px;
+    background: #9b9b9b;
+    color: white;
+    border-radius: 5px 5px;
+}
+
+.mBtn:hover{
+	font-weight: bold;
+	background: #8c8c8c;
+}
+
+
+.mBtn1{
+	border: none;
+    width: 180px;
+    height: 25px;
+    background: #9b9b9b;
+    color: white;
+    border-radius: 5px 5px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size:18px;
+    font-weight:lighter;
+    text-align:center;
+}
+
+.mBtn1:hover{
+	background: #8c8c8c;
+}
+.dbody{
+	font-family: 'Do Hyeon', sans-serif;
+}

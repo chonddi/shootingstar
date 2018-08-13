@@ -61,14 +61,14 @@ nav ul {
 					<li style="margin-top:20px;"><img id="userli" alt="마이 페이지"
 						src="<c:url value='/images/lm.png'/>" style="width:38px; height:40px;">
 						<ul id="userul" style="margin-right:800px;">
-						<c:if test="${empty sessionScope.userCode}">
+						<c:if test="${empty sessionScope.adminCode}">
 							<li><a href="<c:url value='/admin/login/login.do'/>">로그인</a></li>
 						</c:if>
 						
-						<c:if test="${!empty sessionScope.userCode}">
+						<c:if test="${!empty sessionScope.adminCode}">
 							<li><a href="<c:url value='/admin/adminEdit.do'/>">마이페이지</a></li>
 						</c:if>
-						<c:if test="${!empty sessionScope.userCode}">
+						<c:if test="${!empty sessionScope.adminCode}">
 							<li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
 						</c:if>
 						</ul>
@@ -100,7 +100,7 @@ nav ul {
   <li><a href="#">게시물관리</a>
  	<ul>
      <li><a href="<c:url value='/admin/post/request.do'/>">견적 요청 글 관리</a></li>
-     <li><a href="#">포트폴리오 글 관리</a></li>
+     <li><a href="<c:url value='/admin/post/portfolio.do'/>">포트폴리오 글 관리</a></li>
  	</ul>
  </li>
  <li><a href="#" >등록현황 통계</a>

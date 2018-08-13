@@ -266,7 +266,7 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 	text-align: left;
 	height: 200px;
 	margin-bottom: 40px;
-	padding-left: 70px;
+	padding-left: 40px;
 }
 
 .pS1 {
@@ -439,8 +439,8 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 #ttlt {
 	text-align: center;
 	font-size: 20px;
-	padding-top: 15px;
-	padding-bottom: 20px;
+	padding-top: 5px;
+	padding-bottom: 10px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-weight: lighter;
 	border-bottom: 2px double grey;
@@ -461,7 +461,9 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 
 .box2 {
 	width: 1235px;
-	margin-top: 30px;
+}
+.box2 tbody tr{
+	height:30px;
 }
 
 .divA {
@@ -563,7 +565,7 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 .pP2 {
 	font-size: 28px;
 	color: black;
-	width: 200px;
+	width: 350px;
 	float: left;
 	text-align: left;
 	padding-left: 15px;
@@ -626,4 +628,11 @@ figure.snip1384:hover h3, figure.snip1384.hover h3, figure.snip1384:hover p,
 
 .brp {
 	margin-top: 25px;
+}
+.non{
+	text-align:center;
+	height:30px; 
+	padding-top:15px;
+	font-family:'Do Hyeon', sans-serif;
+	font-size:25px;
 }

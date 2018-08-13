@@ -445,7 +445,7 @@ $( document ).ready(function() {
 							<input type="checkbox" name="ck2" value="인쇄용"> 인쇄용
 							<div style="font-size:16px;">(0개 선택 시 "미선택"으로 입력됩니다.)</div>
 							<input type="hidden" id= "RQPrice" name="RQPrice" value=${price }>
-							<input type="hidden" id="cg1" name="cg1" value=${cg1 }>
+							<input type="hidden" id="cg1" name="cname" value=${cname }>
 						</div>
 					</div>
 					<br><br>

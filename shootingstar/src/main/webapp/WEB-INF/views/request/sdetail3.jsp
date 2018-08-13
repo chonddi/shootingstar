@@ -213,7 +213,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 						 	마지막 단계인 결제단계로 넘어가시려면<br>
 						 	상호협의하신 최종가격을 입력하시고 버튼을 클릭하세요.<br><br>
 						 	<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required maxlength="10" />
+		            		style="text-align:right;" class="price2" name="Price" autocomplete=off required maxlength="11" />
 		            		&nbsp; <span id="cg5">원</span>  <br><br>
 		            		
 		            		<input type="hidden" name="sName" value="${pvo.sName}" />

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
 
+
 @Repository
 public class PortfolioDAOMybatis implements PortfolioDAO {
 	
@@ -37,6 +38,13 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectAllList", searchVo);
 		return list;
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectAllList2(SearchVO searchVo) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectAllList", searchVo);
+		return list;
+	}
 
 	@Override
 	public int getTotalRecord(SearchVO searchVo) {
@@ -50,7 +58,6 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 
 	@Override
 	public List<Map<String, Object>> selectPfDetail(int pfNo) {
-		// TODO Auto-generated method stub
 		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetail", pfNo);
 		return list;
 	}
@@ -91,6 +98,27 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 	@Override
 	public String authorityById(String sMemberId) {
 		return sqlSession.selectOne(namespace+"authorityById", sMemberId);
+	}
+
+	@Override
+	public int deletePf(int no) {
+		return sqlSession.update(namespace+"deletePf", no);
+	}
+
+	@Override
+	public int resPf(int no) {
+		return sqlSession.update(namespace+"resPf", no);
+	}
+
+	@Override
+	public List<PortfolioImgVO> selImgName(int no) {
+		return sqlSession.selectList(namespace+"selImgName", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectPfDetailByN(String sname) {
+		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetailByN", sname);
+		return list;
 	}
 
 }

@@ -10,7 +10,7 @@
  <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/aDetail.css'/>">
 	
-<title>${vo.pfNo}번 Request글 상세보기</title>
+<title>전문가 상세정보</title>
 </head>
 <body>
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -20,6 +20,14 @@ $(function(){
 	$('.cBtn').click(function(){
 		self.close();
 	});
+	//쪽지보내기
+	$('#sendMsg').click(function(smemid){
+		x = (screen.availWidth - 460) / 2;
+	    y = (screen.availHeight - 550) / 2;
+	    window.open("<c:url value='/mypage/message/messageWrite.do?sMemberId=${smemid}'/>",
+			"쪽지보내기","left=" + x + ", top=" + y + ", width=460, height=550, location=yes, resizable=no");
+
+		});
 });
 
 //이미지 클릭시 원본 크기로 팝업 보기
@@ -53,7 +61,7 @@ function viewImage(img){
 </head>
 
 <body>
-
+<div class="dbody">
 <div style="font-size:1.3em;">
 					
 
@@ -68,24 +76,27 @@ function viewImage(img){
 						
 </c:forEach>
 
-<span class="mint" style="font-size:1.1em;">${smemberid}</span>님의 PORTFOLIO 상세내용</div><br><hr><br>
-	 			<div class="pS">   
+<span class="mint" style="font-size:1.1em;">${sname}</span>님의 INFORMATION</div><hr>
 		 			<div class="title3"> 
-		 			<span class="mint">전문가명</span> :   ${sname} &nbsp;&nbsp;&nbsp;&nbsp; <span class="mint">카테고리</span> : ${cgname}<br><br>
-					<span class="mint">포트폴리오제목</span> : <span class="mint2">${ptitle}</span> <br>
-						</div><br>
+		 			<span class=>전문가명</span> :   ${sname} &nbsp;&nbsp;&nbsp;&nbsp; <br><span>전문 분야</span> : ${cgname}
+					
+						</div>
 						<hr><br>
-						<span class="mint">전문가 소개</span> :  ${pr}
-						</div><br><hr><br>
-						<span class="mint">포트폴리오 이미지</span> (클릭 시 원본크기 보기)<br>
-	<div style="margin-top:15px;">
-		<c:forEach var="map" items="${list}">
-					<img src="<c:url value='../../portfolio_images/${map["FILENAME"] }'/>" class="imgup" title="클릭하시면 원본크기로 보실 수 있습니다."
-					style="cursor: pointer;width:100px;height:80px;" onclick="doImgPop('<c:url value='../../portfolio_images/${map["FILENAME"] }'/>')">
-				</c:forEach>
-		</div>
-<div style="text-align: center;margin-top:70px;">
+			
+			<!-- 포트폴리오 새창 띄우기 -->			
+			<form name="frmSearch" method="post">
+			<div class="input-group">
+				<button type="submit" class="mBtn1" onclick="window.open('<c:url value="/portfolio/portfolioList.do?searchKeyword=${sname}"/>',
+				'new','resizable=no fullscreen');return false">포트폴리오 보기 (새창)</button>
+			</div>
+			</form><br>
+			<img src="../images/mail.png" title="button" id="sendMsg" value="${smemid}" style="cursor: pointer;width:32px;height:30px;" >
+			[쪽지보내기]
+</div>			
+	
+<div style="text-align: center;margin-top:30px;">
 		<input type="button" class="cBtn" value="닫기">
 	</div>
+	
 </body>
 </html>

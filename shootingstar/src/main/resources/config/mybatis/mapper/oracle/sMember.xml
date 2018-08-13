@@ -31,6 +31,10 @@
 		select sName from sMember where sMemberId=#{sMemberId}
 	</select>
 	
+	<select id="selectIdByName" parameterType="String" resultType="String">
+		select sMemberId from sMember where sName=#{sName}
+	</select>
+	
 	<select id="selectCountSMemberId" parameterType="String" resultType="int">
 		select count(*) from smember where smemberid=#{sMemberId}
 	</select>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.request.model.RequestVO;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
@@ -43,6 +44,13 @@ public class PortfolioServiceImpl implements PortfolioService {
 		List<Map<String, Object>> list = Dao.selectAllList(searchVo);
 		return list;
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectAllList2(SearchVO searchVo) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list = Dao.selectAllList2(searchVo);
+		return list;
+	}
 
 	@Override
 	public int getTotalRecord(SearchVO searchVo) {
@@ -56,7 +64,6 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	@Override
 	public List<Map<String, Object>> selectPfDetail(int pfNo) {
-		// TODO Auto-generated method stub
 		List<Map<String, Object>> list = Dao.selectPfDetail(pfNo);
 		return list;
 	}
@@ -108,6 +115,54 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public String authorityById(String sMemberId) {
 		return Dao.authorityById(sMemberId);
+	}
+
+	@Override
+	public int deleteMulti(List<PortfolioVO> list) {
+		int cnt=0;
+		try {
+			for(PortfolioVO vo : list) {
+				int productNo=vo.getPfNo();
+				if(productNo>0) {  //선택한 포트폴리오만 삭제
+					cnt=Dao.deletePf(productNo);
+				}
+			}//for
+		}catch(RuntimeException e) {
+			cnt=-1;
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+
+	@Override
+	public int resMulti(List<PortfolioVO> list) {
+		int cnt=0;
+		try {
+			for(PortfolioVO vo : list) {
+				int productNo=vo.getPfNo();
+				if(productNo>0) {  //선택한 포트폴리오만 복원
+					cnt=Dao.resPf(productNo);
+				}
+			}//for
+		}catch(RuntimeException e) {
+			cnt=-1;
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+
+	@Override
+	public List<PortfolioImgVO> selImgName(int no) {
+		List<PortfolioImgVO> list = Dao.selImgName(no);
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectPfDetailByN(String sname) {
+		List<Map<String, Object>> list = Dao.selectPfDetailByN(sname);
+		return list;
 	}
 
 	

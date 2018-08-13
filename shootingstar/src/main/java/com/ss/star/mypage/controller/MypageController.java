@@ -27,6 +27,7 @@ import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.portfolio.model.PortfolioService;
+import com.ss.star.request.model.RequestService;
 import com.ss.star.smember.model.SMemberService;
 import com.ss.star.smember.model.SMemberVO;
 
@@ -40,6 +41,7 @@ public class MypageController {
 	@Autowired FileUploadUtil2 fileUploadUtil;
 	@Autowired PortfolioService portfolioService;
 	@Autowired CategoryService cgService;
+	@Autowired private RequestService rqService;
 	
 	//정보수정
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
@@ -293,9 +295,36 @@ public class MypageController {
 
 	//나의 견적상황
 	@RequestMapping("/myRequest.do")
-	public void myRequest(HttpSession session) {
+	public void myRequest(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
 		String userid = (String) session.getAttribute("userid");
 		logger.info("나의 견적상황 화면, 세션 memberId:{}", userid);
+		
+		//[1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_MYPOFOL);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		//[2] SearchVO 에 값 셋팅
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_MYPOFOL);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);
+		
+		List<Map<String, Object>> list = rqService.selectMyAll(userid, searchVo);
+		logger.info("글 목록 조회 결과, list.size: {}", list.size());
+		
+		//전체 레코드 개수 조회
+		int totalRecord=rqService.getMyTotalRecord(userid, searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+		
+		//카테고리 가져오기
+		List<CategoryVO> cgList=cgService.selectCategoryAll();
+		logger.info("카테고리 조회 결과, cgList.size={}", cgList.size());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("cgList", cgList);
+		model.addAttribute("pageVo", pagingInfo);
 
 	}
 	

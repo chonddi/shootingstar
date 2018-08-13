@@ -59,7 +59,11 @@ function selBtn(RQNo, pickNo){
 	      title: "선택하시겠습니까?",
 	      text: "PICK은 1개만 선택가능합니다.계속하시겠습니까?",
 	      icon: "warning",
-	     
+	      buttons: [
+		        '아니요!',
+		        '네!'
+		        ],
+		     dangerMode: true,
 	      }).then(function(isConfirm) {
 	      if (isConfirm) {
 	        swal({
@@ -74,12 +78,33 @@ function selBtn(RQNo, pickNo){
 	      }
 	    }) 
 	}
-	
+
+
+//디테일 팝업뜨게하기
+function detailView(sname) {
+	document.detailFrm.sname.value=sname;
+	detailViewSubmit();
+}
+function detailViewSubmit(){
+	frm = document.getElementById("detailFrm");
+	x = (screen.availWidth - 400) / 3;
+	y = (screen.availHeight - 300) / 2;
+	window.open("","viewer","left=" + x + ", top=" + y + ", width=280, height=300, location=yes, resizable=no");
+	frm.action = "<c:url value='/request/portDetail.do'/>";
+	frm.target = "viewer";
+	frm.method = "post";
+	frm.submit();
+}
+
 
 </script>
 </head>
 
 <body>
+<form id="detailFrm" name="detailFrm" style="width:1400px;">
+		<input type="hidden" name="sname">
+</form>
+
 <div class="rbody">
 
 
@@ -114,6 +139,7 @@ function selBtn(RQNo, pickNo){
 			
 					 
 			 <div id="pS5"> <div class="title2">STATUS</div><br>
+			 <div style="text-align:left;margin-bottom:40px;font-weight:lighter;color:gray;">-전문가명을 클릭하면 관련정보를 확인할 수 있습니다</div>
 			 	
 		<%-- 	<c:if test="${empty param.pList}">
 			
@@ -149,7 +175,8 @@ function selBtn(RQNo, pickNo){
 			<td id="ttlt2"><img src="../images/rchecks.png" style="vertical-align:middle; width:30px; height:30px;"> </td>
 			 
 			 <td id="ttlt2">
-			<img src="../images/faceb.png" style="vertical-align:middle"> <div class="pdt">${pvo.sName}</div> 전문가 </td>
+			<img src="../images/faceb.png" style="vertical-align:middle"> 
+			<div class="pdt"> <a href="#" onclick="detailView('${pvo.sName}')" style="cursor:pointer">${pvo.sName}</a></div> 전문가 </td>
 			
 			 <td id="ttlt2">
 			  <div class="pdt">

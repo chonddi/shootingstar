@@ -119,12 +119,12 @@ function setComma(inNum){
 		 <form name="frmB" method="post" class="cau1"
 		action="<c:url value='/request/write3.do'/>" onsubmit="return send(this)">
 				
-		            <span id="cg1">선택하신 카테고리는  <span id="cg2">${cg1}</span> 입니다.</span> <br><br>
+		            <span id="cg1">선택하신 카테고리는  <span id="cg2">${cname}</span> 입니다.</span> <br><br>
 		            				<span id="cg3">원하시는 가격을 입력하세요.</span><br><br><br>
 		            <input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-		            style="text-align:right;" class="price" name="price" autocomplete=off required maxlength="10" />
+		            style="text-align:right;" class="price" name="price" autocomplete=off required maxlength="11" />
 		            &nbsp;<span id="cg4">원</span>
-		            <input type="hidden" id="cg1" name="cg1" value="${cg1 }"> 
+		            <input type="hidden" id="cg1" name="cname" value="${cname}"> 
 		       		<input type="hidden" class="sPrice" name="sPrice" value="" />
 		        <br><br><br>
 		        	<div id="sm"><button class="oky" id="okyoky" onclick="submit">입력완료</button></div> <br><br>

@@ -24,6 +24,15 @@ $(document).ready(function(){
 			$(this).css('background','');
 		});	
 		
+		
+		//카테고리로 검색하게 하기
+		$('.ctgSelect').change(function(){
+			var cgNo = $('.ctgSelect').val();
+			$('input[name=searchCondition]').val(cgNo);
+			$('input[name=searchKeyword]').val('');
+			$('form[name=frmSearch]').submit();
+		});
+		
 	});
 	
 //페이징 펑션
@@ -45,24 +54,15 @@ $(document).ready(function(){
 				button: "확인"
 				}); 
  			}
-			
 		}	 
  	 
- 	function onClick2(rqno) { 
- 		
- 		location.href="<c:url value='/request/sdetail.do?no="+rqno+"'/>"
- 		
-			}	
- 	
-	function onClick3() { 
- 		
- 		location.href="<c:url value='/request/detail.do'/>"
- 		
-			}	
-				
-	function onLoad() {
-		
-	}
+	 	function onClick2(rqno) { 
+	 			location.href="<c:url value='/request/sdetail.do?no="+rqno+"'/>"
+	 		}	
+	 	
+		function onClick3() { 
+	 			location.href="<c:url value='/request/detail.do'/>"
+	 		}	
 
 	
 </script>
@@ -87,88 +87,32 @@ $(document).ready(function(){
 
 <div class="divA">
 	<div class="divLeft">
-	<form name="frmPage1" method="post"
-		action="<c:url value='/request/list.do'/>">
-		
-		Category
-		<select name="cgNo" onchange="this.form.submit()">
-			<option>
-			<c:choose>
-				 <c:when test="${cno ==null }">---전체---</c:when>
-				 <c:when test="${cno ==1 }">-인물/프로필-</c:when>
-				 <c:when test="${cno ==2 }">---푸드---</c:when>
-				 <c:when test="${cno ==3 }">---패션---</c:when>
-				 <c:when test="${cno ==4 }">---웨딩---</c:when>
-				 <c:when test="${cno ==5 }">-행사/컨퍼런스-</c:when>
-				 <c:when test="${cno ==6 }">-건축/인테리어-</c:when>
-				 <c:when test="${cno ==7 }">---공연---</c:when>
-				 <c:when test="${cno ==8 }">---광고---</c:when>
-				 <c:when test="${cno ==9 }">-스냅사진-</c:when>
-			</c:choose>
-			
-			</option>
-			<option value="0">전체</option>
-			<option value="1" 
-				<c:if test="${param.eventName=='1'}">selected</c:if>
-				>인물/프로필</option>
-			<option value="2"
-				<c:if test="${param.eventName=='2'}">selected</c:if>
-				>푸드</option>
-			<option value="3"
-				<c:if test="${param.eventName=='3'}">selected</c:if>
-				>패션</option>	
-			<option value="4"
-				<c:if test="${param.eventName=='4'}">selected</c:if>
-				>웨딩</option>	
-			<option value="5"
-				<c:if test="${param.eventName=='5'}">selected</c:if>
-				>행사/컨퍼런스</option>	
-			<option value="6"
-				<c:if test="${param.eventName=='6'}">selected</c:if>
-				>건축/인테리어</option>	
-			<option value="7"
-				<c:if test="${param.eventName=='7'}">selected</c:if>
-				>공연</option>	
-			<option value="8"
-				<c:if test="${param.eventName=='8'}">selected</c:if>
-				>광고</option>	
-			<option value="9"
-				<c:if test="${param.eventName=='9'}">selected</c:if>
-				>스냅사진</option>	
-						
-		</select>
-		
-	
-	</form>
+	<form name="frmSearch" method="post" action='<c:url value="/request/list.do"/>'>
+						<select class="ctgSelect">
+							<option value="">전체보기</option>
+							<c:forEach var="vo" items="${cList }">
+								<option value="${vo.cgNo }" 
+									<c:if test="${param.searchCondition==vo.cgNo}">
+										selected="selected"
+									</c:if>>
+									${vo.cgName }
+								</option>
+							</c:forEach>
+						</select>
+					</form>
 	</div>
 
 	<div class="divSearch">
-	   	<form name="frmSearch" method="post" 
+	   		<form name="frmSearch" method="post" 
 	   		action='<c:url value="/request/list.do"/>'>
-	        <select name="searchCondition">        	
-	          <option value="memberId"
-	            	<c:if test="${param.searchCondition=='memberId'}">
-	            		selected="selected"
-	            	</c:if>
-	            >작성자</option>
-	            <option value="RQDetail"
-	            	<c:if test="${param.searchCondition=='RQDetail'}">
-	            		selected="selected"
-	            	</c:if>
-	            >내용</option>
-	           <option value="RQNo"
-	            	<c:if test="${param.searchCondition=='RQNo'}">
-	            		selected="selected"
-	            	</c:if>
-	            >글번호</option>
-	        </select>   
-	        <input type="text" name="searchKeyword" title="검색어 입력"
-	        	value="${param.searchKeyword}">   
-			<input type ="image" src="<c:url value='../images/black18s.png'/>" 
-			align="absmiddle" >	
-			
-			
-				
+	        <div>
+	        		<button type="submit" style="float:right;height:28px;vertical-align:middle;">검색</button>
+					<input type="text" name="searchKeyword"
+						placeholder="글쓴이명 또는 제목으로 검색" style="width:220px; float:left;"> 
+						
+			</div>
+			<input type="hidden" name="searchCondition"
+				value="${param.searchCondition}">	
 	    </form>
 	</div>
 </div>
@@ -208,59 +152,67 @@ $(document).ready(function(){
 	
 		<c:if test="${empty list }">
 			<tr>
-				<td colspan="6" style="text-align: center">
+				<td colspan="6" class="non">
 					데이터가 존재하지 않습니다.
 				</td>
 			</tr>
 		</c:if>
 		<c:if test="${!empty list }">
 		  	<!--게시판 내용 반복문 시작  -->	
-		  	<c:forEach var="vo" items="${list}">
+		  	<c:forEach var="map" items="${list}">
 	  			<tr >
 	  				
-					<td id="ttl">${vo.RQNo}</td>
+					<td id="ttl">${map['RQNO']}</td>
 					<td id="ttl"> 
 					<c:choose>
-						 <c:when test="${vo.cgNo ==1 }">인물/프로필</c:when>
-						 <c:when test="${vo.cgNo ==2 }">푸드</c:when>
-						 <c:when test="${vo.cgNo ==3 }">패션</c:when>
-						 <c:when test="${vo.cgNo ==4 }">웨딩</c:when>
-						 <c:when test="${vo.cgNo ==5 }">행사/컨퍼런스</c:when>
-						 <c:when test="${vo.cgNo ==6 }">건축/인테리어</c:when>
-						 <c:when test="${vo.cgNo ==7 }">공연</c:when>
-						 <c:when test="${vo.cgNo ==8 }">광고</c:when>
-						 <c:when test="${vo.cgNo ==9 }">스냅사진</c:when>
+						 <c:when test="${map['CGNO']==1}">인물/프로필</c:when>
+						 <c:when test="${map['CGNO']==2}">푸드</c:when>
+						 <c:when test="${map['CGNO']==3}">패션</c:when>
+						 <c:when test="${map['CGNO']==4}">웨딩</c:when>
+						 <c:when test="${map['CGNO']==5}">행사/컨퍼런스</c:when>
+						 <c:when test="${map['CGNO']==6}">건축/인테리어</c:when>
+						 <c:when test="${map['CGNO']==7}">공연</c:when>
+						 <c:when test="${map['CGNO']==8}">광고</c:when>
+						 <c:when test="${map['CGNO']==9}">스냅사진</c:when>
 						</c:choose>
 					</td>
 					
 					
 					<td id="ttl" > 
-						<fmt:formatNumber value="${vo.RQNo}" type="number" var="rqno"/> 
+						<fmt:parseNumber value="${map['PLEVEL']}" var="plevel"/> 
+						<c:set var="delf" value="${map['DELFLAG']}"/>
 								
 						<!-- 삭제된 원본글인 경우 삭제된 글로 처리 -->
 						<c:choose>
-							<c:when test="${vo.delFlag=='Y'}">
-								<span style="color:gray;font-size: 1.0em;font-weight:lighter;">
+							<c:when test="${plevel>=3}">
+								<span style="color:#c3c3c3;font-size: 1.0em;font-weight:lighter;">
+									거래가 완료된 글입니다.</span>
+							</c:when>
+							<c:when test="${delf=='Y'}">
+								<span style="color:#dedede;font-size: 1.0em;font-weight:lighter;">
 									삭제된 글입니다.</span>
 							</c:when>
 							<c:otherwise>	
 							
 								<c:if test="${ucode==1}">
-									<a onclick='onClick("${vo.memberId}", "${vmemberid}", "${rqno}")'>
+									<a onclick='onClick("${map['MEMBERID']}", "${vmemberid}", "${map['RQNO']}")'>
 								</c:if>
 								<c:if test="${ucode==2}">
-									<a onclick='onClick2("${rqno}")'>
+									<a onclick='onClick2("${map['RQNO']}")'>
 								</c:if>
 								<c:if test="${ucode!=1&&ucode!=2}">
 									<a onclick='onClick3()'>
 								</c:if>
 									
 								<!-- 내용 일부만 보여주기 -->
-								<c:if test="${fn:length(vo.RQDetail)>18}">	
-										${fn:substring(vo.RQDetail, 0, 18)}...
+								<c:set var="title" value="${map['RQDETAIL']}"/>
+
+
+								<c:if test="${fn:length(title)>18}">	
+										${fn:substring(title, 0, 18)}...
 								</c:if>
-								<c:if test="${fn:length(vo.RQDetail)<=18}">
-										${vo.RQDetail}
+								<c:if test="${fn:length(title)<=18}">
+										${title}
 								</c:if>								
 							</a>
 					
@@ -271,14 +223,19 @@ $(document).ready(function(){
 					
 					
 					
-					<td id="ttl"> ${vo.memberId} </td>
-					<td id="ttl"><fmt:formatDate value="${vo.regDate}"
+					<td id="ttl"> ${map['MEMBERID']} </td>
+					<td id="ttl"><fmt:formatDate value="${map['REGDATE']}"
 						pattern="yyyy-MM-dd"/> </td>
 					
 					<!-- pickcount 갯수 표시 -->
 					<td class="pick" id="ttl"> 
+					<c:set var="pickc" value="${map['PICKCOUNT']}"/>
+					<fmt:parseNumber var="pick" type="number" value="${pickc}" />
+
+			
+
 					<c:choose>
-				       <c:when test="${vo.pickCount>='1'}">
+				       <c:when test="${pick>=1}">
 				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
@@ -288,7 +245,7 @@ $(document).ready(function(){
 
 					
 					<c:choose>
-				      <c:when test="${vo.pickCount>='2'}">
+				      <c:when test="${pick>=2}">
 				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
@@ -297,7 +254,7 @@ $(document).ready(function(){
 					</c:choose>
 								
 					<c:choose>
-				      <c:when test="${vo.pickCount>='3'}">
+				      <c:when test="${pick>=3}">
 				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
@@ -306,7 +263,7 @@ $(document).ready(function(){
 					</c:choose>
 					
 					<c:choose>
-				       <c:when test="${vo.pickCount>='4'}">
+				       <c:when test="${pick>=4}">
 				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>
@@ -315,7 +272,7 @@ $(document).ready(function(){
 					</c:choose>
 					
 					<c:choose>
-				       <c:when test="${vo.pickCount>='5'}">
+				       <c:when test="${pick>=5}">
 				           <input type ="image" src="<c:url value='../images/ckb.png'/>">
 				       </c:when>
 					<c:otherwise>

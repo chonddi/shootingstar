@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
-import com.ss.star.request.model.ctgRequestVO;
 import com.ss.star.smember.model.SMemberService;
 
 /**

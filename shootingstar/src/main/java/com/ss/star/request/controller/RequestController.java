@@ -1,9 +1,11 @@
 package com.ss.star.request.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,18 +23,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ss.star.category.model.CategoryService;
+import com.ss.star.category.model.CategoryVO;
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
+import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.PaymentVO;
+import com.ss.star.portfolio.model.PortfolioService;
+import com.ss.star.portfolio.model.reviewVO;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
+import com.ss.star.request.model.RequestListVO;
 import com.ss.star.request.model.RequestPickVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
-import com.ss.star.request.model.ctgRequestVO;
+import com.ss.star.smember.model.SMemberService;
 
 @Controller
 @RequestMapping("/request")
@@ -41,9 +49,15 @@ public class RequestController {
 	private static final Logger logger = LoggerFactory.getLogger(RequestController.class);
 
 	@Autowired
-	RequestService requestService;
+	private RequestService requestService;
 	@Autowired
-	MemberService memberService;
+	private PortfolioService pfService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private SMemberService smemService;
+	@Autowired 
+	private CategoryService ctgService;
 	@Autowired
 	private FileUploadUtil3 fileUploadUtil;
 
@@ -56,11 +70,14 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/write2.do")
-	public String RequestWrite2P(@RequestParam String cg1, Model model) {
+	public String RequestWrite2P(@RequestParam int cg1, Model model) {
 
-		logger.info("글쓰기 화면");
+		logger.info("글쓰기 화면2");
 
-		model.addAttribute("cg1", cg1);
+		//카테고리 이름 가져오기
+		String ctgName = ctgService.getCtgName(cg1);
+		
+		model.addAttribute("cname", ctgName);
 
 		return "request/write2";
 
@@ -68,7 +85,7 @@ public class RequestController {
 
 	@RequestMapping(value = "/write3.do")
 	public String RequestWrite3(@RequestParam String price, 
-						@RequestParam String cg1, Model model) {
+						@RequestParam String cname, Model model) {
 
 		logger.info("글쓰기 화면 3");
 
@@ -86,7 +103,7 @@ public class RequestController {
 		logger.info("int로 변환 후 price i={}", i);
 
 		model.addAttribute("price", i);
-		model.addAttribute("cg1", cg1);
+		model.addAttribute("cname", cname);
 
 		return "request/write3";
 
@@ -94,13 +111,14 @@ public class RequestController {
 
 	@RequestMapping(value = "/write4.do")
 	public String request_post(@RequestParam String selOne, String selTwo, String dtSel, String sTime,
-			@RequestParam(required = false) String ck1, @RequestParam(required = false) String ck2, String cg1,
+			@RequestParam(required = false) String ck1, @RequestParam(required = false) String ck2, String cname,
 			@ModelAttribute RequestVO vo, @ModelAttribute RequestImgVO ivo, HttpServletRequest request,
 			HttpSession session, Model model) {
 
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequestVO={}", vo);
 		logger.info("고객 회원 - 견적 등록, 파라미터 RequetImgVO={}", ivo);
-
+		logger.info("카테고리이름 cname={}", cname);
+		
 		String region="";
 		if(selOne==null && selTwo==null) {
 			region="미선택";
@@ -121,7 +139,6 @@ public class RequestController {
 		
 
 		String rtype = "";
-
 		if (ck1 == null && ck2 == null) {
 			rtype = "미선택";
 		} else if (ck1 != null && ck2 != null) {
@@ -133,36 +150,19 @@ public class RequestController {
 		}
 		
 		
-		
-
-		if (cg1.equals("인물/프로필")) {
-			vo.setCgNo(1);
-		} else if (cg1.equals("푸드")) {
-			vo.setCgNo(2);
-		} else if (cg1.equals("패션")) {
-			vo.setCgNo(3);
-		} else if (cg1.equals("웨딩")) {
-			vo.setCgNo(4);
-		} else if (cg1.equals("행사/컨퍼런스")) {
-			vo.setCgNo(5);
-		} else if (cg1.equals("건축/인테리어")) {
-			vo.setCgNo(6);
-		} else if (cg1.equals("공연")) {
-			vo.setCgNo(7);
-		} else if (cg1.equals("광고")) {
-			vo.setCgNo(8);
-		} else if (cg1.equals("스냅사진")) {
-			vo.setCgNo(9);
-		}
-
 		String memberid = (String) session.getAttribute("userid");
+		int cg1 = ctgService.getCtgNum(cname);
+		
 		vo.setMemberId(memberid);
 		vo.setRQRegion(region);
 		vo.setRQDate(stime);
 		vo.setRQType(rtype);
-
+		vo.setCgNo(cg1);
+		
 		logger.info("setting 후 ID, RequestVO={}", vo);
 		logger.info("setting 후 RequestVO, RequestVO={}", vo);
+		
+	
 
 		List<Map<String, Object>> fileList;
 		try {
@@ -172,6 +172,12 @@ public class RequestController {
 
 			int cnt = requestService.insertRequest(vo, fileList);
 			logger.info("견적 등록 결과, cnt={}", cnt);
+			
+			int rqno = vo.getRQNo();
+			logger.info("pick을 초기화 할 글 번호, rqno={}", rqno);
+			int cnt1 = requestService.insertPick(rqno);
+			logger.info("pick 초기화 결과, cnt1={}", cnt1);
+			
 
 			if (cnt >= 0) {
 				model.addAttribute("url", "/request/list.do");
@@ -182,13 +188,14 @@ public class RequestController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
+		
 
 		return "redirect:/request/list.do";
 
 	}
 
 	@RequestMapping("/list.do")
-	public String list(@ModelAttribute ctgRequestVO searchVo, Model model, HttpSession session) {
+	public String list(@ModelAttribute SearchVO searchVo, Model model, HttpSession session) {
 		logger.info("글 목록, 파라미터 searchVo={}", searchVo);
 
 		String memberid = (String) session.getAttribute("userid");
@@ -207,21 +214,22 @@ public class RequestController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("setting 후 searchVo={}", searchVo);
 
-		List<RequestVO> list = requestService.selectAll(searchVo);
+		List<Map<String, Object>> list = requestService.selectAll(searchVo);
 		logger.info("견적 글 목록 조회 결과, list.size={}", list.size());
-
-		int cno = searchVo.getCgNo();
-		if (cno != 0) {
-			model.addAttribute("cno", cno);
-			logger.info("검색을 적용한 카테고리, cno={}", cno);
-		}
-
+	
 		// 전체 레코드 개수 조회
 		int totalRecord = requestService.getTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("전체 레코드 개수={}", totalRecord);
+		
+		//카테고리 가져오기
+		List<CategoryVO> cList=ctgService.selectCategoryAll();
+		logger.info("카테고리 조회 결과, cList.size={}", cList.size());
+		
+		
 
 		model.addAttribute("list", list);
+		model.addAttribute("cList", cList);
 		model.addAttribute("pageVo", pagingInfo);
 		model.addAttribute("vmemberid", memberid);
 		model.addAttribute("ucode", usercode);
@@ -404,7 +412,7 @@ public class RequestController {
 		}
 		
 		int pl=requestService.getPLevel2(no);
-		logger.info("pl2 갯수가 0이면 pLevel1에서 2로 증가실시, pl={}", pl);
+		logger.info("pl2 갯수가 0이면 pLevel1에서 2으로 증가실시, pl={}", pl);
 		
 		
 		//pLevel 2 이상 pick이 없고, 픽번호를 받은 경우 pLevel을  1 증가
@@ -516,7 +524,7 @@ public class RequestController {
 					break; 
 					}
 				}
-				logger.info("pLevel레벨 1 이상인지 여부, pLevel={}", trans);
+				logger.info("pLevel레벨 2 이상인지 여부, pLevel={}", trans);
 			
 				if(trans>=1) {
 				
@@ -566,7 +574,7 @@ public class RequestController {
 				for(int i=0;i<pList.size();i++) {		
 					trans=pList.get(i).getpLevel();
 					
-					if(trans>=1) {
+					if(trans>=2) {
 						break; 
 						}
 					}
@@ -645,7 +653,7 @@ public class RequestController {
 
 		model.addAttribute("pvo", pvo);
 
-		int cnt = requestService.insertPick(pvo);
+		int cnt = requestService.smemPick(pvo);
 		logger.info("Pick 등록 결과, cnt={}", cnt);
 
 		if (cnt >= 0) {
@@ -668,4 +676,70 @@ public class RequestController {
 		return "redirect:/request/fdetail.do";
 	}
 
+	
+	@RequestMapping(value="/portDetail.do")
+	public String portfolio_detail(@RequestParam String sname, Model model, HttpSession session) {
+		logger.info("포트폴리오 디테일 화면 보여주기, sname={}", sname);
+		
+		List<Map<String, Object>> list = pfService.selectPfDetailByN(sname);
+		logger.info("포트폴리오 디테일 list.size(): {}", list.size());
+		model.addAttribute("list", list);
+		
+		String smemid=smemService.selectIdByName(sname);
+		logger.info("해당 smemberid, smemid={}", smemid);
+		model.addAttribute("smemid", smemid);
+		
+		return "request/portDetail"; 	
+	}
+	
+	@RequestMapping(value="/deleteMulti2.do")
+	public String deleteMulti2(@ModelAttribute RequestListVO rqListVo,
+			HttpServletRequest request, Model model) {
+		logger.info("선택한 상품 삭제, 파라미터 pdListVo={}", rqListVo);
+		
+		List<RequestVO> list=rqListVo.getPdItems();
+		
+		int cnt=requestService.deleteMulti(list);
+		logger.info("다중삭제 결과, cnt={}", cnt);
+		
+		String msg="", url="/mypage/myRequest.do";
+		
+		if(cnt>0) {		
+			for(int i=0;i<list.size();i++) {
+				
+				RequestVO vo =list.get(i);
+				logger.info(i+" : RQNo={}", vo.getRQNo());
+				
+				//선택한 글의 이미지 삭제
+				if(vo.getRQNo()>0) {
+					List<RequestImgVO> ilist = new ArrayList<RequestImgVO>();
+					ilist= requestService.selImgName(vo.getRQNo());
+					logger.info("삭제할 글에 해당하는 RequestImgVO, ilist={}", ilist);
+					
+					//해당 글 번호에 있는 파일이름 구하기
+					for(int j=0;j<ilist.size();j++) {
+					String fname= ilist.get(j).getFileName();
+					logger.info("삭제할 글에 저장된 파일 이름, fname={}", fname);
+					
+					File file 
+					= new File(fileUploadUtil.getUploadPath(request, fileUploadUtil.PATH_FLAG_IMAGE), fname);
+					if(file.exists()) {
+					boolean bool=file.delete();
+					logger.info("이미지 삭제 여부:{}", bool);
+					}
+				  }
+				}
+			}//for
+			
+			/*msg="다중 삭제 처리되었습니다.";
+		}else {
+			msg="다중 삭제처리 중 에러 발생!";*/
+		}
+		/*model.addAttribute("msg", msg);*/
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+		
+	}
 }

@@ -66,4 +66,8 @@ public class SMemberDAOMybatis implements SMemberDAO{
 	public int selCount() {
 		return sqlSession.selectOne(namespace+"selCount");
 	}
+	@Override
+	public String selectIdByName(String sName) {
+		return sqlSession.selectOne(namespace+"selectIdByName", sName);
+	}
 }

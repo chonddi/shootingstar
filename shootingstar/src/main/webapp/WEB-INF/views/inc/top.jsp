@@ -81,7 +81,7 @@
 							<li><a href="<c:url value='/mypage/memberEdit.do'/>">내 정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.userCode==1}">	
-							<li><a href="#">나의 견적현황</a></li>
+							<li><a href="<c:url value='/mypage/myRequest.do'/>">나의 견적현황</a></li>
 							<li><a href="#">나의 거래이력</a></li>
 							<li><a href="<c:url value='/mypage/myLikey.do'/>">나의 관심목록</a></li>
 							<li><a href="#">내 마일리지</a></li>

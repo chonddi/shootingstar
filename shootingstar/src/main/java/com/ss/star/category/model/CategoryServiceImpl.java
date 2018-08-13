@@ -14,6 +14,16 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<CategoryVO> selectCategoryAll() {
 		return categoryDao.selectCategoryAll();
 	}
+
+	@Override
+	public String getCtgName(int no) {
+		return categoryDao.getCtgName(no);
+	}
+
+	@Override
+	public int getCtgNum(String name) {
+		return categoryDao.getCtgNum(name);
+	}
 	
 	
 }

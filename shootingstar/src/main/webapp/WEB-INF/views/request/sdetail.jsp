@@ -174,7 +174,7 @@ document.querySelector('#frm5').addEventListener('submit', function(e) {
 					 <br><br>
 					 				
 					 		<input type="text" onchange="getNumber(this);" onkeyup="getNumber(this);"
-				            style="text-align:right;" class="price1" name="price" autocomplete=off  required maxlength="9" />
+				            style="text-align:right;" class="price1" name="price" autocomplete=off  required maxlength="11" />
 				            &nbsp; <span id="cg5">원</span>  <br><br>
 				            
 				            <input type="hidden" name="rqno" value="${vo.RQNo}"/>

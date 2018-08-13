@@ -160,7 +160,7 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 			 
 			 	
 			<div class="title6" style="font-size: 45px;text-align:center;"><img src="../images/smile.png"/ style="vertical-align:middle; margin-right:25px;">
-			거래가 완료되었습니다.</div>
+			최종가격입력이 완료되었습니다.</div>
 			 
 			
 			

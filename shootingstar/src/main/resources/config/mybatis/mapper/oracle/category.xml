@@ -5,6 +5,15 @@
 	<select id="selectCategoryAll" resultType="CategoryVO">
 		select * from category order by cgorder
 	</select>	
+	
+	<select id="getCtgName" parameterType="int" resultType="String">
+		select cgname from category where cgno=#{no}
+	</select>
+	
+	<select id="getCtgNum" parameterType="String" resultType="int">
+		select cgno from category where cgname=#{name}
+	</select>
+	
 </mapper>
 
 
