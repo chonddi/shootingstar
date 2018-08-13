@@ -93,50 +93,57 @@
 	
 	});
 	
+	
 	//이메일 인증 중복확인
-	 function checkMail() {
-        var memberId = document.getElementById("sMemberId").value;
- 
-        if (memberId == "") {
-            alert("메일을 입력해 주세요.")
-            return false;
-        }
- 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (xhttp.readyState == 4) {
-                var data = JSON.parse(xhttp.responseText);
-                if (data != null) {
-                    alert("이미 가입한 메일 입니다.");
-                    $("#joincode").css("display", "none");
-                } else {
-                    sendMail(memberId);
-                    $("#joincode").css("display", "");
-                }
-            }
-        }; 
-        xhttp.open("POST", '<c:url value="/member/checkMail.do" />', true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        xhttp.send('memberId=' + memberId+"&userCode=2");
-        return false;
-    }
+	function checkMail() {
+		var memberId = document.getElementById("sMemberId").value;
+
+		if (memberId == "") {
+			alert("메일을 입력해 주세요.")
+			return false;
+		}
+		$.ajax({
+			url : "<c:url value='/member/checkMail.do' />",
+			type : "POST",
+			data :'memberId=' + memberId + "&userCode=2"
+			, //파라미터
+			success : function(res) {
+				if (res == "noId") {
+					sendMail(memberId);
+					$("#joincode").css("display", "");
+				} else {
+					alert("이미 가입한 메일 입니다.");
+					$("#joincode").css("display", "none");
+				}
+			},
+			error : function(xhr, status, error) {
+				alert('error:' + error + ", status: " + status)
+			}
+
+		});
+
+	}
  
 	//이메일 인증 메일 발송
-    function sendMail(memberId) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (xhttp.readyState == 4) {
-                if (xhttp.status == 200)
-                    alert("메일을 정상적으로 보냈습니다.");
-                else
-                    alert("올바른 메일 형식이 아닙니다.");
-            }
-        };
-        xhttp.open("POST", '<c:url value="/member/sendMail.do" />', true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        xhttp.send('memberId=' + memberId);
-        return false;
-    }
+	function sendMail(memberId) {
+		$.ajax({
+			url : "<c:url value='/member/sendMail.do' />",
+			type : "POST",
+			data :'memberId=' + memberId
+			, //파라미터
+			success : function(res) {
+				if (res == true) {
+					alert("메일을 정상적으로 보냈습니다.");
+				} else {
+					alert("올바른 메일 형식이 아닙니다.");
+				}
+			},
+			error : function(xhr, status, error) {
+				alert('error:' + error + ", status: " + status)
+			}
+
+		});
+	}
        
 </script>
 <link rel="stylesheet" href="<c:url value='/css/register.css'/>">

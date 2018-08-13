@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.ss.star.mail.model.MailService;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
@@ -26,7 +24,6 @@ import com.ss.star.smember.model.SMemberVO;
 @Controller
 @RequestMapping("/member")
 public class MailController {
-    private Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     Logger logger = LoggerFactory.getLogger(MailController.class);
     
     @Autowired private MemberService memberService;
@@ -38,13 +35,25 @@ public class MailController {
     @ResponseBody
     private String checkMail(@RequestParam String memberId, @RequestParam String userCode) {
     	logger.info("id 중복 확인 userid: {}, userCode: {}", memberId, userCode);
+    	String userid = null;
+    	
         if(userCode.equals("1")) {
         	MemberVO memberVo = memberService.selectID(memberId);
-        	return gson.toJson(memberVo);
+        	if(memberVo==null) {
+        		userid="noId";
+        	}else {
+        		userid = memberVo.getMemberId();
+        	}
         }else {
         	SMemberVO sMemberVo = sMemberService.selectID(memberId);
-        	return gson.toJson(sMemberVo);
+        	if(sMemberVo==null) {
+        		userid="noId";
+        	}else {
+        		userid = sMemberVo.getsMemberId();
+        	}
         }
+        logger.info("userid: {}", userid);
+        return userid;
     }
  
     @RequestMapping(value = "/sendMail.do", method = RequestMethod.POST, produces = "application/json")
