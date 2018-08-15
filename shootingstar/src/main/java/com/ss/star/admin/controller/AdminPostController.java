@@ -26,7 +26,6 @@ import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
-import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.portfolio.model.PortfolioImgVO;
 import com.ss.star.portfolio.model.PortfolioListVO;
 import com.ss.star.portfolio.model.PortfolioService;
@@ -282,12 +281,7 @@ public class AdminPostController {
 		String smemberid=pfService.detailSmemberId(pfNo);
 		model.addAttribute("smemberid", smemberid);
 		
-		List<ReviewVO> list2 = pfService.selectReview(smemberid);
-		model.addAttribute("list2", list2);
-		logger.info("list2 값={}", list2.size());
-		
-		int reviewSize = list2.size();
-		model.addAttribute("reviewSize",reviewSize);
+		//후기 들어갈 자리
 		
 		String address = pfService.selectAdd(pfNo);
 		model.addAttribute("address",address);

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
-import com.ss.star.payment.model.ReviewVO;
 
 
 @Repository
@@ -60,12 +59,6 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 	@Override
 	public List<Map<String, Object>> selectPfDetail(int pfNo) {
 		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetail", pfNo);
-		return list;
-	}
-
-	@Override
-	public List<ReviewVO> selectReview(String sMemberid) {
-		List<ReviewVO> list = sqlSession.selectList(namespace2+"selectReview", sMemberid);
 		return list;
 	}
 

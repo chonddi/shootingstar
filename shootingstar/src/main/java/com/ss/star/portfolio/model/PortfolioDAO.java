@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.ss.star.common.SearchVO;
-import com.ss.star.payment.model.ReviewVO;
 
 
 public interface PortfolioDAO {
@@ -16,7 +15,6 @@ public interface PortfolioDAO {
 	public int updateReadCount(int pfNo);
 	public List<Map<String, Object>> selectPfDetail(int pfNo);
 	public List<Map<String, Object>> selectPfDetailByN(String sname);
-	public List<ReviewVO> selectReview(String sMemberid);
 	public PortfolioVO selectBySmemberId(String smemberId);
 	public String selectAdd(int pfNo);	
 	public List<Map<String, Object>> selectMyPofol(Map<String, Object> map);	//마이포폴

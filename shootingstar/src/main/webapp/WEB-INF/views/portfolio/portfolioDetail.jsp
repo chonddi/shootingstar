@@ -232,29 +232,6 @@
 				</div>
 			</div>
 
-			<c:forEach var="vo2" items="${list2 }">
-				<div class="comment2">
-					<div class="memberCommentDiv">
-						<span class="memberComment">${vo2.content }</span><br> <span
-							class="memberInfo">★${(vo2.communication+vo2.result)/2} <span
-							class="memberInfo1">${vo2.memberId } | ${cgname } | <fmt:formatDate
-									value="${vo2.regdate }" pattern="yy-MM-dd" /> | ${sname } 전문가
-						</span></span>
-					</div>
-					<input type="hidden" value='${result=result+vo2.result}'> <input
-						type="hidden"
-						value='${communication=communication+vo2.communication}'>
-				</div>
-			</c:forEach>
-
-			<c:set var="result" value='${result/reviewSize }'></c:set>
-			<c:set var="communication" value='${communication/reviewSize }'></c:set>
-
-			<input type="hidden" id="result" value='${result }'> <input
-				type="hidden" id="communication" value='${communication }'>
-
-			<input type="hidden" id="total" value="${(result+communication)/2 }">
-
 		</div>
 
 	</div>

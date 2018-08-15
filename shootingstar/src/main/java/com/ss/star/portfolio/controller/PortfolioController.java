@@ -24,7 +24,6 @@ import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.mypage.likey.model.LikeyService;
-import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.portfolio.model.PortfolioVO;
 
@@ -35,8 +34,7 @@ public class PortfolioController {
 	
 	@Autowired CategoryService cgService;
 
-	@Autowired
-	private PortfolioService pfService;
+	@Autowired private PortfolioService pfService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired LikeyService likeyService;
 	
@@ -169,13 +167,6 @@ public class PortfolioController {
 		List<Map<String, Object>> list = pfService.selectPfDetail(pfNo);
 		logger.info("포트폴리오 디테일 list.size(): {}", list.size());
 		model.addAttribute("list", list);
-		
-		List<ReviewVO> list2 = pfService.selectReview(sMemberId);
-		model.addAttribute("list2", list2);
-		logger.info("list2 값={}", list2.size());
-		
-		int reviewSize = list2.size();
-		model.addAttribute("reviewSize",reviewSize);
 		
 		String address = pfService.selectAdd(pfNo);
 		model.addAttribute("address",address);
