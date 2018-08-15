@@ -1,65 +1,66 @@
 @charset "UTF-8";
 
-.h1{
-	font-size:0.8em;
+.h1 {
+	font-size: 0.8em;
 	background-color: rgba(30, 30, 30, 1);
-	color:white;
+	color: white;
 	padding: 10px;
 }
 
-h1{
-	margin:0;
+h1 {
+	margin: 0;
 }
 
-.firstDiv, .secondDiv{
-	border:1px solid rgba(180, 180, 180, 1);
+.firstDiv, .secondDiv {
+	border: 1px solid rgba(180, 180, 180, 1);
 	margin-top: 20px;
 	margin-bottom: 20px;
 	text-align: center;
 }
 
-.text{
-	border:none;
-	margin:10px;
-	width:96%;
+.text {
+	border: none;
+	margin: 10px;
+	width: 96%;
+	outline: none;
 }
 
-.center{
+.center {
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.button{
+.button {
 	cursor: pointer;
 	font-size: 1.0em;
 }
 
-#textleng{
+#textleng {
 	text-align: right;
 	margin: 0 20px 15px 0;
 	display: inherit;
-	color:gray;
+	color: gray;
 }
 
-#qContent{
-	height:14em;
+#qContent {
+	height: 14em;
 	resize: none;
 	line-height: 2em;
 }
 
-#regit, #cancel{
+#regit, #cancel {
 	width: 130px;
-	height: 40px;	
+	height: 40px;
 	border-style: none;
 }
 
-#regit{
+#regit {
 	color: white;
 	background-color: rgba(0, 200, 60, 1);
 }
 
-#cancel{
+#cancel {
 	background-color: white;
-	border:1px solid rgba(180, 180, 180, 1);
+	border: 1px solid rgba(180, 180, 180, 1);
 }

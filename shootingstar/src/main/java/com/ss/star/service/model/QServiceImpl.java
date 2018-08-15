@@ -88,4 +88,9 @@ public class QServiceImpl implements QService {
 		return qDao.deleteQR(qNo);
 	}
 
+	@Override
+	public int QRCDelete(int qrNo) {
+		return qDao.QRCDelete(qrNo);
+	}
+
 }

@@ -10,17 +10,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#regit").click(function(){
-			if($("#userid").val() == ""){
-				alert("로그인이 필요한 서비스입니다.");
-				location.href="<c:url value='/login/login.do'/>";
-				return false;
-			}else if($("#userCode").val() == 2){
-				alert("고객 회원만 이용가능한 서비스입니다.");
-				return false;
-			}else{
-				QwOpen();
-			}
-			
+			QwOpen();
 		});
 	});
 
@@ -86,17 +76,23 @@
 								<c:if test="${fn:length(vo.qTitle)<=40}">
 									${vo.qTitle}
 								</c:if>
+								<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
+		 						<c:if test="${vo.replyCnt != 0}">
+									<span style="color:red;">
+										&nbsp;[${vo.replyCnt}]
+									</span>
+								</c:if>
 							</a>
 						</c:if>
 						<c:if test="${sessionScope.userid != vo.memberid}">
 							<span style="color:gray;font-size:0.9em;">비공개 글입니다.</span>&nbsp;
+							<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
+	 						<c:if test="${vo.replyCnt != 0}">
+								<span style="color:red;">
+									&nbsp;[${vo.replyCnt}]
+								</span>&nbsp;
+							</c:if>
 							<img src="<c:url value='/images/lock.PNG'/>" alt="lock 이미지" style="vertical-align:middle;">
-						</c:if>
-						<!-- 댓글이 달린 경우 댓글 수 보여주기 -->
- 						<c:if test="${vo.replyCnt != 0}">
-							<span style="color:red;">
-								&nbsp;[${vo.replyCnt}]
-							</span>
 						</c:if>
 						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
 						<c:if test="${vo.newImgTerm<24 }">
@@ -104,15 +100,10 @@
 						</c:if>
 					</td>
 					<td>
-						<c:if test="${sessionScope.userid == vo.memberid}">
-							${fn:substring(vo.memberid, 0, 3)}****
-						</c:if>
-						<c:if test="${sessionScope.userid != vo.memberid}">
-							<c:if test="${fn:length(vo.memberid)>3}">
-								<span style="color:gray;font-size:0.9em;">	
-									${fn:substring(vo.memberid, 0, 3)}****
-								</span>
-							</c:if>
+						<c:if test="${fn:length(vo.memberid)>3}">
+							<span style="color:gray;font-size:0.9em;">	
+								${fn:substring(vo.memberid, 0, 3)}****
+							</span>
 						</c:if>
 					</td>
 					<td><fmt:formatDate value="${vo.regdate}" pattern="yyyy.MM.dd."/></td>

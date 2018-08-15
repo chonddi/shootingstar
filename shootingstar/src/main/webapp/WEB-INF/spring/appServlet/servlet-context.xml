@@ -70,7 +70,59 @@
 			<mapping path="/mypage/myPofol.do" />
 			<mapping path="/mypage/membership/*" />
 			<beans:ref bean ="loginInterceptorSMember" />
-		</interceptor>   
+		</interceptor>
+		
+ 		<interceptor>
+			<mapping path="/SERVICE/Qlist.do" />
+			<mapping path="/SERVICE/Qdetail.do" />
+			<mapping path="/SERVICE/Qdelete.do" />
+			<beans:ref bean ="loginInterceptorQNA" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/SERVICE/Qwrite.do" />  
+			<mapping path="/SERVICE/Qedit.do" />
+			<beans:ref bean ="loginInterceptorQW" />
+		</interceptor>
+
+		<interceptor>
+			<mapping path="/SERVICE/QRwrite.do" />
+			<mapping path="/SERVICE/QRUpdate.do" />
+			<mapping path="/SERVICE/QRDelete.do" />
+			<mapping path="/SERVICE/QRReply.do" />
+			<beans:ref bean ="loginInterceptorQNARE" />
+		</interceptor>
+		
+ 		<interceptor>
+			<mapping path="/serviceA/Qlist.do" />
+			<mapping path="/serviceA/Qdetail.do" />
+			<mapping path="/serviceA/Qdelete.do" />
+			<beans:ref bean ="loginInterceptorQAdmin" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/serviceA/Qedit.do" /> 
+			<beans:ref bean ="loginInterceptorQAW" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/serviceA/QRwrite.do" />
+			<mapping path="/serviceA/QRUpdate.do" />
+			<mapping path="/serviceA/QRDelete.do" />
+			<mapping path="/serviceA/QRReply.do" />
+			<beans:ref bean ="loginInterceptorQRAdmin" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/SERVICE/email.do" /> 
+			<mapping path="/SERVICE/send.do" /> 
+			<beans:ref bean ="loginInterceptorSMember" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/payment/*" />  
+			<beans:ref bean ="loginInterceptorMember" />
+		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.ss.star.smember.controller" />

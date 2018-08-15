@@ -38,10 +38,12 @@ public class QController {
 
 	@RequestMapping(value = "/Qwrite.do", method = RequestMethod.POST)
 	public String Qwrite_post(@ModelAttribute QVO QVo, HttpSession session) {
-		String memberid= (String)session.getAttribute("userid");
+
+		String memberid = (String) session.getAttribute("userid");
+
 		QVo.setMemberid(memberid);
 		logger.info("글쓰기 처리, 파라미터 vo={}, memberid={}", QVo, memberid);
-		
+
 		int cnt = qService.insertQ(QVo);
 		logger.info("글쓰기 결과, cnt={}", cnt);
 
@@ -149,7 +151,8 @@ public class QController {
 	}
 
 	@RequestMapping("/Qdelete.do")
-	public String delete(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model, HttpSession Session) {
+	public String delete(@RequestParam(defaultValue = "0") int qNo, @RequestParam String memberid, Model model,
+			HttpSession Session) {
 		logger.info("글삭제 화면, 파라미터 no={}, memberid={}", qNo, memberid);
 
 		String userid = (String) Session.getAttribute("userid");
@@ -172,7 +175,7 @@ public class QController {
 		String msg = "", url = "/SERVICE/Qlist.do";
 		if (cnt > 0) {
 			msg = "글 삭제 성공";
-			if(cnt2 > 0) {
+			if (cnt2 > 0) {
 				msg = "글 삭제 성공";
 			}
 		} else {

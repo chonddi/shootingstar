@@ -1,5 +1,7 @@
 package com.ss.star.payment.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,36 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ss.star.common.PaginationInfo;
+import com.ss.star.common.SearchVO;
+import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.MileageVO;
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.TransService;
 import com.ss.star.payment.model.TransacInfoVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
+import com.ss.star.service.model.QVO;
 
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
 	private static final Logger logger = LoggerFactory.getLogger(QController.class);
 
-	@Autowired
-	RequestService requestService;
-	@Autowired
-	MemberService memberService;
+	@Autowired RequestService requestService;
+	@Autowired MemberService memberService;
+	@Autowired TransService transService;
 
 	@RequestMapping("/port_payment.do")
 	public String port_payment(@RequestParam(defaultValue = "0") int no, @ModelAttribute MileageVO mileageVo,
 			HttpSession session, Model model) {
 		logger.info("port_payment 화면 파라미터 no={}", no);
 		logger.info("port_payment 화면 파라미터 mileageVo={}", mileageVo);
-
-		// 임시 세션아이디
-		session.setAttribute("userid", "abc@naver.com");
-		session.setAttribute("userCode", "1");
-
-		String userid = (String) session.getAttribute("userid");
-		String usercode = (String) session.getAttribute("userCode");
 
 		if (no == 0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
@@ -60,12 +59,6 @@ public class PaymentController {
 		payfinishVo.setUseMile(mileageVo.getUseMile());
 
 		model.addAttribute("payfinishVo", payfinishVo);
-
-		if (usercode.equals("2")) {
-			model.addAttribute("msg", "고객 회원만 이용가능합니다.");
-			model.addAttribute("url", "/index.do");
-			return "common/message";
-		}
 
 		return "payment/port_payment";
 	}
@@ -88,13 +81,6 @@ public class PaymentController {
 		logger.info("결제 처리 PayfinishVO 파라미터 RQNo={}", RQNo);
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
 
-		// 임시 세션아이디
-		session.setAttribute("userid", "abc@naver.com");
-		session.setAttribute("userCode", "1");
-
-		String userid = (String) session.getAttribute("userid");
-		String usercode = (String) session.getAttribute("userCode");
-		
 		if(RQNo == 0) {
 			String msg = "잘못된 접근입니다.";
 			String url = "/index.do";
@@ -127,6 +113,32 @@ public class PaymentController {
 
 		return "payment/port_payfinish";
 
+	}
+	
+	@RequestMapping("/Tlist.do")
+	public String Qlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
+		logger.info("거래내역 글 목록, 파라미터 searchVo={}", searchVo);
+
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);
+
+		List<TransacInfoVO> list = transService.selectAll(searchVo);
+		logger.info("글 목록 조회 결과, list.size={}", list.size());
+
+		// 전체 레코드 개수 조회
+		int totalRecord = transService.getTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageVo", pagingInfo);
+
+		return "payment/Tlist";
 	}
 
 }

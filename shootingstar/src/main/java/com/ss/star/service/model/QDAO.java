@@ -24,5 +24,6 @@ public interface QDAO {
     public List<QRVO> QRselectByNo(int qrNo);
     public int QRreply(QRVO QRVo);
     public List<QRVO> QRreplyList();
+    public int QRCDelete(int qrNo);
 
 }

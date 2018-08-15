@@ -10,6 +10,10 @@ h2 {
 	font-weight: bold;
 }
 
+h6 {
+	margin-bottom: 8px;
+}
+
 .firstDiv {
 	width: 100%;
 	border-top: 3px solid black;
@@ -113,25 +117,28 @@ h2 {
 }
 
 .upText {
-	width: 90%;
-	height: 30px;
+    width: 80%;
+    height: 35px;
+    margin-right: 5px;
+    padding-left: 5px;
 }
 
 .upBtn {
-	width: 50px;
-	height: 30px;
-	vertical-align: middle;
-	color: black;
-	background-color: rgba(240, 240, 240, 1);
-	font-size: 1.0em;
-	border: 1px solid gray;
+    width: 50px;
+    height: 35px;
+    vertical-align: middle;
+    color: black;
+    background-color: rgba(240, 240, 240, 1);
+    font-size: 1.0em;
+    border: 1px solid gray;
+    margin-right: 5px;
 }
 
 .upSpan {
 	line-height: 1px;
 }
 
-.ajxBtn1, .ajxBtn2, .ajxBtn3 {
+.ajxBtn1, .ajxBtn2, .ajxBtn3, a.reCancel {
 	cursor: pointer;
 }
 
@@ -181,6 +188,10 @@ h2 {
 .reGroup tr td {
 	padding-right: 20px;
     padding-top: 20px;
+}
+
+p.qContent {
+    line-height: 30px;
 }
 
 #replyList {

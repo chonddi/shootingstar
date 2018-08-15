@@ -71,10 +71,11 @@ public class QRController {
 	public int QRDelete(@RequestParam(defaultValue = "0") int qrNo) {
 		logger.info("댓글 삭제 처리, 파라미터 qrNo={}", qrNo);
 
-		int cnt = qService.QRDelete(qrNo);
-		logger.info("댓글 삭제 결과, cnt={}", cnt);
+		int cnt = qService.QRCDelete(qrNo);
+		int cnt2 = qService.QRDelete(qrNo);
+		logger.info("댓글 삭제 결과, cnt={}, cnt2={}", cnt, cnt2);
 
-		return cnt;
+		return cnt2;
 	}
 
 	@RequestMapping("/QRreply.do")

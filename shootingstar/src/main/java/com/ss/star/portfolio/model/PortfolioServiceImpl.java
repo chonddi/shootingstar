@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ss.star.common.SearchVO;
-import com.ss.star.request.model.RequestVO;
+import com.ss.star.payment.model.ReviewVO;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
@@ -69,9 +69,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
-	public List<reviewVO> selectReview(int pfNo) {
+	public List<ReviewVO> selectReview(String sMemberid) {
 		// TODO Auto-generated method stub
-		List<reviewVO> list = Dao.selectReview(pfNo);
+		List<ReviewVO> list = Dao.selectReview(sMemberid);
 		return list;
 	}
 

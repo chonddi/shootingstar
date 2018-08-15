@@ -85,10 +85,13 @@ public class AdminLoginController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		String userCode = (String)session.getAttribute("userCode");
+		String adminCode = (String)session.getAttribute("adminCode");
 		logger.info("로그아웃 처리 userCode: {}", userCode);
-			session.removeAttribute("adminId");
-			session.removeAttribute("userCode");
-			session.removeAttribute("adminName");
+		logger.info("로그아웃 처리 adminCode: {}", adminCode);
+		session.removeAttribute("userCode");
+		session.removeAttribute("adminId");
+		session.removeAttribute("adminCode");
+		session.removeAttribute("adminName");
 
 		
 		return "redirect:/admin/login/login.do";

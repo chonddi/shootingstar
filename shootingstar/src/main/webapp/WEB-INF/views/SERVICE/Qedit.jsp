@@ -23,15 +23,7 @@ $(document).ready(function(){
 		}else if(confirm("수정하시겠습니까?")){
 			$('form[name=frmEdit]').submit();
 			setTimeout(function() {opener.parent.location.reload()}, 10);
-			alert("수정 완료!");
 			setTimeout(function() {self.close()}, 10);
-		}else if($("#userid").val() == ""){
-			alert("로그아웃 되었습니다.");
-			if(confirm("로그인 페이지로 이동하시겠습니까?")){
-				window.opener.location.href="<c:url value='/login/login.do'/>";
-				self.close();
-			}
-				return false;
 		}
 		
 	});
@@ -102,13 +94,6 @@ $(document).ready(function(){
 		&nbsp;
 		<input type="button" class="button" id="cancel" value="취소" onclick="window.open('','_self').close()" />
 	</div>
-	
-<!-- 임시 memberid -->
-<input type="hidden" id="memberid" name="memberid" value="abc@naver.com"/>
-<input type="hidden" id="userCode" value="1">
-<!-- <input type="hidden" id="userid" value="${sessionScope.userid}"> -->
-<%-- <input type="hidden" id="userCode" value="${sessionScope.userCode}"> --%>
-
-</form>       
+</form>
 </body>
 </html>

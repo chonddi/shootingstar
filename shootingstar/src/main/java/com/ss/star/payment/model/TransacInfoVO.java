@@ -5,13 +5,30 @@ import java.sql.Timestamp;
 public class TransacInfoVO {
 
 	private int pNo; /* 거래내역 번호 */
-	private String cgName; /* 카테고리 이름 */
-	private String sName; /* 판매자 이름 */
-	private String sMemberid; /* 판매자 아이디 */
-	private String rqRegion; /* 지역 */
 	private Timestamp regdate; /* 거래 일시 */
-	private String pMethod; /* 거래 수단 */
+	private String sName; /* 전문가 이름 */
+	private String sMemberid; /* 전문가 아이디 */
+	private String cgName; /* 카테고리 */
+	private int useMile; /* 사용한 마일리지 */
 	private int pPrice; /* 결제 금액 */
+	private String pMethod; /* 결제 방법 */
+	private String flag; /* 후기 여부 */
+
+	public int getUseMile() {
+		return useMile;
+	}
+
+	public void setUseMile(int useMile) {
+		this.useMile = useMile;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 
 	public int getpNo() {
 		return pNo;
@@ -45,14 +62,6 @@ public class TransacInfoVO {
 		this.sMemberid = sMemberid;
 	}
 
-	public String getRqRegion() {
-		return rqRegion;
-	}
-
-	public void setRqRegion(String rqRegion) {
-		this.rqRegion = rqRegion;
-	}
-
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -79,9 +88,9 @@ public class TransacInfoVO {
 
 	@Override
 	public String toString() {
-		return "TransacInfoVO [pNo=" + pNo + ", cgName=" + cgName + ", sName=" + sName + ", sMemberid=" + sMemberid
-				+ ", rqRegion=" + rqRegion + ", regdate=" + regdate + ", pMethod=" + pMethod + ", pPrice=" + pPrice
-				+ "]";
+		return "TransacInfoVO [pNo=" + pNo + ", regdate=" + regdate + ", sName=" + sName + ", sMemberid=" + sMemberid
+				+ ", cgName=" + cgName + ", useMile=" + useMile + ", pPrice=" + pPrice + ", pMethod=" + pMethod
+				+ ", flag=" + flag + "]";
 	}
 
 }

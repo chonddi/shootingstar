@@ -82,6 +82,10 @@
         delete from qnare where qrno=#{qrNo}
     </delete>
     
+    <delete id="QRCDelete" parameterType="int">
+        delete from qnare where parent=#{qrNo} and levels=1
+    </delete>
+    
     <insert id="QRreply" parameterType="QRVO">
 	    insert into qnare(qrno, qno, id, content, parent, levels)
 		values(qnare_seq.nextval, #{qNo}, #{id}, #{content}, #{qrNo}, +1)

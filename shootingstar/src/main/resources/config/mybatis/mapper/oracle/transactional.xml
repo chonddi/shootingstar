@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.transactional">
+	
+	<select id="selectAll" parameterType="SearchVO" resultType="TransacInfoVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select * from rqpayment order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from rqpayment
+	</select>
+	
+</mapper>

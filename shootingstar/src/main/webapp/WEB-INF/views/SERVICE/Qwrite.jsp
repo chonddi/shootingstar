@@ -26,17 +26,8 @@
 				$('#qContent').focus();
 				return false;
 			}else if(confirm("등록하시겠습니까?")){
-				$('form[name=frmWrite]').submit();
-				alert("등록 완료");
-				setTimeout(function() {opener.parent.location.reload()}, 10);
+				goParent();
 				setTimeout(function() {self.close()}, 10);
-			}else if($("#userid").val() == ""){
-				alert("로그아웃 되었습니다.");
-				if(confirm("로그인 페이지로 이동하시겠습니까?")){
-					window.opener.location.href="<c:url value='/login/login.do'/>";
-					self.close();
-				}
-					return false;
 			}
 			
 		});
@@ -84,6 +75,14 @@
     	document.onkeydown = noEvent;
 
 	});
+	
+	// 부모창으로 submit
+	function goParent() {
+	    window.opener.name = "Qlist"; // 부모창의 이름 설정
+	    document.frmWrite.target = "Qlist"; // 타켓을 부모창으로 설정
+	    document.frmWrite.action = "<c:url value='/SERVICE/Qwrite.do'/>";
+	    document.frmWrite.submit();
+	}
 </script>
 
 </head>

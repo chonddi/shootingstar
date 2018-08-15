@@ -24,18 +24,17 @@ import com.ss.star.category.model.CategoryVO;
 import com.ss.star.common.FileUploadUtil3;
 import com.ss.star.common.PaginationInfo;
 import com.ss.star.common.SearchVO;
-import com.ss.star.common.SearchVO2;
 import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
+import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.portfolio.model.PortfolioImgVO;
 import com.ss.star.portfolio.model.PortfolioListVO;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.portfolio.model.PortfolioVO;
-import com.ss.star.portfolio.model.reviewVO;
 import com.ss.star.request.controller.RequestController;
 import com.ss.star.request.model.PickAllVO;
-import com.ss.star.request.model.RequestListVO;
 import com.ss.star.request.model.RequestImgVO;
+import com.ss.star.request.model.RequestListVO;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.request.model.RequestVO;
 
@@ -283,7 +282,7 @@ public class AdminPostController {
 		String smemberid=pfService.detailSmemberId(pfNo);
 		model.addAttribute("smemberid", smemberid);
 		
-		List<reviewVO> list2 = pfService.selectReview(pfNo);
+		List<ReviewVO> list2 = pfService.selectReview(smemberid);
 		model.addAttribute("list2", list2);
 		logger.info("list2 값={}", list2.size());
 		

@@ -5,11 +5,20 @@ public class QRVO {
 	private int qrNo;
 	private int qNo;
 	private String id;
+	private String adminCode;
 	private String content;
 	private String regdate; // 형 변환을 위해 String 처리
 	private int parent;
 	private int levels;
 	private int newImgTerm; // 24시간 이내의 글인지 체크
+
+	public String getAdminCode() {
+		return adminCode;
+	}
+
+	public void setAdminCode(String adminCode) {
+		this.adminCode = adminCode;
+	}
 
 	public int getNewImgTerm() {
 		return newImgTerm;
@@ -77,8 +86,9 @@ public class QRVO {
 
 	@Override
 	public String toString() {
-		return "QRVO [qrNo=" + qrNo + ", qNo=" + qNo + ", id=" + id + ", content=" + content + ", regdate=" + regdate
-				+ ", parent=" + parent + ", levels=" + levels + ", newImgTerm=" + newImgTerm + "]";
+		return "QRVO [qrNo=" + qrNo + ", qNo=" + qNo + ", id=" + id + ", adminCode=" + adminCode + ", content="
+				+ content + ", regdate=" + regdate + ", parent=" + parent + ", levels=" + levels + ", newImgTerm="
+				+ newImgTerm + "]";
 	}
 
 }
