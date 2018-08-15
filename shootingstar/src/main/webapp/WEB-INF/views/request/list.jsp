@@ -195,13 +195,13 @@ $(document).ready(function(){
 							<c:otherwise>	
 							
 								<c:if test="${ucode==1}">
-									<a onclick="onClick('${map['MEMBERID']}', '${vmemberid}', '${map['RQNO']}')"></a>
+									<a onclick="onClick('${map['MEMBERID']}', '${vmemberid}', '${map['RQNO']}')">
 								</c:if>
 								<c:if test="${ucode==2}">
-									<a onclick="onClick2('${map['RQNO']}')"></a>
+									<a onclick="onClick2('${map['RQNO']}')">
 								</c:if>
 								<c:if test="${ucode!=1&&ucode!=2}">
-									<a onclick='onClick3()'></a>
+									<a onclick='onClick3()'>
 								</c:if>
 									
 								<!-- 내용 일부만 보여주기 -->
@@ -214,6 +214,8 @@ $(document).ready(function(){
 								<c:if test="${fn:length(title)<=18}">
 										${title}
 								</c:if>
+								
+								</a>
 					
 							</c:otherwise>
 						</c:choose>		
