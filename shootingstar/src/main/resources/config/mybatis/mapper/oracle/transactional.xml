@@ -9,7 +9,7 @@
 		(
 		    select rownum as RNUM, list.*
 		    from (
-		        select * from rqpayment order by regdate desc
+		        select * from TRANSACINFO order by regdate desc
 		    )list
 		)    
 		<![CDATA[

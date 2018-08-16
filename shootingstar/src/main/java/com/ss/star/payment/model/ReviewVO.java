@@ -12,7 +12,6 @@ public class ReviewVO {
 	private String memberid; /* 고객ID */
 	private Timestamp regdate; /* 등록일 */
 	private int pNo; /* 결제번호 */
-	private String flag; /* 후기등록 여부 */
 
 	public int getReviewNo() {
 		return reviewNo;
@@ -22,12 +21,12 @@ public class ReviewVO {
 		this.reviewNo = reviewNo;
 	}
 
-	public String getsMemberid() {
+	public String getsMemberId() {
 		return sMemberId;
 	}
 
-	public void setsMemberid(String sMemberid) {
-		this.sMemberId = sMemberid;
+	public void setsMemberId(String sMemberId) {
+		this.sMemberId = sMemberId;
 	}
 
 	public String getContent() {
@@ -78,19 +77,11 @@ public class ReviewVO {
 		this.pNo = pNo;
 	}
 
-	public String getFlag() {
-		return flag;
-	}
-
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-
 	@Override
 	public String toString() {
-		return "ReviewVO [reviewNo=" + reviewNo + ", sMemberid=" + sMemberId + ", content=" + content
+		return "ReviewVO [reviewNo=" + reviewNo + ", sMemberId=" + sMemberId + ", content=" + content
 				+ ", communication=" + communication + ", result=" + result + ", memberid=" + memberid + ", regdate="
-				+ regdate + ", pNo=" + pNo + ", flag=" + flag + "]";
+				+ regdate + ", pNo=" + pNo + "]";
 	}
 
 }

@@ -8,4 +8,6 @@ public interface TransService {
 
 	public List<TransacInfoVO> selectAll(SearchVO searchVo);
 	public int getTotalRecord(SearchVO searchVo);
+	public int regitReview(ReviewVO reviewVo);
+	
 }

@@ -28,4 +28,10 @@ public class TransDAOMybatis implements TransDAO {
 		return cnt;
 	}
 
+	@Override
+	public int regitReview(ReviewVO reviewVo) {
+		int cnt = sqlSession.insert(namespace + "regitReview", reviewVo);
+		return cnt;
+	}
+
 }

@@ -16,7 +16,7 @@
 	function RwOpen(){
 		x = (screen.availWidth - 600) / 2;
 		y = (screen.availHeight - 500) / 2;
-		window.open("<c:url value='/payment/Rwrite.do'/>","후기 작성","left=" + x + ", top=" + y + ", width=600, height=500, location=yes, resizable=no");
+		window.open("<c:url value='/payment/Twrite.do'/>","후기 작성","left=" + x + ", top=" + y + ", width=600, height=500, location=yes, resizable=no");
 	}
 	
 	function pageFunc(curPage){
@@ -42,7 +42,7 @@
 		<col style="width:10%;" />	<!-- 주문번호 -->
 		<col style="width:15%;" />	<!-- 결제일시 -->		
 		<col style="width:10%;" />	<!-- 전문가 이름 -->
-		<col style="width:10%;" />	<!-- 전문가 아이디 -->
+		<col style="width:15%;" />	<!-- 전문가 아이디 -->
 		<col style="width:10%;" />	<!-- 카테고리 -->
 		<col style="width:10%;" />	<!-- 사용한 마일리지 -->
 		<col style="width:10%;" />	<!-- 결제 금액 -->
@@ -65,7 +65,7 @@
 	<tbody>  
 		<c:if test="${empty list }">
 			<tr>
-				<td colspan="4" style="text-align: center">
+				<td colspan="9" style="text-align: center">
 					글이 존재하지 않습니다.
 				</td>
 			</tr>
@@ -81,10 +81,10 @@
 					<td>${vo.useMile}</td>
 					<td>${vo.pPrice}</td>
 					<td>${vo.pMethod}</td>
-					<c:if test="${vo.flag == N}">
+					<c:if test="${vo.flag == 'N'}">
 						<td><input type="button" name="review" id="review" value="후기등록"></td>
 					</c:if>
-					<c:if test="${vo.flag == Y}">
+					<c:if test="${vo.flag == 'Y'}">
 						<td>후기완료</td>
 					</c:if>
 				</tr>

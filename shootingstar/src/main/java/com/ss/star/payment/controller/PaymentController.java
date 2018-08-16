@@ -21,6 +21,7 @@ import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
 import com.ss.star.payment.model.MileageVO;
 import com.ss.star.payment.model.PayfinishVO;
+import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.payment.model.TransService;
 import com.ss.star.payment.model.TransacInfoVO;
 import com.ss.star.request.model.RequestService;
@@ -138,7 +139,28 @@ public class PaymentController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageVo", pagingInfo);
 
-		return "payment/Tlist";
+		return "payment/port_transactional";
+	}
+	
+	@RequestMapping(value = "/Twrite.do", method = RequestMethod.GET)
+	public String Twrite_get() {
+		logger.info("후기 글쓰기 화면");
+
+		return "payment/Twrite";
+	}
+
+	@RequestMapping(value = "/Twrite.do", method = RequestMethod.POST)
+	public String Twrite_post(@ModelAttribute ReviewVO reviewVo, HttpSession session) {
+
+		String memberid = (String) session.getAttribute("userid");
+
+		reviewVo.setMemberid(memberid);
+		logger.info("후기 글쓰기 처리, 파라미터 reviewVo={}, memberid={}", reviewVo, memberid);
+
+		int cnt = transService.regitReview(reviewVo);
+		logger.info("후기 글쓰기 결과, cnt={}", cnt);
+
+		return "redirect:/payment/Tlist.do";
 	}
 
 }

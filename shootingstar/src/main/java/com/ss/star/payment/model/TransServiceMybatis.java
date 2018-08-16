@@ -23,4 +23,9 @@ public class TransServiceMybatis implements TransService {
 		return transDao.getTotalRecord(searchVo);
 	}
 
+	@Override
+	public int regitReview(ReviewVO reviewVo) {
+		return transDao.regitReview(reviewVo);
+	}
+
 }

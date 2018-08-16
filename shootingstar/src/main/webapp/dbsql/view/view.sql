@@ -64,7 +64,7 @@ ON r.memberid = m.memberid;
 --View for port_payfinish.jsp and transaction.jsp
 create or replace view TRANSACINFO
 as
-select lpad(r.pno, 6, 0) as PNO, c.cgname, p.sname, p.smemberid, p.rqregion, r.regdate, r.pmethod, r.pprice, p.pickno
+select lpad(r.pno, 6, 0) as PNO, c.cgname, p.sname, p.smemberid, p.rqregion, r.regdate, r.pmethod, r.usemile, r.pprice, p.pickno, r.flag
 from rqpayment r left join payfinish p
 on r.pickno=p.pickno
 left join category c
