@@ -15,7 +15,6 @@ $(document).ready(function(){
 		$(this).addClass('on').prevAll('span').addClass('on');
 		$(this).next().prevAll('span').html(10);
 		
-		var rev1sum = 0;
 		$(".starRev").find("span").each(function(idx, item){
 			rev1sum += parseInt($(this).text());
 		});
@@ -34,7 +33,6 @@ $(document).ready(function(){
 			rev2sum += $(this).text();
 		});
 		
-		var rev2sum = 0;
 		$(".starRev2").find("span").each(function(idx, item){
 			rev2sum += parseInt($(this).text());
 		});

@@ -40,17 +40,17 @@
 <div class="divList">
 <table class="box2" summary="Q&A에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 	<colgroup>
-		<col style="width:10%;" />	<!-- 주문번호 -->
+		<col style="width:7%;" />	<!-- 주문번호 -->
 		<col style="width:15%;" />	<!-- 결제일시 -->		
 		<col style="width:10%;" />	<!-- 전문가 이름 -->
-		<col style="width:15%;" />	<!-- 전문가 아이디 -->
+		<col style="width:*;" />	<!-- 전문가 아이디 -->
 		<col style="width:10%;" />	<!-- 카테고리 -->
 		<col style="width:10%;" />	<!-- 사용한 마일리지 -->
-		<col style="width:10%;" />	<!-- 결제 금액 -->
+		<col style="width:13%;" />	<!-- 결제 금액 -->
 		<col style="width:10%;" />	<!-- 결제 방법 -->
-		<col style="width:*;" />	<!-- 후기 -->
+		<col style="width:10%;" />	<!-- 후기 -->
 	</colgroup>
-	<thead>
+	<thead class="transThead">
 	  <tr>
 	    <th scope="col">주문번호</th>
 	    <th scope="col">결제일시</th>
@@ -63,7 +63,7 @@
 	    <th scope="col">후기</th>
 	  </tr>
 	</thead>
-	<tbody>  
+	<tbody class="transTbody">  
 		<c:if test="${empty list }">
 			<tr>
 				<td colspan="9" style="text-align: center">
@@ -82,8 +82,8 @@
 					<td>${vo.sName}</td>
 					<td>${vo.sMemberid}</td>
 					<td>${vo.cgName}</td>
-					<td>${vo.useMile}</td>
-					<td>${vo.pPrice}</td>
+					<td>- <fmt:formatNumber value="${vo.useMile}" pattern="#,###" /></td>
+					<td><b><fmt:formatNumber value="${vo.pPrice}" pattern="#,###" /> 원</b></td>
 					<td>${vo.pMethod}</td>
 					<c:if test="${vo.flag == 'N'}">
 						<td><input type="button" name="review" id="review" value="후기등록"></td>

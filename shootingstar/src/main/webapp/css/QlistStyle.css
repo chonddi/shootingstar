@@ -87,3 +87,35 @@ a, a:visited {
 	background-color: white;
 	cursor: pointer;
 }
+
+/* Tlist */
+.transThead th, .transTbody td {
+	vertical-align: middle;
+	height: 70px;
+}
+
+.transTbody td:nth-child(2) {
+	font-size: 0.9em;
+}
+
+.transTbody td:nth-child(6) {
+	text-align: right;
+}
+
+.transTbody td:nth-child(7) {
+	color: red;
+	text-align: right;
+}
+
+input#review {
+    width: 95px;
+    height: 40px;
+    border: 1px solid #407be8;
+    background-color: #407be8;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    letter-spacing: 1px;
+    font-family: 'Do Hyeon', sans-serif;
+    cursor: pointer;
+}

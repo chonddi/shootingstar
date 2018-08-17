@@ -67,19 +67,19 @@ section.starSec2 {
 }
 
 textarea.content {
-	height: 200px;
-	padding: 25px;
-	border: 1px solid #ccc;
-	resize: none;
-	width: 640px;
-	line-height: 25px;
-	font-size: 1.2em;
-	outline: none;
+    height: 150px;
+    padding: 25px;
+    border: 1px solid #ccc;
+    resize: none;
+    width: 565px;
+    line-height: 25px;
+    font-size: 1.2em;
+    outline: none;
 }
 
 section.starSec3 {
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .regit {
