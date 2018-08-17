@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class ReviewVO {
 
 	private int reviewNo; /* 후기글번호 */
-	private String sMemberId; /* 전문가ID */
+	private String sMemberid; /* 전문가ID */
 	private String content; /* 내용 */
 	private int communication; /* 커뮤니케이션 점수 */
 	private int result; /* 결과만족도 점수 */
@@ -21,12 +21,12 @@ public class ReviewVO {
 		this.reviewNo = reviewNo;
 	}
 
-	public String getsMemberId() {
-		return sMemberId;
+	public String getsMemberid() {
+		return sMemberid;
 	}
 
-	public void setsMemberId(String sMemberId) {
-		this.sMemberId = sMemberId;
+	public void setsMemberid(String sMemberid) {
+		this.sMemberid = sMemberid;
 	}
 
 	public String getContent() {
@@ -79,7 +79,7 @@ public class ReviewVO {
 
 	@Override
 	public String toString() {
-		return "ReviewVO [reviewNo=" + reviewNo + ", sMemberId=" + sMemberId + ", content=" + content
+		return "ReviewVO [reviewNo=" + reviewNo + ", sMemberid=" + sMemberid + ", content=" + content
 				+ ", communication=" + communication + ", result=" + result + ", memberid=" + memberid + ", regdate="
 				+ regdate + ", pNo=" + pNo + "]";
 	}

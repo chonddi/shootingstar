@@ -16,7 +16,8 @@
 	function RwOpen(){
 		x = (screen.availWidth - 600) / 2;
 		y = (screen.availHeight - 500) / 2;
-		window.open("<c:url value='/payment/Twrite.do'/>","후기 작성","left=" + x + ", top=" + y + ", width=600, height=500, location=yes, resizable=no");
+		var pNo = document.getElementById("pNo").value;
+		window.open("<c:url value='/payment/Twrite.do?no=" + pNo + "'/>","후기 작성","left=" + x + ", top=" + y + ", width=600, height=500, location=yes, resizable=no");
 	}
 	
 	function pageFunc(curPage){
@@ -73,7 +74,10 @@
 		<c:if test="${!empty list }">
 		  	<c:forEach var="vo" items="${list}">
 	  			<tr style="text-align:center">
-					<td>${vo.pNo}</td>
+					<td>
+						${vo.pNo}
+						<input type="hidden" id="pNo" value="${vo.pNo}">
+					</td>
 					<td><fmt:formatDate value="${vo.regdate}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/></td>
 					<td>${vo.sName}</td>
 					<td>${vo.sMemberid}</td>

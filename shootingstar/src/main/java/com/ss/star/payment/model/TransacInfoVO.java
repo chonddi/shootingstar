@@ -8,11 +8,29 @@ public class TransacInfoVO {
 	private Timestamp regdate; /* 거래 일시 */
 	private String sName; /* 전문가 이름 */
 	private String sMemberid; /* 전문가 아이디 */
+	private String rqRegion; /* 지역 */
 	private String cgName; /* 카테고리 */
 	private int useMile; /* 사용한 마일리지 */
 	private int pPrice; /* 결제 금액 */
 	private String pMethod; /* 결제 방법 */
+	private int pickNo; /* 픽번호 */
 	private String flag; /* 후기 여부 */
+
+	public int getPickNo() {
+		return pickNo;
+	}
+
+	public void setPickNo(int pickNo) {
+		this.pickNo = pickNo;
+	}
+
+	public String getRqRegion() {
+		return rqRegion;
+	}
+
+	public void setRqRegion(String rqRegion) {
+		this.rqRegion = rqRegion;
+	}
 
 	public int getUseMile() {
 		return useMile;
@@ -89,8 +107,8 @@ public class TransacInfoVO {
 	@Override
 	public String toString() {
 		return "TransacInfoVO [pNo=" + pNo + ", regdate=" + regdate + ", sName=" + sName + ", sMemberid=" + sMemberid
-				+ ", cgName=" + cgName + ", useMile=" + useMile + ", pPrice=" + pPrice + ", pMethod=" + pMethod
-				+ ", flag=" + flag + "]";
+				+ ", rqRegion=" + rqRegion + ", cgName=" + cgName + ", useMile=" + useMile + ", pPrice=" + pPrice
+				+ ", pMethod=" + pMethod + ", pickNo=" + pickNo + ", flag=" + flag + "]";
 	}
 
 }

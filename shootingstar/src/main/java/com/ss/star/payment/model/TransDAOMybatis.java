@@ -12,6 +12,7 @@ import com.ss.star.common.SearchVO;
 public class TransDAOMybatis implements TransDAO {
 	
 	private String namespace = "config.mybatis.mapper.oracle.transactional.";
+	private String namespace2 = "config.mybatis.mapper.oracle.review.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -30,7 +31,19 @@ public class TransDAOMybatis implements TransDAO {
 
 	@Override
 	public int regitReview(ReviewVO reviewVo) {
-		int cnt = sqlSession.insert(namespace + "regitReview", reviewVo);
+		int cnt = sqlSession.insert(namespace2 + "regitReview", reviewVo);
+		return cnt;
+	}
+
+	@Override
+	public TransacInfoVO selectByNo(int no) {
+		TransacInfoVO transacVo = sqlSession.selectOne(namespace + "selectByNo", no);
+		return transacVo;
+	}
+
+	@Override
+	public int updateFlag(int no) {
+		int cnt = sqlSession.update(namespace + "updateFlag", no);
 		return cnt;
 	}
 

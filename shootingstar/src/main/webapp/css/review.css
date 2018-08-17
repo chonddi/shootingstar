@@ -92,6 +92,7 @@ section.starSec3 {
 	font-size: 2em;
 	letter-spacing: 1px;
 	font-family: 'Do Hyeon', sans-serif;
+	cursor: pointer;
 }
 
 #textleng {

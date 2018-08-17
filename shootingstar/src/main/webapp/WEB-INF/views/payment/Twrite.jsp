@@ -76,7 +76,7 @@ $(document).ready(function(){
 	}
 	document.onkeydown = noEvent;
 	
-	$("#regit").click(function(){
+	$(".regit").click(function(){
 		var str = $("#content").val();
 		var content = str.trim();
 		
@@ -99,6 +99,7 @@ $(document).ready(function(){
 	    document.starfrm.action = "<c:url value='/payment/Twrite.do'/>";
 	    document.starfrm.submit();
 	}
+	
 </script>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -153,9 +154,9 @@ $(document).ready(function(){
 	</section>
 <input type="hidden" name="communication" id="sum" value="100">
 <input type="hidden" name="result" id="sum2" value="100">
-<input type="hidden" name="sMemberId" value="">
-<input type="hidden" name="memberid" value="">
-<input type="hidden" name="pNo" value="">
+<input type="hidden" name="sMemberid" value="${transacVo.sMemberid}">
+<input type="hidden" name="memberid" value="${sessionScope.userid}">
+<input type="hidden" name="pNo" value="${transacVo.pNo}">
 </form>
 </body>
 </html>

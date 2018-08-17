@@ -22,4 +22,12 @@
 		select count(*) from rqpayment
 	</select>
 	
+	<select id="selectByNo" parameterType="int" resultType="TransacInfoVO">
+		select * from TRANSACINFO where pno=#{pNo}
+	</select>
+	
+	<update id="updateFlag" parameterType="int">
+		update rqpayment set flag='Y' where pno=#{pNo}
+	</update>
+	
 </mapper>

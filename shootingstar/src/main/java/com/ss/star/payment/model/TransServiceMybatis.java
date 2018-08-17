@@ -28,4 +28,14 @@ public class TransServiceMybatis implements TransService {
 		return transDao.regitReview(reviewVo);
 	}
 
+	@Override
+	public TransacInfoVO selectByNo(int no) {
+		return transDao.selectByNo(no);
+	}
+
+	@Override
+	public int updateFlag(int no) {
+		return transDao.updateFlag(no);
+	}
+
 }

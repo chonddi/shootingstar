@@ -33,9 +33,12 @@ import com.ss.star.service.model.QVO;
 public class PaymentController {
 	private static final Logger logger = LoggerFactory.getLogger(QController.class);
 
-	@Autowired RequestService requestService;
-	@Autowired MemberService memberService;
-	@Autowired TransService transService;
+	@Autowired
+	RequestService requestService;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	TransService transService;
 
 	@RequestMapping("/port_payment.do")
 	public String port_payment(@RequestParam(defaultValue = "0") int no, @ModelAttribute MileageVO mileageVo,
@@ -67,10 +70,10 @@ public class PaymentController {
 	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.GET)
 	public String port_payfinish_get(HttpSession session, Model model) {
 		logger.info("결제완료 컨트롤러 get 방식으로 접근 감지");
-		
+
 		String msg = "잘못된 접근입니다.";
 		String url = "/index.do";
-		
+
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
@@ -78,44 +81,45 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/port_payfinish.do", method = RequestMethod.POST)
-	public String port_payfinish_post(@RequestParam(defaultValue = "0") int RQNo, @ModelAttribute PayfinishVO vo, HttpSession session, Model model) {
+	public String port_payfinish_post(@RequestParam(defaultValue = "0") int RQNo, @ModelAttribute PayfinishVO vo,
+			HttpSession session, Model model) {
 		logger.info("결제 처리 PayfinishVO 파라미터 RQNo={}", RQNo);
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
 
-		if(RQNo == 0) {
+		if (RQNo == 0) {
 			String msg = "잘못된 접근입니다.";
 			String url = "/index.do";
-			
+
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
-			
+
 			return "common/message";
 		}
-		
-		//마일리지 적립
-		double addMileage = Math.ceil(vo.getsPrice() * 0.03);	 /* 마일리지 3% 적립 */
-		int mg = (int) addMileage;
-		vo.setMileage(mg);	/* 적립된 마일리지 PayfinishVO에 셋팅(거래내역 출력용) */
-		MemberVO memberVo = memberService.selectID(vo.getMemberId());
-		int mileage = memberVo.getMileage() + mg;	/* 기존의 마일리지에 새 마일리지 적립 */
-		memberVo.setMileage(mileage);	/* memberVo에 다시 셋팅 */
 
-		int cnt = requestService.insertPayment(vo);	/* RQPAYMENT(거래내역) 테이블에 DB 추가 */
-		int cnt2 = requestService.updateMileage(memberVo);	/* 새로 적립된 마일리지 적용 */
-		int cnt3 = requestService.pLevel3(vo.getPickNo());	/* pLevel을 3으로 업데이트 */
+		// 마일리지 적립
+		double addMileage = Math.ceil(vo.getsPrice() * 0.03); /* 마일리지 3% 적립 */
+		int mg = (int) addMileage;
+		vo.setMileage(mg); /* 적립된 마일리지 PayfinishVO에 셋팅(거래내역 출력용) */
+		MemberVO memberVo = memberService.selectID(vo.getMemberId());
+		int mileage = memberVo.getMileage() + mg; /* 기존의 마일리지에 새 마일리지 적립 */
+		memberVo.setMileage(mileage); /* memberVo에 다시 셋팅 */
+
+		int cnt = requestService.insertPayment(vo); /* RQPAYMENT(거래내역) 테이블에 DB 추가 */
+		int cnt2 = requestService.updateMileage(memberVo); /* 새로 적립된 마일리지 적용 */
+		int cnt3 = requestService.pLevel3(vo.getPickNo()); /* pLevel을 3으로 업데이트 */
 		logger.info("PaymentVO insert 결과 cnt={},", cnt);
 		logger.info("마일리지 업데이트 결과 cnt2={},", cnt2);
 		logger.info("pLevel3 업데이트 결과 cnt3={}", cnt3);
 
 		TransacInfoVO transVo = requestService.ByNoPayment(vo.getPickNo());
 		logger.info("거래내역 list 불러오기 파라미터 transVo={}", transVo);
-		
+
 		model.addAttribute("vo", transVo);
 
 		return "payment/port_payfinish";
 
 	}
-	
+
 	@RequestMapping("/Tlist.do")
 	public String Qlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
 		logger.info("거래내역 글 목록, 파라미터 searchVo={}", searchVo);
@@ -141,24 +145,29 @@ public class PaymentController {
 
 		return "payment/port_transactional";
 	}
-	
+
 	@RequestMapping(value = "/Twrite.do", method = RequestMethod.GET)
-	public String Twrite_get() {
-		logger.info("후기 글쓰기 화면");
+	public String Twrite_get(@ModelAttribute TransacInfoVO transacVo, @RequestParam(defaultValue = "0") int no,
+			Model model) {
+		logger.info("후기 글쓰기 화면, 파라미터 no={}", no);
+
+		transacVo = transService.selectByNo(no);
+		logger.info("후기 글쓰기 화면, 파라미터 transacVo={}", transacVo);
+
+		model.addAttribute("transacVo", transacVo);
 
 		return "payment/Twrite";
 	}
 
 	@RequestMapping(value = "/Twrite.do", method = RequestMethod.POST)
-	public String Twrite_post(@ModelAttribute ReviewVO reviewVo, HttpSession session) {
+	public String Twrite_post(@ModelAttribute ReviewVO reviewVo) {
 
-		String memberid = (String) session.getAttribute("userid");
-
-		reviewVo.setMemberid(memberid);
-		logger.info("후기 글쓰기 처리, 파라미터 reviewVo={}, memberid={}", reviewVo, memberid);
+		logger.info("후기 글쓰기 처리, 파라미터 reviewVo={}", reviewVo);
 
 		int cnt = transService.regitReview(reviewVo);
 		logger.info("후기 글쓰기 결과, cnt={}", cnt);
+		int cnt2 = transService.updateFlag(reviewVo.getpNo());
+		logger.info("후기 플래그 업데이트 결과, cnt2={}", cnt2);
 
 		return "redirect:/payment/Tlist.do";
 	}
