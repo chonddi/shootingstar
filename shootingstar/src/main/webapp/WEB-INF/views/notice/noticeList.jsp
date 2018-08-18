@@ -15,10 +15,17 @@ pageContext.setAttribute("cn", "\n");
 
 <title>슈팅스타 공지사항</title>
 <style type="text/css">
+#quest{
+	width:70px;
+	vertical-align: middle;
+	font-weight: bold;
+}
 #width{padding-left:200px;
 	padding-right:200px;}
 #titleNo{
 	font-weight: bold;
+	width:70px;
+	vertical-align: middle;
 }
 th{
 vertical-align: middle;}

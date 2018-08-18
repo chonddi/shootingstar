@@ -26,7 +26,8 @@ table{
 
   }
 .faqdiv{
-width:1500px;
+width:1235px;
+
 margin: 50px auto;
 }
   th{
@@ -83,7 +84,7 @@ font-weight: bold;}
 
 }
 #quest{
-	width:50px;
+	width:70px;
 	padding-left:30px;
 	padding-right:15px;
 	vertical-align: middle;

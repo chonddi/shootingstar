@@ -55,6 +55,11 @@ height:60px;
 width:1300px;
 margin: 50px auto;
 }
+#quest{
+	width:70px;
+	vertical-align: middle;
+	font-weight: bold;
+}
 </style>
 
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -165,7 +170,7 @@ action="<c:url value='/admin/notice/noticeDelete.do'/>">
 			<td>
 			<input type="checkbox" name="chk" value="${vo.nNo}">
 			</td>
-			<td>${vo.nNo}</td>
+			<td id='quest'>${vo.nNo}</td>
 			<td id="title">
 				<c:if test="${fn:length(vo.nTitle)>40}">
 				${fn:substring(vo.nTitle, 0, 40)}...
