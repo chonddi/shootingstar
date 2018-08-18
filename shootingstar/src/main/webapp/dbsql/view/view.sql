@@ -78,5 +78,3 @@ select q.*, (select count(*) from qnare r where r.qno=q.qno) as REPLYCNT
 from qna q;
 
 
-
-

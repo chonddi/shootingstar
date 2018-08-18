@@ -24,6 +24,7 @@ import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.payment.model.TransService;
 import com.ss.star.payment.model.TransacInfoVO;
+import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
 import com.ss.star.service.model.QVO;
@@ -39,6 +40,8 @@ public class PaymentController {
 	MemberService memberService;
 	@Autowired
 	TransService transService;
+	@Autowired
+	PortfolioService pfService;
 
 	@RequestMapping("/port_payment.do")
 	public String port_payment(@RequestParam(defaultValue = "0") int no, @ModelAttribute MileageVO mileageVo,
@@ -148,13 +151,22 @@ public class PaymentController {
 
 	@RequestMapping(value = "/Twrite.do", method = RequestMethod.GET)
 	public String Twrite_get(@ModelAttribute TransacInfoVO transacVo, @RequestParam(defaultValue = "0") int no,
-			Model model) {
+			Model model, HttpSession session) {
 		logger.info("후기 글쓰기 화면, 파라미터 no={}", no);
+		
+		String userid = (String) session.getAttribute("userid");
 
 		transacVo = transService.selectByNo(no);
 		logger.info("후기 글쓰기 화면, 파라미터 transacVo={}", transacVo);
+		MemberVO memberVo = memberService.selectID(userid);
+		String name = memberVo.getName();
+		logger.info("고객 이름 불러오기 name={}", name);
+		String cgName = pfService.selCgname(transacVo.getpNo());
+		logger.info("카테고리 이름 불러오기 cgName={}", cgName);
 
 		model.addAttribute("transacVo", transacVo);
+		model.addAttribute("name", name);
+		model.addAttribute("cgName", cgName);
 
 		return "payment/Twrite";
 	}

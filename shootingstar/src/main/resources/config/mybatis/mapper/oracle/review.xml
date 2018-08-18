@@ -3,16 +3,48 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.review">
 
-	<select id="selectReview" parameterType="int" resultType="ReviewVO">
-		select * from review where smemberid = #{sMemberid}
+	<select id="selectReview" parameterType="map" resultType="ReviewVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select * from review where smemberid = #{sMemberid} order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
 	</select>
 	
 	<insert id="regitReview" parameterType="ReviewVO">
 		<selectKey keyProperty="reviewNo" order="BEFORE" resultType="int">
 			select review_seq.nextval from dual
 		</selectKey>
-			insert into review(reviewno, smemberid, content, communication, result, memberid, pno)
-			values(#{reviewNo}, #{sMemberid}, #{content}, #{communication}, #{result}, #{memberid}, #{pNo})
+			insert into review(reviewno, smemberid, content, communication, result, memberid, name, pno, avg, cgname)
+			values(#{reviewNo}, #{sMemberid}, #{content}, #{communication}, #{result}, #{memberid}, #{name}, #{pNo}, (#{communication}+#{result})/2, #{cgName})
 	</insert>
-
+	
+	<select id="reviewRecord" parameterType="SearchVO" resultType="int">
+		select count(*) from review
+	</select>
+	
+	<select id="reviewSum" parameterType="string" resultType="double">
+		select sum(avg) / count(*) as AVG from review where smemberid=#{sMemberid}
+	</select>
+	
+	<select id="comAvg" parameterType="string" resultType="int">
+		select round(round(sum(communication) / count(*)) / 10) as COMAVG from review where smemberid=#{sMemberid}
+	</select>
+	
+	<select id="resAvg" parameterType="string" resultType="int">
+		select round(round(sum(result) / count(*)) / 10) as RESAVG from review where smemberid=#{sMemberid}
+	</select>
+	
+	<select id="selCgname" parameterType="int" resultType="string">
+		select c.cgname from review r left join rqpayment q on r.pno=q.pno left join payfinish p on q.pickno=p.pickno left join category c on p.cgno=c.cgno
+		where r.pno = #{pNo}
+	</select>
+	
 </mapper>

@@ -28,14 +28,6 @@
 			margins : 5
 		});
 
-		var result = $('#result').val();
-		var communication = $('#communication').val();
-		var total = $('#total').val();
-		$('#resultStar').val(result);
-		$('#communicationStar').val(communication);
-		$('#totalStar').val(total);
-		$('#avgStar').append(isNaN(total) ? "0.0" : total);
-
 		$('#a2').click(function(e) {
 			e.preventDefault();
 			document.getElementById("detailArticle2").scrollIntoView();
@@ -94,6 +86,10 @@
 				
 			});
 		});
+		
+		/* var comAvg = $("#comAvg").val();
+		$(".starRev").children('span').removeClass('on');
+		$(".starRev span").addClass('on').prevAll('span:nth-child(' + comAvg + ')').addClass('on'); */
 	});
 	
 	//이미지 클릭하면 부트스트랩 회전목마의 첫번째 active를 설정
@@ -209,31 +205,117 @@
           
       });
       </script> 
-			
 			</div>
-
-			<c:set var="result" />
-			<c:set var="communication" />
-			<div id="comment">
-				<span id="comment1">후기</span>
+			
+			<script type="text/javascript">
+			
+			
+				function pageFunc(curPage){
+					document.frmPage.currentPage.value=curPage;
+					frmPage.submit();
+				}
+			</script>
+			<!-- 페이징 처리를 위한 form -->
+			<form name="frmPage" method="get" action="<c:url value='/portfolio/portfolioDetail.do'/>">
+			<input type="hidden" name="currentPage" >
+			<input type="hidden" name="pfNo" value="${param.pfNo}">
+			</form>
+			<!-- review -->
+			<section id="comment">
 				<div id="star">
-					<table id="starTable" border="1">
+					<h1>후기</h1>
+					<table id="starTable">
 						<tr>
-							<td><span id="avgStar1">★</span><span id="avgStar"></span></td>
-							<td>총평점 <input type="hidden" id="totalStar" class="rating"
-								data-readonly value="" /></td>
-							<td>결과물<input type="hidden" id="resultStar" class="rating"
-								data-readonly value="" />
+							<td><span id="avgStar1">★</span></td>
+							<td>
+								<c:if test="${empty avg}">
+									<span id="avgStar">0.0</span>
+								</c:if>
+								<c:if test="${!empty avg}">
+									<span id="avgStar">${avg}</span>
+								</c:if>
 							</td>
-							<td>커뮤니케이션 <input type="hidden" id="communicationStar"
-								class="rating" data-readonly value="" /></td>
+							<td>커뮤니케이션</td>
+							<td class="comStar">
+								<%-- <input type="hidden" id="comAvg" value="${comAvg}">
+								<div class="starRev">
+									<span class="starR1 on"></span>
+									<span class="starR2 on"></span>
+									<span class="starR1 on"></span>
+									<span class="starR2 on"></span>
+									<span class="starR1 on"></span>
+									<span class="starR2 on"></span>
+									<span class="starR1 on"></span>
+									<span class="starR2 on"></span>
+									<span class="starR1 on"></span>
+									<span class="starR2 on"></span>
+									<span style="display: none;"></span>
+								</div> --%>
+							</td>
+							<td>결과물</td>
+							<td class="resStar"></td>
 						</tr>
 					</table>
 				</div>
-			</div>
-
+			</section>
+			<c:if test="${!empty reList}">
+				<c:forEach var="re" items="${reList}">
+					<section class="comment2">
+						<div class="star2">
+							<table class="starTable2">
+								<tr>
+									<td colspan="5">${re.content}</td>
+								</tr>
+								<tr>
+									<td>★ <fmt:formatNumber value="${re.avg}" pattern=".0"/></td>
+									<td>${re.name}</td>
+									<td>${re.cgName}</td>
+									<td>작성일 <fmt:formatDate value="${re.regdate}"  pattern="yyyy.MM.dd."/></td>
+									<td>${sName} 전문가</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+				</c:forEach>
+			</c:if>
+			<div class="divPage">
+			<!-- 페이지 번호 추가 -->		
+			<!-- 이전 블럭으로 이동 -->
+			<c:if test="${pageVo.firstPage>1 }">
+				<a href="#" onclick="pageFunc(${pageVo.firstPage-1})">
+					<span class="pageNum3">
+					PREV
+					</span>
+				</a>
+			</c:if>
+			
+			<!-- [1][2][3][4][5][6][7][8][9][10] -->
+			<c:forEach var="i" begin="${pageVo.firstPage }" end="${pageVo.lastPage}">
+				<c:if test="${i==pageVo.currentPage }">
+					<span class="pageNum1">
+						${i}</span>
+				</c:if>
+				<c:if test="${i!=pageVo.currentPage }">
+					<a href="#" onclick="pageFunc(${i})">
+						<span class="pageNum2">
+						${i}
+						</span>
+					</a>
+				</c:if>
+			</c:forEach>
+				
+			<!-- 다음 블럭으로 이동 -->
+			<c:if test="${pageVo.lastPage<pageVo.totalPage }">
+				<a href="#" onclick="pageFunc(${pageVo.lastPage+1})">
+					<span class="pageNum3">
+					NEXT
+					</span>
+				</a>
+			</c:if>
+			<!--  페이지 번호 끝 -->
 		</div>
-
+			
+		</div>
 	</div>
 
 	<script type="text/javascript" src="<c:url value='/js/tooltip.js'/>"></script>

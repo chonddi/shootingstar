@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.payment.model.ReviewVO;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
@@ -155,6 +156,40 @@ public class PortfolioServiceImpl implements PortfolioService {
 	public List<Map<String, Object>> selectPfDetailByN(String sname) {
 		List<Map<String, Object>> list = Dao.selectPfDetailByN(sname);
 		return list;
+	}
+
+	@Override
+	public List<ReviewVO> selectReview(String sMemberid, SearchVO searchVo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sMemberid", sMemberid);
+		map.put("searchVo", searchVo);
+		
+		return Dao.selectReview(map);
+	}
+
+	@Override
+	public int reviewRecord(SearchVO searchVo) {
+		return Dao.reviewRecord(searchVo);
+	}
+
+	@Override
+	public double reviewSum(String sMemberid) {
+		return Dao.reviewSum(sMemberid);
+	}
+
+	@Override
+	public String selCgname(int pNo) {
+		return Dao.selCgname(pNo);
+	}
+
+	@Override
+	public int comAvg(String sMemberid) {
+		return Dao.comAvg(sMemberid);
+	}
+
+	@Override
+	public int resAvg(String sMemberid) {
+		return Dao.resAvg(sMemberid);
 	}
 
 	

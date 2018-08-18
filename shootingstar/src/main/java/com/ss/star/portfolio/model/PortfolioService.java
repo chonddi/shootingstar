@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.payment.model.ReviewVO;
 
 
 public interface PortfolioService {
@@ -23,4 +24,10 @@ public interface PortfolioService {
 	public int deleteMulti (List<PortfolioVO> list);
 	public int resMulti (List<PortfolioVO> list);
 	public List<PortfolioImgVO> selImgName (int no);
+	public List<ReviewVO> selectReview(String sMemberId, SearchVO searchVo);
+	public int reviewRecord(SearchVO searchVo);
+	public double reviewSum(String sMemberid);
+	public String selCgname(int pNo);
+	public int comAvg(String sMemberid);
+	public int resAvg(String sMemberid);
 }

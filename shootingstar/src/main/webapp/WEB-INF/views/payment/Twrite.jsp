@@ -15,6 +15,7 @@ $(document).ready(function(){
 		$(this).addClass('on').prevAll('span').addClass('on');
 		$(this).next().prevAll('span').html(10);
 		
+		var rev1sum = 0;
 		$(".starRev").find("span").each(function(idx, item){
 			rev1sum += parseInt($(this).text());
 		});
@@ -28,11 +29,7 @@ $(document).ready(function(){
 		$(this).addClass('on').prevAll('span').addClass('on');
 		$(this).next().prevAll('span').html(10);
 		
-		$(".starRev2").find("span").each(function(idx, item){
-			var rev2sum = 0;
-			rev2sum += $(this).text();
-		});
-		
+		var rev2sum = 0;
 		$(".starRev2").find("span").each(function(idx, item){
 			rev2sum += parseInt($(this).text());
 		});
@@ -155,6 +152,8 @@ $(document).ready(function(){
 <input type="hidden" name="sMemberid" value="${transacVo.sMemberid}">
 <input type="hidden" name="memberid" value="${sessionScope.userid}">
 <input type="hidden" name="pNo" value="${transacVo.pNo}">
+<input type="hidden" name="name" value="${name}">
+<input type="hidden" name="cgName" value="${cgName}">
 </form>
 </body>
 </html>

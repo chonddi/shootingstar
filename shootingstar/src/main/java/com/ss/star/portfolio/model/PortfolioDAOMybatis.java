@@ -1,5 +1,6 @@
 package com.ss.star.portfolio.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ss.star.common.SearchVO;
+import com.ss.star.payment.model.ReviewVO;
 
 
 @Repository
@@ -113,6 +115,37 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 	public List<Map<String, Object>> selectPfDetailByN(String sname) {
 		List<Map<String, Object>> list = sqlSession.selectList(namespace+"selectPfDetailByN", sname);
 		return list;
+	}
+
+	@Override
+	public List<ReviewVO> selectReview(Map<String, Object> map) {
+		List<ReviewVO> list = sqlSession.selectList(namespace2 + "selectReview", map);
+		return list;
+	}
+
+	@Override
+	public int reviewRecord(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace2 + "reviewRecord", searchVo);
+	}
+
+	@Override
+	public double reviewSum(String sMemberid) {
+		return sqlSession.selectOne(namespace2 + "reviewSum", sMemberid);
+	}
+
+	@Override
+	public String selCgname(int pNo) {
+		return sqlSession.selectOne(namespace2 + "selCgname", pNo);
+	}
+
+	@Override
+	public int comAvg(String sMemberid) {
+		return sqlSession.selectOne(namespace2 + "comAvg", sMemberid);
+	}
+
+	@Override
+	public int resAvg(String sMemberid) {
+		return sqlSession.selectOne(namespace2 + "resAvg", sMemberid);
 	}
 
 }

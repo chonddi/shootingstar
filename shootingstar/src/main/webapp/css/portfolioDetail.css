@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 #detailArticle {
 	width: 1235px;
 	height: auto;
@@ -65,7 +64,7 @@
 	height: auto;
 	margin-left: 340px;
 	position: relative;
-    margin-bottom: 60px;
+	margin-bottom: 60px;
 }
 
 #detailArticle2 {
@@ -96,27 +95,18 @@
 	margin-bottom: 10px;
 }
 
-#comment {
-	width: 900px;
-	height: auto;
-	clear: both;
-	border-bottom: 1px solid #e8e8e8;
-	border-top: 1px solid #e8e8e8;
-}
-
-#comment1 {
+/* #comment1 {
 	line-height: 60px;
 	margin-left: 35px;
 	font-weight: bold;
-}
-
+} */
 .btn-lg {
 	background-color: #337ab7;
 	color: white;
 	width: 335px;
 	margin-left: 10px;
 	border: 0;
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .btn-lg:hover {
@@ -139,29 +129,6 @@
 
 #likeBox>span {
 	line-height: 40px;
-}
-
-#star {
-	margin-bottom: 25px;
-}
-
-#starTable td {
-	padding-left: 20px;
-	vertical-align: middle;
-	font-size: 0.9em;
-	font-weight: bold;
-}
-
-#starTable td:first-child {
-	border-right: 1px solid #e8e8e8;
-}
-
-#avgStar {
-	font-size: 3.0em;
-}
-
-#avgStar1 {
-	margin-bottom: 5px;
 }
 
 .symbol {
@@ -242,40 +209,170 @@
 
 /* 모달 시작 */
 .modal-dialog.modal-80size {
-  width: 80%;
-  height: 80%;
-  margin: 0;
-  padding: 0;
+	width: 80%;
+	height: 80%;
+	margin: 0;
+	padding: 0;
 }
+
 .modal-content.modal-80size {
-  height: auto;
-  min-height: 80%;
+	height: auto;
+	min-height: 80%;
 }
+
 .modal.modal-center {
-  text-align: center;
+	text-align: center;
 }
 
-@media screen and (min-width: 768px) { 
-  .modal.modal-center:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 50%;
+@media screen and (min-width: 768px) {
+	.modal.modal-center:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 50%;
+	}
+	.modal-dialog.modal-center {
+		display: inline-block;
+		text-align: left;
+		vertical-align: middle;
+	}
+	/* 모달 끝 */
+	#mygallery a {
+		cursor: pointer;
+	}
+	.heart {
+		width: 26px;
+		vertical-align: middle;
+		margin-right: 5px;
+		cursor: pointer;
+	}
 }
 
-.modal-dialog.modal-center {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle; 
+/* 후기 */
+#comment {
+	width: 900px;
+	clear: both;
+	border-bottom: 1px solid #e8e8e8;
+	border-top: 1px solid #e8e8e8;
 }
-/* 모달 끝 */
 
-#mygallery a{
+#star {
+	margin: 40px 0 40px 0;
+}
+
+#star h1 {
+	font-size: 2em;
+	font-weight: bold;
+	margin: 20px 0 25px 20px;
+}
+
+#starTable td:nth-child(2) {
+	border-right: 1px solid #e8e8e8;
+}
+
+#starTable td {
+	padding-left: 20px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+#starTable td:nth-child(n+3) {
+	font-size: 1.2em;
+}
+
+span#avgStar {
+	margin-right: 25px;
+	font-size: 3em;
+}
+
+#avgStar1 {
+	font-size: 1.7em;
+}
+
+.comment2 {
+	border-bottom: 1px solid #e8e8e8;
+	width: 900px;
+}
+
+.star2 {
+	margin: 40px 0 40px 0;
+}
+
+.starTable2 {
+	width: 75%;
+}
+
+.starTable2 td {
+	padding: 25px;
+}
+
+.starTable2 tr:nth-child(2) td:first-child {
+	color: #3563e8;
+	font-weight: bold;
+}
+
+.divPage {
+	height: 10px;
+	text-align: center;
+}
+
+.pageNum1, .pageNum2, .pageNum3 {
+	font-size: 1.0em;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	margin: 0 4px;
+	line-height: 35px;
+}
+
+.pageNum1 {
+	color: white;
+	font-weight: bold;
+	background-color: rgba(30, 30, 30, 1);
 	cursor: pointer;
 }
-.heart{
-    width: 26px;
-    vertical-align: middle;
-    margin-right: 5px;
-    cursor: pointer;
+
+.pageNum2 {
+	color: black;
+	background-color: white;
+	cursor: pointer;
+}
+
+.pageNum3 {
+	font-size: 0.8em;
+	color: gray;
+	background-color: white;
+	cursor: pointer;
+}
+
+.starR1 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat -52px 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starR2 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starR1.on {
+	background-position: 0 0;
+}
+
+.starR2.on {
+	background-position: -15px 0;
 }
