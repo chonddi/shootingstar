@@ -5,11 +5,12 @@
 
 .mypageBtn{
 	border: none;
-    width: 100px;
-    height: 40px;
+    width: 80px;
+    height: 25px;
     background: #9b9b9b;
     color: white;
     border-radius: 5px 5px;
+    font-size:14px;
 }
 
 .mypageBtn:hover{
@@ -35,13 +36,13 @@
 
 #ttlt{
 	text-align:center;
-	height:23px;
+	height:20px;
 	font-size:18px;
 }
 .divPage{
 	text-align:center;
 	height:50px;
-	font-size:20px;
+	font-size:18px;
 }
 .title{
 	font-family: 'Do Hyeon', sans-serif;
@@ -51,5 +52,27 @@
 #portSearch{
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size:16px;
+}
+#topSearch{
+	font-family: 'Nanum Gothic', sans-serif;
+	float: left;
+	width: 130px;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 10px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#topSearch span {
+	font-size: 1.1em;
+	color: #2782ec;
+}
+
+.ctgSelect{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:14px;
+	font-weight: bold;
+	margin-left:10px;
 }
 

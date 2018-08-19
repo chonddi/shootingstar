@@ -48,7 +48,7 @@
 }
 </style>
 
-		쪽지함
+		<span class="title">쪽지함</span>
 	</div>
 	<form id="detailFrm" name="detailFrm">
 		<input type="hidden" name="sMsgNo">

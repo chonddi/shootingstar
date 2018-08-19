@@ -168,6 +168,7 @@
 		  	<c:forEach var="map" items="${list}">
 		  	<c:set var="plevel" value="${map['PLEVEL']}"/>
 		  	<c:set var="delf" value="${map['DELFLAG']}"/>
+		  	<c:set var="rqno" value="${map['RQNO']}"/>
 	  			<tr>
 	  				<td id="ttl">
 	  				<c:if test="${plevel==0&&delf!='Y'}">
@@ -206,7 +207,7 @@
 									삭제된 글입니다.</span>
 							</c:when>
 							<c:otherwise>	
-									
+							<a href="<c:url value='/request/detail.do?no=${rqno}'/>" style="cursor:pointer;font-weight:bold;">		
 								<!-- 내용 일부만 보여주기 -->
 								<c:set var="title" value="${map['RQDETAIL']}"/>
 
