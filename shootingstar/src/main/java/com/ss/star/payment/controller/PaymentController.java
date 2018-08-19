@@ -161,12 +161,9 @@ public class PaymentController {
 		MemberVO memberVo = memberService.selectID(userid);
 		String name = memberVo.getName();
 		logger.info("고객 이름 불러오기 name={}", name);
-		String cgName = pfService.selCgname(transacVo.getpNo());
-		logger.info("카테고리 이름 불러오기 cgName={}", cgName);
 
 		model.addAttribute("transacVo", transacVo);
 		model.addAttribute("name", name);
-		model.addAttribute("cgName", cgName);
 
 		return "payment/Twrite";
 	}

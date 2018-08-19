@@ -67,7 +67,7 @@
 		<c:if test="${empty list }">
 			<tr>
 				<td colspan="9" style="text-align: center">
-					글이 존재하지 않습니다.
+					내역이 존재하지 않습니다.
 				</td>
 			</tr>
 		</c:if>

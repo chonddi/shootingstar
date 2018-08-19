@@ -153,7 +153,7 @@ $(document).ready(function(){
 <input type="hidden" name="memberid" value="${sessionScope.userid}">
 <input type="hidden" name="pNo" value="${transacVo.pNo}">
 <input type="hidden" name="name" value="${name}">
-<input type="hidden" name="cgName" value="${cgName}">
+<input type="hidden" name="cgName" value="${transacVo.cgName}">
 </form>
 </body>
 </html>
