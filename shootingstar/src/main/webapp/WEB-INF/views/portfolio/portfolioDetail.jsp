@@ -204,7 +204,7 @@
       </script> 
 			</div>
 			
-			<script type="text/javascript">			
+			<script type="text/javascript">
 				function pageFunc(curPage){
 					document.frmPage.currentPage.value=curPage;
 					frmPage.submit();
@@ -231,14 +231,9 @@
 								</c:if>
 							</td>
 							<td>커뮤니케이션</td>
-							<td class="comStar">
-								<span id="img1" style="display:none; position:absolute; top:0px; left:0px; z-index:2"><img src="<c:url value='/images/star1.png'/>" alt=""></span>
-								<span id="img2" style="display:block; position:absolute; top: 0px; left :0px; z-index:1"><img src="<c:url value='/images/star2.png'/>" alt=""></span>
-							</td>
+							<td><span class="star-rating"><span style="width:${comAvg}%;"></span></span></td>
 							<td>결과물</td>
-							<td class="resStar">
-								<span class="star-rating"><span></span></span>
-							</td>
+							<td><span class="star-rating"><span style="width:${resAvg}%"></span></span></td>
 						</tr>
 					</table>
 				</div>

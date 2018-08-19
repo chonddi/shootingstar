@@ -35,11 +35,11 @@
 	</select>
 	
 	<select id="comAvg" parameterType="string" resultType="int">
-		select round(round(sum(communication) / count(*)) / 10) as COMAVG from review where smemberid=#{sMemberid}
+		select sum(communication) / count(*) as COMAVG from review where smemberid=#{sMemberid}
 	</select>
 	
 	<select id="resAvg" parameterType="string" resultType="int">
-		select round(round(sum(result) / count(*)) / 10) as RESAVG from review where smemberid=#{sMemberid}
+		select sum(result) / count(*) as RESAVG from review where smemberid=#{sMemberid}
 	</select>
 	
 	<select id="selCgname" parameterType="int" resultType="string">
