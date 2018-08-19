@@ -205,10 +205,12 @@ public class PortfolioController {
 		String sName = smemberVo.getsName();
 
 		// 총 평점
-		double avgVal = Math.round(pfService.reviewSum(sMemberId) * 100);
+		double reviewSum = pfService.reviewSum(sMemberId);
+		logger.info("reviewSum 파라미터 reviewSum={}", reviewSum);
+		double avgVal = Math.round(reviewSum * 100);
 		logger.info("평점 파라미터 avgVal={}", avgVal);
 		double avg = avgVal / 100;
-		logger.info("평점 계산 avg={}", avg);
+		logger.info("평점 계산 avg={}", avg);			
 		
 		// 커뮤니케이션 평점
 		int comAvg = pfService.comAvg(sMemberId);
