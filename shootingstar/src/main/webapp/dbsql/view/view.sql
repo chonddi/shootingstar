@@ -55,7 +55,7 @@ from sendmsg natural join receivemsg;
 --View for port_payfinish.jsp
 create or replace view PAYFINISH
 as
-select r.rqno, r.cgno, r.rqregion, r.rqdetail, r.memberid, p.pickno, p.smemberid, p.sprice, p.sname, m.name, m.tel From request r left JOIN pickAll p
+select r.rqno, r.cgno, r.rqregion, r.rqdetail, r.memberid, p.pickno, p.smemberid, p.sprice, p.sname, m.name, m.tel, p.plevel From request r left JOIN pickAll p
 ON r.rqno = p.rqno
 left JOIN member m
 ON r.memberid = m.memberid;

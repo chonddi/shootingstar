@@ -170,7 +170,7 @@
 	
 	<select id="selectPayAll" parameterType="int" resultType="PayfinishVO">
 		select * from payfinish
-		where rqno=#{no}
+		where rqno=#{no} and plevel=2
 	</select>
 	
 	
