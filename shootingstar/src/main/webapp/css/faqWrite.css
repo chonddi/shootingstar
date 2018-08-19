@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+h1 {
+    padding: 20px 0 0 20px;
+}
+
+section.sec1 {
+    width: 50%;
+    padding: 20px;
+}
+
+section.sec2 {
+    width: 50%;
+    padding: 0 20px 20px 20px;
+    border: 1px solid white;
+}
+
+section.sec3 {
+    width: 50%;
+    padding: 0px 20px 0 20px;
+    text-align: center;
+}
+
+input[type="submit"], input[type="button"] {
+    border: 1px solid gray;
+    background: white;
+    width: 120px;
+    height: 45px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: gray;
+}
+
+table#faqTbl tr th, td {
+    padding: 10px;
+}
+
+input#faqTitle {
+    width: 500px;
+    padding: 10px;
+}
+
+select#category {
+    width: 130px;
+    height: 35px;
+}

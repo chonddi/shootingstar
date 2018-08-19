@@ -117,8 +117,6 @@ nav ul {
      <li><a href="<c:url value='/serviceA/Qlist.do'/>">Q&A 관리</a></li>
     </ul>
  </li>
-  <li><a href="<c:url value='/serviceA/Qlist.do'/>" >Q&A 관리</a></li>
- <li><a href="#" >결제 관리</a></li>
  <li><a href="<c:url value='/admin/message/message.do'/>">쪽지함</a></li>
 </ul>
 </div>	
