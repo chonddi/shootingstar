@@ -23,6 +23,13 @@ th, td{ padding:10px;
 width:1200px;
 margin: 50px auto;
 }
+.excelBtn{
+    border: none;
+    color: white;
+    background: #376092;
+    width: 150px;
+    height: 30px;
+}
 </style>
 <html>
 <head>
@@ -127,7 +134,7 @@ margin: 50px auto;
 	        	value="${param.searchKeyword}">   
 			<input type ="image" src="<c:url value='../../images/black18s.png'/>" 
 			align="absmiddle" >	
-			<input type="button" id="btnExcel" value="엑셀로 전체 다운받기">
+			<input type="button" id="btnExcel" class="excelBtn" value="엑셀로 전체 다운받기">
 			
 			
 				

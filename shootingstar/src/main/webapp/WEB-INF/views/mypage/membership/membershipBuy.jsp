@@ -12,21 +12,22 @@
 </script>
 <style type="text/css">
 .selectedPage{
-	width:50%;
+	width:60%;
     height: 430px;
 	text-align: center;
 }
 .selectName{
 	width:50%;
 }
-.partDiv div{
+.partDiv>div{
 	float:left;
-	width:200px;
+	width:250px;
 	height:300px;
 	border:1px solid black;
 	border-radius: 10px;
     margin-left: 72px;
     margin-top: 30px;
+    padding-top:50px;
 }
 .partDiv div a{
 	display: block;
@@ -38,14 +39,43 @@
     font-weight: 700;
     border-bottom: 3px solid #e46c0a;
 }
+.blue{
+	color:#2a59a7;
+}
+.gray{
+	color:gray;
+}
+.bigNum{
+	font-size: 1.8em;
+}
+input[type=button]{
+	margin-top:65px;
+    width: 200px;
+    height: 30px;
+    color: white;
+    background: #05133e;
+    border: none;
+}
 </style>
 		멤버십 구매
 	</div>
 	<div class="selectedPage">
 		<div class="partDiv">
-			<div><a href="#" onclick="payment('1m')">1개월(이미지)</a></div>
-			<div><a href="#" onclick="payment('3m')">3개월(이미지)</a></div>
-			<div><a href="#" onclick="payment('6m')">6개월(이미지)</a></div>
+			<div><div>1 개월권</div><br>
+				<div><span class="bigNum">9,900</span> won / <span class="blue">month</span><br><br>
+				= 9,900 won<span class="gray"> (VAT 포함)</span></div>
+				<input type="button" onclick="payment('1m')" value="구매하기">
+			</div>
+			<div><div>3 개월권</div><br>
+				<div><span class="bigNum">8,900</span> won / <span class="blue">month</span><br><br>
+				= 26,700 won<span class="gray"> (VAT 포함)</span></div>
+				<input type="button" onclick="payment('3m')" value="구매하기">
+			</div>
+			<div><div>6 개월권</div><br>
+				<div><span class="bigNum">7,900</span> won / <span class="blue">month</span><br><br>
+				= 47,400 won<span class="gray"> (VAT 포함)</span></div>
+				<input type="button" onclick="payment('6m')" value="구매하기">
+			</div>
 		</div>
 	</div>
 </div>

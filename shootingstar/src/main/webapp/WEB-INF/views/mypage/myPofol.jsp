@@ -33,6 +33,7 @@ a:hover{
     height: 40px;
     font-size: 0.9em;
 }
+
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -101,7 +102,7 @@ a:hover{
 		
 		
 			<c:forEach var="map" items="${pofolList}">
-				<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>">
+				<a href="<c:url value='/portfolio/portfolioDetail.do?pfNo=${map["PFNO"]}'/>" style="float:left">
 					<div id="portList" style="float: none;margin: 0 auto;">
 						<img alt="" src="<c:url value='/portfolio_images/${map["FILENAME"]}'/>">
 						<div id="listInfo">
