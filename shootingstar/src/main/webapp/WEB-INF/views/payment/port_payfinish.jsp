@@ -10,11 +10,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#rqpay").click(function(){
-			location.href="<c:url value='/payment/Tlist.do'/>";
+			location.href="<c:url value='/payment/Tlist.do'/>"
 		});
 		
 		$("#main").click(function(){
-			location.href="<c:url value='/index.do'/>";
+			location.href="<c:url value='/index.do'/>"
 		});
 	});
 </script>

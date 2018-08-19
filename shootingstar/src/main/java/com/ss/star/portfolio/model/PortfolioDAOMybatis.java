@@ -130,7 +130,7 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 
 	@Override
 	public double reviewSum(String sMemberid) {
-		String cnt = sqlSession.selectOne(namespace2 + "reviewSum", sMemberid);
+		String cnt = Double.toString(sqlSession.selectOne(namespace2 + "reviewSum", sMemberid));
 		if(cnt == null) {
 			return 0;
 		}else {
@@ -145,7 +145,7 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 
 	@Override
 	public int comAvg(String sMemberid) {
-		String cnt = sqlSession.selectOne(namespace2 + "comAvg", sMemberid);
+		String cnt = Integer.toString(sqlSession.selectOne(namespace2 + "comAvg", sMemberid));
 		if(cnt == null) {
 			return 0;
 		}else {
@@ -155,7 +155,7 @@ public class PortfolioDAOMybatis implements PortfolioDAO {
 
 	@Override
 	public int resAvg(String sMemberid) {
-		String cnt = sqlSession.selectOne(namespace2 + "resAvg", sMemberid);
+		String cnt = Integer.toString(sqlSession.selectOne(namespace2 + "resAvg", sMemberid));
 		if(cnt == null) {
 			return 0;
 		}else {
