@@ -341,14 +341,32 @@ $( document ).ready(function() {
 		  
 		  var form = this;
 		  var price = $("#RQPrice").val();
-		 
-		 
-
+		  
+		  function comma(num){
+			    var len, point, str;  
+			       
+			    num = num + "";  
+			    point = num.length % 3 ;
+			    len = num.length;  
+			   
+			    str = num.substring(0, point);  
+			    while (point < len) {  
+			        if (str != "") str += ",";  
+			        str += num.substring(point, point + 3);  
+			        point += 3;  
+			    }  
+			     
+			    return str;
+			 
+			}
+		  
+		  var price2 = comma(price);
+		  
 		  e.preventDefault(); 
 	
 		  swal({
-		      title: "입력하신 가격은 "+price+"원입니다.",
-		      text: "pick된 글은 수정이 불가합니다. 계속하시겠습니까?",
+		      title: "입력 가격: "+price2+"원",
+		      text: "PICK된 글은 수정이 불가합니다. 계속하시겠습니까?",
 		      html: true,
 		      icon: "warning",
 		      buttons: [
@@ -360,7 +378,7 @@ $( document ).ready(function() {
 		      if (isConfirm) {
 		        swal({
 		          title: '완료되었습니다',
-		          text: 'pick등록이 완료되었습니다.',
+		          text: 'REQUEST등록이 완료되었습니다.',
 		          icon: 'success'
 		        }).then(function() {
 		          form.submit(); // <--- Click시 sumbit
@@ -445,6 +463,7 @@ $( document ).ready(function() {
 							<input type="checkbox" name="ck2" value="인쇄용"> 인쇄용
 							<div style="font-size:16px;">(0개 선택 시 "미선택"으로 입력됩니다.)</div>
 							<input type="hidden" id= "RQPrice" name="RQPrice" value=${price }>
+					
 							<input type="hidden" id="cg1" name="cname" value=${cname }>
 						</div>
 					</div>

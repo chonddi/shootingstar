@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="mypageTop.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/mypageTop.css'/>" />
-
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
 <style type="text/css">
 #title{
 	font-size:1.5em;
@@ -99,7 +99,7 @@
 		});
 	});
 </script>
-		회원정보 수정
+		<span class="title">회원정보 수정</span>
 	</div>
 	<div class="selectedPage">
 		<form name="frm" id="editFrm" method="post"
@@ -127,7 +127,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="selectName">비밀번호 변경</div>
+	<div class="selectName"><span class="title">비밀번호 변경</span></div>
 	<div class="selectedPage">
 		<form method="post" id="changePwd" action="<c:url value='/mypage/passwordEdit.do'/>">
 			<div><input type="password" id="oldPwd" name="oldPwd" placeholder="현재 비밀번호"> </div>

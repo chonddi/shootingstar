@@ -90,8 +90,8 @@ document.querySelector('#frm7').addEventListener('submit', function(e) {
 	  e.preventDefault(); // <--- prevent form from submitting
 
 	  swal({
-	      title: "입력하신 가격:"+price+"원",
-	      text: "고객회원님이 결제하실 최종가격입니다.계속하시겠습니까?",
+	      title: "입력 가격:"+price+"원",
+	      text: "최종가격으로 결정합니다.계속하시겠습니까?",
 	      icon: "warning",
 	      buttons: [
 		        '아니요!',

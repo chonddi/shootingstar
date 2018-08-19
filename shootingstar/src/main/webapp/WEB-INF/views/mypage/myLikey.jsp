@@ -41,7 +41,7 @@ a:hover{
 		
 	});
 </script>
-		나의 관심목록
+		<span class="title">나의 관심목록</span>
 	</div>
 	<!-- 페이징 처리를 위한 form -->
 	<div class="selectedPage">

@@ -56,8 +56,8 @@ function viewImage(img){
 
 function selBtn(RQNo, pickNo){
 	 swal({
-	      title: "선택하시겠습니까?",
-	      text: "PICK은 1개만 선택가능합니다.계속하시겠습니까?",
+	      title: "이 PICK을 선택합니다",
+	      text: "1개의 PICK만 선택가능합니다.계속하시겠습니까?",
 	      icon: "warning",
 	      buttons: [
 		        '아니요!',
