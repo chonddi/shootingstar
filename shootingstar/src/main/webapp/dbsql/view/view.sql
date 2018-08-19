@@ -61,10 +61,20 @@ left JOIN member m
 ON r.memberid = m.memberid;
 
 
---View for port_payfinish.jsp and transaction.jsp
+--View for port_payfinish.jsp and port_transactional.jsp
 create or replace view TRANSACINFO
 as
-select lpad(r.pno, 6, 0) as PNO, c.cgname, p.sname, p.smemberid, p.rqregion, r.regdate, r.pmethod, r.usemile, r.pprice, p.pickno, r.flag
+select lpad(r.pno, 6, 0) as PNO, r.memberid, c.cgname, p.sname, p.smemberid, p.rqregion, r.regdate, r.pmethod, r.usemile, r.pprice, p.pickno, r.flag
+from rqpayment r left join payfinish p
+on r.pickno=p.pickno
+left join category c
+on p.cgno=c.cgno;
+
+
+--View for port_payfinish2.jsp and port_transactional2.jsp
+create or replace view TRANSACINFO2
+as
+select lpad(r.pno, 6, 0) as PNO, r.memberid, c.cgname, p.name, p.smemberid, p.rqregion, r.regdate, r.pmethod, r.pprice, p.pickno, r.flag
 from rqpayment r left join payfinish p
 on r.pickno=p.pickno
 left join category c

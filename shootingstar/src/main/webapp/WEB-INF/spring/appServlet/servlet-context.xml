@@ -62,6 +62,8 @@
 			<mapping path="/request/write4.do" />
 			<mapping path="/mypage/myRequest.do" />
 			<mapping path="/mypage/myLikey.do" />
+			<mapping path="/payment/*" />
+			<exclude-mapping path="/payment/Tlist2.do"/>
 			<beans:ref bean ="loginInterceptorMember" />
 		</interceptor>
 		   
@@ -69,6 +71,9 @@
 			<mapping path="/portfolio/portfolioWrite.do" />
 			<mapping path="/mypage/myPofol.do" />
 			<mapping path="/mypage/membership/*" />
+			<mapping path="/payment/Tlist2.do" />
+			<mapping path="/SERVICE/email.do" /> 
+			<mapping path="/SERVICE/send.do" />
 			<beans:ref bean ="loginInterceptorSMember" />
 		</interceptor>
 		
@@ -113,16 +118,6 @@
 			<beans:ref bean ="loginInterceptorQRAdmin" />
 		</interceptor>
 		
-		<interceptor>
-			<mapping path="/SERVICE/email.do" /> 
-			<mapping path="/SERVICE/send.do" /> 
-			<beans:ref bean ="loginInterceptorSMember" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/payment/*" />  
-			<beans:ref bean ="loginInterceptorMember" />
-		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.ss.star.smember.controller" />

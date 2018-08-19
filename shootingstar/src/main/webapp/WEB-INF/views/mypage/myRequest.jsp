@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="mypageTop.jsp"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">   
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypageTop.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
+<style type="text/css">
+#myRequest{
+	font-weight:700;
+	border-bottom:3px solid #e46c0a;
+}
+</style>   
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <script type="text/javascript">
 	$(function(){

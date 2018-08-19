@@ -3,23 +3,42 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.transactional">
 	
-	<select id="selectAll" parameterType="SearchVO" resultType="TransacInfoVO">
+	<select id="selectAll" parameterType="map" resultType="TransacInfoVO">
 		select *
 		from
 		(
 		    select rownum as RNUM, list.*
 		    from (
-		        select * from TRANSACINFO order by regdate desc
+		        select * from TRANSACINFO where memberid=#{memberid} order by regdate desc
 		    )list
 		)    
 		<![CDATA[
-		where RNUM>#{firstRecordIndex} 
-		and RNUM<=#{firstRecordIndex}+#{recordCountPerPage}
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
 		]]>
 	</select>
 	
-	<select id="getTotalRecord" parameterType="SearchVO" resultType="int">
-		select count(*) from rqpayment
+	<select id="selectAll2" parameterType="map" resultType="TransacInfoVO2">
+		select *
+		from
+		(
+		    select rownum as RNUM, list.*
+		    from (
+		        select * from TRANSACINFO2 where smemberid=#{sMemberid} order by regdate desc
+		    )list
+		)    
+		<![CDATA[
+		where RNUM>#{searchVo.firstRecordIndex} 
+		and RNUM<=#{searchVo.firstRecordIndex}+#{searchVo.recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalRecord" parameterType="map" resultType="int">
+		select count(*) from rqpayment where memberid=#{memberid}
+	</select>
+	
+	<select id="getTotalRecord2" parameterType="map" resultType="int">
+		select count(*) from rqpayment where smemberid=#{sMemberid}
 	</select>
 	
 	<select id="selectByNo" parameterType="int" resultType="TransacInfoVO">

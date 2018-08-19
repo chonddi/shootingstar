@@ -129,3 +129,9 @@ article {
 	width: 1235px;
 	margin-top: 120px;
 }
+
+#mile{
+	color: red;
+	font-weight: bold;
+	font-size: 1.1em;
+}

@@ -82,13 +82,15 @@
 						</c:if>
 						<c:if test="${sessionScope.userCode==1}">	
 							<li><a href="<c:url value='/mypage/myRequest.do'/>">나의 견적현황</a></li>
-							<li><a href="#">나의 거래이력</a></li>
+							<li><a href="<c:url value='/payment/Tlist.do'/>">나의 거래 내역</a></li>
 							<li><a href="<c:url value='/mypage/myLikey.do'/>">나의 관심목록</a></li>
-							<li><a href="#">내 마일리지</a></li>
+							<li><a href="#">내 마일리지
+								<span id="mile">(<fmt:formatNumber value="${sessionScope.mileage}" pattern="#,###"/>)</span></a>
+							</li>
 						</c:if>
 						<c:if test="${sessionScope.userCode==2}">
 							<li><a href="<c:url value='/mypage/myPofol.do'/>">나의 포트폴리오</a></li>
-							<li><a href="#">나의 거래이력</a></li>
+							<li><a href="<c:url value='/payment/Tlist2.do'/>">나의 거래 내역</a></li>
 							<li><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>
 						</c:if>	
 						<c:if test="${!empty sessionScope.userCode}">

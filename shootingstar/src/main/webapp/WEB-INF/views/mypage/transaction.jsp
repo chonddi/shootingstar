@@ -5,10 +5,7 @@
     	나의 거래이력
     </div>
     <div class="selectedPage">
-    
-    
-    
-    
+    	<%@ include file="../payment/port_transactional.jsp" %>
     </div>
 </div>
 <%@ include file="../inc/bottom.jsp"%>

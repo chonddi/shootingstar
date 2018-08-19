@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class TransacInfoVO {
 
 	private int pNo; /* 거래내역 번호 */
+	private String memberid; /* 고객 아이디 */
 	private Timestamp regdate; /* 거래 일시 */
 	private String sName; /* 전문가 이름 */
 	private String sMemberid; /* 전문가 아이디 */
@@ -15,6 +16,14 @@ public class TransacInfoVO {
 	private String pMethod; /* 결제 방법 */
 	private int pickNo; /* 픽번호 */
 	private String flag; /* 후기 여부 */
+
+	public String getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
+	}
 
 	public int getPickNo() {
 		return pickNo;
@@ -106,9 +115,9 @@ public class TransacInfoVO {
 
 	@Override
 	public String toString() {
-		return "TransacInfoVO [pNo=" + pNo + ", regdate=" + regdate + ", sName=" + sName + ", sMemberid=" + sMemberid
-				+ ", rqRegion=" + rqRegion + ", cgName=" + cgName + ", useMile=" + useMile + ", pPrice=" + pPrice
-				+ ", pMethod=" + pMethod + ", pickNo=" + pickNo + ", flag=" + flag + "]";
+		return "TransacInfoVO [pNo=" + pNo + ", memberid=" + memberid + ", regdate=" + regdate + ", sName=" + sName
+				+ ", sMemberid=" + sMemberid + ", rqRegion=" + rqRegion + ", cgName=" + cgName + ", useMile=" + useMile
+				+ ", pPrice=" + pPrice + ", pMethod=" + pMethod + ", pickNo=" + pickNo + ", flag=" + flag + "]";
 	}
 
 }

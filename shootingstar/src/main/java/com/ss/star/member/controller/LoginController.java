@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.star.member.model.MemberService;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.smember.model.SMemberService;
 
 @Controller
@@ -46,6 +47,9 @@ public class LoginController {
 		if(result==MemberService.LOGIN_OK) {
 			String name= memberService.selectNameById(memberId);
 			logger.info("로그인 처리 memberId로  불러온 결과 name: {}",name);
+			MemberVO memberVo = memberService.selectID(memberId); 
+			int mileage = memberVo.getMileage();
+			logger.info("로그인 처리 파라미터 mileage={}", mileage);
 			//[1] 세션
 			//userid
 			request.getSession().setAttribute("userid", memberId);
@@ -53,6 +57,8 @@ public class LoginController {
 			request.getSession().setAttribute("name", name);
 			request.getSession().setAttribute("userCode", "1");
 			request.getSession().setMaxInactiveInterval(60*60);
+			//mileage
+			request.getSession().setAttribute("mileage", mileage);
 			//[2] 쿠키
 			Cookie cookie= new Cookie("saveId", memberId);
 			cookie.setPath("/");

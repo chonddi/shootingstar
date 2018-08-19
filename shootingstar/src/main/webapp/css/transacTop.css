@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.clear {
+	font-family: Roboto, Noto Sans Korean, Arial, Arial Black, Tahoma,
+		Trebuchet MS, Verdana;
+}
+
+#widthDiv {
+	width: 100%;
+	color: #1f1f1f;
+	background: #202d42 !important;
+	height: 45px;
+}
+
+#mypage {
+	width: 60%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#mypage li {
+	float: left;
+	padding: 0px 17px;
+	padding-top: 14px;
+	height: 100%;
+	font-size: 0.9em;
+}
+
+#mypage li a {
+	color: white;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#mypage li:hover, #mypage li a:hover {
+	cursor: pointer;
+}
+
+#mypage li a:active, #mypage li a:visited {
+	text-decoration: none;
+}
+
+.clear:after {
+	clear: both;
+	content: '';
+	display: block;
+}
+
+article {
+	width: 100%;
+	margin-top: 70px;
+	padding-bottom: 50px;
+}
+
+#tranSec {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 60px;
+}

@@ -1,19 +1,19 @@
 package com.ss.star;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ss.star.common.PaginationInfo;
+import com.ss.star.member.model.MemberService;
+import com.ss.star.member.model.MemberVO;
 import com.ss.star.request.model.RequestService;
-import com.ss.star.request.model.RequestVO;
 import com.ss.star.smember.model.SMemberService;
 
 /**
@@ -27,7 +27,6 @@ public class IndexController {
 	RequestService requestService;
 	@Autowired
 	SMemberService smemService;
-	
 	
 	@RequestMapping(value = "/index.do")
 	public String home(Model model) {

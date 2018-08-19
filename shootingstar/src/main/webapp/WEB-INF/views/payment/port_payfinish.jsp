@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#rqpay").click(function(){
-			location.href="<c:url value=''/>";
+			location.href="<c:url value='/payment/Tlist.do'/>";
 		});
 		
 		$("#main").click(function(){
@@ -60,7 +60,7 @@
 			</tr>
 			<tr>
 				<th>결제 금액</th>
-				<th><fmt:formatNumber value="${vo.pPrice}" pattern="number"/> 원</th>
+				<th><fmt:formatNumber value="${vo.pPrice}" pattern="#,###"/> 원</th>
 			</tr>
 		</table>
 	</section>

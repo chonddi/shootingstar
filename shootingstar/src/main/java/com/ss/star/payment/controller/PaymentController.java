@@ -24,6 +24,7 @@ import com.ss.star.payment.model.PayfinishVO;
 import com.ss.star.payment.model.ReviewVO;
 import com.ss.star.payment.model.TransService;
 import com.ss.star.payment.model.TransacInfoVO;
+import com.ss.star.payment.model.TransacInfoVO2;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.request.model.RequestService;
 import com.ss.star.service.controller.QController;
@@ -115,7 +116,7 @@ public class PaymentController {
 		logger.info("pLevel3 업데이트 결과 cnt3={}", cnt3);
 
 		TransacInfoVO transVo = requestService.ByNoPayment(vo.getPickNo());
-		logger.info("거래내역 list 불러오기 파라미터 transVo={}", transVo);
+		logger.info("거래내역 transVo 불러오기 파라미터 transVo={}", transVo);
 
 		model.addAttribute("vo", transVo);
 
@@ -123,9 +124,13 @@ public class PaymentController {
 
 	}
 
+	//고객
 	@RequestMapping("/Tlist.do")
-	public String Qlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
-		logger.info("거래내역 글 목록, 파라미터 searchVo={}", searchVo);
+	public String Tlist(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
+		logger.info("고객 거래내역 글 목록, 파라미터 searchVo={}", searchVo);
+		
+		String memberid = (String) Session.getAttribute("userid");
+		logger.info("고객 거래내역 memberid 파라미터 memberid={}", memberid);
 
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
@@ -135,11 +140,11 @@ public class PaymentController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("setting 후 searchVo={}", searchVo);
 
-		List<TransacInfoVO> list = transService.selectAll(searchVo);
+		List<TransacInfoVO> list = transService.selectAll(memberid, searchVo);
 		logger.info("글 목록 조회 결과, list.size={}", list.size());
 
 		// 전체 레코드 개수 조회
-		int totalRecord = transService.getTotalRecord(searchVo);
+		int totalRecord = transService.getTotalRecord(memberid, searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("전체 레코드 개수={}", totalRecord);
 
@@ -147,6 +152,36 @@ public class PaymentController {
 		model.addAttribute("pageVo", pagingInfo);
 
 		return "payment/port_transactional";
+	}
+	
+	//전문가
+	@RequestMapping("/Tlist2.do")
+	public String Tlist2(@ModelAttribute SearchVO searchVo, Model model, HttpSession Session) {
+		logger.info("전문가 거래내역 글 목록, 파라미터 searchVo={}", searchVo);
+		
+		String sMemberid = (String) Session.getAttribute("userid");
+		logger.info("고객 거래내역 sMemberid 파라미터 sMemberid={}", sMemberid);
+
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("setting 후 searchVo={}", searchVo);
+
+		List<TransacInfoVO2> list = transService.selectAll2(sMemberid, searchVo);
+		logger.info("글 목록 조회 결과, list.size={}", list.size());
+
+		// 전체 레코드 개수 조회
+		int totalRecord = transService.getTotalRecord2(sMemberid, searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		logger.info("전체 레코드 개수={}", totalRecord);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageVo", pagingInfo);
+
+		return "payment/port_transactional2";
 	}
 
 	@RequestMapping(value = "/Twrite.do", method = RequestMethod.GET)
