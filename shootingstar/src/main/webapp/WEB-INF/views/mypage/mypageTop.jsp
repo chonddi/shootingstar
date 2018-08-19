@@ -15,7 +15,7 @@
 		</c:if>
 		<c:if test="${sessionScope.userCode==2}">
 			<li id="myPofol"><a href="<c:url value='/mypage/myPofol.do'/>">나의 포트폴리오</a></li>
-			<li id="transaction"><a href="<c:url value='/mypage/'/>">나의 거래 내역</a></li>
+			<li id="transaction"><a href="<c:url value='/payment/Tlist2.do'/>">나의 거래 내역</a></li>
 			<li id="membership"><a href="<c:url value='/mypage/membership/membershipList.do'/>">멤버십 관리</a></li>
 		</c:if>
 		<li id="msg"><a href="<c:url value='/mypage/message/message.do'/>">쪽지함</a></li>

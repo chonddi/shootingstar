@@ -3,6 +3,7 @@
 <%@ include file="../mypageTop.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/payfinish.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypageTop.css'/>" />
 <style type="text/css">
 .selectedPage{
 	width:50%;

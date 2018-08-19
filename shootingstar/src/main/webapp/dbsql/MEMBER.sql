@@ -275,6 +275,125 @@ ALTER TABLE POFOLIMG
 		);
 		
 
+/* 픽 시퀀스*/
+create sequence pick_seq
+start with 1
+increment by 1;
+
+/* 픽 */
+CREATE TABLE PICK (
+   PICKNO NUMBER(10) primary key, /* 픽번호 */
+   RQNO NUMBER(10) NOT NULL, /* 견적글번호 */
+   SMEMBERID VARCHAR2(50) NOT NULL, /* 전문가ID */
+   SPRICE NUMBER(10) DEFAULT 0 NOT NULL, /* 전문가금액 */
+   CHOICE CHAR(1) DEFAULT 'N', /* 낙찰여부 */
+   PLEVEL NUMBER(10) DEFAULT 0 /* 페이지 단계 */
+);
+
+ALTER TABLE PICK
+	ADD
+		CONSTRAINT FK_REQUEST_TO_PICK
+		FOREIGN KEY (
+			RQNO
+		)
+		REFERENCES REQUEST (
+			RQNO
+		);
+
+ALTER TABLE PICK
+	ADD
+		CONSTRAINT FK_SMEMBER_TO_PICK
+		FOREIGN KEY (
+			SMEMBERID
+		)
+		REFERENCES SMEMBER (
+			SMEMBERID
+		);
+		
+
+/* 관심 시퀀스*/
+create sequence likey_seq
+start with 1
+increment by 1;
+
+/* 관심 */
+CREATE TABLE LIKEY (
+	LIKENO NUMBER(10) primary key, /* 관심번호 */
+	MEMBERID VARCHAR2(50), /* 고객ID */
+	PFNO NUMBER(10) /* 포폴글번호 */
+);
+
+ALTER TABLE LIKEY
+	ADD
+		CONSTRAINT FK_PORTFOLIO_TO_LIKE
+		FOREIGN KEY (
+			PFNO
+		)
+		REFERENCES PORTFOLIO (
+			PFNO
+		);
+
+ALTER TABLE LIKEY
+	ADD
+		CONSTRAINT FK_MEMBER_TO_LIKE
+		FOREIGN KEY (
+			MEMBERID
+		)
+		REFERENCES MEMBER (
+			MEMBERID
+		);
+
+
+/* 견적결제 시퀀스*/
+create sequence rqpayment_seq
+start with 1
+increment by 1;
+
+/* 견적결제 */
+CREATE TABLE RQPAYMENT (
+	PNO NUMBER(10) primary key, /* 결제번호 */
+	MEMBERID VARCHAR2(50), /* 고객ID */
+	SMEMBERID VARCHAR2(50), /* 전문가ID */
+	PMETHOD VARCHAR2(20), /* 결제방법 */
+	PPRICE NUMBER(10), /* 결제금액 */
+	MILEAGE NUMBER(10) DEFAULT 0, /* 남은마일리지 */
+	USEMILE NUMBER(10) DEFAULT 0, /* 마일리지사용금액 */
+	REGDATE DATE DEFAULT SYSDATE, /* 결제일 */
+	PICKNO NUMBER(10), /* 픽번호 */
+	FLAG CHAR(1) DEFAULT 'N' /* 후기여부 */
+);
+
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_PICK_TO_RQPAYMENT
+		FOREIGN KEY (
+			PICKNO
+		)
+		REFERENCES PICK (
+			PICKNO
+		);
+
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_MEMBER_TO_RQPAYMENT
+		FOREIGN KEY (
+			MEMBERID
+		)
+		REFERENCES MEMBER (
+			MEMBERID
+		);
+		
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_SMEMBER_TO_RQPAYMENT
+		FOREIGN KEY (
+			SMEMBERID
+		)
+		REFERENCES SMEMBER (
+			SMEMBERID
+		);
+
+
 /* 후기시퀀스*/
 create sequence review_seq
 start with 1
@@ -323,120 +442,4 @@ ALTER TABLE REVIEW
 		)
 		REFERENCES RQPAYMENT (
 			PNO
-		);
-		
-/* 픽 시퀀스*/
-create sequence pick_seq
-start with 1
-increment by 1;
-
-/* 픽 */
-CREATE TABLE PICK (
-   PICKNO NUMBER(10) primary key, /* 픽번호 */
-   RQNO NUMBER(10) NOT NULL, /* 견적글번호 */
-   SMEMBERID VARCHAR2(50) NOT NULL, /* 전문가ID */
-   SPRICE NUMBER(10) DEFAULT 0 NOT NULL, /* 전문가금액 */
-   CHOICE CHAR(1) DEFAULT 'N', /* 낙찰여부 */
-   PLEVEL NUMBER(10) DEFAULT 0 /* 페이지 단계 */
-);
-
-ALTER TABLE PICK
-	ADD
-		CONSTRAINT FK_REQUEST_TO_PICK
-		FOREIGN KEY (
-			RQNO
-		)
-		REFERENCES REQUEST (
-			RQNO
-		);
-
-ALTER TABLE PICK
-	ADD
-		CONSTRAINT FK_SMEMBER_TO_PICK
-		FOREIGN KEY (
-			SMEMBERID
-		)
-		REFERENCES SMEMBER (
-			SMEMBERID
-		);
-		
-/* 관심 시퀀스*/
-create sequence likey_seq
-start with 1
-increment by 1;
-
-/* 관심 */
-CREATE TABLE LIKEY (
-	LIKENO NUMBER(10) primary key, /* 관심번호 */
-	MEMBERID VARCHAR2(50), /* 고객ID */
-	PFNO NUMBER(10) /* 포폴글번호 */
-);
-
-ALTER TABLE LIKEY
-	ADD
-		CONSTRAINT FK_PORTFOLIO_TO_LIKE
-		FOREIGN KEY (
-			PFNO
-		)
-		REFERENCES PORTFOLIO (
-			PFNO
-		);
-
-ALTER TABLE LIKEY
-	ADD
-		CONSTRAINT FK_MEMBER_TO_LIKE
-		FOREIGN KEY (
-			MEMBERID
-		)
-		REFERENCES MEMBER (
-			MEMBERID
-		);
-		
-/* 견적결제 시퀀스*/
-create sequence rqpayment_seq
-start with 1
-increment by 1;
-
-/* 견적결제 */
-CREATE TABLE RQPAYMENT (
-	PNO NUMBER(10) NOT NULL, /* 결제번호 */
-	MEMBERID VARCHAR2(50), /* 고객ID */
-	SMEMBERID VARCHAR2(50) NOT NULL, /* 전문가ID */
-	PMETHOD VARCHAR2(20), /* 결제방법 */
-	PPRICE NUMBER(10), /* 결제금액 */
-	MILEAGE NUMBER(10) DEFAULT 0, /* 남은마일리지 */
-	USEMILE NUMBER(10) DEFAULT 0, /* 마일리지사용금액 */
-	REGDATE DATE DEFAULT SYSDATE, /* 결제일 */
-	PICKNO NUMBER(10), /* 픽번호 */
-	FLAG CHAR(1) DEFAULT 'N' /* 후기여부 */
-);
-
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_PICK_TO_RQPAYMENT
-		FOREIGN KEY (
-			PICKNO
-		)
-		REFERENCES PICK (
-			PICKNO
-		);
-
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_MEMBER_TO_RQPAYMENT
-		FOREIGN KEY (
-			MEMBERID
-		)
-		REFERENCES MEMBER (
-			MEMBERID
-		);
-
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_SMEMBER_TO_RQPAYMENT
-		FOREIGN KEY (
-			SMEMBERID
-		)
-		REFERENCES SMEMBER (
-			SMEMBERID
 		);
