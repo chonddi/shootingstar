@@ -31,15 +31,15 @@
 	</select>
 	
 	<select id="reviewSum" parameterType="string" resultType="double">
-		select sum(avg) / count(*) as AVG from review where smemberid=#{sMemberid}
+		select NVL(SUM(avg) / count(*), 0) as AVG from review where smemberid=#{smemberid}
 	</select>
 	
 	<select id="comAvg" parameterType="string" resultType="int">
-		select sum(communication) / count(*) as COMAVG from review where smemberid=#{sMemberid}
+		select NVL(SUM(communication) / count(*), 0) as COMAVG from review where smemberid=#{sMemberid}
 	</select>
 	
 	<select id="resAvg" parameterType="string" resultType="int">
-		select sum(result) / count(*) as RESAVG from review where smemberid=#{sMemberid}
+		select NVL(SUM(result) / count(*), 0) as RESAVG from review where smemberid=#{smemberid}
 	</select>
 	
 	<select id="selCgname" parameterType="int" resultType="string">

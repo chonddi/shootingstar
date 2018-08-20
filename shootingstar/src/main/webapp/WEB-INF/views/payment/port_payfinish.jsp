@@ -65,8 +65,8 @@
 		</table>
 	</section>
 	<section class="sec3">
-		<button id="rqpay">나의 거래 내역</button>
-		<button id="main">메인 페이지</button>
+		<input type="button" id="rqpay" value="나의 거래 이력">
+		<input type="button" id="main" value="메인페이지">
 	</section>
 </form>
 </body>
