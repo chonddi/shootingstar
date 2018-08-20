@@ -3,14 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ include file="../inc/adminTop.jsp"%>
 <style type="text/css">
-@import
-	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
-
-.mytitle{
-	font-family: 'Do Hyeon', sans-serif;
-	font-weight:lighter;
-	font-size: 35px;
-}	
 #title{
 	font-size:1.5em;
 	margin-bottom: 40px;
@@ -76,17 +68,10 @@ $(document).ready(function(){
 		}else if($('#pwd').val()==""){
 			alert('현재 비밀번호를 입력해주세요');
 			bool=false;
-		
-		}
-		else if ($('#newPwd').val().length < 8 | $('#newPwd').val().length>15) {
-			if($('#newPwd').val()==""){
-			bool=true;
-			}
-			else{
+		}else if ($('#newPwd').val().length < 8 | $('#newPwd').val().length>15) {
 			alert('비밀번호는 8~15자리여야 합니다.');
 			$('#newPwd').focus();
 			bool = false;
-			}
 		}else if($('#newPwd').val()!==$('#newPwd2').val()){
 			alert('새로운 비밀번호와 확인이 일치하지 않습니다');
 			bool=false;
@@ -110,28 +95,30 @@ color:gray;
 <form name="frm1" method="post" 
 	action="<c:url value='/admin/adminEdit.do'/>">
 <fieldset>
-	<legend class="mytitle">관리자 정보 수정</legend>
- 	<table id='adminEditTable'>
-	<tr>
-		<td><label for="adminId">관리자ID</label></td>
-		<td><span>${vo.adminId }</span></td>
-		<td><input type="hidden" name="adminId" id="adminId" value=${vo.adminId }></td>
-	</tr>
-	<tr>
-		<td><label for="adminName">이름</label></td>
-		<td><input type="text" name="adminName" id="adminName" value=${vo.adminName }></td>
-	</tr>
-	<tr>
-		<td><label for="newPwd">수정 비밀번호</label></td>
-		<td><input type="Password" name="newPwd" id="newPwd" placeholder="8~15자리"></td>
-	</tr>
-	<tr>
-		<td><label for="newPwd2">수정 비밀번호 확인 </label></td>
-		<td><input type="Password" name="newPwd2" id="newPwd2"></td>
-	</tr>
-	<tr>		<td id="comment">(비밀번호를 수정하지 않을 경우 비워두세요)</td></tr>
-	</table> 
-
+	<legend>관리자 정보 수정</legend>
+        <label for="adminId">관리자ID</label>
+        <span>${vo.adminId }</span>
+        <input type="hidden" name="adminId" id="adminId" value=${vo.adminId }>
+    </div>
+    <div>        
+        <label for="adminName">이름</label>
+		<input type="text" name="adminName" id="adminName" value=${vo.adminName }>
+    </div>
+    <br>
+	<hr>
+    <br>
+    <div>
+        <label for="newPwd">수정 비밀번호</label>
+        <input type="Password" name="newPwd" id="newPwd" placeholder="8~15자리">
+    </div>
+    <div>
+        <label for="newPwd2">수정 비밀번호 확인 </label>
+        <input type="Password" name="newPwd2" id="newPwd2">
+    </div>
+    <p id="comment">(비밀번호를 수정하지 않을 경우 비워두세요)</p>
+    <br>
+	<hr>
+    <br>
     <div>
         <label for="pwd">* 비밀번호 확인</label>
         <br>
@@ -139,7 +126,7 @@ color:gray;
     </div>
     <div class="center">
          <input type="submit" id="editSubmit" value="수정">
-    </div> 
+    </div>
 </fieldset>
    
         
@@ -149,3 +136,14 @@ color:gray;
 
 
 <%@ include file="../inc/adminBottom.jsp"%>
+
+
+
+
+
+
+
+
+
+
+

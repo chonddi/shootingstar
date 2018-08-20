@@ -57,7 +57,7 @@ margin: 50px auto;
 }
 </style>
 <div class=message>
-		<span class="title">쪽지함</span>
+		<h1>쪽지함</h1>
 <br>
 	<form id="detailFrm" name="detailFrm" method="post"> 
 		<input type="hidden" name="sMsgNo">

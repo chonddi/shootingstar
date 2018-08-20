@@ -21,8 +21,23 @@ cn부터 먼저 해줘야함
 
 <title>슈팅스타 관리자 공지사항</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
-<style type="text/css">
 
+<style type="text/css">
+/* .on{
+	background-image:url(<c:url value='/images/noticeup.png'/>);
+	background-repeat: no-repeat;
+
+	 background-size:50px; 
+
+}
+.off{
+	background-image:url(<c:url value='/images/noticedown.png'/>);
+	background-repeat: no-repeat;
+
+	 background-size:50px; 
+
+}
+ */
  #width{padding-left:200px;
 	padding-right:200px;}
 th{
