@@ -7,7 +7,7 @@
 		<ul>
 			<li><a href="<c:url value='/etc/policy.do'/>">이용약관</a>
 			<li><a href="<c:url value='/etc/privatei.do'/>">개인정보취급방침</a>
-			<li><a href="#">FAQ</a>
+			<li><a href="<c:url value='/faq/faqList.do'/>">FAQ</a>
 		</ul>
 		<ul>
 			<li><a href="#"><img alt="youtube"

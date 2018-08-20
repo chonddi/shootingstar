@@ -27,10 +27,11 @@ height:60px;
 width:1500px;
 margin: 50px auto;
 }
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>" />
+
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
