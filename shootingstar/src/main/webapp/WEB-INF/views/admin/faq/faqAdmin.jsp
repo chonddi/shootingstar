@@ -15,6 +15,7 @@ pageContext.setAttribute("cn", "\n");
 <title>FAQ 관리자</title>
 
 <style type="text/css">
+
 #title{text-align: left;
 vertical-align: middle;}
 .button{padding: 10px 0 10px 0;

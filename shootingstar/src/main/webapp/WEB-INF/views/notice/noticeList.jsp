@@ -15,6 +15,13 @@ pageContext.setAttribute("cn", "\n");
 
 <title>슈팅스타 공지사항</title>
 <style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+.mytitle{
+	font-family: 'Do Hyeon', sans-serif;
+	font-weight:lighter;
+	font-size: 35px;
+}	
 #quest{
 	width:70px;
 	vertical-align: middle;
@@ -37,6 +44,7 @@ margin: 50px auto;
 }
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/notice.css'/>" />
+
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
@@ -51,7 +59,7 @@ $('.notice .tbody .title').find('#title').click(function(){
 </head>
 <body>
 <div class="noticediv">
-<h1>공지사항</h1>
+<span class="mytitle">공지사항</span>
 
  <table class="notice">
 	<thead>

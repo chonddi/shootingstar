@@ -15,12 +15,18 @@ pageContext.setAttribute("cn", "\n");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ</title>
 <style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+
+.mytitle{
+	font-family: 'Do Hyeon', sans-serif;
+	font-weight:lighter;
+	font-size: 35px;
+}	
 th{text-align: center;}
 #title{vertical-align: middle;
 text-align: left;}
 .notitle td{ vertical-align: middle; }
-
-
 </style>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faq.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
@@ -35,24 +41,6 @@ $(document).ready(function(){
 	$('.faq .tbody .title').find('#title').click(function(){
 		$(this).parent().next().toggle();
 	});
-/* 	$('th').click(function(){
-		var ctg= $('#ctg').val();
-		var thead= $(this).text();
-			if(true){
-			alert("thead="+thead+", ctg="+ctg);
-			} 
-		$(this).css('color','blue'); 
-		}
-	}); */
-	//alert('${param.category}');
-	/*$('th').each(function(){
-		 if(this.text 가 param.category와 같다면){
-			this.text에 css
-		}); */
-
-/* 	$('th').click(function(){
-		$(this).css('color','blue')
-	}); */
 
 });
 
@@ -63,7 +51,7 @@ $(document).ready(function(){
 	</head>
 	<body>
 <div class="faqdiv">
-	<h1>FAQ</h1>
+	<span class="mytitle">FAQ</span>
 	 <table class="faq">
 
 	<thead>

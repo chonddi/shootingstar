@@ -7,6 +7,14 @@
 <script type="text/javascript">
 </script>
 <style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+
+.mytitle{
+	font-family: 'Do Hyeon', sans-serif;
+	font-weight:lighter;
+	font-size: 35px;
+}	
 th, td{ padding:10px;
 }
 .smemberList{
@@ -20,7 +28,7 @@ margin: 50px auto;
 </head>
 <body>
 <div class="smemberList">
-<h1>멤버십이 만료된 전문가회원 목록</h1>
+<span class="mytitle">멤버십 만료 회원 목록</span>
 <c:if test="${!empty param.searchKeyword}">
 	<p>검색어: ${param.searchKeyword}(으)로  ${fn:length(list)}건 검색되었습니다. </p> 
 </c:if>
