@@ -1,21 +1,21 @@
-/* ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½*/
-DROP TABLE CATEGORY CASCADE CONSTRAINTS; /* Ä«ï¿½×°ï¿½ */
-DROP TABLE MEMBER CASCADE CONSTRAINTS;   /* ï¿½ï¿½È¸ï¿½ï¿½*/
-DROP TABLE REQUEST CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ */
-DROP TABLE REQUESTIMG CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ */
-DROP TABLE QNA CASCADE CONSTRAINTS;  /* QNAï¿½Ô½ï¿½ï¿½ï¿½ */
-DROP TABLE QNARE CASCADE CONSTRAINTS; /* QNAï¿½ï¿½ï¿½ */
-DROP TABLE SMEMBER CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-DROP TABLE MSPAYMENT CASCADE CONSTRAINTS; /* ï¿½ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½ */
-DROP TABLE PORTFOLIO CASCADE CONSTRAINTS;  /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-DROP TABLE POFOLIMG CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ */
-DROP TABLE REVIEW CASCADE CONSTRAINTS;  /* ï¿½Ä±ï¿½ */
-DROP TABLE PICK CASCADE CONSTRAINTS;  /* ï¿½ï¿½ */
-DROP TABLE LIKEY CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ */
-DROP TABLE RQPAYMENT CASCADE CONSTRAINTS;  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+/* Å×ÀÌºí µå¶ø*/
+DROP TABLE CATEGORY CASCADE CONSTRAINTS; /* Ä«Å×°í¸® */
+DROP TABLE MEMBER CASCADE CONSTRAINTS;   /* °í°´È¸¿ø*/
+DROP TABLE REQUEST CASCADE CONSTRAINTS;  /* °ßÀû¿äÃ»¼­ */
+DROP TABLE REQUESTIMG CASCADE CONSTRAINTS;  /* °ßÀûÀÌ¹ÌÁö */
+DROP TABLE QNA CASCADE CONSTRAINTS;  /* QNA°Ô½ÃÆÇ */
+DROP TABLE QNARE CASCADE CONSTRAINTS; /* QNA´ñ±Û */
+DROP TABLE SMEMBER CASCADE CONSTRAINTS;  /* Àü¹®°¡ */
+DROP TABLE MSPAYMENT CASCADE CONSTRAINTS; /* ¸â¹ö½Ê°áÁ¦ */
+DROP TABLE PORTFOLIO CASCADE CONSTRAINTS;  /* Æ÷Æ®Æú¸®¿À */
+DROP TABLE POFOLIMG CASCADE CONSTRAINTS;  /* Æ÷ÆúÀÌ¹ÌÁö */
+DROP TABLE REVIEW CASCADE CONSTRAINTS;  /* ÈÄ±â */
+DROP TABLE PICK CASCADE CONSTRAINTS;  /* ÇÈ */
+DROP TABLE LIKEY CASCADE CONSTRAINTS;  /* °ü½É */
+DROP TABLE RQPAYMENT CASCADE CONSTRAINTS;  /* °ßÀû°áÁ¦ */
 
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
+/* ½ÃÄö½º µå¶ø*/
 drop sequence category_seq;
 drop sequence request_seq;
 drop sequence requestimg_seq;
@@ -31,49 +31,49 @@ drop sequence rqpayment_seq;
 
 
 
-/* Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* Ä«Å×°í¸® ½ÃÄö½º*/
 create sequence category_seq
 start with 1
 increment by 1;
 
-/* Ä«ï¿½×°ï¿½ */
+/* Ä«Å×°í¸® */
 CREATE TABLE CATEGORY (
-	CGNO NUMBER(10) primary key, /* Ä«ï¿½×°ï¿½ï¿½ï¿½È£ */
-	CGNAME VARCHAR2(20) NOT NULL, /* Ä«ï¿½×°ï¿½ï¿½Ì¸ï¿½ */
-	CGORDER NUMBER(10) NOT NULL /* Ä«ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	CGNO NUMBER(10) primary key, /* Ä«Å×°í¸®¹øÈ£ */
+	CGNAME VARCHAR2(20) NOT NULL, /* Ä«Å×°í¸®ÀÌ¸§ */
+	CGORDER NUMBER(10) NOT NULL /* Ä«Å×°í¸®Á¤·Ä */
 );
 
 
-/* ï¿½ï¿½ */
+/* °í°´ */
 CREATE TABLE MEMBER (
-	MEMBERID VARCHAR2(50) primary key, /* ï¿½ï¿½ID */
-	NAME VARCHAR2(20) NOT NULL, /* ï¿½Ì¸ï¿½ */
-	PWD VARCHAR2(30) NOT NULL, /* ï¿½ï¿½Ð¹ï¿½È£ */
-	TEL VARCHAR2(20) NOT NULL, /* ï¿½ï¿½È­ï¿½ï¿½È£ */
-	MILEAGE NUMBER(10) default 0, /* ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ */
-	TEMPPWD VARCHAR2(200), /* ï¿½Ó½Ã¹ï¿½È£ */
-	REGDATE DATE DEFAULT sysdate, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	OUTDATE DATE /* Å»ï¿½ï¿½ï¿½ï¿½ */
+	MEMBERID VARCHAR2(50) primary key, /* °í°´ID */
+	NAME VARCHAR2(20) NOT NULL, /* ÀÌ¸§ */
+	PWD VARCHAR2(30) NOT NULL, /* ºñ¹Ð¹øÈ£ */
+	TEL VARCHAR2(20) NOT NULL, /* ÀüÈ­¹øÈ£ */
+	MILEAGE NUMBER(10) default 0, /* ¸¶ÀÏ¸®Áö */
+	TEMPPWD VARCHAR2(200), /* ÀÓ½Ã¹øÈ£ */
+	REGDATE DATE DEFAULT sysdate, /* °¡ÀÔÀÏ */
+	OUTDATE DATE /* Å»ÅðÀÏ */
 );
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* °ßÀû¿äÃ»¼­ ½ÃÄö½º*/
 create sequence request_seq
 start with 1
 increment by 1;
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ */
+/* °ßÀû¿äÃ»¼­ */
 CREATE TABLE REQUEST (
-	RQNO NUMBER(10) primary key, /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-	MEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ID */
-	CGNO NUMBER(10) NOT NULL, /* Ä«ï¿½×°ï¿½ï¿½ï¿½È£ */
-	RQPRICE NUMBER(10) NOT NULL, /* ï¿½Ý¾ï¿½ */
-	RQREGION VARCHAR2(50) NOT NULL, /* ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	RQDATE VARCHAR2(50) NOT NULL, /* ï¿½Ô¿ï¿½ï¿½ï¿½Â¥ */
-	RQTYPE VARCHAR2(20), /* ï¿½Ô¿ï¿½ï¿½ëµµ */
-	PICKCOUNT NUMBER(1) DEFAULT 0, /* ï¿½ï¿½Ä«ï¿½ï¿½Æ® */
-	RQDETAIL VARCHAR2(4000), /* ï¿½ï¿½ï¿½Î¿ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ */
-	REGDATE DATE DEFAULT SYSDATE, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	DELFLAG CHAR(1) DEFAULT 'N' /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	RQNO NUMBER(10) primary key, /* °ßÀû±Û¹øÈ£ */
+	MEMBERID VARCHAR2(50) NOT NULL, /* °í°´ID */
+	CGNO NUMBER(10) NOT NULL, /* Ä«Å×°í¸®¹øÈ£ */
+	RQPRICE NUMBER(10) NOT NULL, /* ±Ý¾× */
+	RQREGION VARCHAR2(50) NOT NULL, /* ÃÔ¿µÁö¿ª */
+	RQDATE VARCHAR2(50) NOT NULL, /* ÃÔ¿µ³¯Â¥ */
+	RQTYPE VARCHAR2(20), /* ÃÔ¿µ¿ëµµ */
+	PICKCOUNT NUMBER(1) DEFAULT 0, /* ÇÈÄ«¿îÆ® */
+	RQDETAIL VARCHAR2(4000), /* ¼¼ºÎ¿äÃ»»çÇ× */
+	REGDATE DATE DEFAULT SYSDATE, /* µî·ÏÀÏ */
+	DELFLAG CHAR(1) DEFAULT 'N' /* »èÁ¦¿©ºÎ */
 );
 
 ALTER TABLE REQUEST
@@ -96,17 +96,17 @@ ALTER TABLE REQUEST
 			CGNO
 		);
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* °ßÀû¿äÃ»¼­ÀÌ¹ÌÁö ½ÃÄö½º*/
 create sequence requestimg_seq
 start with 1
 increment by 1;
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ */
+/* °ßÀûÀÌ¹ÌÁö */
 CREATE TABLE REQUESTIMG (
-	RQIMGNO NUMBER(10) primary key, /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	RQNO NUMBER(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-	ORIGINALFILENAME VARCHAR2(200), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ */
-	FILENAME VARCHAR2(200) /* ï¿½ï¿½ï¿½Ï¸ï¿½ */
+	RQIMGNO NUMBER(10) primary key, /* ÀÌ¹ÌÁö¹øÈ£ */
+	RQNO NUMBER(10) NOT NULL, /* °ßÀû±Û¹øÈ£ */
+	ORIGINALFILENAME VARCHAR2(200), /* ¿øº»ÆÄÀÏ¸í */
+	FILENAME VARCHAR2(200) /* ÆÄÀÏ¸í */
 );
 
 ALTER TABLE REQUESTIMG
@@ -119,18 +119,18 @@ ALTER TABLE REQUESTIMG
 			RQNO
 		);
 		
-/* Q&A ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* Q&A ½ÃÄö½º*/
 create sequence qna_seq
 start with 1
 increment by 1;
 
-/* QNAï¿½Ô½ï¿½ï¿½ï¿½ */
+/* QNA°Ô½ÃÆÇ */
 CREATE TABLE QNA (
-	QNO NUMBER(10) primary key, /* QNAï¿½Û¹ï¿½È£ */
-	QTITLE VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
-	QCONTENT VARCHAR2(4000) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
-	MEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ID */
-	REGDATE DATE DEFAULT SYSDATE /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	QNO NUMBER(10) primary key, /* QNA±Û¹øÈ£ */
+	QTITLE VARCHAR2(100) NOT NULL, /* Á¦¸ñ */
+	QCONTENT VARCHAR2(4000) NOT NULL, /* ³»¿ë */
+	MEMBERID VARCHAR2(50) NOT NULL, /* °í°´ID */
+	REGDATE DATE DEFAULT SYSDATE /* µî·ÏÀÏ */
 );
 
 ALTER TABLE QNA
@@ -143,20 +143,20 @@ ALTER TABLE QNA
 			MEMBERID
 		);
 		
-/* QNAï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* QNA´ñ±Û ½ÃÄö½º*/
 create sequence qnare_seq
 start with 1
 increment by 1;
 
-/* QNAï¿½ï¿½ï¿½ */
+/* QNA´ñ±Û */
 CREATE TABLE QNARE (
-	QRNO NUMBER(10) primary key, /* ï¿½ï¿½Û¹ï¿½È£ */
-	QNO NUMBER(10) NOT NULL, /* QNAï¿½Û¹ï¿½È£ */
-	ID VARCHAR2(20) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
-	CONTENT VARCHAR2(3000) NOT NULL, /* ï¿½ï¿½Û³ï¿½ï¿½ï¿½ */
-	REGDATE DATE default sysdate, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	PARENT NUMBER(10), /* ï¿½Î¸ï¿½ï¿½È£ */
-	LEVELS NUMBER(1) DEFAULT 0 /* ï¿½ï¿½ï¿½ï¿½ */
+	QRNO NUMBER(10) primary key, /* ´ñ±Û¹øÈ£ */
+	QNO NUMBER(10) NOT NULL, /* QNA±Û¹øÈ£ */
+	ID VARCHAR2(20) NOT NULL, /* ¾ÆÀÌµð */
+	CONTENT VARCHAR2(3000) NOT NULL, /* ´ñ±Û³»¿ë */
+	REGDATE DATE default sysdate, /* µî·ÏÀÏ */
+	PARENT NUMBER(10), /* ºÎ¸ð¹øÈ£ */
+	LEVELS NUMBER(1) DEFAULT 0 /* °èÃþ */
 );
 
 ALTER TABLE QNARE
@@ -169,42 +169,43 @@ ALTER TABLE QNARE
 			QNO
 		);
 		
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+/* Àü¹®°¡ */
 CREATE TABLE SMEMBER (
-	SMEMBERID VARCHAR2(50) primary key, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-	SNAME VARCHAR2(20) NOT NULL, /* ï¿½Ì¸ï¿½ */
-	SPWD VARCHAR2(30) NOT NULL, /* ï¿½ï¿½Ð¹ï¿½È£ */
-	STEL VARCHAR2(20) NOT NULL, /* ï¿½ï¿½È­ï¿½ï¿½È£ */
-	PR VARCHAR2(1000) NOT NULL, /* ï¿½Ú±ï¿½Ò°ï¿½ */
-	ZIPCODE VARCHAR2(20) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	ADDRESS1 VARCHAR2(200) NOT NULL, /* ï¿½Ö¼ï¿½ */
-	ADDRESS2 VARCHAR2(200) NOT NULL, /* ï¿½ï¿½ï¿½Ö¼ï¿½ */
-	IDENTIFICATION VARCHAR2(500), /* ï¿½Åºï¿½ï¿½ï¿½ */
-	ACCOUNTCOPY VARCHAR2(500), /* ï¿½ï¿½ï¿½Â»çº» */
-	TEMPPWD VARCHAR2(200), /* ï¿½Ó½Ã¹ï¿½È£ */
-	REGDATE DATE DEFAULT SYSDATE, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	OUTDATE DATE, /* Å»ï¿½ï¿½ï¿½ï¿½ */
-	MEMBERSHIP DATE DEFAULT SYSDATE, /* ï¿½ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	AUTHORITY CHAR(1) DEFAULT 'N' /* ï¿½ï¿½ï¿½ï¿½ */
+	SMEMBERID VARCHAR2(50) primary key, /* Àü¹®°¡ID */
+	SNAME VARCHAR2(20) NOT NULL, /* ÀÌ¸§ */
+	SPWD VARCHAR2(30) NOT NULL, /* ºñ¹Ð¹øÈ£ */
+	STEL VARCHAR2(20) NOT NULL, /* ÀüÈ­¹øÈ£ */
+	PR VARCHAR2(1000) NOT NULL, /* ÀÚ±â¼Ò°³ */
+	ZIPCODE VARCHAR2(20) NOT NULL, /* ¿ìÆí¹øÈ£ */
+	ADDRESS1 VARCHAR2(200) NOT NULL, /* ÁÖ¼Ò */
+	ADDRESS2 VARCHAR2(200) NOT NULL, /* »ó¼¼ÁÖ¼Ò */
+	IDENTIFICATION VARCHAR2(500), /* ½ÅºÐÁõ */
+	ACCOUNTCOPY VARCHAR2(500), /* °èÁÂ»çº» */
+	TEMPPWD VARCHAR2(200), /* ÀÓ½Ã¹øÈ£ */
+	REGDATE DATE DEFAULT SYSDATE, /* °¡ÀÔÀÏ */
+	OUTDATE DATE, /* Å»ÅðÀÏ */
+	MEMBERSHIP DATE DEFAULT SYSDATE, /* ¸â¹ö½Ê¸¸·áÀÏ */
+	AUTHORITY CHAR(1) DEFAULT 'N' /* ±ÇÇÑ */
 );
 
+/* ¹ÌÁ¤ÃÊ±âÈ­ */
 insert into smember (smemberid, sname, spwd, stel, pr, zipcode, address1, address2)
-values('ë¯¸ì •','ë¯¸ì •','1','123123','ì´ˆê¸°í™”ìš©ìž…ë‹ˆë‹¤','123123','ì„œìš¸','ì–´ë”˜ê°€');
+values('¹ÌÁ¤','¹ÌÁ¤','1','123123','ÃÊ±âÈ­¿ëÀÔ´Ï´Ù','123123','¼­¿ï','¾îµò°¡');
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/		
+/* ¸â¹ö½Ê ½ÃÄö½º*/		
 create sequence mspayment_seq
 start with 1
 increment by 1;
 
-/* ï¿½ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½ */
+/* ¸â¹ö½Ê°áÁ¦ */
 CREATE TABLE MSPAYMENT (
-	PNO NUMBER(10) primary key, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	SMEMBERID VARCHAR2(50), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-	PMETHOD VARCHAR2(20), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	PCONTENT VARCHAR2(200), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	PPRICE NUMBER(10), /* ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½ */
-	PERIOD NUMBER(10), /* ï¿½ï¿½ï¿½ï¿½ï¿½â°£*/
-	REGDATE DATE DEFAULT sysdate /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	PNO NUMBER(10) primary key, /* °áÁ¦¹øÈ£ */
+	SMEMBERID VARCHAR2(50), /* Àü¹®°¡ID */
+	PMETHOD VARCHAR2(20), /* °áÁ¦¹æ¹ý */
+	PCONTENT VARCHAR2(200), /* °áÁ¦³»¿ë */
+	PPRICE NUMBER(10), /* °áÁ¦±Ý¾× */
+	PERIOD NUMBER(10), /* °áÁ¦±â°£*/
+	REGDATE DATE DEFAULT sysdate /* °áÁ¦ÀÏ */
 );
 
 ALTER TABLE MSPAYMENT
@@ -217,20 +218,20 @@ ALTER TABLE MSPAYMENT
 			SMEMBERID
 		);
 
-/* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/		
+/* Æ÷Æ®Æú¸®¿À½ÃÄö½º*/		
 create sequence portfolio_seq
 start with 1
 increment by 1;
 
-/* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+/* Æ÷Æ®Æú¸®¿À */
 CREATE TABLE PORTFOLIO (
-	PFNO NUMBER(10) primary key, /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-	SMEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-	CGNO NUMBER(10) NOT NULL, /* Ä«ï¿½×°ï¿½ï¿½ï¿½È£ */
-	PFTITLE VARCHAR2(100) NOT NULL, /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	READCOUNT NUMBER(10) DEFAULT 0,  /*ï¿½ï¿½È¸ï¿½ï¿½ */
-	REGDATE DATE DEFAULT SYSDATE, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	DELFLAG CHAR(1) DEFAULT 'N' /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	PFNO NUMBER(10) primary key, /* Æ÷Æú±Û¹øÈ£ */
+	SMEMBERID VARCHAR2(50) NOT NULL, /* Àü¹®°¡ID */
+	CGNO NUMBER(10) NOT NULL, /* Ä«Å×°í¸®¹øÈ£ */
+	PFTITLE VARCHAR2(100) NOT NULL, /* Æ÷Æ®Æú¸®¿ÀÁ¦¸ñ */
+	READCOUNT NUMBER(10) DEFAULT 0,  /*Á¶È¸¼ö */
+	REGDATE DATE DEFAULT SYSDATE, /* µî·ÏÀÏ */
+	DELFLAG CHAR(1) DEFAULT 'N' /* °ø°³¿©ºÎ */
 );
 
 ALTER TABLE PORTFOLIO
@@ -253,17 +254,17 @@ ALTER TABLE PORTFOLIO
 			CGNO
 		);
 		
-/* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/		
+/* Æ÷Æ®Æú¸®¿ÀÀÌ¹ÌÁö½ÃÄö½º*/		
 create sequence pofolimg_seq
 start with 1
 increment by 1;
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ */
+/* Æ÷ÆúÀÌ¹ÌÁö */
 CREATE TABLE POFOLIMG (
-	PFIMGNO NUMBER(10) primary key, /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	PFNO NUMBER(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-	ORIGINALFILENAME VARCHAR2(500), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ */
-	FILENAME VARCHAR2(500) /* ï¿½ï¿½ï¿½Ï¸ï¿½ */
+	PFIMGNO NUMBER(10) primary key, /* ÀÌ¹ÌÁö¹øÈ£ */
+	PFNO NUMBER(10) NOT NULL, /* Æ÷Æú±Û¹øÈ£ */
+	ORIGINALFILENAME VARCHAR2(500), /* ¿øº»ÆÄÀÏ¸í */
+	FILENAME VARCHAR2(500) /* ÆÄÀÏ¸í */
 );
 
 ALTER TABLE POFOLIMG
@@ -277,143 +278,24 @@ ALTER TABLE POFOLIMG
 		);
 		
 
-/* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-create sequence pick_seq
-start with 1
-increment by 1;
-
-/* ï¿½ï¿½ */
-CREATE TABLE PICK (
-   PICKNO NUMBER(10) primary key, /* ï¿½È¹ï¿½È£ */
-   RQNO NUMBER(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-   SMEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-   SPRICE NUMBER(10) DEFAULT 0 NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½ */
-   CHOICE CHAR(1) DEFAULT 'N', /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-   PLEVEL NUMBER(10) DEFAULT 0 /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ */
-);
-
-ALTER TABLE PICK
-	ADD
-		CONSTRAINT FK_REQUEST_TO_PICK
-		FOREIGN KEY (
-			RQNO
-		)
-		REFERENCES REQUEST (
-			RQNO
-		);
-
-ALTER TABLE PICK
-	ADD
-		CONSTRAINT FK_SMEMBER_TO_PICK
-		FOREIGN KEY (
-			SMEMBERID
-		)
-		REFERENCES SMEMBER (
-			SMEMBERID
-		);
-		
-
-/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-create sequence likey_seq
-start with 1
-increment by 1;
-
-/* ï¿½ï¿½ï¿½ï¿½ */
-CREATE TABLE LIKEY (
-	LIKENO NUMBER(10) primary key, /* ï¿½ï¿½ï¿½É¹ï¿½È£ */
-	MEMBERID VARCHAR2(50), /* ï¿½ï¿½ID */
-	PFNO NUMBER(10) /* ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
-);
-
-ALTER TABLE LIKEY
-	ADD
-		CONSTRAINT FK_PORTFOLIO_TO_LIKE
-		FOREIGN KEY (
-			PFNO
-		)
-		REFERENCES PORTFOLIO (
-			PFNO
-		);
-
-ALTER TABLE LIKEY
-	ADD
-		CONSTRAINT FK_MEMBER_TO_LIKE
-		FOREIGN KEY (
-			MEMBERID
-		)
-		REFERENCES MEMBER (
-			MEMBERID
-		);
-
-
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-create sequence rqpayment_seq
-start with 1
-increment by 1;
-
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-CREATE TABLE RQPAYMENT (
-	PNO NUMBER(10) primary key, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	MEMBERID VARCHAR2(50), /* ï¿½ï¿½ID */
-	SMEMBERID VARCHAR2(50), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-	PMETHOD VARCHAR2(20), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	PPRICE NUMBER(10), /* ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½ */
-	MILEAGE NUMBER(10) DEFAULT 0, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ */
-	USEMILE NUMBER(10) DEFAULT 0, /* ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½ */
-	REGDATE DATE DEFAULT SYSDATE, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	PICKNO NUMBER(10), /* ï¿½È¹ï¿½È£ */
-	FLAG CHAR(1) DEFAULT 'N' /* ï¿½Ä±â¿©ï¿½ï¿½ */
-);
-
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_PICK_TO_RQPAYMENT
-		FOREIGN KEY (
-			PICKNO
-		)
-		REFERENCES PICK (
-			PICKNO
-		);
-
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_MEMBER_TO_RQPAYMENT
-		FOREIGN KEY (
-			MEMBERID
-		)
-		REFERENCES MEMBER (
-			MEMBERID
-		);
-		
-ALTER TABLE RQPAYMENT
-	ADD
-		CONSTRAINT FK_SMEMBER_TO_RQPAYMENT
-		FOREIGN KEY (
-			SMEMBERID
-		)
-		REFERENCES SMEMBER (
-			SMEMBERID
-		);
-
-
-/* ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/* ÈÄ±â½ÃÄö½º*/
 create sequence review_seq
 start with 1
 increment by 1;
 
-/* ï¿½Ä±ï¿½ */
+/* ÈÄ±â */
 CREATE TABLE REVIEW (
-	REVIEWNO NUMBER(10) NOT NULL, /* ï¿½Ä±ï¿½Û¹ï¿½È£ */
-	SMEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID */
-	CONTENT VARCHAR2(2000) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
-	COMMUNICATION NUMBER(5,2) DEFAULT 0, /* Ä¿ï¿½Â´ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ */
-	RESULT NUMBER(5,2) DEFAULT 0, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	MEMBERID VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ID */
-	NAME VARCHAR2(30) NOT NULL, /* ï¿½ï¿½ï¿½Ì¸ï¿½ */
-	PNO NUMBER(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
-	AVG NUMBER(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
-	CGNAME VARCHAR2(50) NOT NULL, /* Ä«ï¿½×°ï¿½ï¿½Ì¸ï¿½ */
-	REGDATE DATE DEFAULT SYSDATE /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	REVIEWNO NUMBER(10) NOT NULL, /* ÈÄ±â±Û¹øÈ£ */
+	SMEMBERID VARCHAR2(50) NOT NULL, /* Àü¹®°¡ID */
+	CONTENT VARCHAR2(2000) NOT NULL, /* ³»¿ë */
+	COMMUNICATION NUMBER(5,2) DEFAULT 0, /* Ä¿¹Â´ÏÄÉÀÌ¼Ç */
+	RESULT NUMBER(5,2) DEFAULT 0, /* °á°ú¸¸Á·µµ */
+	MEMBERID VARCHAR2(50) NOT NULL, /* °í°´ID */
+	NAME VARCHAR2(30) NOT NULL, /* °í°´ÀÌ¸§ */
+	PNO NUMBER(10) NOT NULL, /* °áÁ¦¹øÈ£ */
+	AVG NUMBER(10) NOT NULL, /* ÆòÁ¡ */
+	CGNAME VARCHAR2(50) NOT NULL, /* Ä«Å×°í¸®ÀÌ¸§ */
+	REGDATE DATE DEFAULT SYSDATE /* µî·ÏÀÏ */
 );
 
 ALTER TABLE REVIEW
@@ -444,4 +326,120 @@ ALTER TABLE REVIEW
 		)
 		REFERENCES RQPAYMENT (
 			PNO
+		);
+		
+/* ÇÈ ½ÃÄö½º*/
+create sequence pick_seq
+start with 1
+increment by 1;
+
+/* ÇÈ */
+CREATE TABLE PICK (
+   PICKNO NUMBER(10) primary key, /* ÇÈ¹øÈ£ */
+   RQNO NUMBER(10) NOT NULL, /* °ßÀû±Û¹øÈ£ */
+   SMEMBERID VARCHAR2(50) NOT NULL, /* Àü¹®°¡ID */
+   SPRICE NUMBER(10) DEFAULT 0 NOT NULL, /* Àü¹®°¡±Ý¾× */
+   CHOICE CHAR(1) DEFAULT 'N', /* ³«Âû¿©ºÎ */
+   PLEVEL NUMBER(10) DEFAULT 0 /* ÆäÀÌÁö ´Ü°è */
+);
+
+ALTER TABLE PICK
+	ADD
+		CONSTRAINT FK_REQUEST_TO_PICK
+		FOREIGN KEY (
+			RQNO
+		)
+		REFERENCES REQUEST (
+			RQNO
+		);
+
+ALTER TABLE PICK
+	ADD
+		CONSTRAINT FK_SMEMBER_TO_PICK
+		FOREIGN KEY (
+			SMEMBERID
+		)
+		REFERENCES SMEMBER (
+			SMEMBERID
+		);
+		
+/* °ü½É ½ÃÄö½º*/
+create sequence likey_seq
+start with 1
+increment by 1;
+
+/* °ü½É */
+CREATE TABLE LIKEY (
+	LIKENO NUMBER(10) primary key, /* °ü½É¹øÈ£ */
+	MEMBERID VARCHAR2(50), /* °í°´ID */
+	PFNO NUMBER(10) /* Æ÷Æú±Û¹øÈ£ */
+);
+
+ALTER TABLE LIKEY
+	ADD
+		CONSTRAINT FK_PORTFOLIO_TO_LIKE
+		FOREIGN KEY (
+			PFNO
+		)
+		REFERENCES PORTFOLIO (
+			PFNO
+		);
+
+ALTER TABLE LIKEY
+	ADD
+		CONSTRAINT FK_MEMBER_TO_LIKE
+		FOREIGN KEY (
+			MEMBERID
+		)
+		REFERENCES MEMBER (
+			MEMBERID
+		);
+		
+/* °ßÀû°áÁ¦ ½ÃÄö½º*/
+create sequence rqpayment_seq
+start with 1
+increment by 1;
+
+/* °ßÀû°áÁ¦ */
+CREATE TABLE RQPAYMENT (
+	PNO NUMBER(10) NOT NULL, /* °áÁ¦¹øÈ£ */
+	MEMBERID VARCHAR2(50), /* °í°´ID */
+	SMEMBERID VARCHAR2(50) NOT NULL, /* Àü¹®°¡ID */
+	PMETHOD VARCHAR2(20), /* °áÁ¦¹æ¹ý */
+	PPRICE NUMBER(10), /* °áÁ¦±Ý¾× */
+	MILEAGE NUMBER(10) DEFAULT 0, /* ³²Àº¸¶ÀÏ¸®Áö */
+	USEMILE NUMBER(10) DEFAULT 0, /* ¸¶ÀÏ¸®Áö»ç¿ë±Ý¾× */
+	REGDATE DATE DEFAULT SYSDATE, /* °áÁ¦ÀÏ */
+	PICKNO NUMBER(10), /* ÇÈ¹øÈ£ */
+	FLAG CHAR(1) DEFAULT 'N' /* ÈÄ±â¿©ºÎ */
+);
+
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_PICK_TO_RQPAYMENT
+		FOREIGN KEY (
+			PICKNO
+		)
+		REFERENCES PICK (
+			PICKNO
+		);
+
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_MEMBER_TO_RQPAYMENT
+		FOREIGN KEY (
+			MEMBERID
+		)
+		REFERENCES MEMBER (
+			MEMBERID
+		);
+
+ALTER TABLE RQPAYMENT
+	ADD
+		CONSTRAINT FK_SMEMBER_TO_RQPAYMENT
+		FOREIGN KEY (
+			SMEMBERID
+		)
+		REFERENCES SMEMBER (
+			SMEMBERID
 		);
