@@ -69,9 +69,14 @@ $(document).ready(function(){
 			alert('현재 비밀번호를 입력해주세요');
 			bool=false;
 		}else if ($('#newPwd').val().length < 8 | $('#newPwd').val().length>15) {
+			if($('#pwd').val()==""){
+				bool=true;
+			}
+			else{
 			alert('비밀번호는 8~15자리여야 합니다.');
 			$('#newPwd').focus();
 			bool = false;
+			}
 		}else if($('#newPwd').val()!==$('#newPwd2').val()){
 			alert('새로운 비밀번호와 확인이 일치하지 않습니다');
 			bool=false;
