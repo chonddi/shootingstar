@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="mypageTop.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/mypageTop.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage.css'/>">
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -102,7 +103,7 @@
 	font-size: 0.9em;
 }
 </style>
-			회원정보 수정
+			<span class="title">회원정보 수정</span>
 	</div>
 	<div class="selectedPage">
 		<form name="frm" id="editFrm" method="post"

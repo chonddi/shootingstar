@@ -127,3 +127,9 @@ nav #userul {
 article {
 	margin-top: 40px;
 }
+
+#mile{
+	color: red;
+	font-weight: bold;
+	font-size: 1.1em;
+}

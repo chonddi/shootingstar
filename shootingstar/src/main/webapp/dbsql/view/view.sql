@@ -1,6 +1,6 @@
 --view.sql
 
-**caution - YOU should insert sMemberID-"ë¯¸ì •"(Mi Jung (uncertain)) into smember table before you run the test
+--caution - YOU should insert sMemberID-"¹ÌÁ¤"(Mi Jung (uncertain)) into smember table before you run the test
 
 -- VIEW for request inquiry
 
@@ -19,7 +19,7 @@ from smember s
 inner join pick p on s.smemberid = p.smemberid; 
 
 
--- PFLISTVIEW ?ï¿½íŠ¸?ï¿½ë¦¬?ï¿½ë¦¬?ï¿½íŠ¸ï¿½??ï¿½íŠ¸?ï¿½ë¦¬?ï¿½í…Œ?ï¿½ë¸”ï¿½??ï¿½íŠ¸?ï¿½ë¦¬?ï¿½ì´ë¯¸ï¿½??ï¿½ì´ë¸”ï¿½? ?ï¿½ë¬¸ê°€?ï¿½ì´ë¸”ê³¼ ì¹´í…Œê³ ë¦¬?ï¿½ì´ë¸”ì„ ?ï¿½ì¹¨
+-- PFLISTVIEW Æ÷Æ®Æú¸®¿À ¸®½ºÆ®ºä/ Æ÷Æ®Æú¸®¿À Å×ÀÌºí, Æ÷ÆúÀÌ¹ÌÁö Å×ÀÌºí, Àü¹®°¡ Å×ÀÌºí°ú Ä«Å×°í¸® Å×ÀÌºíÀ» ÇÕÄ§
 CREATE OR REPLACE VIEW PFLISTVIEW AS
 select  p.pfno, s.SNAME, s.SMEMBERID , p.cgno ,c.cgname, p.pftitle, i.filename, p.regdate, s.authority, p.delflag		
 from portfolio p inner join pofolimg i
@@ -29,7 +29,7 @@ on p.cgno = c.cgno
 inner join smember s
 on s.SMEMBERID = p.SMEMBERID;
 
--- PFDETAIL ?ï¿½íŠ¸?ï¿½ë¦¬?ï¿½ë¦¬?ï¿½íŠ¸ï¿½??ï¿½íŠ¸?ï¿½ë¦¬?ï¿½í…Œ?ï¿½ë¸”ï¿½??ï¿½íŠ¸?ï¿½ë¦¬?ï¿½ì´ë¯¸ï¿½??ï¿½ì´ë¸”ï¿½? ?ï¿½ë¬¸ê°€?ï¿½ì´ë¸”ê³¼ ì¹´í…Œê³ ë¦¬?ï¿½ì´ë¸”ì„ ?ï¿½ì¹¨
+-- PFDETAIL Æ÷Æ®Æú¸®¿À µğÅ×ÀÏ/ Æ÷Æ®Æú¸®¿À Å×ÀÌºí Æ÷Æ®Æú¸®¿À ÀÌ¹ÌÁö Å×ÀÌºí°ú Àü¹®°¡ Å×ÀÌºí°ú Ä«Å×°í¸® Å×ÀÌºíÀ» ÇÕÄ§
 CREATE OR REPLACE VIEW PFDETAIL AS
  select  p.pfno, p.pftitle, s.SNAME, s.pr , c.cgname,  i.filename, i.pfimgno	
 from portfolio p inner join pofolimg i
@@ -39,14 +39,14 @@ on p.cgno = c.cgno
 inner join smember s
 on s.SMEMBERID = p.SMEMBERID;
 
---smember ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pfnoï¿½ï¿½
+--smember Æ÷Æ®Æú¸®¿À ÇÕÄ§
 CREATE OR REPLACE VIEW SADDRESS AS
 select  s.ADDRESS1, p.pfno
 from portfolio p inner join smember s
 on p.smemberid = s.smemberid;
 
 
---ìª½ï¿½???ï¿½?
+--ÂÊÁöÇÔ
 create or replace view message as
 select *
 from sendmsg natural join receivemsg;
@@ -86,5 +86,6 @@ create or replace view QNAlist
 as
 select q.*, (select count(*) from qnare r where r.qno=q.qno) as REPLYCNT
 from qna q;
+
 
 
