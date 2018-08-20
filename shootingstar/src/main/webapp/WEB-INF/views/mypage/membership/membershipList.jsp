@@ -53,7 +53,7 @@
 	}
 </script>
 		
-		멤버십 관리
+		<span class="title">멤버십 관리</span>
 	</div>
 	<!-- 페이징 처리를 위한 form -->
 	<form name="frmPage" method="post" action="<c:url value='/mypage/membership/membershipList.do'/>">

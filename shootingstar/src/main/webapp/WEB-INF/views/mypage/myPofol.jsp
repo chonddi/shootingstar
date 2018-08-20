@@ -49,7 +49,7 @@ a:hover{
 		});
 	});
 </script>
-		나의 포트폴리오
+		<span class="title">나의 포트폴리오</span>
 	</div>
 	<!-- 페이징 처리를 위한 form -->
 	<div class="selectedPage">
