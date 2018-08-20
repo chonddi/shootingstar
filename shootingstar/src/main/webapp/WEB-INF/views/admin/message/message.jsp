@@ -3,11 +3,7 @@
 <%@ include file="../../inc/adminTop.jsp"%>
 <script type="text/javascript">
 	$(function(){
-		//받은쪽지 클릭
-		$('.anotherBtn').click(function(){
-			location.href="<c:url value='/admin/message/messageReceive.do'/>";
-		});
-		
+
 		//쪽지보내기
 		$('#sendMsg').click(function(){
 			x = (screen.availWidth - 460) / 2;
@@ -64,7 +60,7 @@ margin: 50px auto;
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">	
 	</form>
 	<div class="selectedPage">
-		<div class="msgBtn"><span class="nowMsgType">보낸쪽지</span> <span class="btnMsgType"><input type="button" class="anotherBtn" value="받은쪽지"></span></div>
+		<div class="msgBtn"><span class="nowMsgType">보낸쪽지</span> <span class="btnMsgType"></div>
 		<form name="frmDel" method="post" action="<c:url value='/admin/message/deleteMultiAdmin.do'/>">
 		<table id="msgTbl">
 			<colgroup>
