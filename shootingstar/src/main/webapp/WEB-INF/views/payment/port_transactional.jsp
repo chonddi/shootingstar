@@ -35,7 +35,7 @@
 </head>
 <body>
 <section id="tranSec">
-<h1>나의 거래 내역</h1>
+<span class="title">나의 거래 내역</span>
 <br><br>
 <span style="color:gray;">나의 Request(견적) 거래 내역을 확인할 수 있습니다.</span>
 <!-- 페이징 처리를 위한 form -->
