@@ -18,41 +18,46 @@ function checkMail() {
 		return false;
 	}
 
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4) {
-			var data = JSON.parse(xhttp.responseText);
-			if (data == null) {
-				alert("가입하지 않은 이메일 입니다.");
+	$.ajax({
+		url : "<c:url value='/member/checkMail.do' />",
+		type : "POST",
+		data :'memberId=' + memberId + '&userCode='+userCode
+		, //파라미터
+		success : function(res) {
+			if (res == "noId") {
+				alert("가입하지 않은 아이디 입니다.");
 				$('#memberId').focus();
 			} else {
 				sendToken(memberId, userCode);
 			}
+		},
+		error : function(xhr, status, error) {
+			alert('error:' + error + ", status: " + status)
 		}
-	};
-	xhttp.open("POST", "<c:url value='/member/checkMail.do' />", true);
-	xhttp.setRequestHeader("Content-Type",
-			"application/x-www-form-urlencoded;charset=UTF-8");
-	xhttp.send('memberId=' + memberId + "&userCode="+userCode);
-	return false;
+
+	});
 }
 
 //이메일 인증 메일 발송
 function sendToken(memberId, userCode) {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4) {
-			if (xhttp.status == 200)
+	$.ajax({
+		url : "<c:url value='/member/sendToken.do' />",
+		type : "POST",
+		data :'memberId=' + memberId + '&userCode='+userCode
+		, //파라미터
+		success : function(res) {
+			if (res == true) {
 				document.location.href="<c:url value='/login/forgotPasswordChk.do'/>";
-			else
+			} else {
 				alert("올바른 메일 형식이 아닙니다.");
+			}
+		},
+		error : function(xhr, status, error) {
+			alert('error:' + error + ", status: " + status)
 		}
-	};
-	xhttp.open("POST", '<c:url value="/member/sendToken.do"/>', true);
-	xhttp.setRequestHeader("Content-Type",
-			"application/x-www-form-urlencoded;charset=UTF-8");
-	xhttp.send('memberId=' + memberId + "&userCode="+userCode);
-	return false;
+
+	});
+	
 }
 </script>
 <style type="text/css">
