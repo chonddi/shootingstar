@@ -11,7 +11,26 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/faqWrite.css'/>" />
 <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
-
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#faqTitle").val().length > 60){
+				alert("제목은 60자까지만 가능합니다.");
+				$("#faqTitle").focus();
+				return false;
+			}else if($("#faqTitle").val().length == 0){
+				alert("제목을 입력하세요.");
+				$("#faqTitle").focus();
+				return false;
+			}
+			
+			var ckeditor = CKEDITOR.instances['faqContent']; 
+			if (ckeditor.getData()==""){
+			 alert('내용을 입력하세요');
+			 ckeditor.focus();
+			 return false;
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -46,7 +65,7 @@
 		</script>
 	</section>
 	<section class="sec3">
-		<input type="submit" value="작성하기"/>
+		<input type="submit" id="submit" value="작성하기"/>
 		<input type="button" value="FAQ 목록" onclick="location.href='<c:url value="/admin/faq/faqAdmin.do"/>'"/>
 	</section>
 <input type="hidden" id="adminId" name="adminId" value='${adminId}'>

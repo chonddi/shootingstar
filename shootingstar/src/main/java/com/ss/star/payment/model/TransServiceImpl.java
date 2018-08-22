@@ -71,4 +71,9 @@ public class TransServiceImpl implements TransService {
 		return transDao.updateFlag(no);
 	}
 
+	@Override
+	public int selectPickNo(int no) {
+		return transDao.selectPickNo(no);
+	}
+
 }

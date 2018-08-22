@@ -80,7 +80,7 @@ public class MembershipController {
 		
 		MSPaymentVO mSPaymentVo= new MSPaymentVO();
 		if("1m".equals(period)) {
-			mSPaymentVo.setpPrice(9900);
+			mSPaymentVo.setpPrice(100);
 			mSPaymentVo.setpContent("1개월");
 			mSPaymentVo.setPeriod(1);
 		}else if("3m".equals(period)) {

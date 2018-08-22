@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('form[name=noticeEdit]').submit(function(event){
+	$('#submit').click(function(event){
 		if($("#nTitle").val()==""){
 			alert('제목을 입력하세요');
 			$("#nTitle").focus();
@@ -18,6 +18,10 @@ $(document).ready(function(){
 		}else if($("#nContent").val().length<1){
 			alert('내용을 입력하세요');
 			$("#nContent").focus();
+			return false;
+		}else if($("#nTitle").val().length > 60){
+			alert("제목은 60자까지만 가능합니다.");
+			$("#nTitle").focus();
 			return false;
 		}
 	});	
@@ -43,7 +47,7 @@ $(document).ready(function(){
 	</div>
 	
 	<div>
-		<input type="submit" value="작성">
+		<input type="submit" id="submit" value="작성">
 		<input type="button" value="취소" onclick="location.href='<c:url value="/admin/notice/noticeAdmin.do"/>'">
 	</div>
 	</form>

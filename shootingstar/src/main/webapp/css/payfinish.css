@@ -58,7 +58,7 @@ section.sec3 {
 	margin-top: 50px;
 }
 
-.sec3 button, .btns{
+.sec3btn, .btns{
     height: 55px;
     width: 220px;
     font-size: 1.3em;

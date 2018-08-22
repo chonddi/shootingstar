@@ -66,4 +66,10 @@ public class TransDAOMybatis implements TransDAO {
 		return cnt;
 	}
 
+	@Override
+	public int selectPickNo(int no) {
+		int cnt = sqlSession.selectOne(namespace + "selectPickNo", no);
+		return cnt;
+	}
+
 }

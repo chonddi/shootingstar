@@ -14,5 +14,6 @@ public interface TransService {
 	public TransacInfoVO selectByNo(int no);
 	public TransacInfoVO2 selectByNo2(int no);
 	public int updateFlag(int no);
+	public int selectPickNo(int no);
 	
 }

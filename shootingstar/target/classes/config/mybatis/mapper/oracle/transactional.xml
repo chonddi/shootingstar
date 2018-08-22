@@ -49,4 +49,8 @@
 		update rqpayment set flag='Y' where pno=#{pNo}
 	</update>
 	
+	<select id="selectPickNo" parameterType="int" resultType="int">
+		select * from rqpayment where pickno=#{pickNo}
+	</select>
+	
 </mapper>

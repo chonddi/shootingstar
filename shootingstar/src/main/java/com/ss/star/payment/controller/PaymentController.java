@@ -89,8 +89,10 @@ public class PaymentController {
 			HttpSession session, Model model) {
 		logger.info("결제 처리 PayfinishVO 파라미터 RQNo={}", RQNo);
 		logger.info("결제 처리 PayfinishVO 파라미터 vo={}", vo);
+		
+		int cnt4 = transService.selectPickNo(vo.getPickNo());
 
-		if (RQNo == 0) {
+		if (RQNo == 0 || cnt4 > 0) {
 			String msg = "잘못된 접근입니다.";
 			String url = "/index.do";
 

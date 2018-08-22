@@ -31,6 +31,7 @@ import com.ss.star.common.SearchVO;
 import com.ss.star.common.Utility;
 import com.ss.star.member.model.MemberService;
 import com.ss.star.member.model.MemberVO;
+import com.ss.star.payment.model.TransService;
 import com.ss.star.portfolio.model.PortfolioService;
 import com.ss.star.request.model.PickAllVO;
 import com.ss.star.request.model.RequestImgVO;
@@ -56,6 +57,8 @@ public class RequestController {
 	private SMemberService smemService;
 	@Autowired 
 	private CategoryService ctgService;
+	@Autowired
+	private TransService transService;
 	@Autowired
 	private FileUploadUtil3 fileUploadUtil;
 
@@ -356,6 +359,19 @@ public class RequestController {
 		//pick번호 구하기
 		int pno = requestService.getPickNo(no);
 		logger.info("금액이 수정될 pick의 번호, pno={}", pno);
+		
+		//거래 완료 후 재진입 방지
+		int cnt4 = transService.selectPickNo(pno);
+
+		if (cnt4 > 0) {
+			String msg = "잘못된 접근입니다.";
+			String url = "/index.do";
+
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+			return "common/message";
+		}
 				
 		//고객회원이 detail3.do 요청하는 경우 pvo에 새로운 정보를 담아 보낸다
 		PickAllVO pvo2 = new PickAllVO();
